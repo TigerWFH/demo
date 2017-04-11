@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"jsx": "react",
+		"outDir": "./dist",
+		"target": "es3",
+		"sourceMap": true,
+		"allowJs": true
+	},
+	"files": [
+		"./src/index.tsx"
+	]
+}
