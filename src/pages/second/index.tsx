@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 interface P { }
 interface S { }
 
-class Second extends React.Component<P, S>{
+export class Second extends React.Component<P, S>{
 	constructor(props: P) {
 		super(props);
 	}
@@ -17,5 +17,3 @@ class Second extends React.Component<P, S>{
 		)
 	}
 }
-
-export default Second;
