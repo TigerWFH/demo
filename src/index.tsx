@@ -30,12 +30,13 @@ class App extends React.Component<any, any>{
 </Router>;*/
 // router@4.0.0
 let elems = <Router>
-	<div>
-		{/*exact严格匹配，替换了原来的IndexRoute*/}
+	<App>
+		{/*exact严格匹配，替换了原来的IndexRoute;也取消了嵌套(nested)*/}
 		<Route exact strict path="/" component={First}></Route>
-		<Route path="/first" component={First}></Route>
-		<Route path="/second" component={Second}></Route>
-	</div>
+		<Route exact strict path="/first" component={First}></Route>
+		<Route exact strict path="/second" component={Second}></Route>
+		<Route exact strict path="/second/first" component={Second}></Route>
+	</App>
 </Router>
 
 ReactDOM.render(elems, document.getElementById('main'));
