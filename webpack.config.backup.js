@@ -4,15 +4,16 @@ const test = path.join(__dirname, 'src/test.tsx');
 const buildPath = path.join(__dirname, 'dist');
 // 抽取css
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractCSS = new ExtractTextPlugin("css/index.css");
+const extractCSS = new ExtractTextPlugin({ filename: '[name].css', allChunks: true });
 
 module.exports = {
 	entry: {
-		index: srcPath
+		index: srcPath,
+		test: test
 	},
 	output: {
 		path: buildPath,
-		filename: "js/[name].js"
+		filename: "[name].js"
 	},
 	module: {
 		rules: [
@@ -36,7 +37,7 @@ module.exports = {
 	},
 	devtool: "source-map",
 	target: "web",
-	// externals: ["react", "react-dom", "jQuery"],
+	externals: ["react", "react-dom", "jQuery"],
 	devServer: {},
 	plugins: [
 		extractCSS
