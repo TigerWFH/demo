@@ -58,3 +58,6 @@ npm install webpack typescript --save-dev --registry=https://registry.npm.taobao
 安装react及相关库
 
 npm install react react-dom --save --registry=https://registry.npm.taobao.org
+
+# 关于配置css模块化的问题
+但模块化css文件时，由于typescript的类型提示编译时会报错，目前暂时去掉模块化（联系下自己对css样式的组织吧），文件中使用import css = reuiqre()语法，ts编译会报错，但是能正常运行

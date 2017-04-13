@@ -11,6 +11,7 @@ import { Route, HashRouter as Router, Link } from 'react-router-dom';
 // components
 import { First } from './pages/first/index';
 import { Second } from './pages/second/index';
+// import css = require('./index.less');
 import './index.less';
 
 class App extends React.Component<any, any>{

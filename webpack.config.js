@@ -26,14 +26,32 @@ module.exports = {
 				include: [path.join(__dirname, 'src')],
 				use: extractCSS.extract({
 					fallback: 'style-loader',
-					use: ['css-loader', 'less-loader']
+					use: [
+						{
+							loader: 'css-loader',
+							options: {
+								// root: '.',
+								// modules: true,
+								// importLoaders: 1,
+								// minimize: true,
+								// camelCase: true
+							}
+						},
+						'less-loader']
 				})
 			},
 			{
 				test: /\.(jpg|jpeg|png|gif)/,
 				include: [path.join(__dirname, 'src')],
 				// 暂时把所有image编码为base64
-				use: ['url-loader']
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							// limit: 8000
+						}
+					}
+				]
 			}
 		]
 	},
