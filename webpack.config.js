@@ -28,6 +28,11 @@ module.exports = {
 					fallback: 'style-loader',
 					use: ['css-loader', 'less-loader']
 				})
+			},
+			{
+				test: /\.(jpg|jpeg|png|gif)/,
+				include: [path.join(__dirname, 'src')],
+				use: ['url-loader']
 			}
 		]
 	},
