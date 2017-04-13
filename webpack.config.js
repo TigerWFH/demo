@@ -40,7 +40,7 @@ module.exports = {
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js', '.less']
 	},
-	devtool: "source-map",
+	// devtool: "source-map",
 	target: "web",
 	// externals: ["react", "react-dom", "jQuery"],
 	devServer: {},

@@ -11,8 +11,12 @@ export class Second extends React.Component<P, S>{
 
 	render() {
 		return (
-			<div>
-				second page
+			<div className="app">
+				<video src="./res/videos/bk.mp4"
+					width="100%"
+					autoPlay
+					loop
+					muted></video>
 			</div>
 		)
 	}
