@@ -32,6 +32,7 @@ module.exports = {
 			{
 				test: /\.(jpg|jpeg|png|gif)/,
 				include: [path.join(__dirname, 'src')],
+				// 暂时把所有image编码为base64
 				use: ['url-loader']
 			}
 		]

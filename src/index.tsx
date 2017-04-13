@@ -15,7 +15,7 @@ import './index.less';
 
 class App extends React.Component<any, any>{
 	render() {
-		return <div className="wfh">
+		return <div className="app">
 			{this.props.children}
 		</div>
 	}
