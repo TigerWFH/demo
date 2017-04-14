@@ -61,7 +61,19 @@ module.exports = {
 	// devtool: "source-map",
 	target: "web",
 	// externals: ["react", "react-dom", "jQuery"],
-	devServer: {},
+	devServer: {
+		contentBase: path.join(__dirname, 'dist'),
+		compress: true,
+		// hot: true,//一旦配置，出错
+		// noInfo: true,//一旦配置，ts编译就死掉
+		// quiet: true,//不可用
+		watchContentBase: true,
+		port: 8080,
+		// host: '0.0.0.0',
+		proxy: {
+			"/v1": "http://localhost:9000"
+		}
+	},
 	plugins: [
 		extractCSS
 	]
