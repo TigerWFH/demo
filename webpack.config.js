@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const srcPath = path.join(__dirname, 'src/index.tsx');
 const test = path.join(__dirname, 'src/test.tsx');
@@ -5,7 +6,7 @@ const buildPath = path.join(__dirname, 'dist');
 // 抽取css
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractCSS = new ExtractTextPlugin("css/index.css");
-
+// let isUsingMock = true;
 module.exports = {
 	entry: {
 		index: srcPath
@@ -64,17 +65,17 @@ module.exports = {
 	devServer: {
 		contentBase: path.join(__dirname, 'dist'),
 		compress: true,
-		// hot: true,//一旦配置，出错
-		// noInfo: true,//一旦配置，ts编译就死掉
-		// quiet: true,//不可用
-		watchContentBase: true,
 		port: 8080,
-		// host: '0.0.0.0',
+		watchContentBase: true,
+		hot: true,
+		noInfo: true,
+		// quiet: true,
 		proxy: {
 			"/v1": "http://localhost:9000"
 		}
 	},
 	plugins: [
-		extractCSS
+		extractCSS,
+		new webpack.HotModuleReplacementPlugin()
 	]
 };

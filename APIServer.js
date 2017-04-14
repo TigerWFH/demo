@@ -10,7 +10,14 @@ app.use(bodyParser.text());
 
 app.all('*', (req, res, next) => {
 	console.log('***I am a APIServer***', req.path);
-	next();
+	var filePath = `./mock/${req.path}.json`;
+	if (fs.existSync(filePath)) {
+		let data = fs.readFileSync(filePath, { encoding: 'utf8' });
+		res.json(JSON.parse(data));
+	}
+	else {
+		next();
+	}
 });
 
 // app.use(express.static('./dist'));
