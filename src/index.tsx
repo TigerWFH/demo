@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { Route, HashRouter as Router, Link } from 'react-router-dom';
 // components
 import First from './pages/first/index';
-import { Second } from './pages/second/index';
+import Second from './pages/second/index';
 // store
 import { store } from './store';
 // import css = require('./index.less');

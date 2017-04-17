@@ -1,20 +1,20 @@
 // http
 import { get, post } from '../../../utils/http';
 
-
+// constants
 export const BEGIN_AJAX = 'BEGIN_AJAX';
-export const END_AJAX = 'END_AJAX';
 export const ERROR_AJAX = 'ERROR_AJAX';
 export const FETCH_ACCOUNT_LIST = 'FETCH_ACCOUNT_LIST';
 export const FETCH_ACCOUNT = 'FETCH_ACCOUNT';
 
 export let fetchAccountList = () => {
-	let action = {
+	let action: any = {
 		type: BEGIN_AJAX,
-		data: { isBeginAjax: true }
+		data: {}
 	};
 
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		console.log('preState--->', getState());
 		let url = '/v1/accounts';
 		let options = {};
 		dispatch(action);
@@ -34,10 +34,7 @@ export let fetchAccountList = () => {
 export let fetchAccount = () => {
 	let action = {
 		type: BEGIN_AJAX,
-		data: {
-			name: "monkey",
-			age: 12
-		}
+		data: {}
 	};
 	action.type = FETCH_ACCOUNT;
 	return action;

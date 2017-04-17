@@ -6,7 +6,8 @@ import { First } from '../components/index';
 import * as Actions from '../actions';
 
 function mapStateToProps(state, ownProps) {
-	return { ...state };
+	let { common, first } = state;
+	return { ...common, ...first }
 }
 
 function mapDispatchToProps(dispatch) {
