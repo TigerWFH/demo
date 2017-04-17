@@ -14,7 +14,6 @@ export let fetchAccountList = () => {
 	};
 
 	return (dispatch, getState) => {
-		console.log('preState--->', getState());
 		let url = '/v1/accounts';
 		let options = {};
 		dispatch(action);
