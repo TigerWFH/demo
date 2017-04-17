@@ -4,9 +4,17 @@
 		"outDir": "./dist",
 		"target": "es3",
 		"sourceMap": true,
-		"allowJs": true
+		"allowJs": true,
+		"lib": [
+			"es2015.promise",
+			"es5",
+			"dom"
+		]
 	},
-	"files": [
-		"./src/index.tsx"
+	"include": [
+		"./src"
+	],
+	"exclude": [
+		"./src/res"
 	]
 }

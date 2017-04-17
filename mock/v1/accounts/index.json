@@ -1,0 +1,14 @@
+{
+	"msgCode": "0",
+	"msgText": "success",
+	"data": [
+		{
+			"name": "monkey",
+			"age": 12
+		},
+		{
+			"name": "fish",
+			"age": 13
+		}
+	]
+}

@@ -1,0 +1,8 @@
+{
+	"msgCode": "0",
+	"msgText": "success",
+	"data": {
+		"name:": "test",
+		"age": 12
+	}
+}
