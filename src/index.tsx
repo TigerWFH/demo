@@ -1,6 +1,8 @@
 // libs
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import * as ReactDOMServer from 'react-dom/server';//服务端渲染
+
 import { Provider } from 'react-redux';
 import { Route, HashRouter as Router, Link } from 'react-router-dom';
 // components
