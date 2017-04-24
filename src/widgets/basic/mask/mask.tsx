@@ -27,7 +27,7 @@ export class Mask extends React.Component<P, S>{
 		options.isShow = true;
 		getInstance(options);
 	};
-	static unmountMask = (options: any = {}) => {
+	static unmountMask = () => {
 		ReactDOM.unmountComponentAtNode(container);
 		instance = null;
 	}

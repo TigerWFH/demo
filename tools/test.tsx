@@ -7,6 +7,7 @@ class People {
 	private _name: string;
 	private _age: number;
 	public getName() {
+		People.ratio = 234234;
 		return this._name;
 	}
 	static getRatio() {
