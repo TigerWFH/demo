@@ -1,0 +1,47 @@
+.mkMask{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	justify-content: center;
+	align-items: center;
+	user-select: none;
+	background: rgba(0,0,0,0.4);
+	.mkContent{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		user-select: none;
+		width: 150px;
+		height: 150px;
+		border-radius: 100%;
+		background: radial-gradient(red, white);
+		animation: mkMask 5s linear infinite;
+	}
+}
+
+@keyframes mkMask{
+	0% {
+		transform: rotate(0deg);
+	}
+	20%{
+		transform: rotate(72deg)
+	}
+	40%{
+		transform: rotate(144deg);
+	}
+	60%{
+		transform: rotate(216deg);
+	}
+	80%{
+		transform: rotate(288deg)
+	}
+	100%{
+		transform: rotate(360deg)
+	}
+}
+// @keyframes mkMasks{
+// 	from {}
+// 	to {}
+// }

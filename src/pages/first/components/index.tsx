@@ -1,6 +1,8 @@
 // libs
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+// components
+import { Mask } from '../../../widgets/basic/mask/mask';
 // css
 import './index.less';
 // import { css } from './index.less';//模块化引用
@@ -26,8 +28,12 @@ export class First extends React.Component<P, S>{
 		fetchAccountList();
 	}
 	_onClick = () => {
-		let { fetchAccount } = this.props;
-		fetchAccount();
+		// let { fetchAccount } = this.props;
+		// fetchAccount();
+		Mask.mountMask();
+		// let timer = setTimeout(() => {
+		// 	Mask.unmountMask();
+		// }, 10000);
 	}
 	render() {
 		return (
