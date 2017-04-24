@@ -69,6 +69,6 @@ export class Modal extends React.Component<P, S>{
 		if (onCancel && typeof onCancel === "function") {
 			onCancel();
 		}
-		Mask.unmountMask();
+		Modal.unmountModal();
 	}
 }
