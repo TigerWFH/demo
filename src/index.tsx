@@ -6,6 +6,7 @@ import * as ReactDOMServer from 'react-dom/server';//服务端渲染
 import { Provider } from 'react-redux';
 import { Route, HashRouter as Router, Link } from 'react-router-dom';
 // components
+import Demo from './pages/demo/index';
 import First from './pages/first/index';
 import Second from './pages/second/index';
 // store
@@ -25,7 +26,7 @@ let elems =
 		<Router>
 			<App>
 				{/*exact严格匹配，替换了原来的IndexRoute;也取消了嵌套(nested)*/}
-				<Route exact strict path="/" component={First}></Route>
+				<Route exact strict path="/" component={Demo}></Route>
 				<Route exact strict path="/first" component={First}></Route>
 				<Route exact strict path="/second" component={Second}></Route>
 				<Route exact strict path="/second/first" component={Second}></Route>

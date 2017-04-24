@@ -9,8 +9,8 @@ import './mask.less';
 
 interface P {
 	maskCN?: any;
-	isShow?: false;
 	content?: any;
+	isShow?: false;
 }
 interface S {
 }
