@@ -12,7 +12,7 @@ export class Message extends React.Component<P, S>{
 		super(props);
 	}
 	render() {
-		return <div className="message">
+		return <div className="mkMessage">
 			I am a message box
 		</div>
 	}

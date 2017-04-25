@@ -4,7 +4,8 @@ import * as ReactDOM from 'react-dom';
 
 // component
 import { Mask } from '../../../widgets/basic/mask/mask';
-import { Modal } from '../../../widgets/basic/modal/modal';
+import { Message } from '../../../widgets/basic/message/message';
+import { Modal } from '../../../widgets/modal/modal';
 
 interface P { }
 interface S { }
@@ -20,6 +21,7 @@ export class Demo extends React.Component<P, S>{
 		return <div className="app">
 			<button onClick={this._onMask}>Mask</button>
 			<button onClick={this._onModal}>Modal</button>
+			<Message></Message>
 			<Modal onOk={this._onOk}>
 				{_content}
 			</Modal>
