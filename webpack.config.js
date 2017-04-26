@@ -6,7 +6,6 @@ const buildPath = path.join(__dirname, 'dist');
 // 抽取css
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractCSS = new ExtractTextPlugin("css/index.css");
-// let isUsingMock = true;
 module.exports = {
 	entry: {
 		index: srcPath
@@ -57,7 +56,8 @@ module.exports = {
 		]
 	},
 	resolve: {
-		extensions: ['.tsx', '.ts', '.js', '.less']
+		extensions: ['.tsx', '.ts', '.js', '.css', '.less'],
+		modules: ['node_modules', './src']
 	},
 	// devtool: "source-map",
 	target: "web",
