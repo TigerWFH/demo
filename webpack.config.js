@@ -8,7 +8,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractCSS = new ExtractTextPlugin("css/index.css");
 module.exports = {
 	entry: {
-		index: srcPath
+		index: srcPath,
+		demo: './src/demo.ts'
 	},
 	output: {
 		path: buildPath,
