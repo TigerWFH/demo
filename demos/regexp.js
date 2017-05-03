@@ -1,0 +1,30 @@
+let str = "cat,fat,nat,gat,kat,jat,aaaaaaaysdajkfjas";
+let regexp = /.at/g;
+let regexp1 = new RegExp('.at');
+console.log('object--->', regexp1);
+console.log('global--->', regexp1.global);
+console.log('ignoreCase--->', regexp1.ignoreCase);
+console.log('multiline--->', regexp1.multiline);
+console.log('source--->', regexp1.source);
+console.log('lastindex--->', regexp1.lastIndex);
+let ret = regexp.exec(str);
+console.log('ret--->', ret[0]);
+console.log('ret.input--->', ret.input);
+console.log('ret.index--->', ret.index);
+let ret1 = regexp1.exec(str);
+console.log('ret--->', ret1[0]);
+console.log('ret.input--->', ret1.input);
+console.log('ret.index--->', ret1.index);
+regexp = /^.at$/;
+console.log("---->", regexp.test(str));
+console.log("---->", regexp1.test(str));
+console.log('toString--->', regexp.toString());
+console.log('toLocaleString--->', regexp.toLocaleString());
+console.log('valueOf--->', regexp.valueOf());
+if (regexp1.test(str)) {
+	console.log("RegExpProperties--->", RegExp.input);
+	console.log("RegExpProperties--->", RegExp.lastMatch);
+	console.log("RegExpProperties--->", RegExp.lastParen);
+	console.log("RegExpProperties--->", RegExp.leftContext);
+	console.log("RegExpProperties--->", RegExp.rightContext);
+}
