@@ -42,7 +42,8 @@ function add() {
 }
 
 let myFn = curry(add);//创建了一个第一个参数为空的add()的柯里化版本
-let myFn1 = curry(add, 100);//创建了第一个参数为100的add()柯里化版本
+let myFn1 = curry(add, 100);//创建了第一个参数为100的add()柯里化版本，
+// 这里才体现了柯里化的作用，除去共同的部分即100，在柯里化转变函数中就已经处理了共同的部分
 console.log(add(1));
 console.log(myFn(1)());
 console.log(myFn1(1)());
