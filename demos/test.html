@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			height: 100%;
+			width: 100%;
+			padding: 0;
+			margin: 0;
+		}
+
+		.first,
+		.second,
+		.third,
+		.fouth,
+		.fifth,
+		.sixth,
+		.seventh {
+			margin: 30px auto;
+			border: 1px solid red;
+			width: 100px;
+			height: 100px;
+			outline-offset: 3px;
+		}
+
+		.first {
+			outline: 4px dashed blue;
+		}
+
+		.second {
+			outline: 4px dotted blue;
+		}
+
+		.third {
+			outline: 4px double blue;
+		}
+
+		.fouth {
+			outline: 4px groove blue;
+		}
+
+		.fifth {
+			outline: 4px ridge blue;
+		}
+
+		.sixth {
+			outline: 4px inset blue;
+		}
+
+		.seventh {
+			outline: 4px outset blue;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="first">
+		first
+	</div>
+	<div class="second">
+		second
+	</div>
+	<div class="third">
+		third
+	</div>
+	<div class="fouth">
+		third
+	</div>
+	<div class="fifth">
+		third
+	</div>
+	<div class="sixth">
+		third
+	</div>
+	<div class="seventh">
+		third
+	</div>
+</body>
+
+</html>
+
+<!--
+	关于position定位：
+		结论一：如果使用了absolute,fixed,没有使用top,right,bottom,left等定位，元素按照正常文档流位置显示，
+					即按照系统默认的方位定位，且宽高表现和inline元素一样
+
+-->
