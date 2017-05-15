@@ -14,11 +14,42 @@ import { store } from './store';
 // import css = require('./index.less');
 import './index.less';
 
+const Test = function (props) {
+	return <div>Test</div>
+}
 class App extends React.Component<any, any>{
-	render() {
+	constructor(props: any) {//1-1
+		super(props);
+		console.log('App----->constructor');
+	}
+	componentWillMount() {//1-2
+		console.log('App----->componentWillMount');
+	}
+	render() {//1-3 2-4
+		console.log('App--->render');
 		return <div className="app">
+			<Test></Test>
 			{this.props.children}
 		</div>
+	}
+	componentDidMount() {//1-4
+		console.log('App----->componentDidMount');
+	}
+	componentWillReceiveProps(nextProps: any) {//2-1(父组件的更改)
+		console.log('App----->WillReceiveProps');
+	}
+	shouldComponentUpdate(nextProps: any, nextState: any) {//2-2(setState)
+		console.log('App----->shouldComponentUpdate');
+	}
+	componentWillUpdate(nextProps: any, nextState: any) {//2-3(forceUpdate)
+		console.log('App----->componentWillUpdate');
+		return true;
+	}
+	componentDidUpdate(preProps: any, preState: any) {
+		console.log('App----->componentDidUpdate');
+	}
+	componentWillUnmount() {//1-5
+		console.log('App----->componentWillUnmount');
 	}
 }
 let elems =
