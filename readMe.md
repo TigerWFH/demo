@@ -183,3 +183,121 @@ npm install react react-dom --save --registry=https://registry.npm.taobao.org
 [参考资料](http://blog.csdn.net/horkychen/article/details/45083467)
 * component:强调代码的重用（web component 或者说组件是达到可复用要求的模块,将本来分离的html,js,css又糅合到一坨了）
 * module:强调职责（内聚、分离）
+
+# 腾讯云Web播放器在线直播和点播
+[参考资料](https://www.qcloud.com/document/product/267/7479)
+
+协议支持：HLS（HTTP Live Streaming），苹果的标准，兼容性较好，但是延迟大，在20-30秒左右，PC端有flash存在，相对较好。
+<table>
+<tr>
+<td>视频协议</td>
+<td>用途</td>
+<td>PC浏览器</td>
+<td>移动端浏览器</td>
+<td>DEMO</td>
+</tr>
+<tr>
+<td>HLS(m3u8)</td>
+<td>直播（点播）</td>
+<td>支持</td>
+<td>支持</td>
+<td>http://2157.liveplay.myqcloud.com/2157_35a.m3u8</td>
+</tr>
+<tr>
+<td>FLV</td>
+<td>直播（点播）</td>
+<td>支持</td>
+<td>不支持</td>
+<td>http://2157.liveplay.myqcloud.com/2157_35a.flv</td>
+</tr>
+<tr>
+<td>RTMP</td>
+<td>直播</td>
+<td>支持</td>
+<td>不支持</td>
+<td>http://2157.liveplay.myqcloud.com/2157_35a</td>
+</tr>
+<tr>
+<td>MP4</td>
+<td>点播</td>
+<td>支持</td>
+<td>支持</td>
+<td>http://2157.liveplay.myqcloud.com/2157_35a.MP4</td>
+</tr>
+</table>
+
+# 对接准备
+* 引入初始化脚本
+```
+<script src="//imgcache.qq.com/open/qcloud/video/vcplayer/TcPlayer.js" charset="utf-8"></script>
+```
+* HTML里放置容器
+```
+<div id="id_test_video" style="width:100%;height:auto;"></div>
+```
+* 对接视频的播放
+写js代码，拉去视频
+> 1 直播视频测试
+>```
+> var player = new TcPlayer("id_test_video", {
+>	"m3u8":"url",	//视频地址
+>	"autoplay":true,	//自动播放功能
+>	"coverpic":url,	//自动播放功能
+>	"width":'480',	//视频分辨率
+>	"height":'320',	//视频分辨率
+>})
+>```
+> 2 PC更低延迟（利用flash）
+>```
+> var player = new TcPlayer("id_test_video", {
+>	"m3u8":"url",	//视频地址
+>	"flv":"url",	//增加了一个flv视频地址
+>	"autoplay":true,	//自动播放功能
+>	"coverpic":url,	//自动播放功能
+>	"width":'480',	//视频分辨率
+>	"height":'320',	//视频分辨率
+>})
+>```
+* 播放器封面设置
+coverpic支持传入一个对象，设置相关参数。
+```
+"coverpic":{"style":"stretch","src":"http://www.test.com/myimage.jpg"}
+```
+* 多清晰度的支持(移动端不支持)
+```
+var player = new TcPlayer('id_test_video', {
+	"m3u8": "http://200002949.vod.myqcloud.com/200002949_b6ffc.f0.m3u8",
+	"m3u8_hd":"http://200002949.vod.myqcloud.com/200002949_b6ffc.f230.m3u8",
+	"m3u8_sd":"http://200002949.vod.myqcloud.com/200002949_b6ffc.f220.m3u8",
+	"autoplay":true,
+	"coverpic":url
+})
+```
+* 错误提示(wording属性)
+```
+var player = new TcPlayer('id_test_video', {
+"m3u8"   : "http://200002949.vod.myqcloud.com/200002949_b6ffc.f0.m3u8",//请替换成实际可用的播放地址
+"autoplay" : true,      //iOS下safari浏览器是不开放这个能力的
+"coverpic" : "http://www.test.com/myimage.jpg",
+"wording": {
+    2032: "请求视频失败，请检查网络",
+    2048: "请求m3u8文件失败，可能是网络错误或者跨域问题"
+}
+});
+```
+* 事件列表
+error
+timeupdate
+load
+loadedmetadata
+loadeddata
+progress
+fullscreen
+play
+playing
+pause
+ended
+seeking
+seeked
+resize
+volumechange
