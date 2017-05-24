@@ -12,6 +12,9 @@ interface P { }
 interface S { }
 
 /*
+	Lifting State Up Demo
+*/
+/*
 	stateless component
 	target: Test lifting state up
 */
@@ -104,6 +107,88 @@ class Calculator extends React.Component<any, any>{
 	}
 }
 
+/*
+	Thinking in React Demo
+*/
+let mockData = [
+	{ category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football" },
+	{ category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball" },
+	{ category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball" },
+	{ category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch" },
+	{ category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5" },
+	{ category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7" }
+];
+function ProductRow(props: any = {}) {
+	let { productList } = props;
+	let elemList = productList.map((value: any) => {
+		return (
+			<tr>
+				<td>{value.name}</td>
+				<td>{value.price}</td>
+			</tr>
+		)
+	});
+	return (
+		<div>
+			{elemList}
+		</div>
+	)
+}
+function ProductCategoryRow(props: any = {}) {
+	let { category } = props;
+	return (
+		<tr>
+			{category}
+		</tr>
+	)
+}
+
+function ProductTable(props: any = {}) {
+	let { productListData } = props;
+	// 产品类别
+	let categories = [];
+	let tmp: any = '';
+	productListData.forEach((value: any) => {
+		if (value.category !== tmp) {
+			tmp = value.category;
+			categories.push(tmp);
+		}
+	});
+	// 根据类别，获取产品列表
+	let productList = [];
+	categories.forEach((value: any) => {
+		productListData.filter((item: any) => {
+			return value === item.category;
+		});
+	});
+
+	return (
+		<div>
+
+		</div>
+	)
+}
+
+function SearchBar(props: any = {}) {
+	return (
+		<div>
+
+		</div>
+	)
+}
+
+class FilterableProductTable extends React.Component<any, any>{
+	constructor(props: any) {
+		super(props);
+	}
+	render() {
+		return (
+			<div>
+
+			</div>
+		)
+	}
+}
 
 
 
@@ -116,18 +201,35 @@ export class Demo extends React.Component<P, S>{
 
 	render() {
 		let _content = <input type="text" ref="input" />
-		return <div className="app" style={{ border: "1px solid red" }}>
-			<button onClick={this._onMask}>Mask</button>
-			<button onClick={this._onModal}>Modal</button>
-			{/*<Input />*/}
-			<Calculator></Calculator>
-			<input type="text" defaultValue="monkey" />
-			<input type="text" value="monkey" />
-			<Message></Message>
-			<Modal onOk={this._onOk}>
-				{_content}
-			</Modal>
-		</div>
+		return (
+			<div className="app" style={{ margin: "50px auto" }}>
+				<fieldset style={{ margin: "50px auto" }}>
+					<legend>
+						Lifting State Up Demo
+					</legend>
+					<Calculator></Calculator>
+				</fieldset>
+				<fieldset>
+					<legend>
+						Thinking in React Demo
+					</legend>
+					<ProductRow productList={mockData}></ProductRow>
+				</fieldset>
+				<fieldset style={{ margin: "50px auto" }}>
+					<legend>
+						其它测试
+					</legend>
+					<button onClick={this._onMask}>Mask</button>
+					<button onClick={this._onModal}>Modal</button>
+					<input type="text" defaultValue="monkey" />
+					<input type="text" value="monkey" />
+					{/*<Message></Message>*/}
+					<Modal onOk={this._onOk}>
+						{_content}
+					</Modal>
+				</fieldset>
+			</div>
+		)
 	}
 	_onMask = () => {
 		Mask.mountMask();
