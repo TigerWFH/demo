@@ -49,9 +49,6 @@ class TemperatureInput extends React.Component<any, any> {
 	}
 
 	handleChange = (e) => {
-		// this.setState({
-		// 	temperature: e.target.value
-		// });
 		this.props.onTemperatureChange(e.target.value);
 	}
 	render() {
@@ -123,8 +120,12 @@ function ProductRow(props: any = {}) {
 	let elemList = productList.map((value: any, index: number) => {
 		return (
 			<div key={'pItem-' + index}>
-				<span style={{ display: "inline-block", width: "80px", textAlign: "left" }}>{value.name}</span>
-				<span style={{ display: "inline-block", width: "80px", textAlign: "right" }}>{value.price}</span>
+				<span style={{ display: "inline-block", width: "80px", textAlign: "left" }}>
+					{value.name}
+				</span>
+				<span style={{ display: "inline-block", width: "80px", textAlign: "right" }}>
+					{value.price}
+				</span>
 			</div>
 		)
 	});
@@ -228,16 +229,12 @@ class FilterableProductTable extends React.Component<any, any>{
 	}
 	_onChange = (event) => {
 		let filterData = this._filterData(event.target.value, this.state.checked);
-		// if (!event.target.value) {
-		// 	filterData = mockData;
-		// };
 		this.setState({
 			value: event.target.value,
 			mockData: filterData
 		});
 	}
 	_onChecked = (event) => {
-
 		this.setState({
 			checked: event.target.checked,
 			mockData: this._filterData(this.state.value, event.target.checked)
