@@ -270,7 +270,29 @@ class FilterableProductTable extends React.Component<any, any>{
 	}
 }
 
-
+/*
+	测试FileReader对象的功能
+*/
+class UploadFile extends React.Component<any, any>{
+	constructor(props: any) {
+		super(props);
+	}
+	render() {
+		return (
+			<input type="file"
+				onChange={this._onChange} />
+		)
+	}
+	_onChange = (event) => {
+		console.log('change--->', event.target.files[0]);
+		let fileReader = new FileReader();
+		fileReader.onloadend = function (event) {
+			console.log('result--->', fileReader.result);
+			console.log('--->', fileReader.result.indexOf('255216'));
+		}
+		fileReader.readAsArrayBuffer(event.target.files[0]);
+	}
+}
 
 
 export class Demo extends React.Component<P, S>{
@@ -289,11 +311,17 @@ export class Demo extends React.Component<P, S>{
 					</legend>
 					<Calculator></Calculator>
 				</fieldset>
-				<fieldset>
+				<fieldset style={{ margin: "50px auto" }}>
 					<legend>
 						Thinking in React Demo
 					</legend>
 					<FilterableProductTable />
+				</fieldset>
+				<fieldset style={{ margin: "50px auto" }}>
+					<legend>
+						测试input文件上传和FileReader对象
+					</legend>
+					<UploadFile />
 				</fieldset>
 				<fieldset style={{ margin: "50px auto" }}>
 					<legend>
