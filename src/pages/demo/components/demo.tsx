@@ -316,7 +316,7 @@ export class Demo extends React.Component<P, S>{
 	componentDidMount() {
 		console.log('Demo componentDidMount');
 	}
-	componentUnmount() {
+	componentWillUnmount() {
 		console.log('Demo componentUnMount');
 	}
 	componentWillReceiveProps(props: any) {
