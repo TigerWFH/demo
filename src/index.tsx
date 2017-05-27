@@ -20,37 +20,38 @@ const Test = function (props) {
 class App extends React.Component<any, any>{
 	constructor(props: any) {//1-1
 		super(props);
-		console.log('App----->constructor');
+		// console.log('App----->constructor');
 	}
-	componentWillMount() {//1-2
-		console.log('App----->componentWillMount');
-	}
+	// componentWillMount() {//1-2
+	// 	console.log('App----->componentWillMount');
+	// }
 	render() {//1-3 2-4
-		console.log('App--->render');
+		// console.log('App--->render');
 		return <div className="app">
 			<Test></Test>
 			{this.props.children}
 		</div>
 	}
-	componentDidMount() {//1-4
-		console.log('App----->componentDidMount');
-	}
-	componentWillReceiveProps(nextProps: any) {//2-1(父组件的更改)
-		console.log('App----->WillReceiveProps');
-	}
-	shouldComponentUpdate(nextProps: any, nextState: any) {//2-2(setState)
-		console.log('App----->shouldComponentUpdate');
-	}
-	componentWillUpdate(nextProps: any, nextState: any) {//2-3(forceUpdate)
-		console.log('App----->componentWillUpdate');
-		return true;
-	}
-	componentDidUpdate(preProps: any, preState: any) {
-		console.log('App----->componentDidUpdate');
-	}
-	componentWillUnmount() {//1-5
-		console.log('App----->componentWillUnmount');
-	}
+	// componentDidMount() {//1-4
+	// 	console.log('App----->componentDidMount');
+	// }
+	// componentWillReceiveProps(nextProps: any) {//2-1(父组件的更改)
+	// 	console.log('App----->WillReceiveProps');
+	// }
+	// shouldComponentUpdate(nextProps: any, nextState: any) {//2-2(setState)
+	// 	console.log('App----->shouldComponentUpdate');
+	// 	return true;
+	// }
+	// componentWillUpdate(nextProps: any, nextState: any) {//2-3(forceUpdate)
+	// 	console.log('App----->componentWillUpdate');
+
+	// }
+	// componentDidUpdate(preProps: any, preState: any) {
+	// 	console.log('App----->componentDidUpdate');
+	// }
+	// componentWillUnmount() {//1-5
+	// 	console.log('App----->componentWillUnmount');
+	// }
 }
 let elems =
 	<Provider store={store}>

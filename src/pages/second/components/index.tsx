@@ -11,12 +11,12 @@ export class Second extends React.Component<P, S>{
 	constructor(props: P) {
 		super(props);
 	}
-	componentDidMount() {
-		console.log('didMount--->', this.props);
-	}
-	componentDidUpdate() {
-		console.log('didUpdate--->', this.props);
-	}
+	// componentDidMount() {
+	// 	console.log('didMount--->', this.props);
+	// }
+	// componentDidUpdate() {
+	// 	console.log('didUpdate--->', this.props);
+	// }
 	_onClick = () => {
 		let { testAction } = this.props;
 		testAction();

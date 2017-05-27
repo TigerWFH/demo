@@ -8,8 +8,13 @@ import { Message } from '../../../widgets/basic/message/message';
 import { Modal } from '../../../widgets/modal/modal';
 import { Input } from '../../../widgets/basic/input/input';
 
-interface P { }
-interface S { }
+interface P {
+	name: string;
+	fetchT: Function;
+}
+interface S {
+	age: number;
+}
 
 /*
 	Lifting State Up Demo
@@ -287,8 +292,12 @@ class UploadFile extends React.Component<any, any>{
 		console.log('change--->', event.target.files[0]);
 		let fileReader = new FileReader();
 		fileReader.onloadend = function (event) {
-			console.log('result--->', fileReader.result);
-			console.log('--->', fileReader.result.indexOf('255216'));
+			let readData = new Uint8Array(fileReader.result);
+			let detStr = readData.slice(0, 2).join('');
+			if (detStr === "13780" || detStr === "255216") {
+				return alert('right image');
+			}
+			alert('not jpg or png');
 		}
 		fileReader.readAsArrayBuffer(event.target.files[0]);
 	}
@@ -299,12 +308,45 @@ export class Demo extends React.Component<P, S>{
 	refs: any;
 	constructor(props: P) {
 		super(props);
+		console.log('Demo constructor');
 	}
-
+	componentWillMount() {
+		console.log('Demo componentWillMount');
+	}
+	componentDidMount() {
+		console.log('Demo componentDidMount');
+	}
+	componentUnmount() {
+		console.log('Demo componentUnMount');
+	}
+	componentWillReceiveProps(props: any) {
+		console.log('Demo receiveProps--->', props);
+	}
+	shouldComponentUpdate(props, state) {
+		console.log('Demo shouldComponentUpdate');
+		return true;
+	}
+	componentWillUpdate() {
+		console.log('Demo componentWillUpdate');
+	}
+	componentDidUpdate() {
+		console.log('Demo componentDidUpdate');
+	}
 	render() {
+		console.log('Demo render');
 		let _content = <input type="text" ref="input" />
 		return (
 			<div className="app" style={{ margin: "50px auto" }}>
+				<fieldset>
+					<legend>
+						测试生命周期
+					</legend>
+					<div>
+						<button onClick={this._onT3}>forceUpdate</button>
+						<button onClick={this._onT2}>setState</button>
+						<button onClick={this._onT1}>connect</button>
+					</div>
+				</fieldset>
 				<fieldset style={{ margin: "50px auto" }}>
 					<legend>
 						Lifting State Up Demo
@@ -327,6 +369,7 @@ export class Demo extends React.Component<P, S>{
 					<legend>
 						其它测试
 					</legend>
+					<span>{this.props.name}</span>
 					<button onClick={this._onMask}>Mask</button>
 					<button onClick={this._onModal}>Modal</button>
 					<input type="text" defaultValue="monkey" />
@@ -351,5 +394,20 @@ export class Demo extends React.Component<P, S>{
 	_onOk = () => {
 		let value = this.refs.input.value;
 		console.log('value--->', value);
+	}
+	_onT1 = () => {
+		//connect
+		let { fetchT } = this.props;
+		fetchT();
+	}
+	_onT2 = () => {
+		// setState
+		this.setState({
+			age: 15
+		});
+	}
+	_onT3 = () => {
+		// fource
+		this.forceUpdate();
 	}
 }

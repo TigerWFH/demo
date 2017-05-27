@@ -17,12 +17,12 @@ export class First extends React.Component<P, S>{
 	constructor(props: P) {
 		super(props);
 	}
-	componentDidMount() {
-		console.log('didMount-props--->', this.props);
-	}
-	componentDidUpdate() {
-		console.log('didUpdate-props--->', this.props);
-	}
+	// componentDidMount() {
+	// 	console.log('didMount-props--->', this.props);
+	// }
+	// componentDidUpdate() {
+	// 	console.log('didUpdate-props--->', this.props);
+	// }
 	_onClickList = () => {
 		let { fetchAccountList } = this.props;
 		fetchAccountList();
