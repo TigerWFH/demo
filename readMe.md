@@ -23,8 +23,8 @@ Demo
 	|	|	|	|
 	|	|	|	|--->actions(存放redux的actions)
 	|	|	|	|
-	|	|	| |--->reducers(存放redux的reducers)
-	|	|	| |
+	|	|	| 	|--->reducers(存放redux的reducers)
+	|	|	| 	|
 	|	|	|	|--->container(存放容器组件)
 	|	|	|	|
 	|	|	|	|--->components(存放展示组件，数据来源只有props)

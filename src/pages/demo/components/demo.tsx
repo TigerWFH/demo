@@ -276,7 +276,7 @@ class FilterableProductTable extends React.Component<any, any>{
 }
 
 /*
-	测试FileReader对象的功能
+	测试FileReader对象的功能，根据图像文件格式过滤
 */
 class UploadFile extends React.Component<any, any>{
 	constructor(props: any) {
