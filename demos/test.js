@@ -53,3 +53,5 @@ console.log(curriedAdd2());//0
 console.log(curriedAdd2(1)());//1
 console.log(curriedAdd2(1)(2)());//3
 console.log(curriedAdd2(1)(2)(9)());//12
+
+console.log('--->', void (1 + 1));

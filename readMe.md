@@ -175,11 +175,63 @@ npm install react react-dom --save --registry=https://registry.npm.taobao.org
 			<div class="monkey_footer"></div>
 		</div>
 	```
-# js的命名规则
+# js的一些规范
+文件命名：大多web服务器（Apache，Unix）对大小写敏感，建议使用纯小写命名文件名。
+> accountname.js
+> index.js
 
-类命名使用<font style="color:red">帕斯卡命名法（大驼峰）</font>
+类命名使用<font style="color:red">帕斯卡命名法（大驼峰big camelCase）</font>
+```
+class StudentInfo {
+	constructor(){}
+	//省略其他内容
+}
+```
 
-变量使用<font style="color:red">小驼峰</font>
+变量使用<font style="color:red">小驼峰（small camelCase）</font>
+```
+let firstName = "Monkey";
+let accountName = "MrWang";
+```
+前缀规范（匈牙利命名法，能够表明变量的类型，对于JS这种动态类型语言感觉提示效果比较好）
+> 每个局部变量都需要有一个类型前缀，按照类型可以分为：
+>
+> s:表示字符串。例如：sName，sHtml
+>
+> n:表示数字。例如：nPage，nAge
+>
+> b:表示逻辑。例如：bChecked，bHaslogin
+>
+> a:表示数组。例如：aList，aGroup
+>
+> r:表示正则表达式。例如：rDomain，rEmail
+>
+> f:表示函数。例如：fGetHtml,fInit
+>
+> o:表示对象。例如：表示以上未涉及到的其他对象，例如oButton，oDate
+>
+> g:表示全局变量，例如gUserName，gLoginTime
+
+空格和运算符
+> 通常运算符（=+-*/）前后需要添加空格
+```
+let sum = 1 + 2;
+let divide = 9 / 3 * 2 - 1;
+```
+代码缩进与换行
+
+缩进：根据团队要求可调，是4个空格或2个空格作为一个tab缩进。
+
+换行：在每个独立语句结束后使用换行；关键字前使用换行；运算符处换行时。运算符必须在新的行首。
+```
+let sum = 1 + 2;
+if (){
+}
+else{
+}
+```
+
+
 # component and module
 
 [参考资料](http://blog.csdn.net/horkychen/article/details/45083467)
