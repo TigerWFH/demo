@@ -9,6 +9,12 @@ heuristic的翻译：探索
 		the process of making two opposite beliefs, ideas, or situations agree
 		根据英文解释，此处翻译成一致化，就是使处理结果达成一致（对于react而言，就是新js对象树（虚拟dom）与旧js对象树对比，重新确定js对象树的过程）。
 - -->
+<!-- -
+- heuristics：
+	- The technical definition of heuristic is a simple procedure that helps find adequate， though often imperfect, answers to difficult questions. The word comes from the same root as eureka.
+	- a method of solving problems by finding practical ways of dealing with them, learning from past experience.
+	- 此处翻译成探索(性)
+-  -->
 ## 一致化（Reconciliation）
 React提供了声明式API，所以你不必每次都去详细的查询React的更新变化。这使编写程序变得更加容易多了，但是React内部的详细实现细节就变得不是那么清晰可见了。本文阐述了在确保组件更新可预测且满足高性能应用的（足够快）快速响应的前提下，React实现差异化（diffing）算法时所做的取舍。
 ## 动机（Motivation）
