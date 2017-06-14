@@ -310,6 +310,7 @@ interface Clock {
 	time: any;
 }
 class Container extends React.Component<any, any>{
+	timer: any;
 	constructor(props: any) {
 		super(props);
 		this.state = {
@@ -319,13 +320,16 @@ class Container extends React.Component<any, any>{
 
 	componentDidMount() {
 		let _time = 1;
-		setInterval(() => {
+		this.timer = setInterval(() => {
 			this.setState({
 				time: _time++
 			})
 		}, 1000);
 	}
 
+	componentWillUnmount() {
+		clearInterval(this.timer);
+	}
 	render() {
 		return (
 			<div>
@@ -346,6 +350,7 @@ function Clock(props: any) {
 export class Demo extends React.Component<P, S>{
 	refs: any;
 	_time: any;
+	_timer: any;
 	constructor(props: P) {
 		super(props);
 		this._time = 0;
@@ -356,7 +361,7 @@ export class Demo extends React.Component<P, S>{
 	}
 	componentDidMount() {
 		console.log('Demo componentDidMount');
-		setInterval(() => {
+		this._timer = setInterval(() => {
 			this._time += 1;
 			console.log("clcok props--->", this._time);
 			// this.forceUpdate();
@@ -364,6 +369,7 @@ export class Demo extends React.Component<P, S>{
 	}
 	componentWillUnmount() {
 		console.log('Demo componentUnMount');
+		clearInterval(this._timer);
 	}
 	componentWillReceiveProps(props: any) {
 		console.log('Demo receiveProps--->', props);
