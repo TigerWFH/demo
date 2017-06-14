@@ -363,6 +363,7 @@ export class Demo extends React.Component<P, S>{
 		console.log('Demo componentDidMount');
 		this._timer = setInterval(() => {
 			this._time += 1;
+			// 从控制台可以看到this._time属性值是变化的
 			console.log("clcok props--->", this._time);
 			// this.forceUpdate();
 		}, 1000);
