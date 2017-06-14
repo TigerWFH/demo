@@ -302,12 +302,53 @@ class UploadFile extends React.Component<any, any>{
 		fileReader.readAsArrayBuffer(event.target.files[0]);
 	}
 }
+/*
+	测试React UI刷新：setState, props, forceUpdate
+*/
 
+interface Clock {
+	time: any;
+}
+class Container extends React.Component<any, any>{
+	constructor(props: any) {
+		super(props);
+		this.state = {
+			time: "0"
+		};
+	}
+
+	componentDidMount() {
+		let _time = 1;
+		setInterval(() => {
+			this.setState({
+				time: _time++
+			})
+		}, 1000);
+	}
+
+	render() {
+		return (
+			<div>
+				<Clock time={this.state.time} />
+			</div>
+		)
+	}
+}
+
+function Clock(props: any) {
+	return (
+		<div>
+			{props.time}
+		</div>
+	)
+}
 
 export class Demo extends React.Component<P, S>{
 	refs: any;
+	_time: any;
 	constructor(props: P) {
 		super(props);
+		this._time = 0;
 		console.log('Demo constructor');
 	}
 	componentWillMount() {
@@ -315,6 +356,11 @@ export class Demo extends React.Component<P, S>{
 	}
 	componentDidMount() {
 		console.log('Demo componentDidMount');
+		setInterval(() => {
+			this._time += 1;
+			console.log("clcok props--->", this._time);
+			// this.forceUpdate();
+		}, 1000);
 	}
 	componentWillUnmount() {
 		console.log('Demo componentUnMount');
@@ -378,6 +424,19 @@ export class Demo extends React.Component<P, S>{
 					<Modal onOk={this._onOk}>
 						{_content}
 					</Modal>
+				</fieldset>
+				<fieldset style={{ margin: "50px auto" }}>
+					<legend>
+						测试React UI刷新：setState, props, forceUpdate
+					</legend>
+					<div>
+						<span>调用父容器的setState</span>
+						<Container />
+					</div>
+					<div>
+						<span>只修改字组件的props</span>
+						<Clock time={this._time} />
+					</div>
 				</fieldset>
 			</div>
 		)
