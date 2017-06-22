@@ -46,6 +46,11 @@ const scaleNames = {
 };
 
 class TemperatureInput extends React.Component<any, any> {
+	static propsType={
+		scale: React.PropTypes.number.isRequired,
+		temperature: React.PropTypes.string,
+		test: React.PropTypes.string.isRequired
+	};
 	constructor(props: any) {
 		super(props);
 		this.state = {
