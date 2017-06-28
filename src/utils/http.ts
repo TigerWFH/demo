@@ -46,12 +46,20 @@ function catchError(error: any) {
 	return Promise.reject(error);
 }
 
-function get(url: string, options: any = {}) {
+/**
+ * @desc ajax 对put请求的Promise封装
+ * @param url {string} 接口地址
+ * @param options {object} http头设置，数据设置等其它可选参数
+*/ 
+export function get(url: string, options: any = {}) {
 	return ajax('GET', url, options.headers, null).then(parseResult, catchError);
 }
 
-function post(url: string, options: any = {}) {
+/**
+ * @desc ajax 对post请求的Promise封装
+ * @param url {string} 借口地址
+ * @param options {object} http头设置，数据设置等其它可选参数
+ */ 
+export function post(url: string, options: any = {}) {
 	return ajax('POST', url, options.headers, options.data).then(parseResult, catchError);
 }
-
-export { post, get };
