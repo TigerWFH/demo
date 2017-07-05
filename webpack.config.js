@@ -5,11 +5,13 @@ const test = path.join(__dirname, 'src/test.tsx');
 const buildPath = path.join(__dirname, 'dist');
 // 抽取css
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const extractCSS = new ExtractTextPlugin("css/index.css");
+
+var env = process.env.NODE_ENV === "production" ? "production" : "development";
 module.exports = {
 	entry: {
-		index: srcPath,
-		demo: './src/demo.ts'
+		index: srcPath
 	},
 	output: {
 		path: buildPath,
@@ -78,6 +80,15 @@ module.exports = {
 	},
 	plugins: [
 		extractCSS,
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.DefinePlugin({
+			"process.env": {
+				NODE_ENV: JSON.stringify(env)
+			}
+		}),
+		new HtmlWebpackPlugin({
+			title: "monkey",
+			template:"src/index.html",
+		})
 	]
 };
