@@ -59,3 +59,31 @@ var r = foo3();
 r[1]();//10
 r[0]();//11
 r[1]();//11
+
+/**
+ * 对JS中This的认识
+ * this是一个与执行上下文相关的特殊对象。因此，它可以叫作上下文对象（也就是用来指明 执行上下文是哪个上下文中被触发的 对象）。
+ * 注意：this是执行上下文的一个属性，而不是变量对象的一个属性。
+ * this的值在进入执行上下文阶段就确定了，并且在执行代码阶段是不能改变的。
+ * 注意：在一般的函数调用中，this的值是由激活上下文代码的调用者决定的。this的值是由 调用表达式 的形式（即调用函数的方式）决定的。
+ *      
+ * 引用类型：关于this的确定，内部需要引入一个引用类型，一个伪对象，包含base和propertyName属性。
+ * 
+ */ 
+
+function foo4(){
+    console.log(this);
+}
+
+// foo4();//global//等价于window.foo4();
+foo4.prototype.constructor();//foo4.prototype
+var bar = {
+    bar: foo4
+};
+bar.bar();//bar
+(bar.bar)();//bar,()是一个组操作符
+// (bar.bar = bar.bar)();//global
+// (bar.bar,bar.bar)();//global
+// (false || bar.bar)();//global
+// var otherFoo = bar.bar;
+// otherFoo();//global
