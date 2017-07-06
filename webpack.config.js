@@ -1,12 +1,19 @@
+/**
+ * entry：入口文件(但是同样可以将代码拆分到不同的文件)。
+ * 规则：SPA：只有一个入口文件；MPA：可以有多个入口文件。
+ * 代码拆分：将代码拆分成多个模块，按需加载（区分代码拆分和多入口文件）。
+ */ 
+
+// modules
 const webpack = require('webpack');
 const path = require('path');
-const srcPath = path.join(__dirname, 'src/index.tsx');
-const test = path.join(__dirname, 'src/test.tsx');
-const buildPath = path.join(__dirname, 'dist');
-// 抽取css
+// plugins
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const extractCSS = new ExtractTextPlugin("css/index.css");
+
+// path
+const srcPath = path.join(__dirname, 'src/index.tsx');
+const buildPath = path.join(__dirname, 'dist');
 
 var env = process.env.NODE_ENV === "production" ? "production" : "development";
 module.exports = {
@@ -27,7 +34,7 @@ module.exports = {
 			{
 				test: /\.less$/,
 				include: [path.join(__dirname, 'src')],
-				use: extractCSS.extract({
+				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
 					use: [
 						{
@@ -79,7 +86,7 @@ module.exports = {
 		}
 	},
 	plugins: [
-		extractCSS,
+		new ExtractTextPlugin("css/index.css"),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.DefinePlugin({
 			"process.env": {
@@ -88,7 +95,7 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			title: "monkey",
-			template:"src/index.html",
+			template:"src/index.html"
 		})
 	]
 };
