@@ -87,3 +87,8 @@ bar.bar();//bar
 // (false || bar.bar)();//global
 // var otherFoo = bar.bar;
 // otherFoo();//global
+var date = new Date();
+console.log(date.getFullYear());
+console.log(date.getMonth() + 1);
+console.log(date.getDay());//这是星期几（0---星期天））
+console.log(date.getDate());//这是几号
