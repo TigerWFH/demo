@@ -4,29 +4,37 @@ import * as ReactDOM from 'react-dom';
 import * as ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { Route, HashRouter as Router, Link } from 'react-router-dom';
+
 // components
 import Demo from './pages/demo/index';
 import First from './pages/first/index';
 import Second from './pages/second/index';
+
 // store
 import { store } from './store';
+
+// css
 // import css = require('./index.less');
 import './index.less';
 
-const Test = function (props) {
-	return <div>Test</div>
-}
-class App extends React.Component<any, any>{
-	constructor(props: any) {
-		super(props);
-	}
-	render() {
-		return <div className="app">
-			<Test></Test>
-			{this.props.children}
+// class App extends React.Component<any, any>{
+// 	constructor(props: any) {
+// 		super(props);
+// 	}
+// 	render() {
+// 		return <div className="app">
+// 			{this.props.children}
+// 		</div>
+// 	}
+// }
+function App(props:any){
+	return (
+		<div className="app">
+			{props.children}
 		</div>
-	}
+	)
 }
+
 let elems =
 	<Provider store={store}>
 		<Router>
