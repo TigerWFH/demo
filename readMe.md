@@ -61,6 +61,40 @@ npm install webpack typescript --save-dev --registry=https://registry.npm.taobao
 
 npm install react react-dom --save --registry=https://registry.npm.taobao.org
 
+# 代码的可读性要求
+
+1、代码能够清晰的表达意图
+```
+// bad code,2代表什么意思呢？
+Coffe.makeCoffe(2);
+
+// good code
+enum COFFE_CUP {
+	small,
+	middle,
+	large
+};
+Coffe.makeCoffe(COFF_CUP.large);//语义化的参数，表明是大杯的coffe
+```
+2、用代码沟通：注释应该用来说明代码的功能和约束条件；代码的逻辑则由代码本身来说明。源代码可以被读懂，不是因为注释，而是它本身的优雅清晰。
+```
+/**
+* @desc 求和
+* @num1   {number} 输入参数1
+* @num2   {number} 输入参数2
+* @result {number} 返回和
+*/
+function add(num1, num2){
+	return num1 + num2;
+}
+```
+
+`结论：` 
+	
+	用语义化的命名，准备表达意图；
+	用注释描述代码的意图和约束；
+	用代码自身的优雅清晰描述自身的逻辑。
+
 # 关于配置css模块化的问题
 但模块化css文件时，由于typescript的类型提示编译时会报错，目前暂时去掉模块化（联系下自己对css样式的组织吧），文件中使用import css = reuiqre()语法，ts编译会报错，但是能正常运行
 
