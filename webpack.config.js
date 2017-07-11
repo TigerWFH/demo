@@ -2,11 +2,12 @@
  * entry：入口文件(但是同样可以将代码拆分到不同的文件)。
  * 规则：SPA：只有一个入口文件；MPA：可以有多个入口文件。
  * 代码拆分：将代码拆分成多个模块，按需加载（区分代码拆分和多入口文件）。
- */ 
+ */
 
 // modules
 const webpack = require('webpack');
 const path = require('path');
+
 // plugins
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -15,7 +16,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const srcPath = path.join(__dirname, 'src/index.tsx');
 const buildPath = path.join(__dirname, 'dist');
 
-var env = process.env.NODE_ENV === "production" ? "production" : "development";
+var env = process.env.NODE_ENV === "development" ? "development" : "production";
+
+if (env === 'production') {
+	console.log("dist");
+}
+else {
+	console.log("static");
+}
 module.exports = {
 	entry: {
 		index: srcPath
@@ -95,7 +103,7 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			title: "monkey",
-			template:"src/index.html"
+			template: "src/index.html"
 		})
 	]
 };

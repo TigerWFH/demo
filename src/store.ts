@@ -6,6 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 import { firstReducer } from './pages/first/reducers/index';
 import { secondReducer } from './pages/second/reducers/index';
 import { reducer } from './pages/demo/reducers/index';
+
 export let store = createStore(combineReducers(
 	{
 		first: firstReducer,

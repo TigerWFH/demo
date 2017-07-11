@@ -17,16 +17,6 @@ import { store } from './store';
 // import css = require('./index.less');
 import './index.less';
 
-// class App extends React.Component<any, any>{
-// 	constructor(props: any) {
-// 		super(props);
-// 	}
-// 	render() {
-// 		return <div className="app">
-// 			{this.props.children}
-// 		</div>
-// 	}
-// }
 function App(props:any){
 	return (
 		<div className="app">
