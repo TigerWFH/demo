@@ -213,7 +213,7 @@ function add(num1, num2){
 > accountname.js
 > index.js
 
-类命名使用<font style="color:red">帕斯卡命名法（大驼峰big camelCase）</font>
+类命名使用`帕斯卡命名法（大驼峰big camelCase）`
 ```
 class StudentInfo {
 	constructor(){}
@@ -221,12 +221,12 @@ class StudentInfo {
 }
 ```
 
-变量使用<font style="color:red">小驼峰（small camelCase）</font>
+变量使用`小驼峰（small camelCase）`
 ```
 let firstName = "Monkey";
 let accountName = "MrWang";
 ```
-前缀规范（匈牙利命名法，能够表明变量的类型，对于JS这种动态类型语言感觉提示效果比较好）
+前缀规范（`匈牙利命名法`，能够表明变量的类型，对于JS这种动态类型语言感觉提示效果比较好，`事实上这种命名方式已经被淘汰`）
 > 每个局部变量都需要有一个类型前缀，按照类型可以分为：
 >
 > s:表示字符串。例如：sName，sHtml
