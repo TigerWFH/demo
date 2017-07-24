@@ -46,7 +46,7 @@ const scaleNames = {
 };
 
 class TemperatureInput extends React.Component<any, any> {
-	static propsType={
+	static propsType = {
 		scale: React.PropTypes.number.isRequired,
 		temperature: React.PropTypes.string,
 		test: React.PropTypes.string.isRequired
@@ -297,14 +297,16 @@ class UploadFile extends React.Component<any, any>{
 		console.log('change--->', event.target.files[0]);
 		let fileReader = new FileReader();
 		fileReader.onloadend = function (event) {
-			let readData = new Uint8Array(fileReader.result);
-			let detStr = readData.slice(0, 2).join('');
+			let readData = new Uint8Array(fileReader.result);//按照8位无符号整型解析数据
+			let detStr = readData.slice(0, 2).join('');//截取文件标识
 			if (detStr === "13780" || detStr === "255216") {
 				return alert('right image');
 			}
-			alert('not jpg or png');
+			else {
+				alert('not jpg or png');
+			}
 		}
-		fileReader.readAsArrayBuffer(event.target.files[0]);
+		fileReader.readAsArrayBuffer(event.target.files[0]);//读入文件为二进制
 	}
 }
 /*
