@@ -298,10 +298,11 @@ class UploadFile extends React.Component<any, any>{
 		)
 	}
 	_onChangeBinary = (event) => {
-		console.log('change--->', event.target.files[0]);
 		let fileReader = new FileReader();
 		fileReader.onloadend = function (event) {
+			console.log("ArrayBuffer--->", fileReader.result);
 			let readData = new Uint8Array(fileReader.result);//按照8位无符号整型解析数据
+			console.log("uint8array------>", readData);
 			let detStr = readData.slice(0, 2).join('');//截取文件标识
 			if (detStr === "13780" || detStr === "255216") {
 				return alert('right image');
@@ -324,7 +325,39 @@ class UploadFile extends React.Component<any, any>{
 		else {
 			alert("not jpg or png");
 		}
+
+		let fileReader = new FileReader();
+		fileReader.onloadend = (error) => {
+			console.log("BinaryString--->", fileReader.result);
+		}
+
+		fileReader.readAsBinaryString(event.target.files[0]);
 	}
+}
+function UploadFile1(props: any) {
+	let { isText } = props;
+	function _onChangeText(event) {
+		let fileReader = new FileReader();
+		fileReader.onloadend = (error) => {
+			console.log("Text--->", fileReader.result);
+		}
+
+		fileReader.readAsText(event.target.files[0]);
+	}
+	function _onChangeDataURL(event) {
+		let fileReader = new FileReader();
+		fileReader.onloadend = (error) => {
+			console.log("DataURL--->", fileReader.result);
+		}
+
+		fileReader.readAsDataURL(event.target.files[0]);
+	}
+	return (
+		<div>
+			<input type="file"
+				onChange={isText ? _onChangeText : _onChangeDataURL} />
+		</div>
+	)
 }
 /**
  * 测试React UI刷新：setState, props, forceUpdate
@@ -414,17 +447,25 @@ export class Demo extends React.Component<P, S>{
 		let _content = <input type="text" ref="input" />
 		return (
 			<div className="app" style={{ margin: "50px auto" }}>
-				<fieldset style={{ margin: "50px auto", height: "300px" }}>
+				<fieldset style={{ margin: "50px auto", height: "500px" }}>
 					<legend>
 						测试input文件上传和FileReader对象
 					</legend>
 					<div style={{ border: "1px solid green", padding: "10px 10px 10px 10px" }}>
-						<p>二进制检测文件类别</p>
+						<p>二进制检测文件类别:readAsArrayBuffer</p>
 						<UploadFile isBinary={true} />
 					</div>
 					<div style={{ border: "1px solid red", padding: "10px 10px 10px 10px" }}>
-						<p>后缀检测文件类别</p>
+						<p>后缀检测文件类别:readAsBinaryString</p>
 						<UploadFile isBinary={false} />
+					</div>
+					<div style={{ border: "1px solid blue", padding: "10px 10px 10px 10px" }}>
+						<p>readAsText</p>
+						<UploadFile1 isText={true} />
+					</div>
+					<div style={{ border: "1px solid #dd33e8", padding: "10px 10px 10px 10px" }}>
+						<p>readAsDataURL</p>
+						<UploadFile1 isText={false} />
 					</div>
 				</fieldset>
 				<fieldset>
