@@ -16,13 +16,10 @@ interface S {
 	age: number;
 }
 
-/*
-	Lifting State Up Demo
-*/
-/*
-	stateless component
-	target: Test lifting state up
-*/
+/**
+ * Lifting State Up Demo
+ * @param props 
+ */
 function BoilingVerdict(props) {
 	if (+props.celsius >= 100) {
 		return <p>The water would boil.</p>
@@ -31,9 +28,11 @@ function BoilingVerdict(props) {
 		return <p>The water would not boil</p>
 	}
 }
-/*
-	convert from celsius to fahrenheit and back
-*/
+
+/**
+ * convert from celsius to fahrenheit and back
+ * @param fahrenheit 
+ */
 function toCelsius(fahrenheit) {
 	return (+fahrenheit - 32) * 5 / 9;
 }
@@ -114,9 +113,9 @@ class Calculator extends React.Component<any, any>{
 	}
 }
 
-/*
-	Thinking in React Demo
-*/
+/**
+ * Thinking in React Demo
+ */
 let mockData = [
 	{ category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football" },
 	{ category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball" },
@@ -280,20 +279,25 @@ class FilterableProductTable extends React.Component<any, any>{
 	}
 }
 
-/*
-	测试FileReader对象的功能，根据图像文件格式过滤
-*/
+/**
+ * 测试FileReader对象的功能，并过滤上传文件
+ */
+const fileExtensionList = ["jpg", "jpeg", "png"];
 class UploadFile extends React.Component<any, any>{
+	static defautProps = {
+		isBinary: false  //true，采用二进制过滤；false，采用文件后缀过滤
+	};
 	constructor(props: any) {
 		super(props);
 	}
 	render() {
+		let { isBinary } = this.props;
 		return (
 			<input type="file"
-				onChange={this._onChange} />
+				onChange={isBinary ? this._onChangeBinary : this._onChangeExtension} />
 		)
 	}
-	_onChange = (event) => {
+	_onChangeBinary = (event) => {
 		console.log('change--->', event.target.files[0]);
 		let fileReader = new FileReader();
 		fileReader.onloadend = function (event) {
@@ -308,11 +312,23 @@ class UploadFile extends React.Component<any, any>{
 		}
 		fileReader.readAsArrayBuffer(event.target.files[0]);//读入文件为二进制
 	}
+	_onChangeExtension = (event) => {
+		let fileName = event.target.files[0].name;
+		let fileExtension = fileName.split('.');
+		let result = fileExtensionList.some(value => {
+			return value === fileExtension[fileExtension.length - 1]
+		});
+		if (result) {
+			alert("right image");
+		}
+		else {
+			alert("not jpg or png");
+		}
+	}
 }
-/*
-	测试React UI刷新：setState, props, forceUpdate
-*/
-
+/**
+ * 测试React UI刷新：setState, props, forceUpdate
+ */
 interface Clock {
 	time: any;
 }
@@ -371,7 +387,7 @@ export class Demo extends React.Component<P, S>{
 		this._timer = setInterval(() => {
 			this._time += 1;
 			// 从控制台可以看到this._time属性值是变化的
-			console.log("clcok props--->", this._time);
+			// console.log("clcok props--->", this._time);
 			// 调用forceUpdate函数，可以强制刷新页面
 			// this.forceUpdate();
 		}, 1000);
@@ -398,6 +414,19 @@ export class Demo extends React.Component<P, S>{
 		let _content = <input type="text" ref="input" />
 		return (
 			<div className="app" style={{ margin: "50px auto" }}>
+				<fieldset style={{ margin: "50px auto", height: "300px" }}>
+					<legend>
+						测试input文件上传和FileReader对象
+					</legend>
+					<div style={{ border: "1px solid green", padding: "10px 10px 10px 10px" }}>
+						<p>二进制检测文件类别</p>
+						<UploadFile isBinary={true} />
+					</div>
+					<div style={{ border: "1px solid red", padding: "10px 10px 10px 10px" }}>
+						<p>后缀检测文件类别</p>
+						<UploadFile isBinary={false} />
+					</div>
+				</fieldset>
 				<fieldset>
 					<legend>
 						测试生命周期
@@ -419,12 +448,6 @@ export class Demo extends React.Component<P, S>{
 						Thinking in React Demo
 					</legend>
 					<FilterableProductTable />
-				</fieldset>
-				<fieldset style={{ margin: "50px auto" }}>
-					<legend>
-						测试input文件上传和FileReader对象
-					</legend>
-					<UploadFile />
 				</fieldset>
 				<fieldset style={{ margin: "50px auto" }}>
 					<legend>
