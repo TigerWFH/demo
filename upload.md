@@ -47,6 +47,13 @@
 * ArrayBuffer(es6)
 
     ArrayBuffer对象存储固定长度的`原始二进制数据`,数据是泛型的，可能是字符串也可能是图像数据。
+    
+    demo:
+    raw binary: 00000000 01000001
+
+    askii: 0和A
+    
+    utf-16: A
 
     用户是不能直接操作ArrayBuffer中的数据，你需要按照TypedArray 或 DataView对象指定的格式来解析ArrayBuffer中的数据。
 
