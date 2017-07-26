@@ -47,21 +47,16 @@
 * ArrayBuffer(es6)
 
     ArrayBuffer对象存储固定长度的`原始二进制数据`,数据是泛型的，可能是字符串也可能是图像数据。
-    
-    demo:
-    raw binary: 00000000 01000001
 
-    askii: 0和A
-    
-    utf-16: A
+    ArrayBuffer是一段不透明的内存区域（不透明即指，无法直接操作的数据块，单位是byte），高效快速的访问二进制数据。
 
     用户是不能直接操作ArrayBuffer中的数据，你需要按照TypedArray 或 DataView对象指定的格式来解析ArrayBuffer中的数据。
 
-* DataView
+* DataView：操作ArrayBuffer的另一种视图，不同的地方是每一项可以自定义大小和类型。
 
     跨平台的跨字节序的处理接口。
 
-* TypedArray(es7)
+* TypedArray(类型化数组，es7)：操作ArrayBuffer的一种视图，每一项都是相同的大小和类型
 
     TypedArray就是下列类型中的一种。
 
@@ -80,6 +75,25 @@
     `Float32Array`
 
     `Float64Array`
+
+    demo:
+    raw binary: 00000000 01000001
+
+    askii: 0和A     Uint8Array
+
+    utf-16: A(䄀)   Uint16Array
+    ```
+    // 对于单字节存储，无所谓大小端字节序
+    // 对于多字节存储，数据的高位字节对应存储地址的高位地址，数组的低位字节对应存储地址的低位地址，则是小端字节序
+    // 对于多字节存储，数据的高位字节对应存储地址的低位地址，数组的低位字节对应存储地址的高位地址，则是大端字节序
+    let uint8 = new Uint8Array(2);//binary:01000001 00000000(65)
+    uint8[0] = 0;
+    uint8[1] = 65;
+    let buffer = uint8.buffer;
+    let uint16 = new Uint16Array(buffer);//依赖于浏览器，而浏览器是小端字节序: 100000010 00000000(16640)   
+    console.log(String.fromCharCode.apply(null,uint8));//A
+    console.log(String.fromCharCode.apply(null, uint16));//䄀(huo,u+4100,16640)
+    ```
 
 * FileReader（Working Draft）
 
