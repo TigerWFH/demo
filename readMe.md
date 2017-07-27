@@ -371,7 +371,19 @@ if (){
 else{
 }
 ```
+# js中的对象
+* Ajax技术：异步javascript xml
 
+		1、从服务器获取数据且不用卸载页面（有益用户体验）
+		2、ajax通信与数据格式无关，可以使用xml、json等数据格式（有益网络传输）
+		3、js中的实现是：XMLHttpRequest
+		4、FormData类型，表单数据
+		5、CORS跨域问题：
+			Origin和Access-Controll-Allow-Origin
+			open函数传入绝对地址，可以解决跨域问题
+			Preflighted Request技术
+			图像Ping(无法处理响应，只能单向通信)
+			JSONP
 
 # component and module
 
