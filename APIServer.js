@@ -42,8 +42,7 @@ app.post('/v1/upload', multer({ dest: 'upload/' }).array('video', 2), (req, res,
 	console.log('req.file--->', req.file);
 });
 app.post('/v1/signon', (req, res, next) => {
-	console.log(req.body);
-	res.json({
+	res.status(200).json({
 		name: "signon",
 		age: 12
 	});
