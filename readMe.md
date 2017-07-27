@@ -384,6 +384,12 @@ else{
 			Preflighted Request技术
 			图像Ping(无法处理响应，只能单向通信)
 			JSONP
+* form表单
+
+		enctype：
+		application/x-www-form-urlencoded   编码所有字符（默认）
+		multipart/form-data   不对字符编码，二进制
+		text/plain  空格转换为加号，但不对特殊字符编码
 
 # component and module
 

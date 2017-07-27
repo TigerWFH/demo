@@ -23,7 +23,12 @@
 </head>
 
 <body>
-	<div id="wrap" onclick="onClick()">
+	<form action="http://localhost:9000/v1/signon" method="post">
+		<input type="text" name="name" />
+		<input type="text" name="age" />
+		<input type="submit" value="submit" />
+	</form>
+	<div id="wrap">
 		<a href="https://www.baidu.com">baidu1</a><br />
 		<a href="https:www.taobao.com">淘宝</a>
 		<a href="https://www.baidu.com">baidu1</a>
@@ -166,12 +171,13 @@
 		<a href="https://www.baidu.com">baidu1</a>
 	</div>
 	<script>
-		window.document.body.addEventListener('load', () => {
+		window.addEventListener('load', () => {
 			let oElem = document.getElementById('wrap');
 			oElem.addEventListener('click', (event) => {
-				console.log('event--->', event);
-				if (event.target.href === "https://www.baidu.com") {
+				console.log('event--->', event.target.href);
+				if (event.target.href === "https://www.baidu.com/") {
 					event.stopPropagation();
+					event.preventDefault();
 				}
 			});
 		});

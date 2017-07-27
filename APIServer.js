@@ -41,6 +41,13 @@ app.post('/v1/upload', multer({ dest: 'upload/' }).array('video', 2), (req, res,
 	console.log('req.body--->', req.body);
 	console.log('req.file--->', req.file);
 });
+app.post('/v1/signon', (req, res, next) => {
+	console.log(req.body);
+	res.json({
+		name: "signon",
+		age: 12
+	});
+});
 app.all('*', (req, res, next) => {
 	console.log('***I am a APIServer***', req.path);
 	var filePath = `./mock/${req.path}/index.json`;
