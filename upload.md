@@ -39,8 +39,11 @@
     
     维基百科
     
-    2、JPEG（JPG）文件结构： | SOI | APPO | APPn | DQT | SOFO | DHT | SOS | EOI |
-                          | D8  |  E0  | E1-EF | DB | C0   |  C4 |  DA |  D9 |
+    2、JPEG（JPG）文件结构： 
+        
+            | SOI | APPO | APPn | DQT | SOFO | DHT | SOS | EOI |
+
+              | D8  |  E0  | E1-EF | DB | C0   |  C4 |  DA |  D9 |
 
         JPEG的每一个标记都是由2个字节组成，且前一个字节为固定值0xFF。比较两个字节（0xFF 0xD8），
         其它的，例如gif,bmp,svg等文件格式。

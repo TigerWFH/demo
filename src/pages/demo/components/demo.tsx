@@ -299,10 +299,11 @@ class UploadFile extends React.Component<any, any>{
 	}
 	_onChangeBinary = (event) => {
 		let fileReader = new FileReader();
+		console.log("file--->", event.target.files[0]);
 		fileReader.onloadend = function (event) {
 			console.log("ArrayBuffer--->", fileReader.result);
 			let readData = new Uint8Array(fileReader.result);//按照8位无符号整型解析数据
-			console.log("uint8array------>", readData);
+			// console.log("uint8array------>", readData);
 			let detStr = readData.slice(0, 2).join('');//截取文件标识
 			if (detStr === "13780" || detStr === "255216") {
 				return alert('right image');
