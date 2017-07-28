@@ -391,6 +391,51 @@ else{
 		multipart/form-data   不对字符编码，二进制
 		text/plain  空格转换为加号，但不对特殊字符编码
 
+* js安全类型检测
+
+		前置条件： Object.prototype.toString没有修改;
+			此方法只对原生对象有效，非原生对象全是Object
+		方案：   Object.prototype.toString.apply(Object);
+			返回结果类似: "[object Object]","[object Function]","[object JSON]"……
+
+* 作用域安全的构造函数
+
+	构造函数Person，当使用new时，this指针能够正确的指向新创建的对象实例；
+	但是，当忘记使用new时，this指针就会指向window对象，这可能会引起非预期结果。
+	比如下面的demo，name就会覆盖window对象的属性name，引起异常。
+	```
+	// 非安全的demo
+	function Person(name, age, job){
+		this.name = name;
+		this.age = age;
+		this.job = job;
+	}
+
+	let p1 = new Person("monkey", 12, "student");
+	let p2 = Person("wang", 13, "doctor");
+	alert(windw.name);//wang
+	alert(windw.age);//13
+	alert(windw.job);//doctor
+
+
+	// 作用域安全的demo
+	function Person(name, age, job){
+		if (this instanceof Person){
+			this.name = name;
+			this.age = age;
+			this.job = job;
+		}
+		else {
+			return new Person(name, age, job);
+		}
+	}
+	```
+* 惰性载入函数
+* 函数绑定
+* 函数柯理化
+
+	
+
 # component and module
 
 [参考资料](http://blog.csdn.net/horkychen/article/details/45083467)
