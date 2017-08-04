@@ -2,7 +2,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 // utils
-import { mergeString } from '../../../utils/utils';
+import { mergeString } from '../../../common/utils/utils';
 
 // css
 import './mask.less';

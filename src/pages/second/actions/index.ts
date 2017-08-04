@@ -1,5 +1,5 @@
 // http
-import { get, post } from '../../../utils/http';
+import { get, post } from '../../../common/utils/http';
 
 export const BEGIN_AJAX = 'BEGIN_AJAX';
 // export const END_AJAX = 'END_AJAX';
