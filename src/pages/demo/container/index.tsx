@@ -7,11 +7,13 @@ import { UploadFile, UploadFile1 } from '../components/UploadFile';
 import { Container, Clock } from '../components/Clock';
 import { FilterableProductTable } from '../components/FilterableProductTable';
 import { fetchT } from '../actions/index';
-
 import { Mask } from '../../../widgets/basic/mask/mask';
 import { Message } from '../../../widgets/basic/message/message';
 import { Modal } from '../../../widgets/modal/modal';
 import { Input } from '../../../widgets/basic/input/input';
+
+// css
+import './index.less';
 
 function mapStateToProps(state, ownProps) {
 	let { demo } = state;
@@ -80,8 +82,8 @@ class Demo extends React.Component<P, S>{
 		let _content = <input type="text" ref="input" />
 		return (
 			<div className="app" style={{ margin: "50px auto" }}>
-				<fieldset style={{ margin: "50px auto", height: "500px" }}>
-					<legend>
+				<fieldset className="input-fieldset">
+					<legend className="imput-legend">
 						测试input文件上传和FileReader对象
 					</legend>
 					<div style={{ border: "1px solid green", padding: "10px 10px 10px 10px" }}>
@@ -101,8 +103,20 @@ class Demo extends React.Component<P, S>{
 						<UploadFile1 isText={false} />
 					</div>
 				</fieldset>
-				<fieldset>
-					<legend>
+				<fieldset className="lifting-fieldset">
+					<legend className="lifting-legend">
+						Lifting State Up Demo
+					</legend>
+					<Calculator></Calculator>
+				</fieldset>
+				<fieldset className="thinking-fieldset">
+					<legend className="thinking-legend">
+						Thinking in React Demo
+					</legend>
+					<FilterableProductTable />
+				</fieldset>
+				<fieldset className="lifecycle-fieldset">
+					<legend className="lifecycle-legend">
 						测试生命周期
 					</legend>
 					<div>
@@ -111,20 +125,8 @@ class Demo extends React.Component<P, S>{
 						<button onClick={this._onT1}>connect</button>
 					</div>
 				</fieldset>
-				<fieldset style={{ margin: "50px auto" }}>
-					<legend>
-						Lifting State Up Demo
-					</legend>
-					<Calculator></Calculator>
-				</fieldset>
-				<fieldset style={{ margin: "50px auto" }}>
-					<legend>
-						Thinking in React Demo
-					</legend>
-					<FilterableProductTable />
-				</fieldset>
-				<fieldset style={{ margin: "50px auto" }}>
-					<legend>
+				<fieldset className="other-fieldset">
+					<legend className="other-legend">
 						其它测试
 					</legend>
 					<span>{this.props.name}</span>
@@ -137,8 +139,8 @@ class Demo extends React.Component<P, S>{
 						{_content}
 					</Modal>
 				</fieldset>
-				<fieldset style={{ margin: "50px auto" }}>
-					<legend>
+				<fieldset className="clock-fieldset">
+					<legend className="clock-legend">
 						测试React UI刷新：setState, props, forceUpdate
 					</legend>
 					<div>
