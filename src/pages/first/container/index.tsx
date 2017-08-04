@@ -1,7 +1,10 @@
 // libs
+import * as React from 'react';
 import { connect } from 'react-redux';
 // components
-import { First } from '../components/index';
+import { Mask } from '../../../widgets/basic/mask/mask';
+// css
+import './index.less';
 // actions
 import * as Actions from '../actions';
 
@@ -21,5 +24,31 @@ function mapDispatchToProps(dispatch) {
 	}
 }
 
+interface IProps {
+	fetchAccountList?: Function;
+	fetchAccount?: Function;
+}
+interface IState { }
+class First extends React.Component<IProps, IState>{
+	constructor(props: IProps) {
+		super(props);
+	}
+	_onClickList = () => {
+		let { fetchAccountList } = this.props;
+		fetchAccountList();
+	}
+	_onClick = () => {
+		Mask.mountMask();
+	}
+	render() {
+		return (
+			<div className="first wfh">
+				<button onClick={this._onClickList}>accountList</button>
+				<button onClick={this._onClick}>acount</button>
+				first page
+			</div>
+		)
+	}
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(First);
