@@ -6,6 +6,7 @@ import { Calculator } from '../components/Calculator';
 import { UploadFile, UploadFile1 } from '../components/UploadFile';
 import { Container, Clock } from '../components/Clock';
 import { FilterableProductTable } from '../components/FilterableProductTable';
+import { KeyDemoContainer } from '../components/KeyDemoContainer';
 import { fetchT } from '../actions/index';
 import { Mask } from '../../../widgets/basic/mask/mask';
 import { Message } from '../../../widgets/basic/message/message';
@@ -45,13 +46,13 @@ class Demo extends React.Component<P, S>{
 	constructor(props: P) {
 		super(props);
 		this._time = 0;
-		console.log('Demo constructor');
+		// console.log('Demo constructor');
 	}
 	componentWillMount() {
-		console.log('Demo componentWillMount');
+		// console.log('Demo componentWillMount');
 	}
 	componentDidMount() {
-		console.log('Demo componentDidMount');
+		// console.log('Demo componentDidMount');
 		this._timer = setInterval(() => {
 			this._time += 1;
 			// 从控制台可以看到this._time属性值是变化的
@@ -61,24 +62,24 @@ class Demo extends React.Component<P, S>{
 		}, 1000);
 	}
 	componentWillUnmount() {
-		console.log('Demo componentUnMount');
+		// console.log('Demo componentUnMount');
 		clearInterval(this._timer);
 	}
 	componentWillReceiveProps(props: any) {
-		console.log('Demo receiveProps--->', props);
+		// console.log('Demo receiveProps--->', props);
 	}
 	shouldComponentUpdate(props, state) {
-		console.log('Demo shouldComponentUpdate');
+		// console.log('Demo shouldComponentUpdate');
 		return true;
 	}
 	componentWillUpdate() {
-		console.log('Demo componentWillUpdate');
+		// console.log('Demo componentWillUpdate');
 	}
 	componentDidUpdate() {
-		console.log('Demo componentDidUpdate');
+		// console.log('Demo componentDidUpdate');
 	}
 	render() {
-		console.log('Demo render');
+		// console.log('Demo render');
 		let _content = <input type="text" ref="input" />
 		return (
 			<div className="app" style={{ margin: "50px auto" }}>
@@ -151,6 +152,10 @@ class Demo extends React.Component<P, S>{
 						<span>使用Demo成员属性间接修改Clock组件的props，无法刷新Clock UI</span>
 						<Clock time={this._time} />
 					</div>
+				</fieldset>
+				<fieldset>
+					<legend>验证key对组件销毁重建</legend>
+					<KeyDemoContainer></KeyDemoContainer>
 				</fieldset>
 			</div>
 		)
