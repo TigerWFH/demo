@@ -8,6 +8,8 @@
 
 // libs
 import * as React from 'react';
+// css
+import './index.less';
 
 const fileExtensionList = ["jpg", "jpeg", "png"];
 class UploadFile extends React.Component<any, any>{

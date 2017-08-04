@@ -86,19 +86,19 @@ class Demo extends React.Component<P, S>{
 					<legend className="imput-legend">
 						测试input文件上传和FileReader对象
 					</legend>
-					<div style={{ border: "1px solid green", padding: "10px 10px 10px 10px" }}>
+					<div style={{ border: "1px solid green", padding: "10px 10px 10px 10px", marginBottom: "5px" }}>
 						<p>二进制检测文件类别:readAsArrayBuffer</p>
 						<UploadFile isBinary={true} />
 					</div>
-					<div style={{ border: "1px solid red", padding: "10px 10px 10px 10px" }}>
+					<div style={{ border: "1px solid red", padding: "10px 10px 10px 10px", marginBottom: "5px" }}>
 						<p>后缀检测文件类别:readAsBinaryString</p>
 						<UploadFile isBinary={false} />
 					</div>
-					<div style={{ border: "1px solid blue", padding: "10px 10px 10px 10px" }}>
+					<div style={{ border: "1px solid blue", padding: "10px 10px 10px 10px", marginBottom: "5px" }}>
 						<p>readAsText</p>
 						<UploadFile1 isText={true} />
 					</div>
-					<div style={{ border: "1px solid #dd33e8", padding: "10px 10px 10px 10px" }}>
+					<div style={{ border: "1px solid #dd33e8", padding: "10px 10px 10px 10px", marginBottom: "5px" }}>
 						<p>readAsDataURL</p>
 						<UploadFile1 isText={false} />
 					</div>
