@@ -17,6 +17,7 @@ import * as React from 'react';
 interface IProps {
     useList?: any;
     componentIndex: any;
+    isTestList?: boolean;
 }
 interface IState {
     animal?: any;
@@ -24,7 +25,7 @@ interface IState {
 
 let mockUserList = [
     {
-        name: "monkey",
+        name: "lion",
         age: 12
     },
     {
@@ -36,9 +37,23 @@ let mockUserList = [
         age: 14
     }
 ];
+let newUserList = [
+    {
+        name: "lion",
+        age: 12
+    },
+    {
+        name: "cat13",
+        age: 13
+    },
+    {
+        name: "fish",
+        age: 15
+    }
+];
 class KeyDemo extends React.Component<IProps, IState>{
     static defaultProps = {
-        useList: mockUserList,
+        isTestList: true
     };
     constructor(props: IProps) {
         super(props);
@@ -47,11 +62,11 @@ class KeyDemo extends React.Component<IProps, IState>{
         };
     }
     componentDidMount() {
-        console.log("DidMount---->I am Component" + this.props.componentIndex);
+        console.log("DidMount---->I am Component " + this.props.componentIndex);
     }
 
     componentWillUnmount() {
-        console.log("Unmount---->I am Component" + this.props.componentIndex);
+        console.log("Unmount---->I am Component " + this.props.componentIndex);
     }
     _onClick = () => {
         this.setState({
@@ -60,15 +75,26 @@ class KeyDemo extends React.Component<IProps, IState>{
     }
 
     render() {
+        let isTestList = this.props.isTestList;
         return (
             <div>
-                <h1>测试key</h1>
-                <button onClick={this._onClick}>
-                    animal--->cat
-                </button>
-                <p>
-                    {this.state.animal}
-                </p>
+                <div style={{ display: isTestList ? "none" : "block" }}>
+                    <h1>测试key</h1>
+                    <button onClick={this._onClick}>
+                        animal--->cat
+                    </button>
+                    <p>
+                        {this.state.animal}
+                    </p>
+                </div>
+                <div style={{ display: isTestList ? "block" : "none" }}>
+                    <p>
+                        <p>
+                            {this.props.children}
+                        </p>
+                    </p>
+                </div>
+
             </div>
         )
     }
@@ -78,7 +104,8 @@ class KeyDemoContainer extends React.Component<any, any>{
     constructor(props) {
         super(props);
         this.state = {
-            demoKey: ["monkey"]
+            demoKey: ["monkey"],
+            userList: mockUserList
         };
     }
 
@@ -88,18 +115,47 @@ class KeyDemoContainer extends React.Component<any, any>{
         });
     }
 
+    _onChangeUserList = () => {
+        this.setState({
+            userList: newUserList
+        });
+    }
+    _renderUserList = (userList) => {
+        if (Array.isArray && Array.isArray(userList)) {
+            return userList.map((value) => {
+                return <KeyDemo componentIndex={value.name}
+                    key={'key' + value.age}>
+                    {value.name}
+                </KeyDemo >
+            })
+        }
+        return null;
+    }
+
     render() {
         let demoKey = this.state.demoKey;
+        let userList = this.state.userList;
         return (
             <div>
-                <button onClick={this._onClick}>改变key</button>
-                {/* {
+                <div style={{ border: "1px solid blue", marginBottom: "5px" }}>
+                    <button onClick={this._onClick}>改变key</button>
+                    {/* {
                     demoKey.length ? demoKey.map(item => <KeyDemo key={item}
                         componentIndex={item}></KeyDemo>) : null
                 } */}
-                <KeyDemo key={demoKey}
-                    componentIndex={demoKey}>
-                </KeyDemo>
+                    <KeyDemo key={demoKey}
+                        isTestList={false}
+                        componentIndex={demoKey}>
+                    </KeyDemo>
+                </div>
+
+                <div style={{ border: "1px solid red" }}>
+                    <h1>测试list</h1>
+                    <button onClick={this._onChangeUserList}>
+                        改变userList
+                    </button>
+                    {userList.length && this._renderUserList(userList)}
+                </div>
             </div>
         )
     }
