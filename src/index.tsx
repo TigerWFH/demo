@@ -17,7 +17,7 @@ import { store } from './store';
 // import css = require('./index.less');
 import './index.less';
 
-function App(props:any){
+function App(props: any) {
 	return (
 		<div className="app">
 			{props.children}
@@ -39,4 +39,6 @@ let elems =
 	</Provider>
 
 
-ReactDOM.render(elems, document.getElementById('main'));
+ReactDOM.render(elems, document.getElementById('main'), () => {
+	console.log("app render browser finished");
+});
