@@ -513,6 +513,114 @@ else{
 </tbody>
 </table>
 
+# es6新语法
+
+## template literals
+* template literals（模板文字）
+
+    模板文字就是可以嵌入表达式的字符串字符。
+    使用的符号是反勾号（back tick）。
+```
+`string text`;
+// 模板字符串实现字符串的自动换行写法
+`string text line 1;
+ string text line 2`;
+// 表达嵌入式
+ `string text ${expression} string text`;
+```
+* tagged template literals(标签模板文字)
+```
+ // tag是一个可以返回任何值（包括函数）的函数，tag函数会自动识别模板字符中的表达式作为tag函数的其它参数,同时表达式在strings的位置由“”表示，即`${1}${2}a`，此时strings为：["","","a"]
+
+ tag`string text ${expression} string text`;
+ /**
+ * @desc 返回一个字符串
+ * @strings {array[strings]} 处理字符串数组
+ * @personExp {any} 可选，其它数据
+ * @ageExp {any} 可选，其它数据
+ */
+ const person = "Mike";
+ const age = 28;
+ function myTag(strings, personExp, ageExp){
+     let str0 = strings[0];
+     let str1 = strings[1];
+
+     let ageStr;
+     if (ageExp > 99){
+         ageStr = 'centenarian';
+     }
+     else{
+         ageStr = 'youngster';
+     }
+
+     return str0 + personExp + str1 + ageStr;
+ }
+ //此处将${person},${age}自动识别成personExp和ageExp参数，that，is a自动识别存储在strings参数中
+ var output = myTag`that ${person} is a ${age}`;
+ console.log(output);//that Mike is a youngster
+ 
+```
+也可以返回函数：
+```
+function template(strings, ...keys){
+    return (
+        function(...values){
+            var dict = values[values.length - 1] || {};
+            var result = [strings[0]];
+            keys.forEach(function(key, i){
+                var value = Number.isInteger(key) ? values[key] : dict[key];
+                result.push(value, strings[i + 1]);
+            });
+
+            return result.join('');//自动忽略undefined的值
+        });
+}
+var t1Closure = template`${0}${1}${0}`;
+t1Closure('Y', 'A');//"YAY!"
+var t2Closure = template`${0} ${'foo'}!`;
+t2Closure('Hello', {foo: 'World'});//"Hello World!"
+```
+* Raw strings(原始字符串)
+strings参数（即tag的第一个参数）默认含有一个raw数组，可以访问原始字符串，即未处理转义字符的字符串。
+```
+function tag(strings, ...values){
+    console.log(strings.raw[0]);
+}
+tag`${string text line 1 \n string text line 2}`;
+// logs string text line 1 \n string text line 2
+```
+这和String.raw()的功能相同：
+```
+var str = String.raw`Hi\n${2+3}!`;
+//"Hi\n5"
+str.splite("").join(",");
+//"H,i,\,n,5,!"
+```
+* tagged template literals and escap sequences
+es6中的标签模板文字符合以下转移规则：
+1、以\u开始的Unicode转义序列，例如：\u00A9
+2、以\u开始的Unicode point escape，例如：\u{2F804}
+3、十六进制，例如：\xA9
+4、八进制转义，例如：\251
+```
+给定数据A有N个元素（索引从0开始），数组A的一个极点Q满足一下条件：
+    0<= Q <= N;
+    如果0<=P<=Q,则A[P]<=A[Q];
+    如果Q<R<N，则A[Q]<=A[R];
+
+例如：数组A由以下10个元素组成：
+A[0] = 4;A[1] = 2;A[2] = 2;A[3] = 3;A[4] = 1;
+A[5] = 4;A[6] = 7;A[7] = 8;A[8] = 6;A[9] = 9;
+如前所说，该函数应该返回5或者9.
+假设有如下条件：
+1、N取值范围是[0,100000];
+2、数组的每一个元素都是整数，切且取值范围是[-2147483648,2147483647]
+复杂度：
+1、期望最差时间复杂度是O(N)
+2、期望最差空间复杂度是O(N)，超出输入存储（不计算输入参数所需的存储空间）
+输入数组的元素是可以修改的（是不是意味着可以重用输入数组，节省存储空间）
+```
+
 # 腾讯云Web播放器在线直播和点播
 [参考资料](https://www.qcloud.com/document/product/267/7479)
 
