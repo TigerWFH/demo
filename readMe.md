@@ -620,6 +620,35 @@ A[5] = 4;A[6] = 7;A[7] = 8;A[8] = 6;A[9] = 9;
 2、期望最差空间复杂度是O(N)，超出输入存储（不计算输入参数所需的存储空间）
 输入数组的元素是可以修改的（是不是意味着可以重用输入数组，节省存储空间）
 ```
+# RPC（Remote Procedure Call），远程过程调用
+* 为什么需要RPC？
+
+	随着分布式系统的广泛应用，服务部署在不同的设备上，服务之间的调用成了问题，为了解决这个问题，就产生了RPC。
+* RPC的定义
+
+	它是一种通过网络从远程计算机上请求服务，而不需要了解底层网络技术的方式。简单点就是：通过一定的协议和方法使得调用远程计算机上的服务，就像调用本地服务（此处可以理解为指同一台电脑上的服务）一样。
+* 基于协议的分类
+
+	基于HTTP协议的RPC；
+
+	基于TCP协议的RPC；
+	
+	基于二进制协议的RPC；
+
+	其它；
+* webservice（就是rpc的实现）
+
+	webservice就是一台电子设备通过万维网为另一台电子设备提供服务的case。常用的技术有http，xml，json等。---维基百科
+
+	webservice就是一套为 设备与设备通过互联网通信交互 提供解决方案的软件系统。---W3C
+* 基于soap&xml的webservice 和 基于restful的webservice
+
+	soap(Simple Object Access Protocol):基于xml的简单对象访问协议
+
+		soap提供的时操作，不是数据。
+
+[参考资料](https://zhuanlan.zhihu.com/p/25329503)
+
 
 # 腾讯云Web播放器在线直播和点播
 [参考资料](https://www.qcloud.com/document/product/267/7479)
