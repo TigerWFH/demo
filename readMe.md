@@ -442,6 +442,77 @@ else{
 * component:强调代码的重用（web component 或者说组件是达到可复用要求的模块,将本来分离的html,js,css又糅合到一坨了）
 * module:强调职责（内聚、分离）
 
+# 字符集和编码方案
+
+* 字符集：为每一个`字符`分配一个唯一的ID（学名为`码位`、`码点`、`Code Point`）
+    
+* 编码方案：将`码位（Code Point）`转换成`字节序列`（储存或传输）的规则。
+
+	广泛的来讲，unicode是一个标准，定义了字符集以及一系列的编码规则，即Unicode字符集和UTF-8、UTF-16、UTF-32等等编码方案……
+
+	ansi的askii（American Standard Code for Information Interchange）字符集是使用8位表示127个字符；
+	
+	出现了新的符号，就继续扩展，出现了askii扩展字符集，但8位最多能表示256个字符；
+
+	汉字更多，8位的已经无法标识，于是127之后的所有状态全部用16位来表示，扩展成GB2313，再后来扩展成GBK、GB8030。此时此刻，台湾地区出现了BIG5字符集……这些统称为DBCS（Double Byte Charecter Set），为了统一起来，让字符集通用，ISO组织制作了Unicode字符集。
+
+	demo:
+
+	raw binary: 0000000001000001
+
+	askii   0和A
+	
+	utf-16   A
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Unicode</th>
+<th>ASCII</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td> U+0030</td>
+<td>48</td>
+</tr>
+<tr>
+<td>9</td>
+<td> U+0039</td>
+<td>57</td>
+</tr>
+<tr>
+<td>A</td>
+<td> U+0041</td>
+<td>65</td>
+</tr>
+<tr>
+<td>Z</td>
+<td> U+005A</td>
+<td>90</td>
+</tr>
+<tr>
+<td>a</td>
+<td> U+0061</td>
+<td>97</td>
+</tr>
+<tr>
+<td>z</td>
+<td> U+007A</td>
+<td>122</td>
+</tr>
+<tr>
+<td>9</td>
+<td> U+0041</td>
+<td>57</td>
+</tr>
+</tbody>
+</table>
+
 # 腾讯云Web播放器在线直播和点播
 [参考资料](https://www.qcloud.com/document/product/267/7479)
 
@@ -559,75 +630,3 @@ seeking
 seeked
 resize
 volumechange
-
-
-# 字符集和编码方案
-
-* 字符集：为每一个`字符`分配一个唯一的ID（学名为`码位`、`码点`、`Code Point`）
-    
-* 编码方案：将`码位（Code Point）`转换成`字节序列`（储存或传输）的规则。
-
-	广泛的来讲，unicode是一个标准，定义了字符集以及一系列的编码规则，即Unicode字符集和UTF-8、UTF-16、UTF-32等等编码方案……
-
-	ansi的askii（American Standard Code for Information Interchange）字符集是使用8位表示127个字符；
-	
-	出现了新的符号，就继续扩展，出现了askii扩展字符集，但8位最多能表示256个字符；
-
-	汉字更多，8位的已经无法标识，于是127之后的所有状态全部用16位来表示，扩展成GB2313，再后来扩展成GBK、GB8030。此时此刻，台湾地区出现了BIG5字符集……这些统称为DBCS（Double Byte Charecter Set），为了统一起来，让字符集通用，ISO组织制作了Unicode字符集。
-
-	demo:
-
-	raw binary: 0000000001000001
-
-	askii   0和A
-	
-	utf-16   A
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Unicode</th>
-<th>ASCII</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td> U+0030</td>
-<td>48</td>
-</tr>
-<tr>
-<td>9</td>
-<td> U+0039</td>
-<td>57</td>
-</tr>
-<tr>
-<td>A</td>
-<td> U+0041</td>
-<td>65</td>
-</tr>
-<tr>
-<td>Z</td>
-<td> U+005A</td>
-<td>90</td>
-</tr>
-<tr>
-<td>a</td>
-<td> U+0061</td>
-<td>97</td>
-</tr>
-<tr>
-<td>z</td>
-<td> U+007A</td>
-<td>122</td>
-</tr>
-<tr>
-<td>9</td>
-<td> U+0041</td>
-<td>57</td>
-</tr>
-</tbody>
-</table>
