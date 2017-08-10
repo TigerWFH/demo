@@ -316,6 +316,13 @@ function add(num1, num2){
 			<div class="monkey_footer"></div>
 		</div>
 	```
+# React Optimizing Performance(优化性能)
+* use the production build(使用生产版本)
+
+	1、使用React Development Tools for Chrome检测react时生产版本（绿色背景）还是开发版本（红色背景），原因：生产版本没有提示信息，体积更小
+
+	2、使用Chrome performance tab分析组件的性能（Profiling Components with the Chrome Performance Tab）
+* 
 # js的一些规范
 文件命名：大多web服务器（Apache，Unix）对大小写敏感，建议使用纯小写命名文件名。
 > accountname.js
