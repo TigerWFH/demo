@@ -322,6 +322,26 @@ function add(num1, num2){
 	1、使用React Development Tools for Chrome检测react时生产版本（绿色背景）还是开发版本（红色背景），原因：生产版本没有提示信息，体积更小
 
 	2、使用Chrome performance tab分析组件的性能（Profiling Components with the Chrome Performance Tab）
+
+		在url后面拼接查询字符串：?react_perf
+	
+	3、avoid reconcolication
+
+		shouldComponentUpdate(nextProps, nextState)该函数会控制re-render的触发与否。
+
+		但会引起另一个问题，那就是变量的比较问题，js中引用类型比较的复杂性引起的。
+		example：
+		```
+		handleClick() {
+  			this.setState(prevState => ({
+    			words: prevState.words.concat(['marklar'])//不会引起mutate data
+  			}));
+		}
+
+
+		```
+
+		
 * 
 # js的一些规范
 文件命名：大多web服务器（Apache，Unix）对大小写敏感，建议使用纯小写命名文件名。
