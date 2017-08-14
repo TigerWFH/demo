@@ -12,6 +12,7 @@ import { Mask } from '../../../widgets/basic/mask/mask';
 import { Message } from '../../../widgets/basic/message/message';
 import { Modal } from '../../../widgets/modal/modal';
 import { Input } from '../../../widgets/basic/input/input';
+import { CssDemo } from '../components/CssDemo';
 
 // css
 import './index.less';
@@ -83,8 +84,8 @@ class Demo extends React.Component<P, S>{
 		let _content = <input type="text" ref="input" />
 		return (
 			<div className="app" style={{ margin: "50px auto" }}>
-				<fieldset className="input-fieldset">
-					<legend className="imput-legend">
+				<fieldset className="fieldset-first">
+					<legend className="legend-first">
 						测试input文件上传和FileReader对象
 					</legend>
 					<div style={{ border: "1px solid green", padding: "10px 10px 10px 10px", marginBottom: "5px" }}>
@@ -104,20 +105,20 @@ class Demo extends React.Component<P, S>{
 						<UploadFile1 isText={false} />
 					</div>
 				</fieldset>
-				<fieldset className="lifting-fieldset">
-					<legend className="lifting-legend">
+				<fieldset className="fieldset-second">
+					<legend className="legend-second">
 						Lifting State Up Demo
 					</legend>
 					<Calculator></Calculator>
 				</fieldset>
-				<fieldset className="thinking-fieldset">
-					<legend className="thinking-legend">
+				<fieldset className="fieldset-first">
+					<legend className="legend-first">
 						Thinking in React Demo
 					</legend>
 					<FilterableProductTable />
 				</fieldset>
-				<fieldset className="lifecycle-fieldset">
-					<legend className="lifecycle-legend">
+				<fieldset className="fieldset-second">
+					<legend className="legend-second">
 						测试生命周期
 					</legend>
 					<div>
@@ -126,8 +127,8 @@ class Demo extends React.Component<P, S>{
 						<button onClick={this._onT1}>connect</button>
 					</div>
 				</fieldset>
-				<fieldset className="other-fieldset">
-					<legend className="other-legend">
+				<fieldset className="fieldset-first">
+					<legend className="legend-first">
 						其它测试
 					</legend>
 					<span>{this.props.name}</span>
@@ -140,8 +141,8 @@ class Demo extends React.Component<P, S>{
 						{_content}
 					</Modal>
 				</fieldset>
-				<fieldset className="clock-fieldset">
-					<legend className="clock-legend">
+				<fieldset className="fieldset-second">
+					<legend className="legend-second">
 						测试React UI刷新：setState, props, forceUpdate
 					</legend>
 					<div>
@@ -153,9 +154,13 @@ class Demo extends React.Component<P, S>{
 						<Clock time={this._time} />
 					</div>
 				</fieldset>
-				<fieldset>
-					<legend>验证key对组件销毁重建</legend>
+				<fieldset className="fieldset-first">
+					<legend className="legend-first">验证key对组件销毁重建</legend>
 					<KeyDemoContainer></KeyDemoContainer>
+				</fieldset>
+				<fieldset className="fieldset-second fieldset-left">
+					<legend className="legend-second">文本长度控制</legend>
+					<CssDemo></CssDemo>
 				</fieldset>
 			</div>
 		)
