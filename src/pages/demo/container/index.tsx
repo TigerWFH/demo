@@ -17,6 +17,17 @@ import { CssDemo } from '../components/CssDemo';
 // css
 import './index.less';
 
+// false: show the demo
+const demoIsHide = new Map([
+	["demo1", true],
+	["demo2", true],
+	["demo3", true],
+	["demo4", true],
+	["demo5", true],
+	["demo6", true],
+	["demo7", true],
+	["demo8", false]
+]);
 function mapStateToProps(state, ownProps) {
 	let { demo } = state;
 	return {
@@ -84,7 +95,8 @@ class Demo extends React.Component<P, S>{
 		let _content = <input type="text" ref="input" />
 		return (
 			<div className="app" style={{ margin: "50px auto" }}>
-				<fieldset className="fieldset-first">
+				<fieldset className="fieldset-first"
+					style={{ display: demoIsHide.get("demo1") && "none" }}>
 					<legend className="legend-first">
 						测试input文件上传和FileReader对象
 					</legend>
@@ -105,19 +117,22 @@ class Demo extends React.Component<P, S>{
 						<UploadFile1 isText={false} />
 					</div>
 				</fieldset>
-				<fieldset className="fieldset-second">
+				<fieldset className="fieldset-second"
+					style={{ display: demoIsHide.get("demo2") && "none" }}>
 					<legend className="legend-second">
 						Lifting State Up Demo
 					</legend>
 					<Calculator></Calculator>
 				</fieldset>
-				<fieldset className="fieldset-first">
+				<fieldset className="fieldset-first"
+					style={{ display: demoIsHide.get("demo3") && "none" }}>
 					<legend className="legend-first">
 						Thinking in React Demo
 					</legend>
 					<FilterableProductTable />
 				</fieldset>
-				<fieldset className="fieldset-second">
+				<fieldset className="fieldset-second"
+					style={{ display: demoIsHide.get("demo4") && "none" }}>
 					<legend className="legend-second">
 						测试生命周期
 					</legend>
@@ -127,7 +142,8 @@ class Demo extends React.Component<P, S>{
 						<button onClick={this._onT1}>connect</button>
 					</div>
 				</fieldset>
-				<fieldset className="fieldset-first">
+				<fieldset className="fieldset-first"
+					style={{ display: demoIsHide.get("demo5") && "none" }}>
 					<legend className="legend-first">
 						其它测试
 					</legend>
@@ -141,7 +157,8 @@ class Demo extends React.Component<P, S>{
 						{_content}
 					</Modal>
 				</fieldset>
-				<fieldset className="fieldset-second">
+				<fieldset className="fieldset-second"
+					style={{ display: demoIsHide.get("demo6") && "none" }}>
 					<legend className="legend-second">
 						测试React UI刷新：setState, props, forceUpdate
 					</legend>
@@ -154,12 +171,14 @@ class Demo extends React.Component<P, S>{
 						<Clock time={this._time} />
 					</div>
 				</fieldset>
-				<fieldset className="fieldset-first">
+				<fieldset className="fieldset-first"
+					style={{ display: demoIsHide.get("demo7") && "none" }}>
 					<legend className="legend-first">验证key对组件销毁重建</legend>
 					<KeyDemoContainer></KeyDemoContainer>
 				</fieldset>
-				<fieldset className="fieldset-second fieldset-left">
-					<legend className="legend-second">文本长度控制</legend>
+				<fieldset className="fieldset-second fieldset-left"
+					style={{ display: demoIsHide.get("demo8") && "none" }}>
+					<legend className="legend-second">文本长度控制</legend>
 					<CssDemo></CssDemo>
 				</fieldset>
 			</div>
