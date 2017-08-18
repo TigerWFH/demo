@@ -18,7 +18,7 @@ class CssDemo extends React.Component<IProps, IState>{
     render() {
         return (
             <div>
-                <div style={{display: demoIsHideMap.get("demo1") && "none"}}>
+                <div style={{ display: demoIsHideMap.get("demo1") && "none" }}>
                     <h1>对文本的控制</h1>
                     <div className="text-first">
                         <h3 style={{ textAlign: "center" }}>
@@ -60,11 +60,100 @@ class CssDemo extends React.Component<IProps, IState>{
                             white-space控制是否折行,
                             overflow可以处理溢出内容。
                         </div>
-                
+
                     </div>
                 </div>
                 <div style={{ display: demoIsHideMap.get("demo2") && "none" }}>
-                    demo2
+                    <div>
+                        <h3>Demo1</h3>
+                        <div className="dcdf-wrapper">
+                            <span className="dcdf-span">
+                                fontsize gt lineheight
+                            </span>
+                            <div className="dcdf-div">
+                                i am div
+                            </div>
+                            <div>
+                                <h3>UI呈现描述：</h3>
+                                <p>
+                                    由于font-size大于line-height,造成span高度高于line box高度，
+                                    进而溢出line box，遮挡了前后block-level element
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Demo2</h3>
+                        <div className="dcdf-wrapper">
+                            <span className="dcdf-span"
+                                style={{ lineHeight: "30px" }}>
+                                fontsize equal lineheight
+                            </span>
+                            <div className="dcdf-div">
+                                i am div
+                            </div>
+                            <h3>UI呈现描述：</h3>
+                            <p>
+                                由于font-size等于line-height,但是span高度仍然高于line box高度，
+                                    进而溢出line box，遮挡了前后block-level element，说明font-size并不是
+                                    字体在html中呈现的尺寸大小，这个大小需要更具font-size换算，其中font-size大小
+                                    指em-square的大小，而字体大小在html呈现的大小这是由字体的ascender和descender之和
+                                    计算的，后续将会详细解析这块内容。
+                                </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Demo3</h3>
+                        <div className="dcdf-wrapper">
+                            <span className="dcdf-span"
+                                style={{ lineHeight: "0px" }}>
+                                lineheight=0
+                            </span>
+                            <div className="dcdf-div">
+                                i am div
+                            </div>
+                            <h3>UI呈现描述：</h3>
+                            <p>
+                                此处line-height的大小为0，但是div并没有沾满整个容器，很可能line box的高度是基于line-height
+                                    和non-replaced inline element的最大值计算而来，如果完全由line-height决定，则div元素应该占满容器。
+                                    其实，mdn也有说明，line-height用作计算（而不是决定）line box的高度
+                                </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Demo4</h3>
+                        <div className="dcdf-wrapper">
+                            <span className="dcdf-span"
+                                style={{ lineHeight: "40px" }}>
+                                lineheight=40
+                            </span>
+                            <div className="dcdf-div">
+                                接近font-size=30的当前字体在html呈现的高度：ascender+descender高度，所以span元素没有溢出
+                                i am div
+                            </div>
+                            <h3>UI呈现描述：</h3>
+                            <p>
+                                此处line-height的大小为0，但是div并没有沾满整个容器，很可能line box的高度是基于line-height
+                                    和non-replaced inline element的最大值计算而来，如果完全由line-height决定，则div元素应该占满容器。
+                                    其实，mdn也有说明，line-height用作计算（而不是决定）line box的高度
+                                </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>猜测结论:</h3>
+                        <p>
+                            1、line box高度依据line-height和non-replaced inline element来计算，
+                                当line-height大于元素的高度（ascender+descender）时，line box高度取line-height，
+                                此时不会有溢出现象。当line-height小于元素高度时，则依据non-replaced inline元素计算得出<br />
+                            2、文档流中，对于non-replaced inline element会生成其所在的line box（其实就是个匿名的block-level元素）
+                            进行占位，这也是为什么margin-top/margin-bottom,padding-top/padding-bottom在视觉效果上不能体现的错觉，
+                            事实，给span元素加上border，加上padding-top/padding-bottom是会有视觉效果的，遮挡其相邻的block-level元素。
+                            但是，对于margin我无法验证了。
+                            3、字体在html呈现的尺寸和family和font-size有关。初步了解，font-size指出了字体em-square尺寸，
+                            而字体在html呈现的尺寸则由ascender+descender高度，所以span元素没有溢出之和决定，这两个值和em-square尺寸，
+                            有某种换算关系，根据字体种类可以计算出其在html中呈现的尺寸。
+                        </p>
+                    </div>
                 </div>
             </div>
         )
