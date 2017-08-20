@@ -140,6 +140,82 @@ class CssDemo extends React.Component<IProps, IState>{
                         </div>
                     </div>
                     <div>
+                        <h3>Demo4</h3>
+                        <div className="dcdf-wrapper">
+                            <span className="dcdf-span"
+                                style={{ lineHeight: "40px" }}>
+                                lineheight=40
+                            </span>
+                            <div className="dcdf-div">
+                                接近font-size=30的当前字体在html呈现的高度：ascender+descender高度，所以span元素没有溢出
+                                i am div
+                            </div>
+                            <h3>UI呈现描述：</h3>
+                            <p>
+                                此处line-height的大小为0，但是div并没有沾满整个容器，很可能line box的高度是基于line-height
+                                    和non-replaced inline element的最大值计算而来，如果完全由line-height决定，则div元素应该占满容器。
+                                    其实，mdn也有说明，line-height用作计算（而不是决定）line box的高度
+                                </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Demo5</h3>
+                        <div className="dcdf-wrapper">
+                            <div className="dcdf-div"
+                                style={{
+                                    height: "100px",
+                                    fontSize: "100px",
+                                    fontFamily: "Microsoft Sans Serif"
+                                }}>
+                                <span style={{
+                                    border: "1px solid red"
+                                }}>
+                                    SansSerif中文
+                                    {/* font-size: 100px;
+                                    height: 100px;
+                                    Ascent:1638;
+                                    Descent: 410;
+                                    em-size: 20448; */}
+                                </span>
+                            </div>
+                            <div className="dcdf-div"
+                                style={{
+                                    height: "100px",
+                                    fontSize: "100px",
+                                    fontFamily: "MicrosoftYaHei"
+                                }}>
+                                <span style={{
+                                    border: "1px solid red"
+                                }}>
+                                    YaHei中文
+                                    {/* font-size: 100px;
+                                    height: 100px;
+                                    Ascent:1638;
+                                    Descent: 410;
+                                    em-size: 2048; */}
+                                </span>
+                            </div>
+                            <div className="dcdf-div"
+                                style={{
+                                    height: "100px",
+                                    fontSize: "100px",
+                                    fontFamily: "Simsun"
+                                }}
+                            >
+                                <span style={{
+                                    border: "1px solid red"
+                                }}>
+                                    Simsun中文
+                                    {/* font-size: 100px;
+                                    height: 100px;
+                                    Ascent:220;
+                                    Descent: 36;
+                                    em-size: 256; */}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
                         <h3>猜测结论:</h3>
                         <p>
                             1、line box高度依据line-height和non-replaced inline element来计算，
@@ -150,7 +226,7 @@ class CssDemo extends React.Component<IProps, IState>{
                             事实，给span元素加上border，加上padding-top/padding-bottom是会有视觉效果的，遮挡其相邻的block-level元素。
                             但是，对于margin我无法验证了。
                             3、字体在html呈现的尺寸和family和font-size有关。初步了解，font-size指出了字体em-square尺寸，
-                            而字体在html呈现的尺寸则由ascender+descender高度，所以span元素没有溢出之和决定，这两个值和em-square尺寸，
+                            而字体在html呈现的尺寸则由ascender+descender高度(实际测试不是这样的)，所以span元素没有溢出之和决定，这两个值和em-square尺寸，
                             有某种换算关系，根据字体种类可以计算出其在html中呈现的尺寸。
                         </p>
                     </div>
