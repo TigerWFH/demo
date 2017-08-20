@@ -180,16 +180,17 @@ class CssDemo extends React.Component<IProps, IState>{
                             </div>
                             <div className="dcdf-div"
                                 style={{
-                                    height: "100px",
+                                    height: "132px",
                                     fontSize: "100px",
                                     fontFamily: "MicrosoftYaHei"
                                 }}>
                                 <span style={{
                                     border: "1px solid red"
                                 }}>
-                                    YaHei中文
+                                    YaHei加上line-gap，符合
                                     {/* font-size: 100px;
                                     height: 100px;
+                                    line-height: 100/2048*(2167+536+9)=132    
                                     Ascent:1638;
                                     Descent: 410;
                                     em-size: 2048; */}
@@ -198,20 +199,40 @@ class CssDemo extends React.Component<IProps, IState>{
                             <div className="dcdf-div"
                                 style={{
                                     height: "100px",
+                                    lineHeight: "100px",
                                     fontSize: "100px",
-                                    fontFamily: "Simsun"
+                                    fontFamily: "Simsun",
                                 }}
                             >
                                 <span style={{
                                     border: "1px solid red"
                                 }}>
-                                    Simsun中文
+                                    Simsun中文不加line-gap符合
                                     {/* font-size: 100px;
+                                    line-height: 100/256 * (256+36)=114 
                                     height: 100px;
                                     Ascent:220;
                                     Descent: 36;
                                     em-size: 256; */}
                                 </span>
+                            </div>
+                            <span style={{
+                                border: "1px solid red",
+                                fontSize: "100px",
+                                fontFamily: "Simsun",
+                                lineHeight: "114px"
+                            }}>
+                                Simsun中文只有span
+                                    {/* font-size: 100px;
+                                    line-height: 100/256 * (256+36)=114 
+                                    height: 100px;
+                                    Ascent:220;
+                                    Descent: 36;
+                                    em-size: 256; */}
+                            </span><div style={{
+                                border: "1px solid yellow"
+                            }}>
+                                陪衬
                             </div>
                         </div>
                     </div>
@@ -228,6 +249,12 @@ class CssDemo extends React.Component<IProps, IState>{
                             3、字体在html呈现的尺寸和family和font-size有关。初步了解，font-size指出了字体em-square尺寸，
                             而字体在html呈现的尺寸则由ascender+descender高度(实际测试不是这样的)，所以span元素没有溢出之和决定，这两个值和em-square尺寸，
                             有某种换算关系，根据字体种类可以计算出其在html中呈现的尺寸。
+                        </p>
+                        <p>
+                            <h3>补充</h3>
+                            general选项卡中的参数：ascent,descent,em-size,用于渲染字符；
+                            os/2-->metrics选项中的参数：win ascent，win descenty用于计算area-height，
+                            line gap用于计算line-height,英文计算结果符合，中文不使用该参数符合
                         </p>
                     </div>
                 </div>
