@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 // components
-import { Mask } from '../../../widgets/basic/mask/mask';
+import { Mask } from '../../../widgets/basic/mask';
 // css
 import './index.less';
 // actions

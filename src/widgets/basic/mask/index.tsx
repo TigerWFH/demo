@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom';
 import { mergeString } from '../../../common/utils/utils';
 
 // css
-import './mask.less';
+import './index.less';
 
 interface P {
 	maskCN?: any;

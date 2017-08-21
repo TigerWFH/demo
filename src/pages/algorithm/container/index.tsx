@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
+// import { Input } from 'Widgets';
+
 interface IProps { }
 interface IState { }
 class AlgorithmUI extends React.Component<IProps, IState>{

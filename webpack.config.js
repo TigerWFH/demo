@@ -101,6 +101,11 @@ module.exports = {
 				NODE_ENV: JSON.stringify(env)
 			}
 		}),
+		new webpack.ProvidePlugin({
+
+			Widgets: path.join(__dirname, "src/widgets/index.tsx"),
+
+		}),
 		new HtmlWebpackPlugin({
 			title: "monkey",
 			template: "src/index.html"
