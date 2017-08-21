@@ -99,13 +99,12 @@ module.exports = {
 		new webpack.DefinePlugin({
 			"process.env": {
 				NODE_ENV: JSON.stringify(env)
-			}
+			},
+			"widgetsPath": path.join(__dirname, "src/widgets")
 		}),
-		new webpack.ProvidePlugin({
-
-			Widgets: path.join(__dirname, "src/widgets/index.tsx"),
-
-		}),
+		// new webpack.ProvidePlugin({
+		// 	Widgets: path.join(__dirname, "src/widgets/index.tsx"),
+		// }),
 		new HtmlWebpackPlugin({
 			title: "monkey",
 			template: "src/index.html"

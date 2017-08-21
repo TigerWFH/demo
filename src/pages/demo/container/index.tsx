@@ -8,10 +8,10 @@ import { Container, Clock } from '../components/Clock';
 import { FilterableProductTable } from '../components/FilterableProductTable';
 import { KeyDemoContainer } from '../components/KeyDemoContainer';
 import { fetchT } from '../actions/index';
-import { Mask } from '../../../widgets/basic/mask';
-import { Message } from '../../../widgets/basic/message';
-import { Modal } from '../../../widgets/modal/modal';
-import { Input } from '../../../widgets/basic/input';
+import { Mask } from '../../../widgets';
+import { Message } from '../../../widgets';
+import { Modal } from '../../../widgets';
+import { Input } from '../../../widgets';
 import { CssDemo } from '../components/CssDemo';
 
 // css

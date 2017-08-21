@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 // components
 import { Mask } from '../basic/mask/';
 // css
-import './modal.less';
+import './index.less';
 
 interface P {
 	title?: any;
