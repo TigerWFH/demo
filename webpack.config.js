@@ -49,10 +49,10 @@ module.exports = {
 							loader: 'css-loader',
 							options: {
 								// root: '.',
-								// modules: true,
-								// importLoaders: 1,
-								// minimize: true,
-								// camelCase: true
+								modules: true,
+								importLoaders: 1,
+								minimize: true,
+								camelCase: true
 							}
 						},
 						'less-loader']
