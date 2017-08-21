@@ -11,7 +11,7 @@ import { fetchT } from '../actions/index';
 import { Mask } from '../../../widgets/basic/mask/mask';
 import { Message } from '../../../widgets/basic/message/message';
 import { Modal } from '../../../widgets/modal/modal';
-import { Input } from '../../../widgets/basic/input/input';
+import { Input } from '../../../widgets/basic/input';
 import { CssDemo } from '../components/CssDemo';
 
 // css

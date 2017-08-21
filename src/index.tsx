@@ -9,6 +9,7 @@ import { Route, HashRouter as Router, Link } from 'react-router-dom';
 import Demo from './pages/demo/index';
 import First from './pages/first/index';
 import Second from './pages/second/index';
+import AlgorithmUI from './pages/algorithm/index';
 
 // store
 import { store } from './store';
@@ -33,6 +34,7 @@ let elems =
 				<Route exact strict path="/" component={Demo}></Route>
 				<Route exact strict path="/first" component={First}></Route>
 				<Route exact strict path="/second" component={Second}></Route>
+				<Route exact strict path="/algorithm" component={AlgorithmUI}></Route>
 				<Route exact strict path="/second/first" component={Second}></Route>
 			</App>
 		</Router>
