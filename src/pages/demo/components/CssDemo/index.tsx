@@ -140,26 +140,86 @@ class CssDemo extends React.Component<IProps, IState>{
                         </div>
                     </div>
                     <div>
-                        <h3>Demo4</h3>
+                        <h3>Demo5Mac平台数据</h3>
                         <div className="dcdf-wrapper">
-                            <span className="dcdf-span"
-                                style={{ lineHeight: "40px" }}>
-                                lineheight=40
-                            </span>
-                            <div className="dcdf-div">
-                                接近font-size=30的当前字体在html呈现的高度：ascender+descender高度，所以span元素没有溢出
-                                i am div
+                            <div className="dcdf-div"
+                                style={{
+                                    height: "100px",
+                                    fontSize: "100px",
+                                    fontFamily: "Microsoft Sans Serif"
+                                }}>
+                                <span style={{
+                                    border: "1px solid red"
+                                }}>
+                                    SansSerif中文
+                                {/* font-size: 100px;
+                                height: 100px;
+                                Ascent:1638;
+                                Descent: 410;
+                                em-size: 20448; */}
+                                </span>
                             </div>
-                            <h3>UI呈现描述：</h3>
-                            <p>
-                                此处line-height的大小为0，但是div并没有沾满整个容器，很可能line box的高度是基于line-height
-                                    和non-replaced inline element的最大值计算而来，如果完全由line-height决定，则div元素应该占满容器。
-                                    其实，mdn也有说明，line-height用作计算（而不是决定）line box的高度
-                                </p>
+                            <div className="dcdf-div"
+                                style={{
+                                    height: "132px",
+                                    fontSize: "100px",
+                                    fontFamily: "MicrosoftYaHei"
+                                }}>
+                                <span style={{
+                                    border: "1px solid red"
+                                }}>
+                                    YaHei加上line-gap，符合
+                                {/* font-size: 100px;
+                                height: 100px;
+                                line-height: 100/2048*(2167+536+9)=132    
+                                Ascent:1638;
+                                Descent: 410;
+                                em-size: 2048; */}
+                                </span>
+                            </div>
+                            <div className="dcdf-div"
+                                style={{
+                                    height: "100px",
+                                    lineHeight: "100px",
+                                    fontSize: "100px",
+                                    fontFamily: "Simsun",
+                                }}
+                            >
+                                <span style={{
+                                    border: "1px solid red"
+                                }}>
+                                    Simsun中文不加line-gap符合
+                                {/* font-size: 100px;
+                                line-height: 100/256 * (256+36)=114 
+                                height: 100px;
+                                Ascent:220;
+                                Descent: 36;
+                                em-size: 256; */}
+                                </span>
+                            </div>
+                            <span style={{
+                                border: "1px solid red",
+                                fontSize: "100px",
+                                fontFamily: "Simsun",
+                                lineHeight: "114px"
+                            }}>
+                                Simsun中文只有span
+                                {/* font-size: 100px;
+                                line-height: 100/256 * (256+36)=114 
+                                height: 100px;
+                                Ascent:220;
+                                Descent: 36;
+                                em-size: 256; */}
+                            </span>
+                            <div style={{
+                                border: "1px solid yellow"
+                            }}>
+                                陪衬
+                            </div>
                         </div>
                     </div>
                     <div>
-                        <h3>Demo5</h3>
+                        <h3>Demo6Windows平台数据</h3>
                         <div className="dcdf-wrapper">
                             <div className="dcdf-div"
                                 style={{
