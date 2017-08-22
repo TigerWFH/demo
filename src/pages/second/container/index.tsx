@@ -36,7 +36,7 @@ class Second extends React.Component<IProps, IState>{
 		return (
 			<div className="app">
 				<button onClick={this._onClick}>button</button>
-				<video src="../res/videos/bk.mp4"
+				<video src="../../../common/res/videos/bk.mp4"
 					width="100%"
 					autoPlay
 					loop

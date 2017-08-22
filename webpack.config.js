@@ -66,11 +66,25 @@ module.exports = {
 					{
 						loader: 'url-loader',
 						options: {
-							// limit: 8000
+							limit: 8000,
+							name: 'images/[name]-[hash:8].[ext]'
 						}
 					}
 				]
-			}
+			},
+			{
+				test: /\.(mp4|av)/,
+				include: [path.join(__dirname, 'src')],
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 8000,
+							name: 'videos/[name]-[hash:8].[ext]'
+						}
+					}
+				]
+			},
 		]
 	},
 	resolve: {

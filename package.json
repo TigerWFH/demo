@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "mock": "node APIServer.js",
-    "build": "webpack-dev-server --progress --colors",
+    "build": "webpack",
     "server": "webpack-dev-server --progress --colors --open"
   },
   "author": "monkey@lwork.com",
