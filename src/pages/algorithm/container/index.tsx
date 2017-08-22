@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Input } from '../../../widgets';
 
-import * as css from './index.less';
+import './index.less';
 interface IProps { }
 interface IState { }
 class AlgorithmUI extends React.Component<IProps, IState>{
@@ -13,7 +13,7 @@ class AlgorithmUI extends React.Component<IProps, IState>{
 
     render() {
         return (
-            <div className={css["mm"]}>
+            <div className="mm">
                 algorithm
             </div>
         )
