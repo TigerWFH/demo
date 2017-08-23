@@ -11,6 +11,7 @@ const path = require('path');
 // plugins
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 // path
 const srcPath = path.join(__dirname, 'src/index.tsx');
@@ -108,7 +109,9 @@ module.exports = {
 		}
 	},
 	plugins: [
-		new ExtractTextPlugin("css/index.css"),
+		new ExtractTextPlugin({
+			filename: 'index.[contenthash].css'
+		}),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.DefinePlugin({
 			"process.env": {
@@ -122,6 +125,13 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: "monkey",
 			template: "src/index.html"
-		})
+		}),
+		new CleanWebpackPlugin(
+			'dist',
+			{
+				root: __dirname,
+				verbose: true,
+				dry: false
+			})
 	]
 };
