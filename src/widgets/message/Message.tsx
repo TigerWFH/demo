@@ -2,7 +2,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 // css
-import './index.less';
+import './Message.less';
 
 interface P { }
 interface S { }

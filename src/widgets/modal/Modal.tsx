@@ -2,7 +2,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 // components
-import { Mask } from '../mask';
+import { Mask } from '../mask/Mask';
 // css
 import './index.less';
 

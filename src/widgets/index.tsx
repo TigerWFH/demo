@@ -1,6 +1,6 @@
-import { Input } from './input';
-import { Mask } from './mask';
-import { Message } from './message';
-import { Modal } from './modal';
+import { Input } from './input/Input';
+import { Mask } from './mask/mask';
+import { Message } from './message/Message';
+import { Modal } from './modal/Modal';
 
 export { Input, Mask, Message, Modal };
