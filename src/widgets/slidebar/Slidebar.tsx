@@ -4,7 +4,18 @@ import './Slidebar.less';
 interface ISlidebarProps {
 }
 
-export class Slidebar extends React.Component<{}, never> {
+interface ISlidebarState {
+    isShow?: boolean;
+}
+
+export class Slidebar extends React.Component<ISlidebarProps, ISlidebarState> {
+    constructor(props:ISlidebarProps) {
+        super(props);
+        this.state = {
+            isShow: false
+        }
+    }
+
     render() {
         return <div className={"slidebar"}>
             header
