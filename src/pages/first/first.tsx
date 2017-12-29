@@ -1,21 +1,17 @@
-// libs
 import * as React from 'react';
 import { connect } from 'react-redux';
-import './first.less';
-import * as Actions from './actions/firstActions';
-
 import { Audit } from './components/Audit';
+
 import * as types from './constants/firstTypes';
+import * as Actions from './actions/firstActions';
+import './first.less';
 
 interface IFirstProps extends types.IFirstContainer {
-	// actions
 	fetchAccountList: () => void;
 	fetchAccount: () => void;
 }
 
-interface IFirstState { }
-
-class First extends React.Component<IFirstProps, IFirstState>{
+class First extends React.Component<IFirstProps, never>{
 
 	constructor(props: IFirstProps) {
 		super(props);
