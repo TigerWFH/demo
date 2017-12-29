@@ -1,11 +1,8 @@
 // libs
 import * as React from 'react';
 import { connect } from 'react-redux';
-// components
 import { Mask } from '../../widgets';
-// css
 import './first.less';
-// actions
 import * as Actions from './actions/firstActions';
 
 function mapStateToProps(state, ownProps) {
