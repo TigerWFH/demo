@@ -10,7 +10,7 @@ import Demo from './pages/demo/index';
 import First from './pages/first/first';
 import Second from './pages/second/index';
 import AlgorithmUI from './pages/algorithm/index';
-
+import { Header, Slidebar, View } from './widgets';
 // store
 import { store } from './store';
 
@@ -21,6 +21,8 @@ import './index.less';
 function App(props: any) {
 	return (
 		<div className="app">
+		<Header />
+		<Slidebar />
 			{props.children}
 		</div>
 	)

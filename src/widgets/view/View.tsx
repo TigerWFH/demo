@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export class Header extends React.Component<{}, never> {
+export class View extends React.Component<{}, never> {
     render() {
         return <div>
             header
