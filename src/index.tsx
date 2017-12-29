@@ -7,7 +7,7 @@ import { Route, HashRouter as Router, Link } from 'react-router-dom';
 
 // components
 import Demo from './pages/demo/index';
-import First from './pages/first/index';
+import First from './pages/first/first';
 import Second from './pages/second/index';
 import AlgorithmUI from './pages/algorithm/index';
 

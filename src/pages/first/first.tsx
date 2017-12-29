@@ -2,11 +2,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 // components
-import { Mask } from '../../../widgets';
+import { Mask } from '../../widgets';
 // css
-import './index.less';
+import './first.less';
 // actions
-import * as Actions from '../actions';
+import * as Actions from './actions/firstActions';
 
 function mapStateToProps(state, ownProps) {
 	let { common, first } = state;

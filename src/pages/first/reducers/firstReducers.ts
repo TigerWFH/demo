@@ -1,5 +1,5 @@
 // actions
-import * as Actions from '../actions/index';
+import * as Actions from '../actions/firstActions';
 
 // origin：最初在actions中处理数据，统一返回一个对象给reducer，方便处理
 // now： 现在决定，处理的格式化和归一化在reducer中处理，action只需要把后台数据

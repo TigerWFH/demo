@@ -3,7 +3,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
 // reducers
-import { firstReducer } from './pages/first/reducers/index';
+import { firstReducer } from './pages/first/reducers/firstReducers';
 import { secondReducer } from './pages/second/reducers/index';
 import { reducer } from './pages/demo/reducers/index';
 
