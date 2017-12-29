@@ -19,6 +19,11 @@ export let firstReducer = (state: types.IFirstContainer = initialState, action: 
 				totalCount: 0,
 				fineTicketList: []
 			};
+			// let { payload } = action;
+			// let targetData: types.ITable = {};
+			// if (payload) {
+			// 	// 进行数据装换
+			// }
 			return { ...state, tableData };
 		case Actions.FETCH_ACCOUNT:
 			let auditData: types.IAudit = {
