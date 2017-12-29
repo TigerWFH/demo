@@ -27,7 +27,7 @@ class First extends React.Component<IFirstProps, never>{
 	render() {
 		let { auditData, infoData, tableData } = this.props;
 		return (
-			<div className="first wfh">
+			<div className="first">
 				<Audit auditData={auditData}
 					infoData={infoData}>
 					{"audit"}
