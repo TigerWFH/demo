@@ -21,9 +21,11 @@ import './index.less';
 function App(props: any) {
 	return (
 		<div className="app">
-		<Header />
-		<Slidebar />
-			{props.children}
+			<Header />
+			<Slidebar />
+			<View>
+				{props.children}
+			</View>
 		</div>
 	)
 }
