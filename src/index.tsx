@@ -18,16 +18,35 @@ import { store } from './store';
 // import css = require('./index.less');
 import './index.less';
 
-function App(props: any) {
-	return (
-		<div className="app">
-			<Header />
-			<Slidebar />
-			<View>
-				{props.children}
-			</View>
-		</div>
-	)
+interface IAppProps {
+
+}
+
+interface IAppState {
+	isShowSlidebar?: boolean;
+}
+
+class App extends React.Component<IAppProps, IAppState> {
+	state = {
+		isShowSlidebar: true
+	};
+	onHideSlidebar = ()=>{
+		this.setState({
+			isShowSlidebar: !this.state.isShowSlidebar
+		});
+	}
+	render(){
+		let {isShowSlidebar} = this.state;
+		return (
+			<div className="app">
+				<Header onHideSlidebar={this.onHideSlidebar}/>
+				<Slidebar isShowSlidebar={isShowSlidebar}/>
+				<View>
+					{this.props.children}
+				</View>
+			</div>
+		)
+	}
 }
 
 let elems =
