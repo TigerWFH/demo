@@ -88,13 +88,11 @@ class Demo extends React.Component<P, S>{
 		// console.log('Demo componentWillUpdate');
 	}
 	componentDidUpdate() {
-		// console.log('Demo componentDidUpdate');
 	}
 	render() {
-		// console.log('Demo render');
 		let _content = <input type="text" ref="input" />
 		return (
-			<div className="app" style={{ margin: "50px auto" }}>
+			<div style={{ margin: "50px auto" }}>
 				<fieldset className="fieldset-first"
 					style={{ display: demoIsHide.get("demo1") && "none" }}>
 					<legend className="legend-first">

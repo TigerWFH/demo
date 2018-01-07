@@ -11,10 +11,7 @@ interface IHeaderProps {
 
 export class Header extends React.Component<IHeaderProps, never> {
     onClick = () => {
-        console.log(this.props);
         let { onHideSlidebar} = this.props;
-        let elem = document.getElementById("main");
-        elem.style.padding = "0";
         onHideSlidebar && onHideSlidebar();
     } 
     render() {

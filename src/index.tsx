@@ -38,7 +38,7 @@ class App extends React.Component<IAppProps, IAppState> {
 	render(){
 		let {isShowSlidebar} = this.state;
 		return (
-			<div className="app">
+			<div className={isShowSlidebar ? "app" : "app app-show"}>
 				<Header onHideSlidebar={this.onHideSlidebar}/>
 				<Slidebar isShowSlidebar={isShowSlidebar}/>
 				<View>
