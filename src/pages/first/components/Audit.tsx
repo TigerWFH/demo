@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Info } from './info';
+import { Info } from './Info';
 import { IAudit, IInfo } from '../constants/firstTypes';
 
 interface IAuditProps {
