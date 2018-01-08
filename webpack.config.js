@@ -17,7 +17,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const srcPath = path.join(__dirname, 'src/index.tsx');
 const buildPath = path.join(__dirname, 'dist');
 
-var env = process.env.NODE_ENV === "development" ? "development" : "production";
+var env = process.env.NODE_ENV === "dev" ? "development" : "production";
+console.log("process--->", process.env);
 
 if (env === 'production') {
 	console.log("dist");
