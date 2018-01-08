@@ -4,6 +4,7 @@ import "./index.less";
 interface IItemProps {
     title?: string;
     href?: string;
+    onGetInfo?: (title: string, href?: string) => void;
 }
 interface IItemState { }
 
@@ -13,7 +14,10 @@ export class Item extends React.PureComponent<IItemProps, never> {
         href: ""
     };
     onClick = () => {
-        let { href } = this.props;
+        let { title, href, onGetInfo } = this.props;
+        if (typeof onGetInfo === "function") {
+            onGetInfo(title);
+        }
         window.location.href = href;
     }
     render() {

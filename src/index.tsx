@@ -24,27 +24,49 @@ interface IAppProps {
 
 interface IAppState {
 	isShowSlidebar?: boolean;
+	title?: string;
+	onGetInfo?: (title: string) => void;
 }
 
 class App extends React.Component<IAppProps, IAppState> {
 	state = {
-		isShowSlidebar: true
+		isShowSlidebar: true,
+		title: "demo",
+		onGetInfo: (title) => { }
 	};
 	onHideSlidebar = () => {
 		this.setState({
 			isShowSlidebar: !this.state.isShowSlidebar
 		});
 	}
+	onGetInfo = (title: string) => {
+		this.setState({
+			title
+		});
+	}
 	render() {
-		let { isShowSlidebar } = this.state;
+		let { isShowSlidebar, title, onGetInfo } = this.state;
 		return (
 			<div className={isShowSlidebar ? "app" : "app app-show"}>
-				<Header onHideSlidebar={this.onHideSlidebar} />
+				<Header onHideSlidebar={this.onHideSlidebar}
+					title={title} />
 				<Slidebar isShowSlidebar={isShowSlidebar}>
-					<Item title={"demo"} href={"/#/"}></Item>
-					<Item title={"first"} href={"/#/first"}></Item>
-					<Item title={"second"} href={"/#/second"}></Item>
-					<Item title={"algorithm"} href={"/#/algorithm"}></Item>
+					<Item title={"demo"}
+						onGetInfo={this.onGetInfo}
+						href={"/#/"}>
+					</Item>
+					<Item title={"first"}
+						onGetInfo={this.onGetInfo}
+						href={"/#/first"}>
+					</Item>
+					<Item title={"second"}
+						onGetInfo={this.onGetInfo}
+						href={"/#/second"}>
+					</Item>
+					<Item title={"algorithm"}
+						onGetInfo={this.onGetInfo}
+						href={"/#/algorithm"}>
+					</Item>
 				</Slidebar>
 				<View>
 					{this.props.children}

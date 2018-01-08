@@ -15,6 +15,7 @@ export class Header extends React.Component<IHeaderProps, never> {
         onHideSlidebar && onHideSlidebar();
     }
     render() {
+        let { title } = this.props;
         return <div className={"header"}>
             <span className={"logo"}>
                 logo
@@ -23,7 +24,7 @@ export class Header extends React.Component<IHeaderProps, never> {
                 onClick={this.onClick}>
             </span>
             <span className={"title"}>
-                title
+                {title}
             </span>
             <span className={"buttons"}>
                 buttons
