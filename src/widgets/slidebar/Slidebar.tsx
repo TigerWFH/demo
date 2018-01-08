@@ -11,9 +11,9 @@ interface ISlidebarState {
 export class Slidebar extends React.Component<ISlidebarProps, ISlidebarState> {
 
     render() {
-        let {isShowSlidebar} = this.props;
+        let { isShowSlidebar, children } = this.props;
         return <div className={isShowSlidebar ? "slidebar" : "slidebar slidebar-hide"}>
-            header
+            {children}
         </div>
     }
 }

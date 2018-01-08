@@ -10,7 +10,7 @@ import Demo from './pages/demo/index';
 import First from './pages/first/first';
 import Second from './pages/second/index';
 import AlgorithmUI from './pages/algorithm/index';
-import { Header, Slidebar, View } from './widgets';
+import { Header, Slidebar, View, Item } from './widgets';
 // store
 import { store } from './store';
 
@@ -30,17 +30,22 @@ class App extends React.Component<IAppProps, IAppState> {
 	state = {
 		isShowSlidebar: true
 	};
-	onHideSlidebar = ()=>{
+	onHideSlidebar = () => {
 		this.setState({
 			isShowSlidebar: !this.state.isShowSlidebar
 		});
 	}
-	render(){
-		let {isShowSlidebar} = this.state;
+	render() {
+		let { isShowSlidebar } = this.state;
 		return (
 			<div className={isShowSlidebar ? "app" : "app app-show"}>
-				<Header onHideSlidebar={this.onHideSlidebar}/>
-				<Slidebar isShowSlidebar={isShowSlidebar}/>
+				<Header onHideSlidebar={this.onHideSlidebar} />
+				<Slidebar isShowSlidebar={isShowSlidebar}>
+					<Item title={"demo"} href={"/#/"}></Item>
+					<Item title={"first"} href={"/#/first"}></Item>
+					<Item title={"second"} href={"/#/second"}></Item>
+					<Item title={"algorithm"} href={"/#/algorithm"}></Item>
+				</Slidebar>
 				<View>
 					{this.props.children}
 				</View>
