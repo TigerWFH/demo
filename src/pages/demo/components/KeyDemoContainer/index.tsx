@@ -89,9 +89,7 @@ class KeyDemo extends React.Component<IProps, IState>{
                 </div>
                 <div style={{ display: isTestList ? "block" : "none" }}>
                     <p>
-                        <p>
-                            {this.props.children}
-                        </p>
+                        {this.props.children}
                     </p>
                 </div>
 
@@ -139,10 +137,7 @@ class KeyDemoContainer extends React.Component<any, any>{
             <div>
                 <div style={{ border: "1px solid blue", marginBottom: "5px" }}>
                     <button onClick={this._onClick}>改变key</button>
-                    {/* {
-                    demoKey.length ? demoKey.map(item => <KeyDemo key={item}
-                        componentIndex={item}></KeyDemo>) : null
-                } */}
+
                     <KeyDemo key={demoKey}
                         isTestList={false}
                         componentIndex={demoKey}>

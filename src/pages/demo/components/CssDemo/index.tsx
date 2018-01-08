@@ -99,7 +99,7 @@ class CssDemo extends React.Component<IProps, IState>{
                                     字体在html中呈现的尺寸大小，这个大小需要更具font-size换算，其中font-size大小
                                     指em-square的大小，而字体大小在html呈现的大小这是由字体的ascender和descender之和
                                     计算的，后续将会详细解析这块内容。
-                                </p>
+                            </p>
                         </div>
                     </div>
                     <div>
@@ -117,7 +117,7 @@ class CssDemo extends React.Component<IProps, IState>{
                                 此处line-height的大小为0，但是div并没有沾满整个容器，很可能line box的高度是基于line-height
                                     和non-replaced inline element的最大值计算而来，如果完全由line-height决定，则div元素应该占满容器。
                                     其实，mdn也有说明，line-height用作计算（而不是决定）line box的高度
-                                </p>
+                            </p>
                         </div>
                     </div>
                     <div>
@@ -136,7 +136,7 @@ class CssDemo extends React.Component<IProps, IState>{
                                 此处line-height的大小为0，但是div并没有沾满整个容器，很可能line box的高度是基于line-height
                                     和non-replaced inline element的最大值计算而来，如果完全由line-height决定，则div元素应该占满容器。
                                     其实，mdn也有说明，line-height用作计算（而不是决定）line box的高度
-                                </p>
+                            </p>
                         </div>
                     </div>
                     <div>
@@ -311,7 +311,7 @@ class CssDemo extends React.Component<IProps, IState>{
                             有某种换算关系，根据字体种类可以计算出其在html中呈现的尺寸。
                         </p>
                         <p>
-                            <h3>补充</h3>
+                            {/* <h3>补充</h3> */}
                             general选项卡中的参数：ascent,descent,em-size,用于渲染字符；
                             os/2-->metrics选项中的参数：win ascent，win descenty用于计算area-height，
                             line gap用于计算line-height,英文计算结果符合，中文不使用该参数符合
