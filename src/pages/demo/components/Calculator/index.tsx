@@ -9,6 +9,7 @@
 
 // libs
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 // constants
 const scaleNames = {
     c: 'Celsius',
@@ -46,9 +47,9 @@ function toFahrenheit(celsius) {
 // 此处可以改造为无状态组件
 class TemperatureInput extends React.Component<any, any> {
     static propsType = {
-        scale: React.PropTypes.number.isRequired,
-        temperature: React.PropTypes.string,
-        test: React.PropTypes.string.isRequired
+        scale: PropTypes.number.isRequired,
+        temperature: PropTypes.string,
+        test: PropTypes.string.isRequired
     };
     constructor(props: any) {
         super(props);
