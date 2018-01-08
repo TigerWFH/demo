@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './Header.less';
+import './index.less';
 
 
 interface IHeaderProps {

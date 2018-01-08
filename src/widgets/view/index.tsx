@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './View.less';
+import './index.less';
 
 export class View extends React.Component<{}, never> {
     render() {

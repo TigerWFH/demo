@@ -2,9 +2,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 // components
-import { Mask } from '../mask/Mask';
+import { Mask } from '../mask';
 // css
-import './Modal.less';
+import './index.less';
 
 interface P {
 	title?: any;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './Slidebar.less';
+import './index.less';
 
 interface ISlidebarProps {
     isShowSlidebar?: boolean;

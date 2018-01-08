@@ -1,11 +1,11 @@
-import { Input } from './input/Input';
-import { Mask } from './mask/Mask';
-import { Message } from './message/Message';
-import { Modal } from './modal/Modal';
-import { Header } from './header/Header';
-import { Slidebar } from './slidebar/Slidebar';
-import { View } from './view/View';
-import { Menu } from './menu/Menu';
-import {Item} from './item';
+import { Input } from './input';
+import { Mask } from './mask';
+import { Message } from './message';
+import { Modal } from './modal';
+import { Header } from './header';
+import { Slidebar } from './slidebar';
+import { View } from './view';
+import { Menu } from './menu';
+import { Item } from './item';
 
 export { Header, Slidebar, View, Menu, Input, Mask, Message, Modal, Item };
