@@ -8,20 +8,31 @@ import FlatButton from 'material-ui/FlatButton';
 
 export class ButtonDemo extends React.Component<{}, never> {
     render() {
+        let style = {
+            verticalAlign: "middle"
+        };
         return (
-            <MuiThemeProvider>
-                <div>
-                    <RaisedButton label={'Material UI'}>
-                    </RaisedButton>
-                    <FlatButton label={'FlatButton'}
-                        primary={true}>
-                    </FlatButton>
-                    <Button>
+            <div className={'text'}>
+                <div className={'first'}>
+                    <Button >
                         {"antd"}
                     </Button>
                 </div>
+                <div className={'second'}>
+                    <MuiThemeProvider>
+                        <div>
+                            <RaisedButton label={'Material UI'}
+                                style={style}>
+                            </RaisedButton>
+                            <FlatButton label={'FlatButton'}
+                                style={style}
+                                primary={true}>
+                            </FlatButton>
+                        </div>
+                    </MuiThemeProvider>
+                </div>
+            </div>
 
-            </MuiThemeProvider>
         )
     }
 }

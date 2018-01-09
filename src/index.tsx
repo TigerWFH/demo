@@ -8,7 +8,7 @@ import { Route, HashRouter as Router, Link } from 'react-router-dom';
 // components
 import Demo from './pages/demo/index';
 import First from './pages/first/first';
-import Second from './pages/second/index';
+import DemoUI from './pages/second/index';
 import AlgorithmUI from './pages/algorithm/index';
 import { Header, Slidebar, View, Item } from './widgets';
 // store
@@ -59,7 +59,7 @@ class App extends React.Component<IAppProps, IAppState> {
 						onGetInfo={this.onGetInfo}
 						href={"/#/first"}>
 					</Item>
-					<Item title={"second"}
+					<Item title={"antd and material-ui"}
 						onGetInfo={this.onGetInfo}
 						href={"/#/second"}>
 					</Item>
@@ -83,9 +83,8 @@ let elems =
 				{/*exact严格匹配，替换了原来的IndexRoute;也取消了嵌套(nested)*/}
 				<Route exact strict path="/" component={Demo}></Route>
 				<Route exact strict path="/first" component={First}></Route>
-				<Route exact strict path="/second" component={Second}></Route>
+				<Route exact strict path="/second" component={DemoUI}></Route>
 				<Route exact strict path="/algorithm" component={AlgorithmUI}></Route>
-				<Route exact strict path="/second/first" component={Second}></Route>
 			</App>
 		</Router>
 	</Provider>
