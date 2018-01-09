@@ -11,9 +11,9 @@
   "author": "monkey@lwork.com",
   "license": "ISC",
   "devDependencies": {
-    "@types/react": "^15.0.21",
-    "@types/react-dom": "^0.14.23",
-    "@types/react-router": "^4.0.4",
+    "@types/react": "^16.0.34",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-router": "^4.0.20",
     "awesome-typescript-loader": "^3.4.1",
     "body-parser": "^1.17.1",
     "clean-webpack-plugin": "^0.1.16",
@@ -36,6 +36,7 @@
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
+    "@types/history": "^4.6.2",
     "antd": "^3.1.1",
     "chart.js": "^2.5.0",
     "classnames": "^2.2.5",

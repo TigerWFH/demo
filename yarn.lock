@@ -6,22 +6,31 @@
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.5.2.tgz#7739c850b7a5de94221accb352f9cabd1bcabe7c"
 
-"@types/react-dom@^0.14.23":
-  version "0.14.23"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-0.14.23.tgz#cecfcfad754b4c2765fe5d29b81b301889ad6c2e"
+"@types/history@^4.6.2":
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"
+
+"@types/node@*":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.3.0.tgz#3a129cda7c4e5df2409702626892cb4b96546dd5"
+
+"@types/react-dom@^16.0.3":
+  version "16.0.3"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.3.tgz#8accad7eabdab4cca3e1a56f5ccb57de2da0ff64"
   dependencies:
+    "@types/node" "*"
     "@types/react" "*"
 
-"@types/react-router@^4.0.4":
-  version "4.0.11"
-  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-4.0.11.tgz#de631d00477081c24a4668c10287ea5f3cd51311"
+"@types/react-router@^4.0.20":
+  version "4.0.20"
+  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-4.0.20.tgz#3404f54e44bba2239ea4320ea701d86d92f05486"
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^15.0.21":
-  version "15.0.30"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-15.0.30.tgz#a4e153e1e83fbef341fc9aad1a7d62bf8c1f52a3"
+"@types/react@*", "@types/react@^16.0.34":
+  version "16.0.34"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.34.tgz#7a8f795afd8a404a9c4af9539b24c75d3996914e"
 
 abbrev@1:
   version "1.1.0"
@@ -3105,13 +3114,9 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
   dependencies:
     minimist "0.0.8"
 
-moment@2.x, moment@^2.19.3:
+moment@2.x, moment@^2.10.6, moment@^2.19.3:
   version "2.20.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
-
-moment@^2.10.6:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
 ms@0.7.1:
   version "0.7.1"

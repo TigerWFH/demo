@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-// import { Button as MyButton } from 'antd';
+import { Button } from 'antd';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
@@ -16,6 +16,9 @@ export class ButtonDemo extends React.Component<{}, never> {
                     <FlatButton label={'FlatButton'}
                         primary={true}>
                     </FlatButton>
+                    <Button>
+                        {"antd"}
+                    </Button>
                 </div>
 
             </MuiThemeProvider>
