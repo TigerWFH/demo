@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // actions
 import * as Actions from '../actions/index';
 // compoenents
+import { ButtonDemo } from '../components/Text';
 
 function mapStateToProps(state, ownProps) {
 	let { common, second } = state;
@@ -35,6 +36,7 @@ class Second extends React.Component<IProps, IState>{
 	render() {
 		return (
 			<div className="app">
+				<ButtonDemo></ButtonDemo>
 				<button onClick={this._onClick}>button</button>
 				<video src="../../../common/res/videos/bk.mp4"
 					width="100%"
