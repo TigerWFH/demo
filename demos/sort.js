@@ -83,6 +83,34 @@ class Sorts {
 			} console.log("data--->", data);
 		}
 	}
+
+	/* 插入排序 */ 
+	insertionSort(_target) {
+		let target = _target;
+		if (Array.isArray(target)) {
+			if (target.length <= 1) {
+				return target;
+			}
+			let j = 1;
+			while (j < target.length) {
+				let key = target[j];
+				let i = j - 1;
+				while (i >= 0 && i < target.length) {
+					if (target[i] > key) {
+						target[i + 1] = target[i];
+						target[i] = key;
+					}
+					i--;
+				}
+				j++;
+			}
+	
+			return target;
+		}
+	
+	
+		return null;
+	}
 }
 
 let test = new Sorts();
