@@ -9,3 +9,21 @@ console.log("function--->", Object.prototype.toString.call(() => { }));//[object
 console.log("regexp--->", Object.prototype.toString.call(/\.js/));//[object RegExp]
 console.log("symbol--->", Object.prototype.toString.call(Symbol()));//[object Symbol]
 
+function tt({name='monkey', age=12}, other) {
+    console.log('name--->', name);
+    console.log('age--->', age);
+    console.log('other--->', other);
+}
+
+tt({}, "ll");
+
+let obj = {
+    list: {
+        name: 'monkey'
+    },
+    age: 12
+};
+
+let {lists: name = "cat"} = obj;
+console.log('name--->', name);
+console.log('lists--->', name);
