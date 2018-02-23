@@ -2,8 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Audit } from './components/Audit';
 
-import * as types from './constants/firstTypes';
-import * as Actions from './actions/firstActions';
+import * as types from './modals';
+import * as Actions from './actions/businessActions';
 import './first.less';
 
 interface IFirstProps extends types.IFirstContainer {
@@ -46,10 +46,10 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
 	return {
 		fetchAccountList: () => {
-			return dispatch(Actions.fetchAccountList());
+			return dispatch(Actions.fetchAccountList({}));
 		},
 		fetchAccount: () => {
-			return dispatch(Actions.fetchAccount())
+			return dispatch(Actions.fetchAccount({}))
 		}
 	}
 }
