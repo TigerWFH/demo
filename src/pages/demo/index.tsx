@@ -92,7 +92,7 @@ class Demo extends React.Component<P, S>{
 	render() {
 		let _content = <input type="text" ref="input" />
 		return (
-			<div style={{ margin: "50px auto" }}>
+			<div>
 				<fieldset className="fieldset-first"
 					style={{ display: demoIsHide.get("demo1") && "none" }}>
 					<legend className="legend-first">
