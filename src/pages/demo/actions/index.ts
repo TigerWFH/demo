@@ -1,3 +1,4 @@
+// 存在非服务请求
 const DEMO_TEST = "DEMO_TEST";
 
 export function fetchT() {
