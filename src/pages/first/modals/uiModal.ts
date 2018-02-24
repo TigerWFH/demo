@@ -1,3 +1,4 @@
+// 直接呈现给UI的数据模型，业务放在reducer中处理
 export interface IFileInfo {
     fileKey?: string;
     fileName?: string;
