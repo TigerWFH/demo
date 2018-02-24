@@ -1,6 +1,6 @@
 import { IActionType } from '../../../common/globalConstants';
 import * as t from './actionTypes';
-import * as m from '../modals/uiModal';
+import * as m from '../modals/uiModals';
 
 // 获取账户列表数据
 export const fetchAccountList = (payload) => {

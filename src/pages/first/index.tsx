@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Audit } from './components/Audit';
 
-import * as m from './modals/uiModal';
+import * as m from './modals/uiModals';
 import actions from './actions';
 import './index.less';
 

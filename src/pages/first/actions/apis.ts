@@ -1,5 +1,5 @@
 import { get, post } from '../../../common/utils/http';
-import * as m from '../modals/apiModal';
+import * as m from '../modals/apiModals';
 import * as business from './businessActions';
 
 export const requestAccount = () => {

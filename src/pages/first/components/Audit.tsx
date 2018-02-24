@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Info } from './Info';
-import { IAudit, IInfo } from '../modals/uiModal';
+import { IAudit, IInfo } from '../modals/uiModals';
 
 interface IAuditProps {
     infoData?: IInfo;

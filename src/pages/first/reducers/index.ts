@@ -1,5 +1,5 @@
 import * as t from '../actions/actionTypes';
-import * as m from '../modals/uiModal';
+import * as m from '../modals/uiModals';
 import { combineReducers } from 'redux';
 
 let initialState: m.IFirstContainer = {
