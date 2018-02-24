@@ -3,17 +3,13 @@ import { connect } from 'react-redux';
 import { Audit } from './components/Audit';
 
 import * as m from './modals/uiModal';
-// import actions from './actions';
-import * as actions from './actions/api';
+import actions from './actions';
 import './index.less';
 
 interface IFirstProps extends m.IFirstContainer {
-	fetchAccountList?: () => void;
-	fetchAccount?: () => void;
 }
 
 class First extends React.Component<IFirstProps, never>{
-
 	constructor(props: IFirstProps) {
 		super(props);
 	}

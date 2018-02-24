@@ -10,3 +10,7 @@ export const requestAccount = () => {
         }, 300)
     }
 }
+
+export const requestAccountList = () => {
+    
+}
