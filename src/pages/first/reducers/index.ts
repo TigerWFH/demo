@@ -11,9 +11,17 @@ let initialState: m.IFirstContainer = {
 const accountList = (state: m.IFirstContainer = initialState, action: any = {}) => {
 	switch (action.type) {
 		case t.FETCH_ACCOUNT_LIST:
-			return { ...state, ...{ isBeginAjax: true } };
+			return {
+				...state,
+				...action.payload,
+				status: 0
+			};
 		case t.FETCH_ACCOUNT_LIST_FAIL:
-			return { ...state, ...{ error: action.data, isBeginAjax: false } };
+			return {
+				...state,
+				...action.payload,
+				status: -1
+			};
 		case t.FETCH_ACCOUNT_LIST_SUCCESS:
 			let tableData: m.ITable = {
 				pageSize: 10,
@@ -21,7 +29,7 @@ const accountList = (state: m.IFirstContainer = initialState, action: any = {}) 
 				totalCount: 0,
 				fineTicketList: []
 			};
-			return { ...state, tableData };
+			return { ...state, tableData, status: 1 };
 		default:
 			return state;
 	}
@@ -30,11 +38,20 @@ const accountList = (state: m.IFirstContainer = initialState, action: any = {}) 
 const account = (state = {}, action) => {
 	switch (action.type) {
 		case t.FETCH_ACCOUNT:
-			return {};
+			return {
+				...action.payload,
+				status: 0
+			};
 		case t.FETCH_ACCOUNT_FAIL:
-			return {};
+			return {
+				...action.payload,
+				status: -1
+			};
 		case t.FETCH_ACCOUNT_SUCCESS:
-			return {};
+			return {
+				...action.payload,
+				status: 1
+			};
 		default:
 			return state;
 	}
