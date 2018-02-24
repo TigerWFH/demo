@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Audit } from './components/Audit';
 
 import * as m from './modals/uiModal';
-import * as Actions from './actions/businessActions';
+import * as Actions from './actions';
 import './index.less';
 
 interface IFirstProps extends m.IFirstContainer {
@@ -43,15 +43,16 @@ function mapStateToProps(state, ownProps) {
 	return { ...first }
 }
 
-function mapDispatchToProps(dispatch) {
-	return {
-		fetchAccountList: () => {
-			return dispatch(Actions.fetchAccountList({}));
-		},
-		fetchAccount: () => {
-			return dispatch(Actions.fetchAccount({}))
-		}
-	}
-}
+// 直接再bindactioncreators中注入了dispatch
+// function mapDispatchToProps(dispatch) {
+// 	return {
+// 		fetchAccountList: () => {
+// 			return dispatch(Actions.fetchAccountList({}));
+// 		},
+// 		fetchAccount: () => {
+// 			return dispatch(Actions.fetchAccount({}))
+// 		}
+// 	}
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(First);
+export default connect(mapStateToProps, null)(First);
