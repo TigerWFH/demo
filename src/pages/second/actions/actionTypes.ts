@@ -1,0 +1,3 @@
+export const FETCH_SECOND = Symbol('FETCH_SECOND');
+export const FETCH_SECOND_SUCCESS = Symbol('FETCH_SECOND_SUCCESS');
+export const FETCH_SECOND_FAIL = Symbol('FETCH_SECOND_FAIL');

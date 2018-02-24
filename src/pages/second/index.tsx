@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import * as Actions from './actions/index';
+import actions from './actions/index';
 import { ButtonDemo } from './components/Text';
 import './index.less';
 
 interface IProps {
-	testAction?: any;
 }
 interface IState {
 
@@ -13,6 +12,9 @@ interface IState {
 class DemoUI extends React.Component<IProps, IState>{
 	constructor(props: IProps) {
 		super(props);
+	}
+	componentDidMount(){
+		actions.requestSecond();
 	}
 	render() {
 		return (
@@ -31,12 +33,4 @@ function mapStateToProps(state, ownProps) {
 	return { ...common, ...second };
 }
 
-function mapDispatchToProps(dispatch, ownProps) {
-	return {
-		testAction: () => {
-			dispatch(Actions.testAction());
-		}
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DemoUI);
+export default connect(mapStateToProps, null)(DemoUI);

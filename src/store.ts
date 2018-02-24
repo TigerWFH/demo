@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 
 // reducers
 import firstReducer from './pages/first/reducers';
-import { secondReducer } from './pages/second/reducers/index';
+import secondReducer  from './pages/second/reducers';
 import { reducer } from './pages/demo/reducers/index';
 
 let rootReducer = combineReducers({
