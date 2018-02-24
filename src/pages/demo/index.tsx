@@ -1,7 +1,7 @@
 // libs
 import * as React from 'react';
 import { connect } from 'react-redux';
-// components
+
 import { Calculator } from './components/Calculator';
 import { UploadFile, UploadFile1 } from './components/UploadFile';
 import { Container, Clock } from './components/Clock';
@@ -14,11 +14,8 @@ import { Modal } from '../../widgets';
 import { Input } from '../../widgets';
 
 import actions from './actions';
-
-// css
 import './index.less';
 
-// false: show the demo
 const demoIsHide = new Map([
 	["demo1", true],
 	["demo2", true],
@@ -51,35 +48,24 @@ class Demo extends React.Component<P, S>{
 	constructor(props: P) {
 		super(props);
 		this._time = 0;
-		// console.log('Demo constructor');
 	}
 	componentWillMount() {
-		// console.log('Demo componentWillMount');
 	}
 	componentDidMount() {
-		// console.log('Demo componentDidMount');
 		actions.requestDemo();
 		this._timer = setInterval(() => {
 			this._time += 1;
-			// 从控制台可以看到this._time属性值是变化的
-			// console.log("clcok props--->", this._time);
-			// 调用forceUpdate函数，可以强制刷新页面
-			// this.forceUpdate();
 		}, 1000);
 	}
 	componentWillUnmount() {
-		// console.log('Demo componentUnMount');
 		clearInterval(this._timer);
 	}
 	componentWillReceiveProps(props: any) {
-		// console.log('Demo receiveProps--->', props);
 	}
 	shouldComponentUpdate(props, state) {
-		// console.log('Demo shouldComponentUpdate');
 		return true;
 	}
 	componentWillUpdate() {
-		// console.log('Demo componentWillUpdate');
 	}
 	componentDidUpdate() {
 	}
@@ -190,18 +176,13 @@ class Demo extends React.Component<P, S>{
 		console.log('value--->', value);
 	}
 	_onT1 = () => {
-		//connect
-		let { fetchT } = this.props;
-		fetchT();
 	}
 	_onT2 = () => {
-		// setState
 		this.setState({
 			age: 15
 		});
 	}
 	_onT3 = () => {
-		// fource
 		this.forceUpdate();
 	}
 }

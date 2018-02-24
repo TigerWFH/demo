@@ -44,7 +44,6 @@ function toFahrenheit(celsius) {
     return (+celsius * 9 / 5) + 32;
 }
 
-// 此处可以改造为无状态组件
 class TemperatureInput extends React.Component<any, any> {
     static propsType = {
         scale: PropTypes.number.isRequired,
