@@ -149,7 +149,7 @@ class Demo extends React.Component<P, S>{
 					<button onClick={this._onMask}>Mask</button>
 					<button onClick={this._onModal}>Modal</button>
 					<input type="text" defaultValue="monkey" />
-					<input type="text" value="monkey" />
+					<input type="text" value="monkey" onChange={() => { }} />
 					{/*<Message></Message>*/}
 					<Modal onOk={this._onOk}>
 						{_content}
