@@ -2,11 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Audit } from './components/Audit';
 
-import * as types from './modals';
+import * as m from './modals/uiModal';
 import * as Actions from './actions/businessActions';
-import './first.less';
+import './index.less';
 
-interface IFirstProps extends types.IFirstContainer {
+interface IFirstProps extends m.IFirstContainer {
 	fetchAccountList: () => void;
 	fetchAccount: () => void;
 }

@@ -6,10 +6,10 @@ import { Provider } from 'react-redux';
 import { Route, HashRouter as Router, Link } from 'react-router-dom';
 
 // components
-import Demo from './pages/demo/index';
-import First from './pages/first/first';
-import DemoUI from './pages/second/index';
-import AlgorithmUI from './pages/algorithm/index';
+import Demo from './pages/demo/';
+import First from './pages/first/';
+import DemoUI from './pages/second/';
+import AlgorithmUI from './pages/algorithm/';
 import { Header, Slidebar, View, Item } from './widgets';
 // store
 import { store } from './store';

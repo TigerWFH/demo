@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IInfo, IFileInfo } from "../modals";
+import { IInfo, IFileInfo } from "../modals/uiModal";
 
 // 只有展示，没有交互的可以直接使用IInfo类型作为props类型
 // 一、以继承的方式把数据拿过来，感觉太零碎
