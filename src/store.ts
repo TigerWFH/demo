@@ -5,12 +5,12 @@ import thunkMiddleware from 'redux-thunk';
 // reducers
 import firstReducer from './pages/first/reducers';
 import secondReducer  from './pages/second/reducers';
-import { reducer } from './pages/demo/reducers/index';
+import demo from './pages/demo/reducers/index';
 
 let rootReducer = combineReducers({
 	first: firstReducer,
 	second: secondReducer,
-	demo: reducer
+	demo
 });
 
 export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));

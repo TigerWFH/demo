@@ -8,11 +8,12 @@ import { Container, Clock } from './components/Clock';
 import { FilterableProductTable } from './components/FilterableProductTable';
 import { KeyDemoContainer } from './components/KeyDemoContainer';
 import { CssDemo } from './components/CssDemo';
-import { fetchT } from './actions/index';
 import { Mask } from '../../widgets';
 import { Message } from '../../widgets';
 import { Modal } from '../../widgets';
 import { Input } from '../../widgets';
+
+import actions from './actions';
 
 // css
 import './index.less';
@@ -32,14 +33,6 @@ function mapStateToProps(state, ownProps) {
 	let { demo } = state;
 	return {
 		...demo
-	}
-}
-
-function mapDispatchToProps(dispatch, ownProps) {
-	return {
-		fetchT: () => {
-			dispatch(fetchT());
-		}
 	}
 }
 
@@ -65,6 +58,7 @@ class Demo extends React.Component<P, S>{
 	}
 	componentDidMount() {
 		// console.log('Demo componentDidMount');
+		actions.requestDemo();
 		this._timer = setInterval(() => {
 			this._time += 1;
 			// 从控制台可以看到this._time属性值是变化的
@@ -212,4 +206,4 @@ class Demo extends React.Component<P, S>{
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Demo);
+export default connect(mapStateToProps, null)(Demo);

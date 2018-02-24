@@ -1,11 +1,9 @@
-// 存在非服务请求
-const DEMO_TEST = "DEMO_TEST";
+import { bindActionCreators } from 'redux';
+import * as apis from './apis';
+import * as business from './businessActions';
+import { store } from '../../../store';
 
-export function fetchT() {
-	return {
-		type: DEMO_TEST,
-		data: {
-			name: "gogogogo-connect-test"
-		}
-	}
-}
+export default bindActionCreators({
+	...apis,
+	...business
+}, store.dispatch);
