@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { Audit } from './components/Audit';
 
 import * as m from './modals/uiModal';
-import * as Actions from './actions';
+import actions from './actions';
 import './index.less';
 
 interface IFirstProps extends m.IFirstContainer {
-	fetchAccountList: () => void;
-	fetchAccount: () => void;
+	fetchAccountList?: () => void;
+	fetchAccount?: () => void;
 }
 
 class First extends React.Component<IFirstProps, never>{
@@ -18,10 +18,7 @@ class First extends React.Component<IFirstProps, never>{
 	}
 
 	componentDidMount() {
-		let { fetchAccount } = this.props;
-		if (typeof fetchAccount === "function") {
-			fetchAccount();
-		}
+		actions.fetchAccount({});
 	}
 
 	render() {
