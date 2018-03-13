@@ -1,31 +1,29 @@
 import { combineReducers } from 'redux';
 import * as t from '../actions/actionTypes';
 
-const second = (state = {}, action) => {
+const medicineCode = (state = {}, action) => {
+	let { payload } = action;
 	switch (action.type) {
-		case t.FETCH_SECOND:
+		case t.GET_MEDICINE_CODE:
 			return {
 				...state,
-				...action.payload,
 				status: 'INITIAL'
 			};
-		case t.FETCH_SECOND_FAIL:
+		case t.GET_MEDICINE_CODE_SUCCESS:
 			return {
 				...state,
-				...action.payload,
-				status: 'FAIL'
-			};
-		case t.FETCH_SECOND_SUCCESS:
-			return {
-				...state,
-				...action.payload,
 				status: 'SUCCESS'
+			};
+		case t.GET_MEDICINE_CODE_FAIL:
+			return {
+				...state,
+				status: 'FAIL'
 			};
 		default:
 			return state;
 	}
-};
+}
 
 export default combineReducers({
-	second
+    medicineCode
 });
