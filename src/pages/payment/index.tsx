@@ -58,17 +58,18 @@ class Payment extends React.Component<IPaymentProp, IPaymentState>{
         let elem = <div className={'buttonsContainer'}>
             {
                 status === 'SUCCESS' ?
-                    <button>
+                    <button className={'normal'}>
                         还想问问
                     </button> :
                     null
             }
-            <button>
+            <button className={status === 'SUCCESS' ?
+                'active' : 'normal'}>
                 结束问诊
             </button>
             {
                 status === 'FAIL' ?
-                    <button>
+                    <button className={'active'}>
                         重新支付
                     </button> :
                     null
