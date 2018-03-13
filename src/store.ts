@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 
 // reducers
 import firstReducer from './pages/first/reducers';
-import secondReducer  from './pages/second/reducers';
+import secondReducer  from './pages/ui/reducers';
 import demo from './pages/demo/reducers';
 import algorithm from './pages/algorithm/reducers';
 
