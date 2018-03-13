@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import * as t from '../actions/actionTypes';
 
-const medicineCode = (state = {}, action) => {
+const medicineCode = (state = {status: 0}, action) => {
 	let { payload } = action;
 	switch (action.type) {
 		case t.GET_MEDICINE_CODE:
@@ -12,6 +12,7 @@ const medicineCode = (state = {}, action) => {
 		case t.GET_MEDICINE_CODE_SUCCESS:
 			return {
 				...state,
+				...payload,
 				status: 'SUCCESS'
 			};
 		case t.GET_MEDICINE_CODE_FAIL:
