@@ -20,7 +20,8 @@ class Payment extends React.Component<IPaymentProp, never>{
     }
 
     componentWillMount() {
-        actions.requestMedicineCode({});
+        let params = {};
+        actions.requestMedicineCode(params);
     }
 
     onRefreshMedicine = () => {
