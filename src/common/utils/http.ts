@@ -1,3 +1,14 @@
+/*
+返回对象结构
+{
+	status：'http通信状态(有时候业务直接反映出业务的处理结果；4XX是客户端问题；5XX是服务端问题)'
+	payload: {
+		msgCode: '业务处理结果代码',
+		msgText: '业务处理结果描述',
+		data: '业务处理结果'
+	} || 'error info'
+}
+*/ 
 function ajax(method, url, headers, data) {
 	let _method = method;
 	let _url = url;
@@ -12,12 +23,16 @@ function ajax(method, url, headers, data) {
 			}
 		}
 		xhr.onreadystatechange = () => {
+			let responseTarget = {
+				status: xhr.status,
+				payload: xhr.responseText
+			};
 			if (xhr.readyState === 4) {
 				if (xhr.status >= 200 && xhr.status < 300) {
-					return resolve(xhr.responseText);
+					return resolve(responseTarget);
 				}
 				else {
-					return reject(xhr.responseText);
+					return reject(responseTarget);
 				}
 			}
 		}
