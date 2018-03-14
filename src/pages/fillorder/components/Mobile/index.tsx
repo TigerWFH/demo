@@ -1,4 +1,6 @@
 import * as React from 'react';
+import './index.less';
+
 
 interface IMobileProps {
     tip?: string;
@@ -12,31 +14,32 @@ class Mobile extends React.Component<IMobileProps, IMobileState>{
     constructor(props) {
         super(props);
         this.state = {
-            isShowTip: false
+            isShowTip: true
         };
     }
     render() {
         let { isShowTip } = this.state;
         let { tip } = this.props;
         return (
-            <div>
-                <div>
-                    <span></span>
-                    <span>
+            <div className={'rootContainerMobile'}>
+                <div className={'mobileContainer'}>
+                    <span className={'flag'}>
+                    </span>
+                    <span className={'title'}>
                         填写手机号：
                     </span>
-                    <input type="number" />
+                    <input className={'mobile'} type="number" />
                     {
                         isShowTip ?
-                            <span>
-                                手机格式错误
-                        </span>
+                            <span className={'error'}>
+                                *手机格式错误
+                            </span>
                             : null
                     }
                 </div>
                 {
                     tip ?
-                        <div>
+                        <div className={'tip'}>
                             {tip}
                         </div> : null
                 }
