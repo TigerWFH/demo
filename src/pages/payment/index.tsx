@@ -57,17 +57,44 @@ class Payment extends React.Component<IPaymentProp, IPaymentState>{
         return elem;
     }
 
-    renderCodeOrFlush = (code, medicineCode) => {
-        let elem = null;
-        if (code === 200) {
-            elem = <div>
-
-            </div>;
-        } else if (code === 250) {
-            elem = <div onClick={this.onRefreshMedicine}>
-                轻触此处刷新取药码
-            </div>;
+    renderCode = (medicineCode) => {
+        let codeElemList = [];
+        if (!medicineCode || typeof medicineCode !== 'string') {
+            return null;
         }
+        for (let i = 0; i < medicineCode.length; i++) {
+            let codeElem = <span className={'codeElem'}
+                key={'codeElem' + i}>
+                {medicineCode[i]}
+            </span>
+            codeElemList.push(codeElem);
+        }
+
+        return codeElemList;
+    }
+    renderCodeOrFlush = (code, medicineCode) => {
+        if (!code) {
+            return null;
+        }
+        let elem = <div className={'codeOrRefreshContainer'}>
+            <div className={'title'}>
+                取药码
+            </div>
+            {
+                code === 200 ?
+                    <div className={'codeElemContainer'}>
+                        {this.renderCode(medicineCode)}
+                    </div>
+                    : null
+            }
+            {
+                code === 250 ? <div className={'refresh'}
+                    onClick={this.onRefreshMedicine}>
+                    轻触此处刷新取药码
+            </div>
+                    : null
+            }
+        </div>;
 
         return elem;
     }

@@ -10,6 +10,7 @@
             .title {
                 margin-right: 10px;
                 vertical-align: middle;
+                font-size: 30px;
             }
             .logo {
                 vertical-align: middle;
@@ -18,24 +19,59 @@
             }
         }
         .tip {
-            color: #ddd;
+            margin: 30px auto 0 auto;
+            width: 450px;
             word-wrap: break-word;
             word-break: break-all;
             text-align: left;
+            font-size: 18px;
+            color: #ddd;
         }
     }
-    .codeOrFlushContainer {
-        border: 1px solid red;
+    .codeOrRefreshContainer {
+        text-align: center;
+        margin-top: 50px;
+        .title {
+            font-size: 25px;
+        }
+        .codeElemContainer {
+            margin-top: 30px;
+            .codeElem {
+                display: inline-block;
+                width: 60px;
+                line-height: 80px;
+                margin-right: 18px;
+                background-color: #fff6f0;
+                border-radius: 4px;
+                font-size: 45px;
+                color: #ff6f00;
+            }
+        }
+        .refresh {
+            cursor: pointer;
+        }
+        
     }
     .buttonsContainer {
         text-align: center;
+        margin-top: 80px;
         .normal {
             margin-right: 60px;
-            border: 1px solid rgb(255, 111, 0);
+            width: 230px;
+            height: 70px;
+            color: #ff6f00;
+            font-size: 23px;/*该属性声明不被继承*/
+            border: 1px solid #ff6f00;
+            background-color: #fff;
+            cursor: pointer;
         }
         .active {
-            background-color: rgb(255, 111, 0);
+            width: 230px;
+            height: 70px;
+            color: #fff;
+            font-size: 23px;
+            background-color: #ff6f00;
+            cursor: pointer;
         }
-        border: 1px solid red;
     }
 }
