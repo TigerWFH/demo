@@ -11,6 +11,7 @@ import First from './pages/first/';
 import DemoUI from './pages/ui/';
 import AlgorithmUI from './pages/algorithm/';
 import Payment from './pages/payment';
+import FillOrder from './pages/fillorder';
 import { Header, Slidebar, View, Item } from './widgets';
 // store
 import { store } from './store';
@@ -65,6 +66,10 @@ class App extends React.Component<IAppProps, IAppState> {
 						onGetInfo={this.onGetInfo}
 						href={"/#/algorithm"}>
 					</Item>
+					<Item title={"fillorder"}
+						onGetInfo={this.onGetInfo}
+						href={"/#/fillorder"}>
+					</Item>
 					<Item title={"payment"}
 						onGetInfo={this.onGetInfo}
 						href={"/#/payment"}>
@@ -87,6 +92,7 @@ let elems =
 				<Route exact strict path="/first" component={First}></Route>
 				<Route exact strict path="/ui" component={DemoUI}></Route>
 				<Route exact strict path="/algorithm" component={AlgorithmUI}></Route>
+				<Route exact strict path="/fillorder" component={FillOrder}></Route>
 				<Route exact strict path="/payment" component={Payment}></Route>
 			</App>
 		</Router>

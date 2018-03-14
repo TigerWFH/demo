@@ -7,14 +7,16 @@ import firstReducer from './pages/first/reducers';
 import secondReducer  from './pages/ui/reducers';
 import demo from './pages/demo/reducers';
 import algorithm from './pages/algorithm/reducers';
-import payment from './pages/payment/reducers'
+import payment from './pages/payment/reducers';
+import fillorder from './pages/fillorder/reducers';
 
 let rootReducer = combineReducers({
 	first: firstReducer,
 	second: secondReducer,
 	demo,
 	algorithm,
-	payment
+	payment,
+	fillorder
 });
 
 export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
