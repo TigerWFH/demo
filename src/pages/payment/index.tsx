@@ -13,11 +13,8 @@ interface IPaymentProp {
     successTip: string;
     failTip: string;
 }
-interface IPaymentState {
 
-}
-
-class Payment extends React.Component<IPaymentProp, IPaymentState>{
+class Payment extends React.Component<IPaymentProp, never>{
     constructor(props: IPaymentProp) {
         super(props);
     }
