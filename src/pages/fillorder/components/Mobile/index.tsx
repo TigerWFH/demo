@@ -4,7 +4,7 @@ import './index.less';
 
 interface IMobileProps {
     tip?: string;
-    onChange?: (value) => {};
+    onChange?: (value: string) => void;
 }
 
 interface IMobileState {
