@@ -157,9 +157,10 @@ class Payment extends React.Component<IPaymentProp, IPaymentState>{
         return elem;
     }
 
+
     render() {
         let { status = 'INITIAL', code, medicineCode } = this.props;
-        code = 250;
+        status = 'FAIL';
         return status === 'INITIAL' ? null : this.renderData(status, code, medicineCode)
     }
 }
