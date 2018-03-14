@@ -27,7 +27,10 @@ class Payment extends React.Component<IPaymentProp, IPaymentState>{
     }
 
     onRefreshMedicine = () => {
-
+        let params = {
+            flag: true
+        };
+        actions.requestMedicineCode(params);
     }
 
     onToDoctor = () => {
@@ -59,7 +62,7 @@ class Payment extends React.Component<IPaymentProp, IPaymentState>{
 
     renderCode = (medicineCode) => {
         let codeElemList = [];
-        if (!medicineCode || typeof medicineCode !== 'string') {
+        if (typeof medicineCode === 'undefined' || medicineCode === null || typeof medicineCode !== 'string') {
             return null;
         }
         for (let i = 0; i < medicineCode.length; i++) {
@@ -73,7 +76,7 @@ class Payment extends React.Component<IPaymentProp, IPaymentState>{
         return codeElemList;
     }
     renderCodeOrFlush = (code, medicineCode) => {
-        if (!code) {
+        if (typeof medicineCode === 'undefined' || medicineCode === null || typeof code !== 'number') {
             return null;
         }
         let elem = <div className={'codeOrRefreshContainer'}>
@@ -81,7 +84,7 @@ class Payment extends React.Component<IPaymentProp, IPaymentState>{
                 取药码
             </div>
             {
-                code === 200 ?
+                code === 0 ?
                     <div className={'codeElemContainer'}>
                         {this.renderCode(medicineCode)}
                     </div>
@@ -160,7 +163,6 @@ class Payment extends React.Component<IPaymentProp, IPaymentState>{
 
     render() {
         let { status = 'INITIAL', code, medicineCode } = this.props;
-        status = 'FAIL';
         return status === 'INITIAL' ? null : this.renderData(status, code, medicineCode)
     }
 }
