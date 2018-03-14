@@ -26,6 +26,20 @@ class Payment extends React.Component<IPaymentProp, IPaymentState>{
         actions.requestMedicineCode({});
     }
 
+    onRefreshMedicine = () => {
+
+    }
+
+    onToDoctor = () => {
+        actions.getMedicineCode();
+    }
+    onEndDiagnose = () => {
+
+    }
+    onRePurchase = () => {
+
+    }
+
     renderTitleAndTip(title, logo, tip) {
         let elem = <div className={'titleAndTipContainer'}>
             <span className={'titleContainer'}>
@@ -43,12 +57,16 @@ class Payment extends React.Component<IPaymentProp, IPaymentState>{
         return elem;
     }
 
-    renderCodeOrFlush = (code) => {
+    renderCodeOrFlush = (code, medicineCode) => {
         let elem = null;
         if (code === 200) {
-            elem = "8888";
+            elem = <div>
+
+            </div>;
         } else if (code === 250) {
-            elem = "flush";
+            elem = <div onClick={this.onRefreshMedicine}>
+                轻触此处刷新取药码
+            </div>;
         }
 
         return elem;
@@ -58,18 +76,21 @@ class Payment extends React.Component<IPaymentProp, IPaymentState>{
         let elem = <div className={'buttonsContainer'}>
             {
                 status === 'SUCCESS' ?
-                    <button className={'normal'}>
+                    <button className={'normal'}
+                        onClick={this.onToDoctor}>
                         还想问问
                     </button> :
                     null
             }
             <button className={status === 'SUCCESS' ?
-                'active' : 'normal'}>
+                'active' : 'normal'}
+                onClick={this.onEndDiagnose}>
                 结束问诊
             </button>
             {
                 status === 'FAIL' ?
-                    <button className={'active'}>
+                    <button className={'active'}
+                        onClick={this.onRePurchase}>
                         重新支付
                     </button> :
                     null
@@ -79,18 +100,27 @@ class Payment extends React.Component<IPaymentProp, IPaymentState>{
         return elem;
     }
 
-
-    renderData = (status) => {
-        let { code } = this.props;
-        let title = status === 'SUCCESS' ? '支付成功' : '未支付';
-        let logo = status === 'SUCCESS' ?
-            require('../../common/res/images/gmcg@2x.png') :
-            require('../../common/res/images/sb@2x.png');
-        let successTip = '温馨提示:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
+    renderData = (status, code, medicineCode) => {
+        if (!status) {
+            return null;
+        }
+        let title = '';
+        let logo = '';
+        let tip = '';
+        if (status === 'SUCCESS') {
+            title = '支付成功';
+            logo = require('../../common/res/images/gmcg@2x.png');
+            tip = '温馨提示:SuccessXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
+        }
+        else if (status === 'FAIL') {
+            title = '未支付';
+            logo = require('../../common/res/images/sb@2x.png');
+            tip = '温馨提示:FailXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
+        }
         let elem = <div className={"rootContainer"}>
-            {this.renderTitleAndTip(title, logo, successTip)}
+            {this.renderTitleAndTip(title, logo, tip)}
             {
-                status === 'SUCCESS' ? this.renderCodeOrFlush(code) : null
+                status === 'SUCCESS' ? this.renderCodeOrFlush(code, medicineCode) : null
             }
             {
                 this.renderButtons(status)
@@ -101,8 +131,8 @@ class Payment extends React.Component<IPaymentProp, IPaymentState>{
     }
 
     render() {
-        let { status = 'INITIAL' } = this.props;
-        return status === 'INITIAL' ? null : this.renderData(status)
+        let { status = 'INITIAL', code, medicineCode } = this.props;
+        return status === 'INITIAL' ? null : this.renderData(status, code, medicineCode)
     }
 }
 
