@@ -145,7 +145,7 @@ class Payment extends React.Component<IPaymentProp, never>{
             logo = require('../../common/res/images/sb@2x.png');
             tip = '温馨提示:FailXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
         }
-        let elem = <div className={"rootContainer"}>
+        let elem = <div className={"rootContainerPayment"}>
             {this.renderTitleAndTip(title, logo, tip)}
             {
                 status === 'SUCCESS' ? this.renderCodeOrFlush(code, medicineCode) : null
