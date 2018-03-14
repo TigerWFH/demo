@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import QualityAssurance from './components/QualityAssurance';
 import Mobile from './components/Mobile';
+import Footer from './components/Footer';
 
 import './index.less';
 
@@ -24,6 +25,7 @@ class FillOrder extends React.Component<IFillOrderProps, IFillOrderState>{
         return <div className={'rootContainerFillOrder'}>
             <QualityAssurance />
             <Mobile tip={tip} onChange={this.onPhone} />
+            <Footer />
         </div>
     }
 }
