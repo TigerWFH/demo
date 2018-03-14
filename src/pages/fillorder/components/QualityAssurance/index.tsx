@@ -18,7 +18,7 @@ class QualityAssurance extends React.Component<IQualityAssuranceProps, never> {
             let elem = <span className={'assuranceContainer'}
                 key={'qa' + index}>
                 <span className={'icon'}>
-
+                ✔
                 </span>
                 <span className={'assurance'}>
                     {text}
