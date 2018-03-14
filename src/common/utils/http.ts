@@ -25,14 +25,14 @@ function ajax(method, url, headers, data) {
 		xhr.onreadystatechange = () => {
 			let responseTarget = {
 				status: xhr.status,
-				payload: xhr.responseText
+				payload: JSON.parse(xhr.responseText)
 			};
 			if (xhr.readyState === 4) {
 				if (xhr.status >= 200 && xhr.status < 300) {
-					return resolve(responseTarget);
+					return resolve(JSON.stringify(responseTarget));
 				}
 				else {
-					return reject(responseTarget);
+					return reject(JSON.stringify(responseTarget));
 				}
 			}
 		}

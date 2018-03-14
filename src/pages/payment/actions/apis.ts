@@ -11,7 +11,7 @@ export function requestMedicineCode(params) {
             dispatch(actions.getMedicineCode());
         }
         return get('/v1/medicinecode', {}).then((data: any) => {
-            let { payload = {} } = data;
+            let { payload } = data;
             let { msgCode, msgText } = payload;
             if (msgCode === 0 || msgCode === 250) {
                 return dispatch(actions.getMedicineCodeSuccess(payload));
