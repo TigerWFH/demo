@@ -35,6 +35,9 @@ class GoodsList extends React.Component<IGoodsListProps, never> {
                     </span>
                 </span>
             </span>
+            <button className={'instruction'}>
+                说明书
+            </button>
         </div>
 
         return elem;
