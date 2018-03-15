@@ -5,10 +5,12 @@ import Mobile from './components/Mobile';
 import GoodsList from './components/GoodsList';
 import Footer from './components/Footer';
 
+import actions from './actions';
+
 import './index.less';
 
 interface IFillOrderProps {
-
+    goodsInfo: any;
 }
 
 interface IFillOrderState {
@@ -22,30 +24,28 @@ class FillOrder extends React.Component<IFillOrderProps, IFillOrderState>{
             phone: ''
         };
     }
+
+    componentDidMount() {
+        let params = {};
+        actions.requestGoodsInfo(params);
+    }
     onPhone = (phone: string) => {
         this.setState({
             phone
         });
     }
     render() {
+        let { goodsInfo: { goodsList = [] } } = this.props;
+        goodsList.forEach(elem => {
+            elem.img = require('../../common/res/images/fhw3937.jpg');
+        });
         let tip = '温馨提示：订单支付成功后通过手机发送取药码，请凭借取药码于2小时内完成取药，过时将取消订单,订单支付成功后通过手机发送取药码，请凭借取药码于2小时内完成取药，过时将取消订单';
-        let phone = '123131231220000';
-        let item = {
-            title: 'monkey的小屋',
-            img: require('../../common/res/images/fhw3937.jpg'),
-            price: '123',
-            usage: '用法用量用法用量用法用量用法用量用法用量',
-            amount: '12',
-            skuId: '',
-            spuId: ''
-        };
+
         return <div className={'rootContainerFillOrder'}>
             <QualityAssurance />
-            <Mobile disabled={false}
-                mobile={phone}
-                tip={tip}
+            <Mobile tip={tip}
                 onChange={this.onPhone} />
-            <GoodsList goodsList={[item, item]}/>
+            <GoodsList goodsList={goodsList} />
             <Footer amount={3}
                 totalFee={200} />
         </div>

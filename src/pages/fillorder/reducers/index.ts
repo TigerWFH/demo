@@ -9,8 +9,11 @@ function goodsInfo(state = {}, action) {
                 status: 'INITIAL'
             };
         case t.GET_GOODS_INFO_SUCCESS:
+            let { payload = {} } = action.payload;
+            let { msgCode, msgText, data } = payload;
             return {
                 ...state,
+                goodsList: data,
                 status: 'SUCCESS'
             };
         case t.GET_GOODS_INFO_FAIL:
