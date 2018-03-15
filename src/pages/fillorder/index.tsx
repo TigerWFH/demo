@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import QualityAssurance from './components/QualityAssurance';
 import Mobile from './components/Mobile';
+import GoodsList from './components/GoodsList';
 import Footer from './components/Footer';
 
 import './index.less';
@@ -35,7 +36,9 @@ class FillOrder extends React.Component<IFillOrderProps, IFillOrderState>{
                 mobile={phone}
                 tip={tip}
                 onChange={this.onPhone} />
-            <Footer />
+            <GoodsList goodsList={[]}/>
+            <Footer amount={3}
+                totalFee={200} />
         </div>
     }
 }
