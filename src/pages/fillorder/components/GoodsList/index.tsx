@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Line from '../Line';
 import './index.less';
 
 interface IGoodsListProps {
@@ -52,6 +53,7 @@ class GoodsList extends React.Component<IGoodsListProps, never> {
                             return this.renderGoodsItem(item, index)
                         }) : null
                 }
+                <Line />
             </div>
         )
     }
