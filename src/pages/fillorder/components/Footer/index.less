@@ -5,6 +5,33 @@
     bottom: 0;
     height: 70px;
     line-height: 70px;
-    border: 1px solid red;
     text-align: right;
+    border-top: 1px solid #e0e0e0;
+    .amount {
+        margin-right: 10px;
+        font-size: 25px;
+        color: #666;
+    }
+    .feeContainer {
+        margin-right: 25px;
+        color: #ff6f00;
+        .symbol {
+            font-size: 25px;
+        }
+        .totalFee {
+            font-size: 25px;
+        }
+    }
+    .payment {
+        width: 300px;
+        height: 70px;
+        padding: 0;
+        background-color: #ff6f00;
+        font-size: 25px;
+        color: #fff;
+        border: none;
+        &:focus {
+            outline: none;
+        }
+    }
 }
