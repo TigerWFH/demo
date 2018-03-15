@@ -8,7 +8,7 @@
 		data: '业务处理结果'
 	} || 'error info'
 }
-*/ 
+*/
 function ajax(method, url, headers, data) {
 	let _method = method;
 	let _url = url;
@@ -23,18 +23,21 @@ function ajax(method, url, headers, data) {
 			}
 		}
 		xhr.onreadystatechange = () => {
-			let responseTarget = {
-				status: xhr.status,
-				payload: JSON.parse(xhr.responseText)
-			};
-			if (xhr.readyState === 4) {
-				if (xhr.status >= 200 && xhr.status < 300) {
-					return resolve(JSON.stringify(responseTarget));
-				}
-				else {
-					return reject(JSON.stringify(responseTarget));
+			if (xhr.responseText) {
+				let responseTarget = {
+					status: xhr.status,
+					payload: JSON.parse(xhr.responseText)
+				};
+				if (xhr.readyState === 4) {
+					if (xhr.status >= 200 && xhr.status < 300) {
+						return resolve(JSON.stringify(responseTarget));
+					}
+					else {
+						return reject(JSON.stringify(responseTarget));
+					}
 				}
 			}
+
 		}
 		if (_data !== null) {
 			try {
@@ -65,7 +68,7 @@ function catchError(error: any) {
  * @desc ajax 对put请求的Promise封装
  * @param url {string} 接口地址
  * @param options {object} http头设置，数据设置等其它可选参数
-*/ 
+*/
 export function get(url: string, options: any = {}) {
 	return ajax('GET', url, options.headers, null).then(parseResult, catchError);
 }
@@ -74,7 +77,7 @@ export function get(url: string, options: any = {}) {
  * @desc ajax 对post请求的Promise封装
  * @param url {string} 借口地址
  * @param options {object} http头设置，数据设置等其它可选参数
- */ 
+ */
 export function post(url: string, options: any = {}) {
 	return ajax('POST', url, options.headers, options.data).then(parseResult, catchError);
 }
