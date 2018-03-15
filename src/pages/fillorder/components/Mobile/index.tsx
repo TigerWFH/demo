@@ -5,17 +5,21 @@ import './index.less';
 interface IMobileProps {
     tip?: string;
     onChange?: (value: string) => void;
+    disabled?: boolean;
+    mobile?: string;
 }
 
 interface IMobileState {
     isShowTip: boolean;
+    phone: string;
 }
 
 class Mobile extends React.Component<IMobileProps, IMobileState>{
     constructor(props) {
         super(props);
         this.state = {
-            isShowTip: false
+            isShowTip: false,
+            phone: ''
         };
     }
 
@@ -33,13 +37,17 @@ class Mobile extends React.Component<IMobileProps, IMobileState>{
         }
         let result = this.validateValue(value);
         this.setState({
-            isShowTip: !result
+            isShowTip: !result,
+            phone: value
         });
     }
 
     render() {
-        let { isShowTip } = this.state;
-        let { tip } = this.props;
+        let { isShowTip, phone } = this.state;
+        let { tip, disabled, mobile = '' } = this.props;
+        if (typeof mobile !== 'string') {
+            mobile = '';
+        }
         return (
             <div className={'rootContainerMobile'}>
                 <div className={'mobileContainer'}>
@@ -48,7 +56,9 @@ class Mobile extends React.Component<IMobileProps, IMobileState>{
                     <span className={'title'}>
                         填写手机号：
                     </span>
-                    <input className={'mobile'}
+                    <input className={disabled ? 'mobileDisabled' : 'mobile'}
+                        disabled={disabled}
+                        value={disabled ? mobile.slice(0, 11) : phone}
                         type="phone-pad"
                         placeholder={'请输入手机号'}
                         maxLength={11}
