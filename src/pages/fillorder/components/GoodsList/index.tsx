@@ -7,36 +7,44 @@ interface IGoodsListProps {
 }
 
 class GoodsList extends React.Component<IGoodsListProps, never> {
+
+    onInstruction = () => {
+
+    }
+
     renderGoodsItem = (item, index) => {
         let elem = <div className={'goodsContainer'}
             key={'goods:' + index}>
             <span className={'sortContainer'}>
                 <span className={'sort'}>
-                    {index}
+                    {index + 1}
                 </span>
                 <span className={'sortSymbol'}>
                     .
                 </span>
             </span>
             <img className={'img'}
-                src={''} />
+                src={item.img || ''} />
             <span className={'contentContainer'}>
                 <span className={'title'}>
-                    名字
+                    {item.title || 'title'}
                 </span>
                 <span className={'usage'}>
-                    用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量
+                    {item.usage || '用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用法用量用'}
                 </span>
                 <span className={'priceContainer'}>
                     <span className={'price'}>
-                        $12.02
+                        <span>
+                            {`￥${item.price || 12.01}`}
+                        </span>
                     </span>
                     <span className={'amount'}>
-                        x12
+                        {`x${item.amount || 12}`}
                     </span>
                 </span>
             </span>
-            <button className={'instruction'}>
+            <button className={'instruction'}
+                onClick={this.onInstruction}>
                 说明书
             </button>
         </div>
