@@ -24,12 +24,13 @@ function ajax(method, url, headers, data) {
 		}
 		xhr.onreadystatechange = () => {
 			if (xhr.responseText) {
-				let responseTarget = {
-					status: xhr.status,
-					payload: JSON.parse(xhr.responseText)
-				};
 				if (xhr.readyState === 4) {
+					let responseTarget = {
+						status: xhr.status,
+						payload: xhr.responseText
+					};
 					if (xhr.status >= 200 && xhr.status < 300) {
+						responseTarget.payload = JSON.parse(xhr.responseText);
 						return resolve(JSON.stringify(responseTarget));
 					}
 					else {
@@ -37,8 +38,11 @@ function ajax(method, url, headers, data) {
 					}
 				}
 			}
-
 		}
+		// xhr.timeout = 30;
+		// xhr.ontimeout = (event) => {
+		// 	console.log("超时设置===>", event);
+		// }
 		if (_data !== null) {
 			try {
 				_data = JSON.stringify(_data);
