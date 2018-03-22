@@ -38,7 +38,7 @@ class Payment extends React.Component<IPaymentProp, never>{
 
     }
     onRePurchase = () => {
-
+        window.location.href = "/index.html#/fillorder";
     }
 
     renderTitleAndTip(title, logo, tip) {
