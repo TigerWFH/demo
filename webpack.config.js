@@ -29,9 +29,7 @@ if (env === 'production') {
 		new UglifyjsWebpackPlugin()
 	]
 }
-console.log('env===>', env);
-console.log('process.env.NODE_ENV===>', process.env.NODE_ENV);
-console.log("buildPath===>", buildPath);
+
 module.exports = {
 	entry: {
 		vendor: ['react', 'react-dom', 'react-router', 'react-redux', 'antd'],
