@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "mock": "node APIServer.js",
-    "build": "webpack --optimize-minimize",
-    "server": "webpack-dev-server --progress --colors --open"
+    "build": "./node_modules/webpack/bin/webpack.js --optimize-minimize",
+    "server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors --open"
   },
   "author": "monkey@lwork.com",
   "license": "ISC",
