@@ -16,23 +16,22 @@ const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 // path
 const srcPath = path.join(__dirname, 'src/index.tsx');
-const buildPath = path.join(__dirname, 'dist');
-process.env.NODE_ENV = 'dev';
+let buildPath = path.join(__dirname, 'dist');
 var env = process.env.NODE_ENV === "development" ? "development" : "production";
 let pluginList = [
 	new webpack.HotModuleReplacementPlugin(),
 	new webpack.NamedModulesPlugin()
 ];
 if (env === 'production') {
+	buildPath = path.join(__dirname, 'static');
 	pluginList = [
 		new webpack.HashedModuleIdsPlugin(),
 		new UglifyjsWebpackPlugin()
 	]
 }
-else {
-	console.log("static");
-}
-
+console.log('env===>', env);
+console.log('process.env.NODE_ENV===>', process.env.NODE_ENV);
+console.log("buildPath===>", buildPath);
 module.exports = {
 	entry: {
 		vendor: ['react', 'react-dom', 'react-router', 'react-redux', 'antd'],
@@ -139,7 +138,7 @@ module.exports = {
 			template: "src/index.html"
 		}),
 		new CleanWebpackPlugin(
-			'dist',
+			buildPath,
 			{
 				root: __dirname,
 				verbose: true,

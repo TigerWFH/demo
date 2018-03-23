@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "mock": "node APIServer.js",
-    "build": "ENV_NODE=production && ./node_modules/webpack/bin/webpack.js",
-    "dev": "ENV_NODE=development && ./node_modules/webpack/bin/webpack.js",
-    "server": "ENV_NODE=develop && ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors --open"
+    "build": "export NODE_ENV=production && ./node_modules/webpack/bin/webpack.js",
+    "dev": "export NODE_ENV=development && ./node_modules/webpack/bin/webpack.js",
+    "server": "export NODE_ENV=develop && ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors --open"
   },
   "author": "monkey@lwork.com",
   "license": "ISC",
