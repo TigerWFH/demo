@@ -20,57 +20,12 @@ const buildPath = path.join(__dirname, 'dist');
 process.env.NODE_ENV = 'dev';
 var env = process.env.NODE_ENV === "development" ? "development" : "production";
 let pluginList = [
-	new ExtractTextPlugin({
-		filename: 'index.[contenthash].css'
-	}),
 	new webpack.HotModuleReplacementPlugin(),
-	// new webpack.DefinePlugin({
-	// 	"process.env": {
-	// 		NODE_ENV: JSON.stringify(env)
-	// 	},
-	// 	"widgetsPath": path.join(__dirname, "src/widgets")
-	// }),
-	new webpack.optimize.CommonsChunkPlugin({
-		name: 'vendor'
-	}),
-	// new webpack.ProvidePlugin({
-	// 	Widgets: path.join(__dirname, "src/widgets/index.tsx"),
-	// }),
-	new HtmlWebpackPlugin({
-		title: "monkey",
-		template: "src/index.html"
-	}),
-	new CleanWebpackPlugin(
-		'dist',
-		{
-			root: __dirname,
-			verbose: true,
-			dry: false
-		}
-	),
-	new UglifyjsWebpackPlugin()
+	new webpack.NamedModulesPlugin()
 ];
 if (env === 'production') {
 	pluginList = [
-		new ExtractTextPlugin({
-			filename: 'index.[contenthash].css'
-		}),
-		new webpack.optimize.CommonsChunkPlugin({
-			name: 'vendor'
-		}),
 		new webpack.HashedModuleIdsPlugin(),
-		new HtmlWebpackPlugin({
-			title: "monkey",
-			template: "src/index.html"
-		}),
-		new CleanWebpackPlugin(
-			'dist',
-			{
-				root: __dirname,
-				verbose: true,
-				dry: false
-			}
-		),
 		new UglifyjsWebpackPlugin()
 	]
 }
@@ -163,5 +118,34 @@ module.exports = {
 			"/v1": "http://localhost:9000"
 		}
 	},
-	plugins: pluginList
+	plugins: [
+		// new webpack.DefinePlugin({
+		// 	"process.env": {
+		// 		NODE_ENV: JSON.stringify(env)
+		// 	},
+		// 	"widgetsPath": path.join(__dirname, "src/widgets")
+		// }),
+		// new webpack.ProvidePlugin({
+		// 	Widgets: path.join(__dirname, "src/widgets/index.tsx"),
+		// }),
+		new ExtractTextPlugin({
+			filename: 'index.[contenthash].css'
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'vendor'
+		}),
+		new HtmlWebpackPlugin({
+			title: "monkey",
+			template: "src/index.html"
+		}),
+		new CleanWebpackPlugin(
+			'dist',
+			{
+				root: __dirname,
+				verbose: true,
+				dry: false
+			}
+		),
+		...pluginList
+	]
 };
