@@ -26,11 +26,12 @@ else {
 }
 module.exports = {
 	entry: {
-		index: srcPath
+		vendor: ['react', 'react-dom', 'react-router', 'react-redux', 'antd'],
+		index: srcPath,
 	},
 	output: {
 		path: buildPath,
-		filename: "js/[name].js"
+		filename: "js/[name].[hash].js"
 	},
 	module: {
 		rules: [
@@ -118,6 +119,9 @@ module.exports = {
 				NODE_ENV: JSON.stringify(env)
 			},
 			"widgetsPath": path.join(__dirname, "src/widgets")
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'vendor'
 		}),
 		// new webpack.ProvidePlugin({
 		// 	Widgets: path.join(__dirname, "src/widgets/index.tsx"),
