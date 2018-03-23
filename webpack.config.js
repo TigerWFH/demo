@@ -18,13 +18,66 @@ const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 const srcPath = path.join(__dirname, 'src/index.tsx');
 const buildPath = path.join(__dirname, 'dist');
 process.env.NODE_ENV = 'dev';
-var env = process.env.NODE_ENV === "dev" ? "development" : "production";
+var env = process.env.NODE_ENV === "development" ? "development" : "production";
+let pluginList = [
+	new ExtractTextPlugin({
+		filename: 'index.[contenthash].css'
+	}),
+	new webpack.HotModuleReplacementPlugin(),
+	// new webpack.DefinePlugin({
+	// 	"process.env": {
+	// 		NODE_ENV: JSON.stringify(env)
+	// 	},
+	// 	"widgetsPath": path.join(__dirname, "src/widgets")
+	// }),
+	new webpack.optimize.CommonsChunkPlugin({
+		name: 'vendor'
+	}),
+	// new webpack.ProvidePlugin({
+	// 	Widgets: path.join(__dirname, "src/widgets/index.tsx"),
+	// }),
+	new HtmlWebpackPlugin({
+		title: "monkey",
+		template: "src/index.html"
+	}),
+	new CleanWebpackPlugin(
+		'dist',
+		{
+			root: __dirname,
+			verbose: true,
+			dry: false
+		}
+	),
+	new UglifyjsWebpackPlugin()
+];
 if (env === 'production') {
-	console.log("dist");
+	pluginList = [
+		new ExtractTextPlugin({
+			filename: 'index.[contenthash].css'
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'vendor'
+		}),
+		new webpack.HashedModuleIdsPlugin(),
+		new HtmlWebpackPlugin({
+			title: "monkey",
+			template: "src/index.html"
+		}),
+		new CleanWebpackPlugin(
+			'dist',
+			{
+				root: __dirname,
+				verbose: true,
+				dry: false
+			}
+		),
+		new UglifyjsWebpackPlugin()
+	]
 }
 else {
 	console.log("static");
 }
+
 module.exports = {
 	entry: {
 		vendor: ['react', 'react-dom', 'react-router', 'react-redux', 'antd'],
@@ -32,7 +85,7 @@ module.exports = {
 	},
 	output: {
 		path: buildPath,
-		filename: "js/[name].[hash].js"
+		filename: "js/[name].[chunkhash].js"
 	},
 	module: {
 		rules: [
@@ -110,35 +163,5 @@ module.exports = {
 			"/v1": "http://localhost:9000"
 		}
 	},
-	plugins: [
-		new ExtractTextPlugin({
-			filename: 'index.[contenthash].css'
-		}),
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.DefinePlugin({
-			"process.env": {
-				NODE_ENV: JSON.stringify(env)
-			},
-			"widgetsPath": path.join(__dirname, "src/widgets")
-		}),
-		new webpack.optimize.CommonsChunkPlugin({
-			name: 'vendor'
-		}),
-		// new webpack.ProvidePlugin({
-		// 	Widgets: path.join(__dirname, "src/widgets/index.tsx"),
-		// }),
-		new HtmlWebpackPlugin({
-			title: "monkey",
-			template: "src/index.html"
-		}),
-		new CleanWebpackPlugin(
-			'dist',
-			{
-				root: __dirname,
-				verbose: true,
-				dry: false
-			}
-		),
-		new UglifyjsWebpackPlugin()
-	]
+	plugins: pluginList
 };

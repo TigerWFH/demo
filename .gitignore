@@ -1,5 +1,7 @@
+dist/
+static/
+node_modules/
+v8-compile-cache-0/
 .vscode
-dist
-node_modules
 .DS_Store
 npm-debug.log

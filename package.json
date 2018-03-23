@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "mock": "node APIServer.js",
-    "build": "./node_modules/webpack/bin/webpack.js",
-    "server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors --open"
+    "build": "ENV_NODE=production && ./node_modules/webpack/bin/webpack.js",
+    "dev": "ENV_NODE=development && ./node_modules/webpack/bin/webpack.js",
+    "server": "ENV_NODE=develop && ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors --open"
   },
   "author": "monkey@lwork.com",
   "license": "ISC",
