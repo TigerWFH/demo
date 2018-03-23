@@ -37,7 +37,8 @@ module.exports = {
 	},
 	output: {
 		path: buildPath,
-		filename: "js/[name].[chunkhash].js"
+		filename: env === development ? "js/[name].[hash].js"
+			: "js/[name].[chunkhash].js"
 	},
 	module: {
 		rules: [
