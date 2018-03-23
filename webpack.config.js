@@ -12,6 +12,7 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 // path
 const srcPath = path.join(__dirname, 'src/index.tsx');
@@ -136,6 +137,8 @@ module.exports = {
 				root: __dirname,
 				verbose: true,
 				dry: false
-			})
+			}
+		),
+		new UglifyjsWebpackPlugin()
 	]
 };
