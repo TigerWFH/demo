@@ -13,6 +13,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
+const BundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // path
 const srcPath = path.join(__dirname, 'src/index.tsx');
@@ -32,7 +33,7 @@ if (env === 'production') {
 
 module.exports = {
 	entry: {
-		vendor: ['react', 'react-dom', 'react-router', 'react-redux', 'antd'],
+		vendor: ['react', 'react-dom', 'react-router', 'react-redux', 'antd', 'material-ui'],
 		index: srcPath,
 	},
 	output: {
@@ -144,6 +145,7 @@ module.exports = {
 				dry: false
 			}
 		),
+		new BundleAnalyzer(),
 		...pluginList
 	]
 };
