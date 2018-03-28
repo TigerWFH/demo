@@ -3,63 +3,63 @@
     overflow: visible;
     .container {
         width: 150px;
-        height: 150px;
+        height: 200px;
         margin: 200px auto;
         position: relative;
         transform-style: preserve-3d;
         transition: 5s;
-        transform-origin: center center 75px;
+        // transform-origin: center center 75px;
         overflow: visible;
         .side {
             position: absolute;
             width: 150px;
             height: 150px;
-            border: 2px solid #00a3fe;
+            // border: 2px solid #00a3fe;
             text-align: center;
             line-height: 150px;
         }
         .front {
-            transform: translateZ(152px);
+            transform: translateZ(75px);
             z-index: 2;
             background: center center no-repeat url('./images/bg2.png');
             background-size: contain;
         }
         .back {
             z-index: 1;
+            transform: translateZ(-75px);
             background: center center no-repeat url('./images/bg1.jpg');
             background-size: contain;
         }
         .top {
             top: -152px;
-            background-color: red;
-            transform: rotateX(-90deg);
+            transform: translateZ(-75px) rotateX(-90deg);
             transform-origin: bottom;
             background: center center no-repeat url('./images/bg1.jpg');
             background-size: contain;
         }
         .bottom {
             top: 152px;
-            transform: rotateX(90deg);
+            transform: translateZ(-75px) rotateX(90deg);
             transform-origin: top;
             background: center center  no-repeat url('./images/bg2.png');
             background-size: contain;
         }
         .left {
             left: -152px;
-            transform: rotateY(90deg);
+            transform: translateZ(-75px) rotateY(90deg);
             transform-origin: right;
             background: center center no-repeat url('./images/bg3.png');
             background-size: contain;
         }
         .right {
-            right: -152px;
-            transform: rotateY(-90deg);
+            left: 152px;
+            transform: translateZ(-75px) rotateY(-90deg);
             transform-origin: left;
             background: center center no-repeat url('./images/bg4.png');
             background-size: contain;
         }
         &:hover {
-            transform: rotateY(360deg);
+            transform: translateZ(-75px) rotateY(360deg);
         }
     }
 }
