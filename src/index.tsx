@@ -12,6 +12,7 @@ import DemoUI from './pages/ui/';
 import AlgorithmUI from './pages/algorithm/';
 import Payment from './pages/payment';
 import FillOrder from './pages/fillorder';
+import About from './pages/about';
 import { Header, Slidebar, View, Item } from './widgets';
 // store
 import { store } from './store';
@@ -50,9 +51,13 @@ class App extends React.Component<IAppProps, IAppState> {
 				<Header onHideSlidebar={this.onHideSlidebar}
 					title={title} />
 				<Slidebar isShowSlidebar={isShowSlidebar}>
-					<Item title={"demo"}
+					<Item title={"resume"}
 						onGetInfo={this.onGetInfo}
 						href={"/#/"}>
+					</Item>
+					<Item title={"demo"}
+						onGetInfo={this.onGetInfo}
+						href={"/#/demo"}>
 					</Item>
 					<Item title={"first"}
 						onGetInfo={this.onGetInfo}
@@ -88,7 +93,8 @@ let elems =
 		<Router>
 			<App>
 				{/*exact严格匹配，替换了原来的IndexRoute;也取消了嵌套(nested)*/}
-				<Route exact strict path="/" component={Demo}></Route>
+				<Route exact strict path="/" component={About}></Route>
+				<Route exact strict path="/demo" component={Demo}></Route>
 				<Route exact strict path="/first" component={First}></Route>
 				<Route exact strict path="/ui" component={DemoUI}></Route>
 				<Route exact strict path="/algorithm" component={AlgorithmUI}></Route>
