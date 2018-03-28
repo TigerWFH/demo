@@ -22,10 +22,12 @@
             transform: translateZ(152px);
             z-index: 2;
             background: center center no-repeat url('./images/bg2.png');
+            background-size: contain;
         }
         .back {
             z-index: 1;
-            background: center center no-repeat url('./images/bg3.png');
+            background: center center no-repeat url('./images/bg1.jpg');
+            background-size: contain;
         }
         .top {
             top: -152px;
@@ -33,24 +35,28 @@
             transform: rotateX(-90deg);
             transform-origin: bottom;
             background: center center no-repeat url('./images/bg1.jpg');
+            background-size: contain;
         }
         .bottom {
             top: 152px;
             transform: rotateX(90deg);
             transform-origin: top;
             background: center center  no-repeat url('./images/bg2.png');
+            background-size: contain;
         }
         .left {
             left: -152px;
             transform: rotateY(90deg);
             transform-origin: right;
             background: center center no-repeat url('./images/bg3.png');
+            background-size: contain;
         }
         .right {
             right: -152px;
             transform: rotateY(-90deg);
             transform-origin: left;
             background: center center no-repeat url('./images/bg4.png');
+            background-size: contain;
         }
         &:hover {
             transform: rotateY(360deg);
