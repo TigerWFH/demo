@@ -30,7 +30,7 @@ interface IAppState {
 
 class App extends React.Component<IAppProps, IAppState> {
 	state = {
-		isShowSlidebar: true,
+		isShowSlidebar: false,
 		title: "demo",
 		onGetInfo: (title) => { }
 	};
