@@ -1,0 +1,59 @@
+.transform3d {
+    perspective: 800px;
+    overflow: visible;
+    .container {
+        width: 150px;
+        height: 150px;
+        margin: 200px auto;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: 5s;
+        transform-origin: center center 75px;
+        overflow: visible;
+        .side {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 2px solid #00a3fe;
+            text-align: center;
+            line-height: 150px;
+        }
+        .front {
+            transform: translateZ(152px);
+            z-index: 2;
+            background: center center no-repeat url('./images/bg2.png');
+        }
+        .back {
+            z-index: 1;
+            background: center center no-repeat url('./images/bg3.png');
+        }
+        .top {
+            top: -152px;
+            background-color: red;
+            transform: rotateX(-90deg);
+            transform-origin: bottom;
+            background: center center no-repeat url('./images/bg1.jpg');
+        }
+        .bottom {
+            top: 152px;
+            transform: rotateX(90deg);
+            transform-origin: top;
+            background: center center  no-repeat url('./images/bg2.png');
+        }
+        .left {
+            left: -152px;
+            transform: rotateY(90deg);
+            transform-origin: right;
+            background: center center no-repeat url('./images/bg3.png');
+        }
+        .right {
+            right: -152px;
+            transform: rotateY(-90deg);
+            transform-origin: left;
+            background: center center no-repeat url('./images/bg4.png');
+        }
+        &:hover {
+            transform: rotateY(360deg);
+        }
+    }
+}

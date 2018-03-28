@@ -12,6 +12,7 @@ import { Mask } from '../../widgets';
 import { Message } from '../../widgets';
 import { Modal } from '../../widgets';
 import { Input } from '../../widgets';
+import Transform3d from './components/Transform3d';
 
 import actions from './actions';
 import './index.less';
@@ -24,7 +25,7 @@ const demoIsHide = new Map([
 	["demo5", true],
 	["demo6", true],
 	["demo7", true],
-	["demo8", false]
+	["demo8", true]
 ]);
 function mapStateToProps(state, ownProps) {
 	let { demo } = state;
@@ -72,7 +73,7 @@ class Demo extends React.Component<P, S>{
 	render() {
 		let _content = <input type="text" ref="input" />
 		return (
-			<div>
+			<div className={"demo"}>
 				<fieldset className="fieldset-first"
 					style={{ display: demoIsHide.get("demo1") && "none" }}>
 					<legend className="legend-first">
@@ -159,6 +160,7 @@ class Demo extends React.Component<P, S>{
 					<legend className="legend-second">文本长度控制</legend>
 					<CssDemo></CssDemo>
 				</fieldset>
+				<Transform3d />
 			</div>
 		)
 	}
