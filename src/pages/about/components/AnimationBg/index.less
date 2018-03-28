@@ -1,0 +1,49 @@
+.animationbg {
+    position: relative;
+    height: 100%;
+    .imgContainer {
+        height: 100%;
+        .mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .image1{
+            display: none;
+        width: 100%;
+        height: 100%;
+            background-image: url('./images/bg1.jpg');
+        }
+        .image2{
+            display: none;
+        width: 100%;
+        height: 100%;
+            background-image: url('./images/bg2.png');
+        }
+        .image3{
+            display: none;
+            width: 100%;
+            height: 100%;
+            background-image: url('./images/bg3.png');
+        }
+        .image4{
+            display: none;
+            width: 100%;
+            height: 100%;
+            background-image: url('./images/bg4.png');
+        }
+        .active {
+            display: block;
+        }
+    }
+    .content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
