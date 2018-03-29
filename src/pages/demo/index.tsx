@@ -14,6 +14,7 @@ import { Modal } from '../../widgets';
 import { Input } from '../../widgets';
 import Transform3d from './components/Transform3d';
 import SplitJoint from './components/SplitJoint';
+import ComplexCube from './components/ComplexCube';
 
 import actions from './actions';
 import './index.less';
@@ -163,6 +164,7 @@ class Demo extends React.Component<P, S>{
 				</fieldset>
 				<Transform3d />
 				<SplitJoint />
+				<ComplexCube />
 			</div>
 		)
 	}
