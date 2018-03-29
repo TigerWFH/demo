@@ -23,33 +23,41 @@ class SplitJoint extends React.Component<ISplitJointProps, never> {
             div = document.createElement('div');
             div.id = 'div1';
             div.className = 'divBase';
-            div.style.left = '-100px';
+            div.style.left = `-${0.25 * width}px`;
             div.style.backgroundPosition = `0 0`;
+            div.style.zIndex = 4;
             this.container.appendChild(div);
 
             div = document.createElement('div');
             div.id = 'div2';
             div.className = 'divBase';
-            div.style.left = '-100px';
+            div.style.left = `${-0.25 * width}px`;
+            div.style.visibility = 'hidden';
             div.style.backgroundPosition = `${-0.25 * width}px 0`;
+            div.style.zIndex = 3;
             this.container.appendChild(div);
 
             div = document.createElement('div');
             div.id = 'div3';
             div.className = 'divBase';
             div.style.backgroundPosition = `${-0.50 * width}px 0`;
-            div.style.left = '-100px';
+            div.style.left = `${-0.25 * width}px`;
+            div.style.visibility = 'hidden';
+            div.style.zIndex = 2;
             this.container.appendChild(div);
 
             div = document.createElement('div');
             div.id = 'div4';
             div.className = 'divBase';
             div.style.backgroundPosition = `${-0.75 * width}px 0`;
-            div.style.left = '-100px';
+            div.style.left = `${-0.25 * width}px`;
+            div.style.visibility = 'hidden';
+            div.style.zIndex = 1;
             this.container.appendChild(div);
             this.timer = setTimeout(() => {
                 for (let i = 1; i < 5; i++) {
                     let elem = document.getElementById(`div${i}`);
+                    elem.style.visibility = 'visible';
                     elem.style.left = `${(i - 1) * 0.25 * width}px`;
                     elem.style.transition = `left ${i}s linear ${i - 1}s`;
                 }
