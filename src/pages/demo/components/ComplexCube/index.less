@@ -1,4 +1,36 @@
 .complexCube {
-    border: 1px solid red;
+    position: relative;
     height: 500px;
+    border: 1px dotted gold;
+    perspective: 800px;
+    overflow: visible;
+    .wrapper {
+        position: relative;
+        margin: 10px auto;
+        height: 200px;
+        width: 200px;
+        text-align: center;
+        transform-style: preserve-3d;
+        transition: 1s;
+        overflow: visible;
+        .container {
+            position: absolute;
+            border: 1px solid #00a3fe;
+            height: 200px;
+            width: 200px;
+        }
+        .container1 {
+            transform: translateY(100px);
+            background-color: #00a3fe;
+        }
+        .container2 {
+            left: -200px;
+            transform: translateY(100px) rotateY(-90deg);
+            transform-origin: right;
+            background-color: gold;
+        }
+        &:hover {
+            transform: rotateY(90deg);
+        }
+    }
 }
