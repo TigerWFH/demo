@@ -13,6 +13,7 @@ import { Message } from '../../widgets';
 import { Modal } from '../../widgets';
 import { Input } from '../../widgets';
 import Transform3d from './components/Transform3d';
+import SplitJoint from './components/SplitJoint';
 
 import actions from './actions';
 import './index.less';
@@ -161,6 +162,7 @@ class Demo extends React.Component<P, S>{
 					<CssDemo></CssDemo>
 				</fieldset>
 				<Transform3d />
+				<SplitJoint />
 			</div>
 		)
 	}
