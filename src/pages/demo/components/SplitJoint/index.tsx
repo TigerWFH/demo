@@ -98,10 +98,12 @@ class SplitJoint extends React.Component<ISplitJointProps, ISplitJointState> {
     render() {
         let { divIndex } = this.state;
         return <div className={divIndex ? "splitJoint active" : "splitJoint"}>
-            <div className='divBase div1Init'></div>
-            <div className='divBase div2Init'></div>
-            <div className='divBase div3Init'></div>
-            <div className='divBase div4Init'></div>
+            <div>
+                <div className='divBase div1Init'></div>
+                <div className='divBase div2Init'></div>
+                <div className='divBase div3Init'></div>
+                <div className='divBase div4Init'></div>
+            </div>
             <div className='base origin'></div>
         </div>
     }
