@@ -1,5 +1,83 @@
 .splitJoint {
     position: relative;
+    height: 300px;
+    width: 425px;
     border: 1px solid red;
-    height: 300px
+    margin: 1px auto;
+    .divBase {
+        position: absolute;
+        width: 106.25px;
+        top: 0;
+        background-image: url('./images/timg.jpg');
+        background-repeat: no-repeat;
+        height: 100%;
+        visibility: hidden;
+    }
+    .div1Init {
+        left: -106.25px;
+    }
+    .div2Init {
+        left: -106.25px;
+    }
+    .div3Init {
+        left: -106.25px;
+    }
+    .div4Init {
+        left: -106.25px;
+    }
+    .base {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 300px;
+        width: 425px;
+    }
+    .origin {
+        visibility: visible;
+        background-color: goldenrod;
+    }
+}
+
+.active {
+    .divBase {
+        position: absolute;
+        width: 106.25px;
+        top: 0;
+        background-image: url('./images/timg.jpg');
+        background-repeat: no-repeat;
+        height: 100%;
+        visibility: visible;
+    }
+    .div1Init {
+        left: 0;
+        background-position: 0 0;
+        transition: all 1s linear 3s;
+    }
+    .div2Init {
+        left: 106.25px;
+        background-position: -106.25px 0;
+        transition: all 2s linear 2s;
+    }
+    .div3Init {
+        left: 212.5px;
+        background-position: -212.5px 0;
+        transition: all 3s linear 1s;
+    }
+    .div4Init {
+        left: 318.75px;
+        background-position: -318.75px 0;
+        transition: all 4s linear 0s;
+    }
+    .base {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 300px;
+        width: 425px;
+    }
+    .origin {
+        visibility: hidden;
+        left: 300px;
+        transition: all 4s linear 0s;
+    }
 }
