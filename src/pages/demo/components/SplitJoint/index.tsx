@@ -25,7 +25,7 @@ class SplitJoint extends React.Component<ISplitJointProps, ISplitJointState> {
             this.setState({
                 divIndex: !divIndex
             });
-        }, 10000);
+        }, 5000);
 
         // js实现，可以动态计算宽度和高度
         // this.img = new Image();
