@@ -15,15 +15,19 @@
     }
     .div1Init {
         left: -106.25px;
+        background-position: 0 0;
     }
     .div2Init {
         left: -106.25px;
+        background-position: -106.25px 0;
     }
     .div3Init {
         left: -106.25px;
+        background-position: -212.5px 0;
     }
     .div4Init {
         left: -106.25px;
+        background-position: -318.75px 0;
     }
     .base {
         position: absolute;
@@ -40,12 +44,6 @@
 
 .active {
     .divBase {
-        position: absolute;
-        width: 106.25px;
-        top: 0;
-        background-image: url('./images/timg.jpg');
-        background-repeat: no-repeat;
-        height: 100%;
         visibility: visible;
     }
     .div1Init {
@@ -68,16 +66,9 @@
         background-position: -318.75px 0;
         transition: all 4s linear 0s;
     }
-    .base {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 300px;
-        width: 425px;
-    }
     .origin {
         visibility: hidden;
-        left: 300px;
+        left: 425px;
         transition: all 4s linear 0s;
     }
 }
