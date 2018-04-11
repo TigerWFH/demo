@@ -12,7 +12,7 @@ class About extends React.Component {
 	root: any;
 	toNextPage = () => {
 		let height = this.root.clientHeight;
-		this.root.scrollTop += height - 8;
+		this.root.scrollTop += height;
 	};
 
 	render() {
