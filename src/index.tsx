@@ -31,7 +31,7 @@ interface IAppState {
 class App extends React.Component<IAppProps, IAppState> {
 	state = {
 		isShowSlidebar: false,
-		title: "demo",
+		title: "resume",
 		onGetInfo: (title) => { }
 	};
 	onHideSlidebar = () => {
