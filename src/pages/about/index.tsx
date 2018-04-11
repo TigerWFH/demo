@@ -9,13 +9,20 @@ import WorkExperience from './components/WorkExperience';
 import Skills from './components/Skills';
 
 class About extends React.Component {
+	root: any;
+	toNextPage = () => {
+		let height = this.root.clientHeight;
+		this.root.scrollTop += height - 8;
+	};
+
 	render() {
 		return (
-			<div className={'resume'}>
-				<PersonalProfile />
-				<WorkExperience />
+			<div className={'resume'}
+				ref={(root)=>{this.root = root;}}
+			>
+				<PersonalProfile onToNext={this.toNextPage} />
+				<WorkExperience onToNext={this.toNextPage} />
 				<Skills />
-				<Card title={'基本信息'} />
 			</div>
 		);
 	}
