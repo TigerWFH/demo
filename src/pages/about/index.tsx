@@ -4,12 +4,14 @@ import './index.less';
 import Background from './components/Background';
 import AnimationBg from './components/AnimationBg';
 import Card from '../../widgets/card';
+import PersonalProfile from './components/PersonalProfile';
 
 class About extends React.Component {
 	render() {
 		return (
 			<div className={'resume'}>
-				<Card title={'基本信息'}/>
+				<PersonalProfile />
+				<Card title={'基本信息'} />
 			</div>
 		);
 	}
