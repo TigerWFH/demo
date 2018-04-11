@@ -15,7 +15,6 @@ class Skills extends React.Component<ISkillsProps, never> {
 	render() {
 		return (
 			<div className={'skillsRoot'}>
-				Skills
 				<span className={'direction'} onClick={this.onToNext}>
 					︾
 				</span>

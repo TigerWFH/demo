@@ -15,7 +15,6 @@ class WorkExperience extends React.Component<IWorkExperienceProps, never> {
 	render() {
 		return (
 			<div className={'weRoot'}>
-				WorkExperience
 				<span className={'direction'} onClick={this.onToNext}>
 					︾
 				</span>
