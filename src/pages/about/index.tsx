@@ -5,14 +5,15 @@ import Background from './components/Background';
 import AnimationBg from './components/AnimationBg';
 import Card from '../../widgets/card';
 import PersonalProfile from './components/PersonalProfile';
-import WorkExperience from './components/WorkExperience';
 import Skills from './components/Skills';
+import WorkExperience from './components/WorkExperience';
+import Footer from './components/Footer';
 
 class About extends React.Component {
 	root: any;
 	toNextPage = () => {
 		let height = this.root.clientHeight;
-		this.root.scrollTop += height;
+		this.root.scrollTop += height + 10;
 	};
 
 	render() {
@@ -23,6 +24,7 @@ class About extends React.Component {
 				<PersonalProfile onToNext={this.toNextPage} />
 				<Skills onToNext={this.toNextPage}/>
 				<WorkExperience  />
+				<Footer />
 			</div>
 		);
 	}
