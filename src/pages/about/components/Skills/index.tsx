@@ -8,7 +8,7 @@ interface ISkillsProps {
 
 class Skills extends React.Component<ISkillsProps, never> {
 	context: any;
-
+	
 	componentDidMount() {
 		if (!this.context) {
 			return null;
@@ -30,7 +30,7 @@ class Skills extends React.Component<ISkillsProps, never> {
 	render() {
 		return (
 			<div className={'skillsRoot'}>
-				<canvas
+				<canvas width="960" height="480"
 					ref={(context) => {
 						this.context = context;
 					}}
