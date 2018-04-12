@@ -21,8 +21,8 @@ class About extends React.Component {
 				ref={(root)=>{this.root = root;}}
 			>
 				<PersonalProfile onToNext={this.toNextPage} />
-				<Skills />
-				<WorkExperience onToNext={this.toNextPage} />
+				<Skills onToNext={this.toNextPage}/>
+				<WorkExperience  />
 			</div>
 		);
 	}
