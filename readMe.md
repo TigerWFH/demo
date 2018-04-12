@@ -794,3 +794,14 @@ seeking
 seeked
 resize
 volumechange
+
+# [js可视化图表库](https://www.cnblogs.com/lhb25/p/best-javascript-charting-libraries.html)
+* chart.js：HTML5的Canvas绘图，支持6种图标类型（折线图、条形图、雷达图、饼图、柱状图、极地区域区，独立的包不依赖第三方库）
+* ECharts：基于Canvas，底层基于ZRender
+* D3.js：基于SVG
+* Highcharts：兼容性好，个人用户免费，纯js无bs接口
+* Fusionchart：强交互性
+* Flot：基于jQuery
+* Chartist.js：使用svgxua渲染图
+* n3-charts：基于D3.js和angular
+* Ember Charts：基于D3和Ember
