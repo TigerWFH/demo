@@ -32,7 +32,7 @@ class Skills extends React.Component<ISkillsProps, never> {
 			yLabels: ['精通', '掌握', '熟悉', '了解', '未知'],
 			datasets: [
 				{
-					label: 'title of Votes',
+					label: '技能值',
 					data: ['掌握', '熟悉', '熟悉', '熟悉', '熟悉', '熟悉', '了解'],
 					backgroundColor: [
 						'rgba(255, 99, 132, 0.2)',
