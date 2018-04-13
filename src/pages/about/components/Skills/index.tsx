@@ -1,4 +1,3 @@
-
 /*
 抽象出数据:
 1、编程语言：Javascript、Html、Css、C、C++、
@@ -10,7 +9,7 @@
 			toC的项目：trader work、trader work mobile；plugin项目，fillorderout项目
 7、自学能力：
 8、其它：运维能力、photoshop、scheth
-*/ 
+*/
 
 import * as React from 'react';
 import './index.less';
@@ -29,40 +28,73 @@ class Skills extends React.Component<ISkillsProps, never> {
 		}
 		let ctx = this.context.getContext('2d');
 		let mockData = {
-			labels: ["javascript", "http", "c/c++", "react&other", "redux", "webpack"],
-			datasets: [{
-				label: 'title of Votes',
-				data: [3, 3, 6, 3, 3, 3],
-				backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)',
-					'rgba(153, 102, 255, 0.2)',
-					'rgba(255, 159, 64, 0.2)'
-				],
-				borderColor: [
-					'rgba(255,99,132,1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)',
-					'rgba(153, 102, 255, 1)',
-					'rgba(255, 159, 64, 1)'
-				],
-				borderWidth: 1,
-				yAxisId: 'monkey1'
-			}]
+			labels: [ 'javascript', 'http', 'c/c++', 'react&other', 'redux', 'webpack', 'rollup' ],
+			datasets: [
+				{
+					label: 'title of Votes',
+					data: [ 3, 3, 6, 3, 3, 3 ],
+					backgroundColor: [
+						'rgba(255, 99, 132, 0.2)',
+						'rgba(54, 162, 235, 0.2)',
+						'rgba(255, 206, 86, 0.2)',
+						'rgba(75, 192, 192, 0.2)',
+						'rgba(153, 102, 255, 0.2)',
+						'rgba(255, 159, 64, 0.2)'
+					],
+					borderColor: [
+						'rgba(255,99,132,1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)',
+						'rgba(153, 102, 255, 1)',
+						'rgba(255, 159, 64, 1)'
+					],
+					borderWidth: 1
+				},
+				{
+					label: 'title of Votes',
+					data: [ 3, 3, 6, 3, 3, 3 ],
+					backgroundColor: [
+						'rgba(255, 99, 132, 0.2)',
+						'rgba(54, 162, 235, 0.2)',
+						'rgba(255, 206, 86, 0.2)',
+						'rgba(75, 192, 192, 0.2)',
+						'rgba(153, 102, 255, 0.2)',
+						'rgba(255, 159, 64, 0.2)'
+					],
+					borderColor: [
+						'rgba(255,99,132,1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)',
+						'rgba(153, 102, 255, 1)',
+						'rgba(255, 159, 64, 1)'
+					],
+					borderWidth: 1
+				}
+			]
 		};
 		let options: any = {
 			type: 'bar',
 			data: mockData,
 			options: {
 				scales: {
+					xAxes: [
+						{
+							scaleLabel: {
+								display: true,
+								labelString: '时间（年）'
+							}
+						}
+					],
 					yAxes: [
 						{
+							scaleLabel: {
+								display: true,
+								labelString: '技能'
+							},
 							ticks: {
-								id: 'monkey1',
-								beginAtZero:true
+								beginAtZero: true
 							}
 						}
 					]
@@ -90,7 +122,7 @@ class Skills extends React.Component<ISkillsProps, never> {
 					ref={(context) => {
 						this.context = context;
 					}}
-				></canvas>
+				/>
 				<span className={'direction'} onClick={this.onToNext}>
 					︾
 				</span>
