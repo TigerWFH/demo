@@ -83,6 +83,9 @@ class Skills extends React.Component<ISkillsProps, never> {
 				title: {
 					display: true,
 					text: 'MonkeyWong的技能图谱'
+				},
+				animation: {
+					duration: 5000
 				}
 			}
 		};
