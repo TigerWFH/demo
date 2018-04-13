@@ -33,28 +33,7 @@ class Skills extends React.Component<ISkillsProps, never> {
 			datasets: [
 				{
 					label: 'title of Votes',
-					data: [ '', '熟悉', '了解', '未知', '3', '3', '3' ],
-					backgroundColor: [
-						'rgba(255, 99, 132, 0.2)',
-						'rgba(54, 162, 235, 0.2)',
-						'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)',
-						'rgba(153, 102, 255, 0.2)',
-						'rgba(255, 159, 64, 0.2)'
-					],
-					borderColor: [
-						'rgba(255,99,132,1)',
-						'rgba(54, 162, 235, 1)',
-						'rgba(255, 206, 86, 1)',
-						'rgba(75, 192, 192, 1)',
-						'rgba(153, 102, 255, 1)',
-						'rgba(255, 159, 64, 1)'
-					],
-					borderWidth: 1
-				},
-				{
-					label: 'title of Votes',
-					data: [ '', '熟悉', '3', '3', '3', '3', '3' ],
+					data: ['掌握', '熟悉', '熟悉', '熟悉', '熟悉', '熟悉', '了解'],
 					backgroundColor: [
 						'rgba(255, 99, 132, 0.2)',
 						'rgba(54, 162, 235, 0.2)',
@@ -76,7 +55,7 @@ class Skills extends React.Component<ISkillsProps, never> {
 			]
 		};
 		let options: any = {
-			type: 'bar',
+			type: 'line',
 			data: mockData,
 			options: {
 				scales: {
