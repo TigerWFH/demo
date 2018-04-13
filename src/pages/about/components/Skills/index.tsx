@@ -28,11 +28,12 @@ class Skills extends React.Component<ISkillsProps, never> {
 		}
 		let ctx = this.context.getContext('2d');
 		let mockData = {
-			labels: [ 'javascript', 'http', 'c/c++', 'react&other', 'redux', 'webpack', 'rollup' ],
+			xLabels: [ 'javascript', 'http', 'c/c++', 'react&other', 'redux', 'webpack', 'rollup' ],
+			yLabels: ['精通', '掌握', '熟悉', '了解', '未知'],
 			datasets: [
 				{
 					label: 'title of Votes',
-					data: [ 3, 3, 6, 3, 3, 3 ],
+					data: [ '', '熟悉', '了解', '未知', '3', '3', '3' ],
 					backgroundColor: [
 						'rgba(255, 99, 132, 0.2)',
 						'rgba(54, 162, 235, 0.2)',
@@ -53,7 +54,7 @@ class Skills extends React.Component<ISkillsProps, never> {
 				},
 				{
 					label: 'title of Votes',
-					data: [ 3, 3, 6, 3, 3, 3 ],
+					data: [ '', '熟悉', '3', '3', '3', '3', '3' ],
 					backgroundColor: [
 						'rgba(255, 99, 132, 0.2)',
 						'rgba(54, 162, 235, 0.2)',
@@ -83,15 +84,16 @@ class Skills extends React.Component<ISkillsProps, never> {
 						{
 							scaleLabel: {
 								display: true,
-								labelString: '时间（年）'
+								labelString: '技能种类'
 							}
 						}
 					],
 					yAxes: [
 						{
+							type: 'category',
 							scaleLabel: {
 								display: true,
-								labelString: '技能'
+								labelString: '熟练程度'
 							},
 							ticks: {
 								beginAtZero: true
@@ -116,13 +118,13 @@ class Skills extends React.Component<ISkillsProps, never> {
 	render() {
 		return (
 			<div className={'skillsRoot'}>
-				<canvas
-					width="960"
-					height="480"
-					ref={(context) => {
-						this.context = context;
-					}}
-				/>
+				<div className={'container'}>
+					<canvas
+						ref={(context) => {
+							this.context = context;
+						}}
+					/>
+				</div>
 				<span className={'direction'} onClick={this.onToNext}>
 					︾
 				</span>
