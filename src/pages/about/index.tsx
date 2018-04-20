@@ -6,7 +6,7 @@ import AnimationBg from './components/AnimationBg';
 import Card from '../../widgets/card';
 import PersonalProfile from './components/PersonalProfile';
 import Skills from './components/Skills';
-import WorkExperience from './components/WorkExperience';
+import WorkExperience from './components/WorkStudy';
 import Footer from './components/Footer';
 
 class About extends React.Component {
