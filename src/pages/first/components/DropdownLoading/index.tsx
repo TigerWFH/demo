@@ -48,6 +48,7 @@ class DropdownLoading extends React.PureComponent<DropdownLoadingProps, Dropdown
 		}
 	};
 	onBodyTouchMove = (e) => {
+		// 防止重复请求
 		if (this.isLoading) {
 			return null;
 		}
