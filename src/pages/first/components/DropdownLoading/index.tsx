@@ -6,11 +6,12 @@ import * as React from 'react';
 import './index.less';
 
 interface DropdownLoadingProps {
-	reachBottom?: () => any;
+	reachBottom?: (any) => any;
+	content?: any[];
 }
+
 interface DropdownLoadingState {
-	data: any[];
-	content: any[];
+	isShowLoading?: boolean;
 }
 
 class DropdownLoading extends React.PureComponent<DropdownLoadingProps, DropdownLoadingState> {
@@ -23,15 +24,16 @@ class DropdownLoading extends React.PureComponent<DropdownLoadingProps, Dropdown
 	directionY: string; /*取值： up,down,nomove*/
 	beginCoodinate: any; /*{x:0,y:0}*/
 	endCoodinate: any; /*{x:0,y:0}*/
+	isLoading: boolean; /*是否已经触发触底函数*/
 	static defaultProps = {
-		reachBottom: null
+		reachBottom: null,
+		content: null
 	};
 	constructor(props) {
 		super(props);
 		this.documentDom = window && window.document;
 		this.state = {
-			data: [],
-			content: []
+			isShowLoading: false
 		};
 	}
 	onBodyTouchStart = (e) => {
@@ -41,11 +43,20 @@ class DropdownLoading extends React.PureComponent<DropdownLoadingProps, Dropdown
 		};
 		if (this.wrapperDom) {
 			this.portHeight = this.wrapperDom.clientHeight;
-			this.documentHeight = this.wrapperDom.scrollHeight;
+			// this.documentHeight = this.wrapperDom.scrollHeight;
+			this.documentHeight = this.listDom.scrollHeight;
 		}
 	};
 	onBodyTouchMove = (e) => {
-		if (this.portHeight + this.wrapperDom.scrollTop === this.documentHeight) {
+		if (this.isLoading) {
+			return null;
+		}
+		// 实际内容并未占满一屏，不需要刷新
+		if (this.portHeight > this.documentHeight) {
+			return null;
+		}
+		if (this.portHeight + this.wrapperDom.scrollTop >= this.documentHeight - 44) {
+			this.isLoading = true;
 			this.reachBottom();
 		}
 	};
@@ -70,27 +81,10 @@ class DropdownLoading extends React.PureComponent<DropdownLoadingProps, Dropdown
 		}
 	};
 	componentDidMount() {
-		let mockData = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
-		let content = this.renderContent(mockData);
-		this.setState({
-			content
-		});
-
 		this.documentDom.body.addEventListener('touchstart', this.onBodyTouchStart);
 		this.documentDom.body.addEventListener('touchmove', this.onBodyTouchMove);
 		this.documentDom.body.addEventListener('touchend', this.onBodyTouchEnd);
 	}
-
-	renderContent = (data) => {
-		return data.map((item, index) => {
-			return (
-				<div className={'dd-item'} key={`content-${index}-${Math.random()}`}>
-					{item}
-				</div>
-			);
-		});
-	};
-
 	componentWillUnmount() {
 		if (this.documentDom) {
 			this.documentDom.removeEventListener('touchstart', this.onBodyTouchStart);
@@ -100,31 +94,35 @@ class DropdownLoading extends React.PureComponent<DropdownLoadingProps, Dropdown
 		}
 	}
 
+	stopLoading = () => {
+		this.setState(
+			{
+				isShowLoading: false
+			},
+			() => {
+				this.isLoading = false;
+			}
+		);
+	};
+
 	reachBottom = () => {
-		this.wrapperDom.scrollTop -= 1;
-		// alert('到底了……');
-		const self = this;
-		setTimeout(() => {
-			const { content } = self.state;
-			const target = content.concat(self.renderContent([ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]));
-			self.setState(
-				{
-					content: target
-				},
-				() => {
-					// self.wrapperDom.scrollTop = self.documentHeight;
-					self.documentHeight = self.wrapperDom.scrollHeight;
+		this.setState(
+			{
+				isShowLoading: true
+			},
+			() => {
+				this.wrapperDom.scrollTop -= 1; /*解决触底时，再次move会二次触发加载问题*/
+				const { reachBottom } = this.props;
+				if ('function' === typeof reachBottom) {
+					reachBottom(this.stopLoading);
 				}
-			);
-		}, 1000);
-		const { reachBottom } = this.props;
-		if ('function' === typeof reachBottom) {
-			reachBottom();
-		}
+			}
+		);
 	};
 
 	render() {
-		let { content = [] } = this.state;
+		const { content } = this.props;
+		const { isShowLoading } = this.state;
 		return (
 			<div
 				className={'ddloading-root'}
@@ -138,9 +136,11 @@ class DropdownLoading extends React.PureComponent<DropdownLoadingProps, Dropdown
 						this.listDom = list;
 					}}
 				>
-					{content}
+					{content || this.props.children}
 				</div>
-				<div className={'dd-loading'}>"下拉刷新"</div>
+				<div className={'dd-loading'} style={{ visibility: isShowLoading ? 'visible' : 'hidden' }}>
+					"下拉刷新"
+				</div>
 			</div>
 		);
 	}
