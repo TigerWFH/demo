@@ -5,23 +5,23 @@ const medicineCode = (state = {}, action) => {
 	let { payload = {} } = action;
 	let { msgCode, msgText, data = {} } = payload;
 	switch (action.type) {
-		case t.GET_MEDICINE_CODE:
+		case t.FETCH_MEDICINE_CODE:
 			return {
 				...state,
-				status: 'INITIAL'
+				status: 'REQUEST_INITIAL'
 			};
-		case t.GET_MEDICINE_CODE_SUCCESS:
+		case t.FETCH_MEDICINE_CODE_SUCCESS:
 			return {
 				...state,
 				code: msgCode,
 				medicineCode: data.medicineCode,
-				status: 'SUCCESS'
+				status: 'REQUEST_SUCCESS'
 			};
-		case t.GET_MEDICINE_CODE_FAIL:
+		case t.FETCH_MEDICINE_CODE_FAIL:
 			return {
 				...state,
 				code: msgCode,
-				status: 'FAIL'
+				status: 'REQUEST_FAIL'
 			};
 		default:
 			return state;

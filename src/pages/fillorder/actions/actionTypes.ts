@@ -1,3 +1,3 @@
-export const GET_GOODS_INFO = Symbol('GET_GOODS');
-export const GET_GOODS_INFO_SUCCESS = Symbol('GET_GOODS_INFO_SUCCESS');
-export const GET_GOODS_INFO_FAIL = Symbol('GET_GOODS_INFO_FAIL');
+export const FETCH_GOODS_INFO = Symbol('FETCH_GOODS_INFO');
+export const FETCH_GOODS_INFO_SUCCESS = Symbol('FETCH_GOODS_INFO_SUCCESS');
+export const FETCH_GOODS_INFO_FAIL = Symbol('FETCH_GOODS_INFO_FAIL');

@@ -21,7 +21,7 @@ class First extends React.Component<IFirstProps, IFirstState> {
 	}
 
 	componentDidMount() {
-		actions.requestAccount();
+		actions.requestAccount({});
 	}
 
 	renderContent = (data) => {

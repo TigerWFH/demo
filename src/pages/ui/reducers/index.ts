@@ -9,23 +9,22 @@ const initialState = {
 const second = (state = initialState, action) => {
 	switch (action.type) {
 		case t.FETCH_SECOND:
-			console.log('我输出page second的逻辑数据=', state.home);
 			return {
 				...state,
 				...action.payload,
-				status: 'INITIAL'
+				status: 'REQUEST_INITIAL'
 			};
 		case t.FETCH_SECOND_FAIL:
 			return {
 				...state,
 				...action.payload,
-				status: 'FAIL'
+				status: 'REQUEST_FAIL'
 			};
 		case t.FETCH_SECOND_SUCCESS:
 			return {
 				...state,
 				home: action.payload.home,
-				status: 'SUCCESS'
+				status: 'REQUEST_SUCCESS'
 			};
 		default:
 			return state;
@@ -35,23 +34,22 @@ const second = (state = initialState, action) => {
 const ui = (state = initialState, action) => {
 	switch (action.type) {
 		case t.FETCH_SECOND:
-			console.log('我输出page ui的逻辑数据=', state.index);
 			return {
 				...state,
 				...action.payload,
-				status: 'INITIAL'
+				status: 'REQUEST_INITIAL'
 			};
 		case t.FETCH_SECOND_FAIL:
 			return {
 				...state,
 				...action.payload,
-				status: 'FAIL'
+				status: 'REQUEST_FAIL'
 			};
 		case t.FETCH_SECOND_SUCCESS:
 			return {
 				...state,
 				index: action.payload.index,
-				status: 'SUCCESS'
+				status: 'REQUEST_SUCCESS'
 			};
 		default:
 			return state;

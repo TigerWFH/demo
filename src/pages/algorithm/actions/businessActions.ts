@@ -1,5 +1,5 @@
 import * as t from './actionTypes';
-import * as apis from '../../apis';
+import { algorithm } from '../../apis';
 
 const fetchAlgorithm = () => {
 	return {
@@ -24,8 +24,7 @@ const fetchAlgorithmFail = (payload) => {
 export const requestAlgorithm = (params) => {
 	return (dispatch, getState) => {
 		dispatch(fetchAlgorithm());
-		apis
-			.fetchAlgorithm(params)
+		algorithm(params)
 			.then((data) => {
 				dispatch(fetchAlgorithmSuccess(data));
 			})

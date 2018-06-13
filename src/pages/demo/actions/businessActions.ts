@@ -1,22 +1,35 @@
 import * as t from './actionTypes';
+import { demo } from '../../apis';
 
-export const fetchDemo = (payload) => {
-    return {
-        type: t.FETCH_DEMO,
-        payload
-    };
-}
+const fetchDemo = () => {
+	return {
+		type: t.FETCH_DEMO
+	};
+};
 
-export const fetchDemoSuccess = (payload) => {
-    return {
-        type: t.FETCH_DEMO_SUCCESS,
-        payload
-    };
-}
+const fetchDemoSuccess = (payload) => {
+	return {
+		type: t.FETCH_DEMO_SUCCESS,
+		payload
+	};
+};
 
-export const fetchDemoFail = (payload) => {
-    return {
-        type: t.FETCH_DEMO_FAIL,
-        payload
-    };
-}
+const fetchDemoFail = (payload) => {
+	return {
+		type: t.FETCH_DEMO_FAIL,
+		payload
+	};
+};
+
+export const requestDemo = (params) => {
+	return (dispatch, getState) => {
+		dispatch(fetchDemo());
+		demo(params)
+			.then((data) => {
+				dispatch(fetchDemoSuccess(data));
+			})
+			.catch((error) => {
+				dispatch(fetchDemoFail(error));
+			});
+	};
+};
