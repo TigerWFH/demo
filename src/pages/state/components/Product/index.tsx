@@ -19,11 +19,11 @@ function Product(props) {
 							<span className="product-price-symbol">￥</span>
 							<span className="product-price">{product.price}</span>
 						</span>
-						<span className='product-price-health-gold'>健康金</span>
+						<span className="product-price-health-gold">健康金</span>
 					</span>
-					<span className='product-amount-container'>
-						<span className='product-amount'>{product.piece}</span>
-						<span className='product-instruction'>说明书</span>
+					<span className="product-amount-container">
+						<span className="product-instruction">说明书</span>
+						<span className="product-amount">{product.piece}</span>
 					</span>
 					<div />
 				</div>

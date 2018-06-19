@@ -15,15 +15,15 @@ const mockProductList = [
 		},
 		productList: [
 			{
-				name: 'monkey的小屋',
+				name: 'monkey的小屋monkey的monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋',
 				spec: '1个',
-				usage: '一天一次',
+				usage: '一天一次monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋',
 				price: 1234,
 				piece: 1,
 				image: ''
 			},
 			{
-				name: 'monkey的小屋',
+				name: 'monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋monkey的小屋',
 				spec: '1个',
 				usage: '一天一次',
 				price: 1234,
