@@ -7,6 +7,7 @@
 	border: 1px solid red;
 	width: 100px;
 	height: 100px;
+	margin-right: 10px;
 }
 
 .product-description-container {
@@ -24,6 +25,8 @@
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	font-size: 30px;
+	color: #333;
 }
 
 .product-description-usage {
@@ -33,6 +36,8 @@
 	margin-top: 10px;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	font-size: 26px;
+	color: #999;
 }
 
 .product-description-op-container {
@@ -46,28 +51,35 @@
 	flex: 1;
 	display: flex;
 	align-items: center;
+	margin-right: 5px;
 }
 
 .product-price-container {
+	flex: 1;
 	margin-right: 10px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .product-price-symbol {
+	font-size: 24px;
 }
 
 .product-price {
+	font-size: 30px;
 }
 
-.product-price-health-gold {
+.product-health-gold {
 	border: 1px solid #00a3fe;
 	color: #00a3fe;
 	border-radius: 4px;
 }
 
-.product-amount-container {
+.product-instruction-amount-container {
 	flex: 1;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
+	margin-left: 5px;
 }
 .product-instruction {
 	margin-right: 10px;
@@ -78,4 +90,6 @@
 }
 
 .product-amount {
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
