@@ -5,6 +5,7 @@ import './index.less';
 import TopLabel from './components/TopLabel';
 import ProductList from './components/ProductList';
 import Address from './components/Address';
+import Footer from './components/Footer';
 
 interface IStateProps {}
 interface IStateState {}
@@ -85,6 +86,7 @@ class State extends React.PureComponent<IStateProps, IStateState> {
 				<TopLabel />
 				<ProductList productList={mockProductList} />
 				<Address />
+				<Footer total={10} />
 			</div>
 		);
 	}
