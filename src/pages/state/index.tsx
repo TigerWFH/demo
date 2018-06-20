@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './index.less';
 import TopLabel from './components/TopLabel';
 import ProductList from './components/ProductList';
+import Address from './components/Address';
 
 interface IStateProps {}
 interface IStateState {}
@@ -83,6 +84,7 @@ class State extends React.PureComponent<IStateProps, IStateState> {
 			<div className="state-root">
 				<TopLabel />
 				<ProductList productList={mockProductList} />
+				<Address />
 			</div>
 		);
 	}
