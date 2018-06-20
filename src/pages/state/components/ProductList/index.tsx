@@ -34,7 +34,7 @@ class ProductList extends React.PureComponent<IProductListProps, IProductListSta
 				{productList.map((item, index) => {
 					return this.renderStoreWithProducts(item, index);
 				})}
-				<div>{`处方治愈好转率：${cureRate}`}</div>
+				<div className='productlist-cure-rate'>{`处方治愈好转率：${cureRate}`}</div>
 			</div>
 		);
 	}
