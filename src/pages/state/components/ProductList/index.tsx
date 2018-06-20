@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import './index.less';
 import Product from '../Product';
+import Line from '../../../../widgets/line';
 
 interface IProductListProps {
 	productList: Array<any>;
@@ -16,7 +17,7 @@ class ProductList extends React.PureComponent<IProductListProps, IProductListSta
 		}
 		return (
 			<div className="store-with-products-container" key={`store-with-products-container-${index}`}>
-				<div>{name}</div>
+				<div className='product-store-name'>{name}</div>
 				{productList.map((item, index) => {
 					return <Product product={item} key={`productlist-product-${index}`} />;
 				})}
@@ -34,7 +35,7 @@ class ProductList extends React.PureComponent<IProductListProps, IProductListSta
 				{productList.map((item, index) => {
 					return this.renderStoreWithProducts(item, index);
 				})}
-				<div className='productlist-cure-rate'>{`处方治愈好转率：${cureRate}`}</div>
+				<div className="productlist-cure-rate">{`处方治愈好转率：${cureRate}`}</div>
 			</div>
 		);
 	}
