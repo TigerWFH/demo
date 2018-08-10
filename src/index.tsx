@@ -91,7 +91,7 @@ class App extends React.Component<IAppProps, IAppState> {
 	}
 
 	componentWillMount() {
-		window.removeEventListener('hashchange', this.getTitle);
+		window.removeEventListener('hashchange', this.getTitle)
 	}
 }
 
