@@ -30,21 +30,21 @@ interface IAppState {
 }
 
 const HASH_MAP_TITLE = new Map([
-	['#/', '个人经历'],
-	['#/demo', '个人经历'],
-	['#/first', 'first'],
-	['#/ui', 'ui'],
-	['#/algorithm', '算法'],
-	['#/fillorder', 'fillorder'],
-	['#/payment', 'payment'],
-	['#/state', 'state'],
-	['#/react', 'react']
+	[ '#/', '个人经历' ],
+	[ '#/demo', '个人经历' ],
+	[ '#/first', 'first' ],
+	[ '#/ui', 'ui' ],
+	[ '#/algorithm', '算法' ],
+	[ '#/fillorder', 'fillorder' ],
+	[ '#/payment', 'payment' ],
+	[ '#/state', 'state' ],
+	[ '#/react', 'react' ]
 ]);
 
 class App extends React.Component<IAppProps, IAppState> {
 	constructor(props: IAppProps) {
 		super(props);
-		window.addEventListener('hashchange', this.getTitle);
+		window.addEventListener('hashchange', this.getTitle, false);
 		this.state = {
 			isShowSlidebar: false,
 			title: HASH_MAP_TITLE.get(location.hash),
@@ -53,45 +53,40 @@ class App extends React.Component<IAppProps, IAppState> {
 	}
 
 	getTitle = () => {
-		let hash = location.hash
-
+		let hash = location.hash;
 		this.setState({
 			title: HASH_MAP_TITLE.get(hash)
-		})
-	}
+		});
+	};
 	onHideSlidebar = () => {
 		this.setState({
 			isShowSlidebar: !this.state.isShowSlidebar
 		});
 	};
-	onGetInfo = (title: string) => {
-		this.setState({
-			title
-		});
-	};
+	
 	render() {
 		let { isShowSlidebar, title, onGetInfo } = this.state;
 		return (
 			<div className={isShowSlidebar ? 'app' : 'app app-show'}>
 				<Header onHideSlidebar={this.onHideSlidebar} title={title} />
 				<Slidebar isShowSlidebar={isShowSlidebar}>
-					<Item title={'个人经历'} onGetInfo={this.onGetInfo} href={'/#/'} />
-					<Item title={'demo'} onGetInfo={this.onGetInfo} href={'/#/demo'} />
-					<Item title={'first'} onGetInfo={this.onGetInfo} href={'/#/first'} />
-					<Item title={'antd and material-ui'} onGetInfo={this.onGetInfo} href={'/#/ui'} />
-					<Item title={'算法'} onGetInfo={this.onGetInfo} href={'/#/algorithm'} />
-					<Item title={'fillorder'} onGetInfo={this.onGetInfo} href={'/#/fillorder'} />
-					<Item title={'payment'} onGetInfo={this.onGetInfo} href={'/#/payment'} />
-					<Item title={'state'} onGetInfo={this.onGetInfo} href={'/#/state'} />
-					<Item title={'reactPage'} onGetInfo={this.onGetInfo} href={'/#/react'} />
+					<Item title={'个人经历'} href={'/#/'} />
+					<Item title={'demo'} href={'/#/demo'} />
+					<Item title={'first'} href={'/#/first'} />
+					<Item title={'antd and material-ui'} href={'/#/ui'} />
+					<Item title={'al'} href={'/#/algorithm'} />
+					<Item title={'fillorder'} href={'/#/fillorder'} />
+					<Item title={'payment'} href={'/#/payment'} />
+					<Item title={'state'} href={'/#/state'} />
+					<Item title={'reactPage'} href={'/#/react'} />
 				</Slidebar>
 				<View>{this.props.children}</View>
 			</div>
 		);
 	}
 
-	componentWillMount() {
-		window.removeEventListener('hashchange', this.getTitle)
+	componentWillUnMount() {
+		window.removeEventListener('hashchange', this.getTitle, false);
 	}
 }
 
