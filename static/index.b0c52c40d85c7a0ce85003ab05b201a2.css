@@ -207,6 +207,39 @@ input[type=file] {
   cursor: pointer;
   border: 1px solid red;
 }
+.toast-container {
+  position: relative;
+  z-index: 999;
+}
+.toast-container .toast-root {
+  position: fixed;
+  top: 20px;
+  right: 10px;
+  width: 200px;
+  padding-right: 10px;
+  padding-left: 10px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 4px;
+}
+.toast-container .info {
+  background-color: rgba(0, 163, 254, 0.8);
+}
+.toast-container .success {
+  background-color: rgba(0, 178, 119, 0.8);
+}
+.toast-container .warning {
+  background-color: rgba(254, 204, 85, 0.8);
+}
+.toast-container .error {
+  background-color: rgba(255, 65, 87, 0.8);
+}
 .transform3d {
   perspective: 800px;
   overflow: visible;
@@ -412,6 +445,24 @@ fieldset {
 }
 .fieldset-left {
   text-align: left;
+}
+.ddloading-root {
+  height: 100%;
+  border: 1px solid red;
+  overflow: scroll;
+}
+.ddloading-list-container {
+  padding-bottom: 44px;
+  border: '1px solid #00a3fe';
+}
+.dd-item {
+  height: 70px;
+  border: 1px solid red;
+}
+.dd-loading {
+  margin-top: -44px;
+  height: 44px;
+  background-color: #00a3fe;
 }
 .first {
   height: 100%;
@@ -745,56 +796,226 @@ fieldset {
 }
 .resume {
   height: 100%;
-  padding: 5px 5px 5px 5px;
+  overflow: auto;
 }
-.animationbg {
+.ppRoot {
   position: relative;
   height: 100%;
+  background: #7c498f;
+  text-align: center;
 }
-.animationbg .imgContainer {
-  height: 100%;
+.ppRoot .resume {
+  position: relative;
+  top: 50%;
+  height: 100px;
+  line-height: 100px;
+  transform: translateY(-50px);
+  color: #fff;
+  font-size: 28px;
 }
-.animationbg .imgContainer .mask {
+.ppRoot .direction {
   position: absolute;
-  top: 0;
-  left: 0;
   bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  color: #ff4500;
+  cursor: pointer;
 }
-.animationbg .imgContainer .image1 {
-  display: none;
-  width: 100%;
+.skillsRoot {
+  position: relative;
   height: 100%;
-  background-image: url(images/bg1-fa173c71.jpg);
+  margin-top: 10px;
+  background: #fafafa;
+  text-align: center;
 }
-.animationbg .imgContainer .image2 {
-  display: none;
-  width: 100%;
-  height: 100%;
-  background-image: url(images/bg2-6e931ea5.png);
+.skillsRoot .container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 960px;
+  height: 480px;
+  transform: translate(-480px, -240px);
 }
-.animationbg .imgContainer .image3 {
-  display: none;
-  width: 100%;
-  height: 100%;
-  background-image: url(images/bg3-012cfc40.png);
-}
-.animationbg .imgContainer .image4 {
-  display: none;
-  width: 100%;
-  height: 100%;
-  background-image: url(images/bg4-63cf79b3.png);
-}
-.animationbg .imgContainer .active {
-  display: block;
-}
-.animationbg .content {
+.skillsRoot .direction {
   position: absolute;
-  top: 0;
+  bottom: 0;
+  color: #ff4500;
+  cursor: pointer;
+}
+.weRoot {
+  position: relative;
+  height: 100%;
+  margin-top: 10px;
+  background: #fafafa;
+  text-align: center;
+}
+.weRoot .container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 960px;
+  height: 480px;
+  transform: translate(-480px, -240px);
+}
+.weRoot .direction {
+  position: absolute;
+  bottom: 0;
+  color: #ff4500;
+  cursor: pointer;
+}
+.ppFooter {
+  height: 88px;
+  background: #262e38;
+  color: #999;
+  color: #4dbebd;
+}
+.state-root {
+  padding-bottom: 50px;
+  background-color: #e5e5e5;
+}
+.toplabel-root {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 36px;
+  padding-left: 26px;
+  padding-right: 26px;
+  background-color: #ffe4da;
+}
+.toplabel-item {
+  font-size: 13px;
+  color: #ff4500;
+}
+.productlist-root {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+.product-store-name {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.productlist-cure-rate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+}
+.product-root {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.product-image {
+  width: 130px;
+  height: 130px;
+  margin-right: 10px;
+}
+.product-description-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.product-description-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 30px;
+  color: #333;
+}
+.product-description-usage {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-top: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 26px;
+  color: #999;
+}
+.product-description-op-container {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin-top: 10px;
+}
+.product-price-gold-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 5px;
+}
+.product-price-container {
+  margin-right: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.product-price-symbol {
+  font-size: 24px;
+}
+.product-price {
+  font-size: 30px;
+}
+.product-health-gold {
+  border: 1px solid #00a3fe;
+  color: #00a3fe;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.product-instruction-amount-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 5px;
+}
+.product-instruction {
+  margin-right: 10px;
+  border: 1px solid #00a3fe;
+  color: #00a3fe;
+  padding: 5px 10px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.product-amount {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.address-root {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  font-size: 16px;
+  color: #666;
+  background-color: #fff;
+}
+.footer-root {
+  position: absolute;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-top: 1px solid #e5e5e5;
+  padding-left: 300px;
+}
+.footer-price {
+  color: #ff4500;
+}
+.footer-button {
+  background-color: #ff4500;
+  font-size: 16px;
+  color: #fff;
+  height: 50px;
 }
 .app {
   width: 100%;
