@@ -31,7 +31,7 @@ interface IAppState {
 
 const HASH_MAP_TITLE = new Map([
 	[ '#/', '个人经历' ],
-	[ '#/demo', '个人经历' ],
+	[ '#/demo', '测试Demo' ],
 	[ '#/first', 'first' ],
 	[ '#/ui', 'ui' ],
 	[ '#/algorithm', '算法' ],
