@@ -29,12 +29,36 @@ interface IAppState {
 	onGetInfo?: (title: string) => void;
 }
 
+const HASH_MAP_TITLE = new Map([
+	['#/', '个人经历'],
+	['#/demo', '个人经历'],
+	['#/first', 'first'],
+	['#/ui', 'ui'],
+	['#/algorithm', '算法'],
+	['#/fillorder', 'fillorder'],
+	['#/payment', 'payment'],
+	['#/state', 'state'],
+	['#/react', 'react']
+]);
+
 class App extends React.Component<IAppProps, IAppState> {
-	state = {
-		isShowSlidebar: false,
-		title: 'resume',
-		onGetInfo: (title) => {}
-	};
+	constructor(props: IAppProps) {
+		super(props);
+		window.addEventListener('hashchange', this.getTitle);
+		this.state = {
+			isShowSlidebar: false,
+			title: HASH_MAP_TITLE.get(location.hash),
+			onGetInfo: (title) => {}
+		};
+	}
+
+	getTitle = () => {
+		let hash = location.hash
+
+		this.setState({
+			title: HASH_MAP_TITLE.get(hash)
+		})
+	}
 	onHideSlidebar = () => {
 		this.setState({
 			isShowSlidebar: !this.state.isShowSlidebar
@@ -51,11 +75,11 @@ class App extends React.Component<IAppProps, IAppState> {
 			<div className={isShowSlidebar ? 'app' : 'app app-show'}>
 				<Header onHideSlidebar={this.onHideSlidebar} title={title} />
 				<Slidebar isShowSlidebar={isShowSlidebar}>
-					<Item title={'resume'} onGetInfo={this.onGetInfo} href={'/#/'} />
+					<Item title={'个人经历'} onGetInfo={this.onGetInfo} href={'/#/'} />
 					<Item title={'demo'} onGetInfo={this.onGetInfo} href={'/#/demo'} />
 					<Item title={'first'} onGetInfo={this.onGetInfo} href={'/#/first'} />
 					<Item title={'antd and material-ui'} onGetInfo={this.onGetInfo} href={'/#/ui'} />
-					<Item title={'algorithm'} onGetInfo={this.onGetInfo} href={'/#/algorithm'} />
+					<Item title={'算法'} onGetInfo={this.onGetInfo} href={'/#/algorithm'} />
 					<Item title={'fillorder'} onGetInfo={this.onGetInfo} href={'/#/fillorder'} />
 					<Item title={'payment'} onGetInfo={this.onGetInfo} href={'/#/payment'} />
 					<Item title={'state'} onGetInfo={this.onGetInfo} href={'/#/state'} />
@@ -64,6 +88,10 @@ class App extends React.Component<IAppProps, IAppState> {
 				<View>{this.props.children}</View>
 			</div>
 		);
+	}
+
+	componentWillMount() {
+		window.removeEventListener('hashchange', this.getTitle);
 	}
 }
 
