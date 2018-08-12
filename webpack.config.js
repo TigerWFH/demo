@@ -145,7 +145,7 @@ module.exports = {
 				dry: false
 			}
 		),
-		new BundleAnalyzer(),
+		// new BundleAnalyzer(),
 		...pluginList
 	]
 };
