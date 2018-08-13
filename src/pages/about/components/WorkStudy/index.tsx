@@ -12,6 +12,10 @@ interface IWorkExperienceState {
 	index?: string;
 }
 
+const SUMMARY_LABEL = '总结：';
+const SUMMARY =
+	'独立调研过Cordova，angular,ionic等框架、库。独立调研了微信小程序开发的可行性并进行demo实验。同时进行了pc端和无线端项目开发。项目使用了react，react-router,redux等技术，并使用gulp,webpack,nodejs等相关的前端自动化开发工具。具有较强的独立学习能力。拥有4年的c/c++使用经验，了解http,socket等协议';
+
 const LABEL_LIST = [ '平安好医生', '领壹金融', '云之轩', '大连民族大学', '安阳工学院' ];
 const MAP_NAME_TO_INFO = new Map([
 	[ '平安好医生', { organization: '平安好医生', position: '前端开发工程师', duration: '2017-至今', job: '' } ],
@@ -129,18 +133,13 @@ class WorkExperience extends React.Component<IWorkExperienceProps, IWorkExperien
 						/>
 					</div>
 					<div className={'we-content'}>
-						<div>
-							<span>总结：</span>
-							<div>
-								KJKLLKklsdklklsdgdsgmds;mg;sdgm;sd
-							</div>
+						<div className={'we-summary'}>
+							<span className={'we-summary-label'}>{SUMMARY_LABEL}</span>
+							<div className={'we-summary-content'}>{SUMMARY}</div>
 						</div>
 						<InfoCard data={MAP_NAME_TO_INFO.get(this.state.index)} />
 					</div>
 				</div>
-				<span className={'direction'} onClick={this.onToNext}>
-					︾
-				</span>
 			</div>
 		);
 	}
