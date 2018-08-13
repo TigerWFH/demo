@@ -1,21 +1,26 @@
-.weRoot {
-    position: relative;
-    height: 100%;
-    margin-top: 10px;
-    background: #fafafa;
-    text-align: center;
-    .container {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        width: 960px;
-        height: 480px;
-        transform: translate(-480px, -240px);
-    }
-    .direction {
-        position: absolute;
-        bottom: 0;
-        color: rgb(255, 69, 0);
-        cursor: pointer;
-    }
+.we-root {
+	display: flex;
+	position: relative;
+	height: 100%;
+	margin-top: 10px;
+	background: #fafafa;
+	text-align: center;
+	.we-container {
+        display: flex;
+		justify-content: space-around;
+		align-items: center;
+		flex: 1;
+		.we-chart {
+            border: 1px solid #00a3fe;
+		}
+		.we-content {
+            border: 1px solid #00a3fe;
+		}
+	}
+	.direction {
+		position: absolute;
+		bottom: 0;
+		color: rgb(255, 69, 0);
+		cursor: pointer;
+	}
 }

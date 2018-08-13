@@ -86,13 +86,16 @@ class WorkExperience extends React.Component<IWorkExperienceProps, never> {
 	};
 	render() {
 		return (
-			<div className={'weRoot'}>
-				<div className={'container'}>
-					<canvas
-						ref={(context) => {
-							this.context = context;
-						}}
-					/>
+			<div className={'we-root'}>
+				<div className={'we-container'}>
+					<div className={'we-chart'}>
+						<canvas
+							ref={(context) => {
+								this.context = context;
+							}}
+						/>
+					</div>
+					<div className={'we-content'}>内容展示</div>
 				</div>
 				<span className={'direction'} onClick={this.onToNext}>
 					︾
