@@ -1,6 +1,35 @@
-.ppFooter {
-    height: 88px;
+.pp-footer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     background: #262e38;
     color: #999;
     color: #4dbebd;
+    .pp-hello {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        font-size: 28px;
+        border: 1px solid red;
+    }
+    .pp-content {
+        display: flex;
+        // flex: 1;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        border: 1px solid rgb(252, 144, 144);
+        .pp-hope {
+            font-size: 26px;
+            span {
+                color: #d87c2a;
+            }
+        }
+        .pp-contact {
+            font-size: 20px;
+        }
+    }
 }
