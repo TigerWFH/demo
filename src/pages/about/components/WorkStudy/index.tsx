@@ -18,17 +18,18 @@ class WorkExperience extends React.Component<IWorkExperienceProps, never> {
 		let mockData = {
 			datasets: [
 				{
-					data: [ 4, 2, 1, 1, 8 ],
-					backgroundColor: {},
-					label: '数据'
+					data: [ 8, 1, 1, 2, 4 ],
+					backgroundColor: [ '#1E90FF', '#00A3FE', '#FF0000', '#FF6347', '#FFA500' ]
 				}
 			],
-			labels: [ '安阳工学院', '大连民族大学', '云之轩', '领壹金融', '平安好医生' ]
+			labels: [ '平安好医生', '领壹金融', '云之轩', '大连民族大学', '安阳工学院' ]
 		};
 		let options: any = {
 			type: 'pie',
 			data: mockData,
-			options: {}
+			options: {
+				responsive: true
+			}
 		};
 		this.pieChart = new Chart(ctx, options);
 	}
