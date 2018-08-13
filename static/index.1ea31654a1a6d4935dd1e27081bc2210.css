@@ -798,22 +798,28 @@ fieldset {
   height: 100%;
   overflow: auto;
 }
-.ppRoot {
+.pp-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   position: relative;
   height: 100%;
   background: #7c498f;
   text-align: center;
 }
-.ppRoot .resume {
-  position: relative;
-  top: 50%;
-  height: 100px;
-  line-height: 100px;
-  transform: translateY(-50px);
+.pp-root .pp-container {
+  margin-bottom: 40px;
+}
+.pp-root .pp-label {
   color: #fff;
   font-size: 28px;
 }
-.ppRoot .direction {
+.pp-root .pp-sublabel {
+  color: #ccc;
+  font-size: 0.8rem;
+}
+.pp-root .direction {
   position: absolute;
   bottom: 0;
   color: #ff4500;
@@ -840,26 +846,76 @@ fieldset {
   color: #ff4500;
   cursor: pointer;
 }
-.weRoot {
+.we-root {
+  display: flex;
   position: relative;
   height: 100%;
   margin-top: 10px;
   background: #fafafa;
-  text-align: center;
 }
-.weRoot .container {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  width: 960px;
-  height: 480px;
-  transform: translate(-480px, -240px);
+.we-root .we-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
-.weRoot .direction {
-  position: absolute;
-  bottom: 0;
-  color: #ff4500;
-  cursor: pointer;
+.we-root .we-container .we-chart {
+  display: flex;
+  align-items: center;
+  box-shadow: 0 5px 5px 0 #c9c9c9;
+  flex: 1;
+}
+.we-root .we-container .we-content {
+  display: flex;
+  align-items: center;
+  flex: 2;
+  flex-direction: column;
+  height: 100%;
+}
+.we-root .we-container .we-content .we-summary {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 90%;
+  box-shadow: 0 5px 5px 0 #767676;
+}
+.we-root .we-container .we-content .we-summary .we-summary-label {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 28px;
+}
+.we-root .we-container .we-content .we-summary .we-summary-content {
+  display: flex;
+  justify-content: flex-start;
+  text-indent: 2em;
+  line-height: 2.5;
+}
+.ic-root {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  flex: 1;
+  width: 90%;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 50px;
+  box-shadow: 0 5px 5px 0 #767676;
+}
+.ic-root .ic-container {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.ic-root .ic-container .ic-label {
+  display: inline-block;
+  text-align: left;
+  width: 30%;
+  color: #767676;
+  font-size: 16px;
+}
+.ic-root .ic-container .ic-data {
+  color: #000;
+  font-size: 26px;
 }
 .ppFooter {
   height: 88px;
