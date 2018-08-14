@@ -797,6 +797,7 @@ fieldset {
 .resume {
   height: 100%;
   overflow: auto;
+  user-select: none;
 }
 .pp-root {
   display: flex;
@@ -876,8 +877,8 @@ fieldset {
   flex-direction: column;
   padding-left: 10px;
   padding-right: 10px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   width: 90%;
   box-shadow: 0 5px 5px 0 #767676;
 }
@@ -889,6 +890,7 @@ fieldset {
 .we-root .we-container .we-content .we-summary .we-summary-content {
   display: flex;
   justify-content: flex-start;
+  flex-direction: column;
   text-indent: 2em;
   line-height: 2.5;
 }
@@ -899,12 +901,13 @@ fieldset {
   flex: 1;
   width: 90%;
   padding: 10px 10px 10px 10px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   box-shadow: 0 5px 5px 0 #767676;
 }
 .ic-root .ic-container {
+  display: flex;
   width: 100%;
-  margin-bottom: 10px;
+  min-height: 2em;
 }
 .ic-root .ic-container .ic-label {
   display: inline-block;
@@ -912,16 +915,64 @@ fieldset {
   width: 30%;
   color: #767676;
   font-size: 16px;
+  vertical-align: top;
 }
 .ic-root .ic-container .ic-data {
+  display: inline-block;
+  width: 70%;
   color: #000;
+  font-size: 18px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  cursor: pointer;
+}
+.pp-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+}
+.pp-footer .pp-hello {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 56px;
+  color: #111;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2);
+  margin-bottom: 10px;
+}
+.pp-footer .pp-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.pp-footer .pp-content .pp-hope {
+  color: #ccc;
   font-size: 26px;
 }
-.ppFooter {
-  height: 88px;
-  background: #262e38;
-  color: #999;
-  color: #4dbebd;
+.pp-footer .pp-content .pp-hope .pp-want {
+  margin-bottom: 10px;
+}
+.pp-footer .pp-content .pp-hope .pp-want span {
+  color: #d87c2a;
+}
+.pp-footer .pp-content .pp-contact {
+  color: #fff;
+  font-size: 20px;
+}
+.pp-footer .pp-content .pp-contact .pp-tome {
+  padding: 10px 20px 10px 20px;
+  margin-bottom: 10px;
+}
+.pp-footer .pp-content .pp-contact .pp-info {
+  padding: 10px 30px 10px 30px;
+  border-radius: 40px;
+  background-color: #111;
+  margin-bottom: 10px;
+  user-select: all;
 }
 .state-root {
   padding-bottom: 50px;
