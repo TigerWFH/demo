@@ -107,9 +107,6 @@ class Skills extends React.Component<ISkillsProps, never> {
 						}}
 					/>
 				</div>
-				<span className={'direction'} onClick={this.onToNext}>
-					︾
-				</span>
 			</div>
 		);
 	}
