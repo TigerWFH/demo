@@ -17,7 +17,7 @@ class Footer extends React.Component<IFooterProps, never> {
                     <div className={'pp-contact'}>
                         <div className={'pp-tome'}>如何找到我...</div>
                         <div className={'pp-info'}>+8617612151221</div>
-                        <div className={'pp-info'}>fanghuawfh@gmail.com</div>
+                        <div className={'pp-info'}>mrtiger666@foxmail.com</div>
                     </div>
                 </div>
             </div>
