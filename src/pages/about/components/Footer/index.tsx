@@ -10,13 +10,14 @@ class Footer extends React.Component<IFooterProps, never> {
                 <span className={'pp-hello'}>打个招呼</span>
                 <div className={'pp-content'}>
                     <div className={'pp-hope'}>
-                        <div>想结交<span>新朋友</span></div>
-                        <div>想做<span>有趣</span>的事情</div>
+                        <div className={'pp-want'}>目前常驻<span>上海</span></div>
+                        <div className={'pp-want'}>想结交<span>新朋友</span></div>
+                        <div className={'pp-want'}>做<span>有趣</span>的事情</div>
                     </div>
                     <div className={'pp-contact'}>
-                        <span>如何找到我...</span>
-                        <div>+8617612151221</div>
-                        <div>fanghuawfh@gmail.com</div>
+                        <div className={'pp-tome'}>如何找到我...</div>
+                        <div className={'pp-info'}>+8617612151221</div>
+                        <div className={'pp-info'}>fanghuawfh@gmail.com</div>
                     </div>
                 </div>
             </div>
