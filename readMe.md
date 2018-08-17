@@ -805,3 +805,4 @@ volumechange
 * Chartist.js：使用svgxua渲染图
 * n3-charts：基于D3.js和angular
 * Ember Charts：基于D3和Ember
+* Demo
