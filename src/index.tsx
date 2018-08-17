@@ -43,8 +43,9 @@ const HASH_MAP_TITLE = new Map([
 ]);
 
 const history = createHashHistory();
-history.block((location, state) => {
+const unblock = history.block((location, state) => {
 	// alert(JSON.stringify(location));
+	// unblock();/*取消阻塞*/
 });
 
 class App extends React.Component<IAppProps, IAppState> {
@@ -53,7 +54,7 @@ class App extends React.Component<IAppProps, IAppState> {
 		super(props);
 		// window.addEventListener('hashchange', this.getTitle, false);
 		this.listener = history.listen((location, action) => {
-			console.log("history.location=", location);
+			console.log('history.location=', location);
 			this.getTitle(location.pathname);
 		});
 		this.state = {
