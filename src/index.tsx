@@ -43,6 +43,9 @@ const HASH_MAP_TITLE = new Map([
 ]);
 
 const history = createHashHistory();
+history.block((location, state) => {
+	// alert(JSON.stringify(location));
+});
 
 class App extends React.Component<IAppProps, IAppState> {
 	listener: any;
