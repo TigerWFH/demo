@@ -50,6 +50,7 @@ class App extends React.Component<IAppProps, IAppState> {
 		super(props);
 		// window.addEventListener('hashchange', this.getTitle, false);
 		this.listener = history.listen((location, action) => {
+			console.log("history.location=", location);
 			this.getTitle(location.pathname);
 		});
 		this.state = {
@@ -60,7 +61,6 @@ class App extends React.Component<IAppProps, IAppState> {
 	}
 
 	getTitle = (pathname) => {
-		console.log('HASH_MAP_TITLE.get(hash)=', HASH_MAP_TITLE.get(pathname));
 		this.setState({
 			title: HASH_MAP_TITLE.get(pathname)
 		});
