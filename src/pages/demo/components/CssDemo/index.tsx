@@ -18,6 +18,31 @@ class CssDemo extends React.Component<IProps, IState>{
     render() {
         return (
             <div>
+                <div>
+                    <h1>探索字体、字型、字形、字符和line-height、font-size</h1>
+                    <div>
+                        <div>字符(Character)：字母、数字、汉字、符号等，是一种抽象实体</div>
+                        <div>字形(Glyph)：单个「字符」的具体表达，一个字可有多个不同的字形</div>
+                        <div>字型(Font)：印刷行业中，指某一整套具有同样样式和尺码的字形，如一整套中易宋体 5 号字、一整套 9 磅 Helvetica Neue粗体字。</div>
+                        <div>字体(Typeface)：若干个「字型」在若干个尺寸上的集合</div>
+                        <div>原则上，unicode仅针对字符编码</div>
+                    </div>
+                </div>
+                <div>
+                    <h1>西文字体</h1>
+                    <div>书体类型：衬线体、粗衬线体、无衬线体、手写体、等宽体、哥特体、幻想体</div>
+                    <div className={'text-type-1'}>serif ABCTabctgTimes TimesNewRoman</div>
+                    <div className={'text-type-7'}>Egyptienne ABCTabctg Egyptienne F</div>
+                    <div className={'text-type-2'}>Sanserif ABCTabctg Arial Helvatica</div>
+                    <div className={'text-type-3'}>Script ABCTabctg Comic Sans MS</div>
+                    <div className={'text-type-5'}>Mono ABCTabctg Menlo</div>
+                    <div className={'text-type-6'}>Blackletter ABCTabctg JSL Blackletter</div>
+                    <div className={'text-type-4'}>ABCTabctg Bodoni Ornaments</div>
+                </div>
+                <div>
+                    <h1>中文字体</h1>
+                    <div></div>
+                </div>
                 <div style={{ display: demoIsHideMap.get("demo1") && "none" }}>
                     <h1>对文本的控制</h1>
                     <div className="text-first">
