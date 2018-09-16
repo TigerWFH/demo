@@ -1,14 +1,14 @@
 {
-  "main.css": "static/css/main.4dba3cb8.css",
-  "main.css.map": "static/css/main.4dba3cb8.css.map",
-  "main.js": "static/js/main.e652e78a.js",
-  "main.js.map": "static/js/main.e652e78a.js.map",
+  "main.css": "static/css/main.fe1c6d32.css",
+  "main.css.map": "static/css/main.fe1c6d32.css.map",
+  "main.js": "static/js/main.a90cfc63.js",
+  "main.js.map": "static/js/main.a90cfc63.js.map",
   "static/media/background.jpg": "static/media/background.3a090985.jpg",
   "static/media/logo.svg": "static/media/logo.5d5d9eef.svg",
   "static/media/no_pay_bg.png": "static/media/no_pay_bg.6f79d830.png",
   "static/media/no_record_bg.png": "static/media/no_record_bg.ca421a22.png",
   "static/media/no_record_default.png": "static/media/no_record_default.a5d37416.png",
   "static/media/paid_bg.jpg": "static/media/paid_bg.45dc8983.jpg",
-  "vendor.js": "static/js/vendor.6dfe9821.js",
-  "vendor.js.map": "static/js/vendor.6dfe9821.js.map"
+  "vendor.js": "static/js/vendor.93ffb237.js",
+  "vendor.js.map": "static/js/vendor.93ffb237.js.map"
 }
