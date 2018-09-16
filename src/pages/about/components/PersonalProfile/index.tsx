@@ -32,9 +32,6 @@ class PersonalProfile extends React.Component<IPersonalProfileProps, never> {
 						虽然好久没有用C++了，但是依然注着它和它应用的领域
 					</div>
 				</div>
-				<span className={'direction'} onClick={this.onToNext}>
-					︾
-				</span>
 			</div>
 		);
 	}

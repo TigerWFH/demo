@@ -3,7 +3,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
-import { Route, HashRouter as Router, Link } from 'react-router-dom';
+import { Route, Router, Link } from 'react-router-dom';
+import { createHashHistory } from 'history';
 
 // components
 import Demo from './pages/demo/';
@@ -30,32 +31,42 @@ interface IAppState {
 }
 
 const HASH_MAP_TITLE = new Map([
-	[ '#/', '个人经历' ],
-	[ '#/demo', '测试Demo' ],
-	[ '#/first', 'first' ],
-	[ '#/ui', 'ui' ],
-	[ '#/algorithm', '算法' ],
-	[ '#/fillorder', 'fillorder' ],
-	[ '#/payment', 'payment' ],
-	[ '#/state', 'state' ],
-	[ '#/react', 'react' ]
+	[ '/', '个人经历' ],
+	[ '/demo', '测试Demo' ],
+	[ '/first', 'first' ],
+	[ '/ui', 'ui' ],
+	[ '/algorithm', '算法' ],
+	[ '/fillorder', 'fillorder' ],
+	[ '/payment', 'payment' ],
+	[ '/state', 'state' ],
+	[ '/react', 'react' ]
 ]);
 
+const history = createHashHistory();
+const unblock = history.block((location, state) => {
+	// alert(JSON.stringify(location));
+	// unblock();/*取消阻塞*/
+});
+
 class App extends React.Component<IAppProps, IAppState> {
+	listener: any;
 	constructor(props: IAppProps) {
 		super(props);
-		window.addEventListener('hashchange', this.getTitle, false);
+		// window.addEventListener('hashchange', this.getTitle, false);
+		this.listener = history.listen((location, action) => {
+			console.log('history.location=', location);
+			this.getTitle(location.pathname);
+		});
 		this.state = {
 			isShowSlidebar: false,
-			title: HASH_MAP_TITLE.get(location.hash),
+			title: HASH_MAP_TITLE.get(history.location.pathname),
 			onGetInfo: (title) => {}
 		};
 	}
 
-	getTitle = () => {
-		let hash = location.hash;
+	getTitle = (pathname) => {
 		this.setState({
-			title: HASH_MAP_TITLE.get(hash)
+			title: HASH_MAP_TITLE.get(pathname)
 		});
 	};
 	onHideSlidebar = () => {
@@ -63,7 +74,7 @@ class App extends React.Component<IAppProps, IAppState> {
 			isShowSlidebar: !this.state.isShowSlidebar
 		});
 	};
-	
+
 	render() {
 		let { isShowSlidebar, title, onGetInfo } = this.state;
 		return (
@@ -86,13 +97,14 @@ class App extends React.Component<IAppProps, IAppState> {
 	}
 
 	componentWillUnMount() {
-		window.removeEventListener('hashchange', this.getTitle, false);
+		// window.removeEventListener('hashchange', this.getTitle, false);
+		this.listener();
 	}
 }
 
 let elems = (
 	<Provider store={store}>
-		<Router>
+		<Router history={history}>
 			<App>
 				{/*exact严格匹配，替换了原来的IndexRoute;也取消了嵌套(nested)*/}
 				<Route exact strict path="/" component={About} />

@@ -13,10 +13,15 @@ interface IWorkExperienceState {
 }
 
 const SUMMARY_LABEL = '总结：';
+const FIRST = '1、大学期间，积累了丰富计算机专业基础知识';
+const SECOND = '2、研究生到工作第一年，培养了独立调研和学习新技术的能力，并广泛接触学习了前后端技术知识';
+const THIRD = '3、工作第二年，技术栈转向React及其周边，技术有了快速的进步，并接触学习了前端工程化的概念';
+const FOUTH = '4、工作第三年至今，一方面延续了对技术的学习和探索，另一方面则填充了对业务的相关学习和实践经验';
 const SUMMARY =
-	'独立调研过Cordova，angular,ionic等框架、库。独立调研了微信小程序开发的可行性并进行demo实验。同时进行了pc端和无线端项目开发。\
-	项目使用了react，react-router,redux等技术，并使用gulp,webpack,nodejs等相关的前端自动化开发工具。具有较强的独立学习能力。\
-	拥有4年的c/c++使用经验，了解http,socket等协议';
+	'1、大学期间，积累了计算机专业知识，学习了包括《数据结构》、《操作系统》、《计算机网络》、《计算机组成原理》等课程\
+	 2、研究生到工作第一年，培养了独立调研和学习新技术的能力，并广泛接触学习了前后端技术知识\
+	 3、工作第二年，技术栈转向React及其周边，技术有了快速的进步，并接触学习了前端工程化的概念\
+	 4、工作第三年至今，一方面延续了对技术的学习和探索，另一方面则填充了对业务的相关学习和实践经验，这也是我在目前当前公司获取到的最大收获';
 
 const LABEL_LIST = [ '平安好医生', '领壹金融', '云之轩', '大连民族大学', '安阳工学院' ];
 const MAP_NAME_TO_INFO = new Map([
@@ -183,8 +188,13 @@ class WorkExperience extends React.Component<IWorkExperienceProps, IWorkExperien
 					</div>
 					<div className={'we-content'}>
 						<div className={'we-summary'}>
-							<span className={'we-summary-label'}>{SUMMARY_LABEL}</span>
-							<div className={'we-summary-content'}>{SUMMARY}</div>
+							<div className={'we-summary-label'}>{SUMMARY_LABEL}</div>
+							<div className={'we-summary-content'}>
+								<div>{FIRST}</div>
+								<div>{SECOND}</div>
+								<div>{THIRD}</div>
+								<div>{FOUTH}</div>
+							</div>
 						</div>
 						<InfoCard data={MAP_NAME_TO_INFO.get(this.state.index)} />
 					</div>

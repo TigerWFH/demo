@@ -20,14 +20,14 @@ import actions from './actions';
 import './index.less';
 
 const demoIsHide = new Map([
-	[ 'demo1', true ],
-	[ 'demo2', true ],
-	[ 'demo3', true ],
-	[ 'demo4', true ],
-	[ 'demo5', true ],
-	[ 'demo6', true ],
-	[ 'demo7', true ],
-	[ 'demo8', true ]
+	[ 'demo1', false ],
+	[ 'demo2', false ],
+	[ 'demo3', false ],
+	[ 'demo4', false ],
+	[ 'demo5', false ],
+	[ 'demo6', false ],
+	[ 'demo7', false ],
+	[ 'demo8', false ]
 ]);
 function mapStateToProps(state, ownProps) {
 	let { demo } = state;

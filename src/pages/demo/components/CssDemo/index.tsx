@@ -18,6 +18,41 @@ class CssDemo extends React.Component<IProps, IState>{
     render() {
         return (
             <div>
+                <div>
+                    <h1>探索字体、字型、字形、字符和line-height、font-size</h1>
+                    <div>
+                        <div>字符(Character)：字母、数字、汉字、符号等，是一种抽象实体</div>
+                        <div>字形(Glyph)：单个「字符」的具体表达，一个字可有多个不同的字形</div>
+                        <div>字型(Font)：印刷行业中，指某一整套具有同样样式和尺码的字形，如一整套中易宋体 5 号字、一整套 9 磅 Helvetica Neue粗体字。</div>
+                        <div>字体(Typeface)：若干个「字型」在若干个尺寸上的集合</div>
+                        <div>原则上，unicode仅针对字符编码</div>
+                    </div>
+                </div>
+                <div>
+                    <h1>西文字体</h1>
+                    <div>西文最基本分类：衬线字体和无衬线字体</div>
+                    <div>书体类型：衬线体、粗衬线体、无衬线体、手写体、等宽体、哥特体、幻想体</div>
+                    <div className={'text-type-1'}>serif ABCTabctgTimes TimesNewRoman</div>
+                    <div className={'text-type-7'}>Egyptienne ABCTabctg Egyptienne F</div>
+                    <div className={'text-type-2'}>Sanserif ABCTabctg Arial Helvatica</div>
+                    <div className={'text-type-3'}>Script ABCTabctg Comic Sans MS</div>
+                    <div className={'text-type-5'}>Mono ABCTabctg Menlo</div>
+                    <div className={'text-type-6'}>Blackletter ABCTabctg JSL Blackletter</div>
+                    <div className={'text-type-4'}>ABCTabctg Bodoni Ornaments</div>
+                </div>
+                <div>
+                    <h1>中文字体</h1>
+                    <div className={'text-type-11'}>苹方体（苹方体）最基本分类：简体中文和繁体中文，微软雅黑</div>
+                    <div className={'text-type-12'}>宋体（Songti SC），代表有中</div>
+                    <div className={'text-type-13'}>黑体（Heiti TC）， 代表有中</div>
+                    {/* <div className={'text-type-14'}>仿宋体，方正仿宋</div>
+                    <div className={'text-type-15'}>楷体， Kaiti， 方正楷体</div>
+                    <div className={'text-type-16'}>雅痞（Yuppy）代表有张王李赵找钱随礼</div> */}
+                </div>
+                <div>
+                    结论：可以确定：font-size：指定了字体em大小，Mac OS会根据hhead Descent、hhead Ascent、linegap渲染字体实际尺寸
+                        对应的，Window OS会根据Win Descent和Win Ascent渲染字体实际尺寸
+                </div>
                 <div style={{ display: demoIsHideMap.get("demo1") && "none" }}>
                     <h1>对文本的控制</h1>
                     <div className="text-first">
