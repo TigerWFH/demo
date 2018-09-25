@@ -65,6 +65,10 @@ class App extends React.Component<IAppProps, IAppState> {
 		};
 	}
 
+	componentDidMount() {
+		// 可以获取全局数据，放到state上
+	}
+
 	getTitle = (pathname) => {
 		this.setState({
 			title: HASH_MAP_TITLE.get(pathname)
