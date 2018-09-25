@@ -16,6 +16,7 @@ import FillOrder from './pages/fillorder';
 import About from './pages/about';
 import State from './pages/state';
 import ReactPage from './pages/react';
+import I18n from './pages/i18n';
 
 import { Header, Slidebar, View, Item } from './widgets';
 // store
@@ -90,6 +91,7 @@ class App extends React.Component<IAppProps, IAppState> {
 					<Item title={'payment'} href={'/#/payment'} />
 					<Item title={'state'} href={'/#/state'} />
 					<Item title={'reactPage'} href={'/#/react'} />
+					<Item title={'i18n'} href={'/#/i18n'} />
 				</Slidebar>
 				<View>{this.props.children}</View>
 			</div>
@@ -116,6 +118,7 @@ let elems = (
 				<Route exact strict path="/payment" component={Payment} />
 				<Route exact strict path="/state" component={State} />
 				<Route exact strict path="/react" component={ReactPage} />
+				<Route exact strict path="/i18n" component={I18n} />
 			</App>
 		</Router>
 	</Provider>
