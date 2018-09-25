@@ -16,8 +16,14 @@ class Demo extends React.Component<IDemoProps, never> {
     render() {
         return (
             <IntlProvider locale={lang} messages={message}>
-                <FormattedMessage id={"BackManage"}
-                    defaultMessage={"我是默认文案"} />
+                <div>
+                    <FormattedMessage id={"BackManage"}
+                        defaultMessage={"我是默认文案"} />
+                    <FormattedMessage id={"POSTS"}
+                        defaultMessage={"我是默认文案POSTS"} />
+                    <FormattedMessage id={"Posts"}
+                        defaultMessage={"我是默认文案Posts"} />
+                </div>
             </IntlProvider>
         )
     }
