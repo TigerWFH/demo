@@ -161,6 +161,21 @@
 	特有组件则单独开发，并存放在compoennets目录下。
 	非业务组件------>业务组件------>页面------>应用
 
+
+# react
+
+# redux
+
+# react-redux
+
+# redux-thunk
+
+# react-router
+
+# promise
+[参考资料](http://www.ituring.com.cn/(F(fOE8uHtCjZW76HuECeWYIQvcHXjAbKihNiyYMF3PD3qjKS9ouDC0Dgsm_dVXrsLEv9aJHLXCnu1MD2hEIU3b0dRXET8yWlcOCiW2v8YtJEhW-SeRKkBDXKTsKnGUZr3I0))/article/66566)
+# fetch
+
 # 关于ajax请求
 
 * 交互行为类的请求，防止重复请求，返回data
