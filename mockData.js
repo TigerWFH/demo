@@ -1,6 +1,7 @@
 export default {
     "en": {
         "BackManage": "Backstage Management",
+        "postTime": "2018-9-10",
         "POSTS": "POSTS",
         "Posts": "Posts",
         "Post Categories": "Post Categories",
@@ -18,6 +19,7 @@ export default {
     },
     "zh": {
         "BackManage": "\u7ba1\u7406\u540e\u53f0",
+        "postTime": "2018-9-10",
         "POSTS": "\u6240\u6709\u535a\u6587",
         "Posts": "\u535a\u6587",
         "Post Categories": "\u535a\u6587\u5206\u7c7b",

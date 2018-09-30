@@ -9,6 +9,7 @@ interface IState {}
 class DemoUI extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
+		console.log("UI.props===>", this.props);
 	}
 	componentDidMount() {
 		actions.requestSecond({});
