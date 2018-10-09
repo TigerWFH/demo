@@ -161,10 +161,28 @@
 	特有组件则单独开发，并存放在compoennets目录下。
 	非业务组件------>业务组件------>页面------>应用
 
-
+# es运算符
+* ...：1、扩展运算符(spread operator) 2、剩余操作符(rest operator)，解构操作的一种
 # react
 
 # redux
+* Single source of truth
+* State is read-only
+* Changes are made with pure functions
+
+* top level api
+
+* createStore(reducer, [preloadedState], [enhancer])
+* combineReducers(reducers)
+* applyMiddleWare(...middlewares)
+* bindActionCreators(actionCreators, dispatch)
+* compose(...functions)
+
+* Store api
+* getState()
+* dispatch(action)
+* subscribe(listener)
+* replaceReducer(nextReducer)
 
 # react-redux
 
@@ -482,6 +500,79 @@ else{
 * 惰性载入函数
 * 函数绑定
 * 函数柯理化
+
+	如题：
+	```
+		fn() ===> 0
+
+		fn(2)() ===> 2
+
+		fn(2)(7) ===> 9
+
+		fn(2)(5)(7) ===> 14
+	```
+	实现函数fn.
+
+	思考：
+	```
+	方案一：全局变量控制
+
+	let sum = 0;
+
+	function fn() {
+		if (arguments.length) {
+			sum += arguments[0];
+			return fn;
+		}
+
+		return sum;
+	}
+
+	console.log(fn());
+	sum = 0;
+	console.log(fn(2)());
+	sum = 0;
+	console.log(fn(2)(7)());
+	sum = 0;
+	console.log(fn(2)(7)(5)());
+
+	方案2：将全局变量收敛到局部作用域，比如函数作用域（似乎js也就只有函数作用域了），既柯里化
+	function curry(fn) {
+		let args = arguments;
+		let outerArgs = Array.prototype.slice.call(args, 1);
+
+		return function() {
+			let innerArgs = Array.prototype.slice.apply(arguments);
+			let finnalArgs = outerArgs.concat(innerArgs);
+
+			if (arguments.length) {
+				return arguments.callee;
+			}
+
+			<!-- 还原outerArgs，类似方案1中的sum -->
+			outerArgs = Array.prototype.slice.call(args, 1);
+
+			return fn.apply(null, finallyArgs);
+		}
+	}
+
+	function add() {
+		let length = arguments.length;
+		let sum = 0;
+		while(length > 0) {
+			sum += arguments[--length];
+		}
+
+		return sum;
+	}
+
+	let curriedAdd = curry(add);
+	
+	console.log(curriedAdd());
+	console.log(curriedAdd(2)());
+	console.log(curriedAdd(2)(7)());
+	console.log(curriedAdd(2)(7)(5)());
+	```
 
 	
 
