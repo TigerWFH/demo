@@ -930,3 +930,34 @@ volumechange
 * n3-charts：基于D3.js和angular
 * Ember Charts：基于D3和Ember
 * Demo
+
+
+# 关于数据模型抽象创建的想法
+```
+1、将状态全部抽到state树上，将每个页面的数据都抽象成uiData、apiData两部分
+	actionTypes:
+		1、api接口的actionTypes，服务器可能会改变UI状态
+		2、ui操作的actionTypes，用户操作也会改变UI状态
+	actions：
+		1、apiActions
+		2、businessActions
+	reducers：
+		1、apiReducers：处理api请求
+		2、businessReducers：处理ui用户操作，还有可能处理api涉及UI状态的处理
+
+	uiData: 每一项对应一个业务组件UI数据
+	apiData： 每一项对应一个业务数据
+
+	1.1、apiData包括业务数据和api请求状态，可以按照业务组件抽出数据结构，比如商品信息类业务数据，促销类业务数据、发票类业务数据、运费类业务数据
+
+	1.2、uiData类似单选框、复选框之类的状态，可以按业务抽出数据结构，比如促销类UI数据、发票类UI数据、运费累UI数据
+
+	1.3 分成UIData和apiData，就需要将部分甚至全部的ActionType处理2遍，所以有必要这样分吗？
+
+2、业务数据放在state树上，UI状态放在组件内部
+
+
+想法：1、state树直接提供UI中业务组件的props属性，拿来即用，不需要额外的逻辑处理
+	2、container还是要处理逻辑，比如夸平台，用户交互
+
+```
