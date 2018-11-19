@@ -438,8 +438,9 @@ if (){
 else{
 }
 ```
-# js中的对象
+# JS一些行业用语
 * plain object:简单对象，既{}或new Object()
+* js supplant
 * Ajax技术：异步javascript xml
 
 		1、从服务器获取数据且不用卸载页面（有益用户体验）
