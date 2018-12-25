@@ -16,6 +16,18 @@ For example, instead of exposing open() and close() methods on a Dialog
 
 component, pass an isOpen prop to it.
 ## demo2
+```
+    关于props属性初始值得设置顺序，
+
+    1、 static defaultProps
+
+    2、 每一个reducer中的默认state
+
+    3、 createStore(reducers, preloadedState, enhancer)中的preloadedState，可以在此处从全局角度出发，考虑设计应用的state
+
+```
+
+
 ## demo3
 ## demo4
 ## demo5
