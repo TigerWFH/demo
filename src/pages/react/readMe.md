@@ -17,7 +17,7 @@ For example, instead of exposing open() and close() methods on a Dialog
 component, pass an isOpen prop to it.
 ## demo2
 ```
-    关于props属性初始值得设置顺序，
+    关于props属性初始值得设置顺序(优先级依次升高，即2的值覆盖1的值，3的值覆盖2的值，最终展示3的值，且只render一次，除非有新的渲染)，
 
     1、 static defaultProps
 
