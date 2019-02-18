@@ -920,15 +920,6 @@ seeked
 resize
 volumechange
 
-<<<<<<< HEAD
-# 同步工具
-```
-GitHub Token: 0dda64dce8b7fac3de9f9040cd2469808938ff4c
-GitHub Gist(同步密钥): f4402bd9c87c11daceb45b5efea58a25
-GitHub Gist Type: Secret
-
-```
-=======
 # [js可视化图表库](https://www.cnblogs.com/lhb25/p/best-javascript-charting-libraries.html)
 * chart.js：HTML5的Canvas绘图，支持6种图标类型（折线图、条形图、雷达图、饼图、柱状图、极地区域区，独立的包不依赖第三方库）
 * ECharts：基于Canvas，底层基于ZRender
@@ -971,4 +962,10 @@ GitHub Gist Type: Secret
 	2、container还是要处理逻辑，比如夸平台，用户交互
 
 ```
->>>>>>> 1e45109db606d931457beae8978e7acecfb785d5
+# 同步工具
+```
+GitHub Token: 0dda64dce8b7fac3de9f9040cd2469808938ff4c
+GitHub Gist(同步密钥): f4402bd9c87c11daceb45b5efea58a25
+GitHub Gist Type: Secret
+
+```
