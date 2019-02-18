@@ -794,3 +794,11 @@ seeking
 seeked
 resize
 volumechange
+
+# 同步工具
+```
+GitHub Token: 0dda64dce8b7fac3de9f9040cd2469808938ff4c
+GitHub Gist(同步密钥): f4402bd9c87c11daceb45b5efea58a25
+GitHub Gist Type: Secret
+
+```
