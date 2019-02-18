@@ -1,5 +1,5 @@
 # 项目说明
-本项目所有的内容仅仅用于个人学习交流使用，未经授权（尤其是英语文章的翻译授权），禁止任何形式的商业非商业的使用
+本项目所有的内容仅仅用于个人学习交流使用，未经授权，禁止任何形式使用
 # 开始
 创建目录结构(项目当前`正在使用`的目录结构)
 
@@ -160,6 +160,46 @@
 	通用业务组件拉出去，作为单独的项目。
 	特有组件则单独开发，并存放在compoennets目录下。
 	非业务组件------>业务组件------>页面------>应用
+
+# es运算符
+* ...：1、扩展运算符(spread operator) 2、剩余操作符(rest operator)，解构操作的一种
+# react
+
+# redux
+* Single source of truth
+* State is read-only
+* Changes are made with pure functions
+
+* top level api
+
+* createStore(reducer, [preloadedState], [enhancer])
+* combineReducers(reducers)
+* applyMiddleWare(...middlewares)
+* bindActionCreators(actionCreators, dispatch)
+* compose(...functions)
+
+* Store api
+* getState()
+* dispatch(action)
+* subscribe(listener)
+* replaceReducer(nextReducer)
+
+# react-redux
+
+# redux-thunk
+
+# react-router
+
+# promise
+[参考资料](http://www.ituring.com.cn/(F(fOE8uHtCjZW76HuECeWYIQvcHXjAbKihNiyYMF3PD3qjKS9ouDC0Dgsm_dVXrsLEv9aJHLXCnu1MD2hEIU3b0dRXET8yWlcOCiW2v8YtJEhW-SeRKkBDXKTsKnGUZr3I0))/article/66566)
+# fetch
+
+# 关于ajax请求
+
+* 交互行为类的请求，防止重复请求，返回data
+
+* 获取信息类的请求，尽量重用数据，不返回data
+
 # 第一步
 首先安装工具，webpack和typescript
 
@@ -398,7 +438,9 @@ if (){
 else{
 }
 ```
-# js中的对象
+# JS一些行业用语
+* plain object:简单对象，既{}或new Object()
+* js supplant
 * Ajax技术：异步javascript xml
 
 		1、从服务器获取数据且不用卸载页面（有益用户体验）
@@ -461,6 +503,83 @@ else{
 * 函数绑定
 * 函数柯理化
 
+	作用：
+
+		用于创建已经设置好了 一个或多个参数的函数。
+
+	如题：
+	```
+		fn() ===> 0
+
+		fn(2)() ===> 2
+
+		fn(2)(7) ===> 9
+
+		fn(2)(5)(7) ===> 14
+	```
+	实现函数fn.
+
+	思考：
+	```
+	方案一：全局变量控制
+
+	let sum = 0;
+
+	function fn() {
+		if (arguments.length) {
+			sum += arguments[0];
+			return fn;
+		}
+
+		return sum;
+	}
+
+	console.log(fn());
+	sum = 0;
+	console.log(fn(2)());
+	sum = 0;
+	console.log(fn(2)(7)());
+	sum = 0;
+	console.log(fn(2)(7)(5)());
+
+	方案2：将全局变量收敛到局部作用域，比如函数作用域（似乎js也就只有函数作用域了），既柯里化
+	function curry(fn) {
+		let args = arguments;
+		let outerArgs = Array.prototype.slice.call(args, 1);
+
+		return function() {
+			let innerArgs = Array.prototype.slice.apply(arguments);
+			let finnalArgs = outerArgs.concat(innerArgs);
+
+			if (arguments.length) {
+				return arguments.callee;
+			}
+
+			<!-- 还原outerArgs，类似方案1中的sum -->
+			outerArgs = Array.prototype.slice.call(args, 1);
+
+			return fn.apply(null, finallyArgs);
+		}
+	}
+
+	function add() {
+		let length = arguments.length;
+		let sum = 0;
+		while(length > 0) {
+			sum += arguments[--length];
+		}
+
+		return sum;
+	}
+
+	let curriedAdd = curry(add);
+	
+	console.log(curriedAdd());
+	console.log(curriedAdd(2)());
+	console.log(curriedAdd(2)(7)());
+	console.log(curriedAdd(2)(7)(5)());
+	```
+
 	
 
 # component and module
@@ -471,9 +590,15 @@ else{
 
 # 字符集和编码方案
 
-* 字符集：为每一个`字符`分配一个唯一的ID（学名为`码位`、`码点`、`Code Point`）
+* 字符集：所有符号的集合
+
+* 字符编码集：为每一个`字符`分配一个唯一的ID（学名为`码位`、`码点`、`Code Point`）
+
+* 码元(code unit)：编码方案中最小字节，例如：utf8码元是8bit，utf16是16bit，utf32是32bit
     
 * 编码方案：将`码位（Code Point）`转换成`字节序列`（储存或传输）的规则。
+
+	譬如：utf-8，utf-16，utf-32
 
 	广泛的来讲，unicode是一个标准，定义了字符集以及一系列的编码规则，即Unicode字符集和UTF-8、UTF-16、UTF-32等等编码方案……
 
@@ -795,6 +920,7 @@ seeked
 resize
 volumechange
 
+<<<<<<< HEAD
 # 同步工具
 ```
 GitHub Token: 0dda64dce8b7fac3de9f9040cd2469808938ff4c
@@ -802,3 +928,47 @@ GitHub Gist(同步密钥): f4402bd9c87c11daceb45b5efea58a25
 GitHub Gist Type: Secret
 
 ```
+=======
+# [js可视化图表库](https://www.cnblogs.com/lhb25/p/best-javascript-charting-libraries.html)
+* chart.js：HTML5的Canvas绘图，支持6种图标类型（折线图、条形图、雷达图、饼图、柱状图、极地区域区，独立的包不依赖第三方库）
+* ECharts：基于Canvas，底层基于ZRender
+* D3.js：基于SVG
+* Highcharts：兼容性好，个人用户免费，纯js无bs接口
+* Fusionchart：强交互性
+* Flot：基于jQuery
+* Chartist.js：使用svgxua渲染图
+* n3-charts：基于D3.js和angular
+* Ember Charts：基于D3和Ember
+* Demo
+
+
+# 关于数据模型抽象创建的想法
+```
+1、将状态全部抽到state树上，将每个页面的数据都抽象成uiData、apiData两部分
+	actionTypes:
+		1、api接口的actionTypes，服务器可能会改变UI状态
+		2、ui操作的actionTypes，用户操作也会改变UI状态
+	actions：
+		1、apiActions
+		2、businessActions
+	reducers：
+		1、apiReducers：处理api请求
+		2、businessReducers：处理ui用户操作，还有可能处理api涉及UI状态的处理
+
+	uiData: 每一项对应一个业务组件UI数据
+	apiData： 每一项对应一个业务数据
+
+	1.1、apiData包括业务数据和api请求状态，可以按照业务组件抽出数据结构，比如商品信息类业务数据，促销类业务数据、发票类业务数据、运费类业务数据
+
+	1.2、uiData类似单选框、复选框之类的状态，可以按业务抽出数据结构，比如促销类UI数据、发票类UI数据、运费累UI数据
+
+	1.3 分成UIData和apiData，就需要将部分甚至全部的ActionType处理2遍，所以有必要这样分吗？
+
+2、业务数据放在state树上，UI状态放在组件内部
+
+
+想法：1、state树直接提供UI中业务组件的props属性，拿来即用，不需要额外的逻辑处理
+	2、container还是要处理逻辑，比如夸平台，用户交互
+
+```
+>>>>>>> 1e45109db606d931457beae8978e7acecfb785d5

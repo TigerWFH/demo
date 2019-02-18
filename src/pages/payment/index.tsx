@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import actions from './actions';
-import { getMedicineCode } from './actions/businessActions';
 // css
 import './index.less';
 
@@ -32,7 +31,7 @@ class Payment extends React.Component<IPaymentProp, never>{
     }
 
     onToDoctor = () => {
-        actions.getMedicineCode();
+        actions.fetchMedicineCode();
     }
     onEndDiagnose = () => {
 
@@ -103,20 +102,20 @@ class Payment extends React.Component<IPaymentProp, never>{
     renderButtons(status) {
         let elem = <div className={'buttonsContainer'}>
             {
-                status === 'SUCCESS' ?
+                status === 'REQUEST_SUCCESS' ?
                     <button className={'normal'}
                         onClick={this.onToDoctor}>
                         还想问问
                     </button> :
                     null
             }
-            <button className={status === 'SUCCESS' ?
+            <button className={status === 'REQUEST_SUCCESS' ?
                 'active' : 'normal'}
                 onClick={this.onEndDiagnose}>
                 结束问诊
             </button>
             {
-                status === 'FAIL' ?
+                status === 'REQUEST_FAIL' ?
                     <button className={'active'}
                         onClick={this.onRePurchase}>
                         重新支付
@@ -135,12 +134,12 @@ class Payment extends React.Component<IPaymentProp, never>{
         let title = '';
         let logo = '';
         let tip = '';
-        if (status === 'SUCCESS') {
+        if (status === 'REQUEST_SUCCESS') {
             title = '支付成功';
             logo = require('../../common/res/images/gmcg@2x.png');
             tip = '温馨提示:SuccessXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
         }
-        else if (status === 'FAIL') {
+        else if (status === 'REQUEST_FAIL') {
             title = '未支付';
             logo = require('../../common/res/images/sb@2x.png');
             tip = '温馨提示:FailXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
@@ -148,7 +147,7 @@ class Payment extends React.Component<IPaymentProp, never>{
         let elem = <div className={"rootContainerPayment"}>
             {this.renderTitleAndTip(title, logo, tip)}
             {
-                status === 'SUCCESS' ? this.renderCodeOrFlush(code, medicineCode) : null
+                status === 'REQUEST_SUCCESS' ? this.renderCodeOrFlush(code, medicineCode) : null
             }
             {
                 this.renderButtons(status)
@@ -160,8 +159,8 @@ class Payment extends React.Component<IPaymentProp, never>{
 
 
     render() {
-        let { status = 'INITIAL', code, medicineCode } = this.props;
-        return status === 'INITIAL' ? null : this.renderData(status, code, medicineCode)
+        let { status = 'REQUEST_INITIAL', code, medicineCode } = this.props;
+        return status === 'REQUEST_INITIAL' ? null : this.renderData(status, code, medicineCode)
     }
 }
 

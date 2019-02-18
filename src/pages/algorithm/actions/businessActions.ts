@@ -1,23 +1,35 @@
-import {bindActionCreators} from 'redux';
 import * as t from './actionTypes';
+import { algorithm } from '../../apis';
 
-export const fetchAlgorithm = (payload) => {
-    return {
-        type: t.FETCH_ALGORITHM,
-        payload
-    };
-}
+const fetchAlgorithm = () => {
+	return {
+		type: t.FETCH_ALGORITHM
+	};
+};
 
-export const fetchAlgorithmSuccess = (payload) => {
-    return {
-        type: t.FETCH_ALGORITHM_SUCCESS,
-        payload
-    };
-}
+const fetchAlgorithmSuccess = (payload) => {
+	return {
+		type: t.FETCH_ALGORITHM_SUCCESS,
+		payload
+	};
+};
 
-export const fetchAlgorithmFail = (payload) => {
-    return {
-        type: t.FETCH_ALGORITHM_FAIL,
-        payload
-    };
-}
+const fetchAlgorithmFail = (payload) => {
+	return {
+		type: t.FETCH_ALGORITHM_FAIL,
+		payload
+	};
+};
+
+export const requestAlgorithm = (params) => {
+	return (dispatch, getState) => {
+		dispatch(fetchAlgorithm());
+		algorithm(params)
+			.then((data) => {
+				dispatch(fetchAlgorithmSuccess(data));
+			})
+			.catch((error) => {
+				dispatch(fetchAlgorithmFail(error));
+			});
+	};
+};

@@ -7,5 +7,6 @@ import { Slidebar } from './slidebar';
 import { View } from './view';
 import { Menu } from './menu';
 import { Item } from './item';
+import {Toast} from './Toast';
 
-export { Header, Slidebar, View, Menu, Input, Mask, Message, Modal, Item };
+export { Header, Slidebar, View, Menu, Input, Mask, Message, Modal, Item, Toast };
