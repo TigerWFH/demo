@@ -1,0 +1,13 @@
+@startuml demo
+scale 2
+left to right direction
+skinparam PackageStyle rect
+actor customer
+actor clerk
+rectangle checkout {
+    custormer -- (checkout)
+    (checkout) -> (payment): inculude
+    (help) .> (checkout): extend
+    (checkout) -- clerk
+}
+@enduml
