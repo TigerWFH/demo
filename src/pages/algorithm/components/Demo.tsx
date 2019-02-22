@@ -6,5 +6,8 @@ export function Demo(props:any) {
         {
             props.code
         }
+        {
+            props.demo.name
+        }
     </div>
 }
