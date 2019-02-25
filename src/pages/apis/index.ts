@@ -14,6 +14,20 @@ export const algorithm = (params) => {
 	});
 };
 
+export const getRecipe = (params) => {
+	return new Promise((resolve, reject) => {
+		if (params) {
+			resolve({
+				store: {}
+			});
+		} else {
+			reject({
+				error: 'i am getRecipe server response: error'
+			});
+		}
+	});
+};
+
 // demo
 export const demo = (params) => {
 	return new Promise((resolve, reject) => {

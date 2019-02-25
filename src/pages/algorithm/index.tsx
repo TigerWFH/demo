@@ -23,19 +23,15 @@ class AlgorithmUI extends React.Component<IProps, IState> {
 	}
 
 	componentDidMount() {
-		debugger
 		actions.requestAlgorithm({});
+		actions.requestGetingRecipe({});
 		let i = 0;
-		let timer = setInterval(() => {
-			demo.name = `${demo.name}${++i}`;
-			console.log("demo===>", demo.name);
-		}, 1000);
+		console.log("props===>", this.props);
 	}
 
 	render() {
 		const {algorithm = {}} = this.props;
 		console.log(`第${i++}次`, algorithm);
-		debugger
 		let code = '\u73b0\u91d1';
 		return <div className="mm">
 		{

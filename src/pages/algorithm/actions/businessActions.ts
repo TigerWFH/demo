@@ -1,5 +1,5 @@
 import * as t from './actionTypes';
-import { algorithm } from '../../apis';
+import { algorithm, getRecipe } from '../../apis';
 
 const fetchAlgorithm = () => {
 	return {
@@ -33,3 +33,36 @@ export const requestAlgorithm = (params) => {
 			});
 	};
 };
+
+const fetchRecipe = () => {
+	return {
+		type: t.GET_RECIPE
+	}
+};
+
+const fetchRecipeSuccess = (payload) => {
+	return {
+		type: t.GET_RECIPE_SUCCESS,
+		payload
+	}
+};
+
+const fetchRecipeFail = (error) => {
+	return {
+		type: t.GET_RECIPE,
+		payload: error
+	}
+};
+
+export const requestGetingRecipe = (params) => {
+	return (dispatch, getState) => {
+		dispatch(fetchRecipe())
+		return getRecipe(params)
+			.then((data) => {
+				dispatch(fetchRecipeSuccess(data));
+			})
+			.catch((error) => {
+				dispatch(fetchRecipeFail(error));
+			});
+	}
+}
