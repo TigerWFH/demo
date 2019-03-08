@@ -960,7 +960,14 @@ volumechange
 
 想法：1、state树直接提供UI中业务组件的props属性，拿来即用，不需要额外的逻辑处理
 	2、container还是要处理逻辑，比如夸平台，用户交互
+```
+# 关于setState
+```
+Demo在fillorder页面
 
+react对state的更新有两个分之，一个分之合并setState，只有合并过后才会走完生命周期并更新state；一个会一直走完生命周期并更新state。
+
+在生命周期或合成事件中，setState会被合并；在其他地方的setState会直接走完生命周期
 ```
 # 同步工具
 ```

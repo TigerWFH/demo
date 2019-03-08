@@ -14,27 +14,59 @@ interface IFillOrderProps {
 }
 
 interface IFillOrderState {
-    phone: string;
+    phone: number | string;
 }
 
 class FillOrder extends React.Component<IFillOrderProps, IFillOrderState>{
     constructor(props) {
         super(props);
         this.state = {
-            phone: ''
+            phone: 0
         };
     }
 
     componentDidMount() {
         let params = {};
-        actions.requestGoodsInfo(params);
+        // actions.requestGoodsInfo(params);
+        this.setState({
+            phone: +this.state.phone + 1
+        }, ()=>{
+            console.log("callback phone1===>", this.state.phone);
+        });
+        console.log("phone1===>", this.state.phone);
+        this.setState({
+            phone: +this.state.phone + 1
+        }, ()=>{
+            console.log("callback phone2===>", this.state.phone);
+        });
+        console.log("phone2===>", this.state.phone);
+        setTimeout(() => {
+            this.setState({
+                phone: +this.state.phone + 1
+            }, ()=>{
+                console.log("callback phone3===>", this.state.phone);
+            });
+            console.log("phone3===>", this.state.phone);
+            this.setState({
+                phone: +this.state.phone + 1
+            }, ()=>{
+                console.log("callback phone4===>", this.state.phone);
+            });
+            console.log("phone4===>", this.state.phone);
+        }, 0);
+        
+    }
+    componentWillMount() {
+
     }
     onPhone = (phone: string) => {
+        debugger
         this.setState({
             phone
         });
     }
     render() {
+        console.log("render**************");
         let { goodsInfo: { goodsList = [] } } = this.props;
         let amount = 0;
         let totalFee = 0;
@@ -55,6 +87,11 @@ class FillOrder extends React.Component<IFillOrderProps, IFillOrderState>{
         </div>
     }
 }
+
+const instance = new FillOrder({});
+console.log("instance======>", instance);
+console.log("FillOrder.prototype======>", FillOrder.prototype);
+console.log("Component.prototype======>", React.Component.prototype);
 
 function mapStateToProps(state, ownProps) {
     let { fillorder } = state;
