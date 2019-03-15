@@ -5,15 +5,32 @@ import { IAudit, IInfo } from '../modals/uiModals';
 interface IAuditProps {
     infoData?: IInfo;
     auditData: IAudit;
+    // title: string;
 }
 
-export class Audit extends React.Component<IAuditProps, {}> {
+interface IAuditState {
+    value: string;
+}
 
+export class Audit extends React.Component<IAuditProps, IAuditState> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            value: ''
+        }
+    }
+
+    onChange = (e) => {
+        this.setState({
+            value: e.target.value
+        });
+    }
     render() {
-        let { infoData, auditData } = this.props;
+        console.log("Audit---render");
+        let { infoData, auditData} = this.props;
         return <div>
-            audit
-            <Info infoData={infoData} />
+            <input value={this.state.value}
+                onChange={this.onChange} />
         </div>
     }
 }

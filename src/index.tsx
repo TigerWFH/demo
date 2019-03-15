@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
-import { Route, Router, Link } from 'react-router-dom';
+import { Route, Router, Link, Switch } from 'react-router-dom';
 import { createHashHistory } from 'history';
 
 // components
@@ -81,6 +81,7 @@ class App extends React.Component<IAppProps, IAppState> {
 	};
 
 	render() {
+		console.log("App---render");
 		let { isShowSlidebar, title, onGetInfo } = this.state;
 		return (
 			<div className={isShowSlidebar ? 'app' : 'app app-show'}>
@@ -104,6 +105,7 @@ class App extends React.Component<IAppProps, IAppState> {
 
 	componentWillUnMount() {
 		// window.removeEventListener('hashchange', this.getTitle, false);
+		console.log("wilunmount销毁");
 		this.listener();
 	}
 }
@@ -113,16 +115,18 @@ let elems = (
 		<Router history={history}>
 			<App>
 				{/*exact严格匹配，替换了原来的IndexRoute;也取消了嵌套(nested)*/}
-				<Route exact strict path="/" component={About} />
-				<Route exact strict path="/demo" component={Demo} />
-				<Route exact strict path="/first" component={First} />
-				<Route exact strict path="/ui" component={DemoUI} />
-				<Route exact strict path="/algorithm" component={AlgorithmUI} />
-				<Route exact strict path="/fillorder" component={FillOrder} />
-				<Route exact strict path="/payment" component={Payment} />
-				<Route exact strict path="/state" component={State} />
-				<Route exact strict path="/react" component={ReactPage} />
-				<Route exact strict path="/i18n" component={I18n} />
+				<Switch>
+					<Route exact strict path="/" component={About} />
+					<Route exact strict path="/demo" component={Demo} />
+					<Route exact strict path="/first" component={First} />
+					<Route exact strict path="/ui" component={DemoUI} />
+					<Route exact strict path="/algorithm" component={AlgorithmUI} />
+					<Route exact strict path="/fillorder" component={FillOrder} />
+					<Route exact strict path="/payment" component={Payment} />
+					<Route exact strict path="/state" component={State} />
+					<Route exact strict path="/react" component={ReactPage} />
+					<Route exact strict path="/i18n" component={I18n} />
+				</Switch>
 			</App>
 		</Router>
 	</Provider>

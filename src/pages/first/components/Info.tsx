@@ -15,6 +15,7 @@ export class Info extends React.Component<IInfoProps, never> {
 
 
     render() {
+        console.log("info---render");
         let { infoData } = this.props
         return <div>
             info

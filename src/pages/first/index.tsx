@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Audit } from './components/Audit';
+import { Info } from './components/Info';
 import DropdownLoading from './components/DropdownLoading/index';
 
 import * as m from './modals/uiModals';
@@ -10,18 +11,36 @@ import './index.less';
 interface IFirstProps extends m.IFirstContainer {}
 interface IFirstState {
 	data: any[];
+	title: any;
 }
 
 class First extends React.Component<IFirstProps, IFirstState> {
 	constructor(props: IFirstProps) {
 		super(props);
 		this.state = {
-			data: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+			data: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+			title: {
+				name: 'monkey'
+			},
 		};
 	}
 
 	componentDidMount() {
-		actions.requestAccount({});
+		// actions.requestAccount({});
+		let timer = setTimeout(() => {
+			let title = this.state.title;
+			title.name = 'timeout';
+			console.log("before************");
+			this.setState({
+				title
+			}, () => {
+				console.log("timeout---run--->", this.state.title === title);
+			});
+		}, 1000)
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		return false;
 	}
 
 	renderContent = (data) => {
@@ -50,20 +69,33 @@ class First extends React.Component<IFirstProps, IFirstState> {
 					fn();
 				}
 			);
-		}, 1000);
+		}, 5000);
 	};
+
+	onChange = (e) => {
+		this.setState({
+			title: {
+				name: 123
+			}
+		});
+	}
+
 	render() {
-		let { auditData, infoData, tableData } = this.props;
-		const { data } = this.state;
-		console.log(this.renderContent(data));
+		console.log("First---render");
+		// let { auditData, infoData, tableData } = this.props;
+		const infoData = {
+			ticketId: 'info',
+			type: 'data'
+		};
 		return (
 			<div className="first">
-				{/* <Audit auditData={auditData}
-					infoData={infoData}>
-					{"audit"}
+				{/* <input value={title.name}
+					onChange={this.onChange} /> */}
+				<Audit infoData={this.state.title.name}
+					auditData={null}>
 				</Audit>
-				first page */}
-				<DropdownLoading reachBottom={this.reachBottom}>{this.renderContent(data)}</DropdownLoading>
+				<Info infoData={null} />
+				{/* <DropdownLoading reachBottom={this.reachBottom}>{this.renderContent(data)}</DropdownLoading> */}
 			</div>
 		);
 	}
@@ -74,4 +106,5 @@ function mapStateToProps(state, ownProps) {
 	return { ...first };
 }
 
-export default connect(mapStateToProps, null)(First);
+// export default connect(mapStateToProps, null)(First);
+export default First;
