@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Button } from 'antd';
+// import { Button } from 'antd';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
@@ -13,11 +13,11 @@ export class ButtonDemo extends React.Component<{}, never> {
         };
         return (
             <div className={'text'}>
-                <div className={'first'}>
+                {/* <div className={'first'}>
                     <Button >
                         {"antd"}
                     </Button>
-                </div>
+                </div> */}
                 <div className={'second'}>
                     <MuiThemeProvider>
                         <div>
