@@ -2,6 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Audit } from './components/Audit';
 import { Info } from './components/Info';
+import { Table } from './components/Table';
+import Search from './components/Search';
 import DropdownLoading from './components/DropdownLoading/index';
 
 import * as m from './modals/uiModals';
@@ -96,6 +98,8 @@ class First extends React.Component<IFirstProps, IFirstState> {
 					auditData={null}>
 					<Info infoData={null} />
 				</Audit>
+				<Search />
+				<Table />
 				
 				{/* <DropdownLoading reachBottom={this.reachBottom}>{this.renderContent(data)}</DropdownLoading> */}
 			</div>
