@@ -27,21 +27,21 @@ class First extends React.Component<IFirstProps, IFirstState> {
 
 	componentDidMount() {
 		// actions.requestAccount({});
-		let timer = setTimeout(() => {
-			let title = this.state.title;
-			title.name = 'timeout';
-			console.log("before************");
-			this.setState({
-				title
-			}, () => {
-				console.log("timeout---run--->", this.state.title === title);
-			});
-		}, 1000)
+		// let timer = setTimeout(() => {
+		// 	let title = this.state.title;
+		// 	title.name = 'timeout';
+		// 	console.log("before************");
+		// 	this.setState({
+		// 		title
+		// 	}, () => {
+		// 		console.log("timeout---run--->", this.state.title === title);
+		// 	});
+		// }, 1000)
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		return false;
-	}
+	// shouldComponentUpdate(nextProps, nextState) {
+	// 	return false;
+	// }
 
 	renderContent = (data) => {
 		if (Array.isArray(data)) {
@@ -75,7 +75,7 @@ class First extends React.Component<IFirstProps, IFirstState> {
 	onChange = (e) => {
 		this.setState({
 			title: {
-				name: 123
+				name: e.target.value
 			}
 		});
 	}
@@ -83,18 +83,20 @@ class First extends React.Component<IFirstProps, IFirstState> {
 	render() {
 		console.log("First---render");
 		// let { auditData, infoData, tableData } = this.props;
+		const {title} = this.state;
 		const infoData = {
 			ticketId: 'info',
 			type: 'data'
 		};
 		return (
 			<div className="first">
-				{/* <input value={title.name}
-					onChange={this.onChange} /> */}
+				<input value={this.state.title.name}
+					onChange={this.onChange} />
 				<Audit infoData={this.state.title.name}
 					auditData={null}>
+					<Info infoData={null} />
 				</Audit>
-				<Info infoData={null} />
+				
 				{/* <DropdownLoading reachBottom={this.reachBottom}>{this.renderContent(data)}</DropdownLoading> */}
 			</div>
 		);

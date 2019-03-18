@@ -20,6 +20,10 @@ export class Audit extends React.Component<IAuditProps, IAuditState> {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log("nextProps===>", nextProps);
+    }
+
     onChange = (e) => {
         this.setState({
             value: e.target.value
@@ -27,10 +31,15 @@ export class Audit extends React.Component<IAuditProps, IAuditState> {
     }
     render() {
         console.log("Audit---render");
+        console.log("typeof children---render", typeof this.props.children);
+        console.log("children---render", this.props.children);
         let { infoData, auditData} = this.props;
         return <div>
             <input value={this.state.value}
                 onChange={this.onChange} />
+                {
+                    this.props.children
+                }
         </div>
     }
 }
