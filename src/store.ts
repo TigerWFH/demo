@@ -30,7 +30,7 @@ const preLoadedState = {
 		},
 		addressInfo: {},
 		store: {},
-		promotion: {},
+		// promotion: {},
 		apiStatus: {}/* 记录api请求状态，可用于防止重复请求等 */
 	},
 	demo: {},
