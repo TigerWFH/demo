@@ -965,7 +965,7 @@ volumechange
 ```
 Demo在fillorder页面
 
-react对state的更新有两个分之，一个分之合并setState，只有合并过后才会走完生命周期并更新state；一个会一直走完生命周期并更新state。
+react对state的更新有两个分支，一个分支合并setState，只有合并过后才会走完生命周期并更新state；一个会一直走完生命周期并更新state。
 
 在生命周期或合成事件中，setState会被合并；在其他地方的setState会直接走完生命周期
 ```
