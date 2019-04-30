@@ -1,6 +1,7 @@
 // libs
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import thunk from 'redux-thunk';
+import {createLogger} from 'redux-logger';
 
 // reducers
 import firstReducer from './pages/first/reducers';
@@ -19,6 +20,16 @@ let rootReducer = combineReducers({
 	fillorder
 });
 
+let middlewares: Array<any> = [thunk];
+
+if(process.env.NODE_ENV === 'development') {
+  const logger = createLogger({
+    duration: true,
+    logErrors: true,
+    collapsed: true,
+  })
+  middlewares.push(logger);
+}
 // 提前设计页面的数据结构，优先级高于单个reducer的默认值
 // 此处是页面字段，
 // 页面下设置apiStatus字段，设置对应api的状态
@@ -40,7 +51,7 @@ const preLoadedState = {
 	second: {}
 };
 
-export let store = createStore(rootReducer, preLoadedState, applyMiddleware(thunkMiddleware));
+export let store = createStore(rootReducer, preLoadedState, applyMiddleware(...middlewares));
 
 store.subscribe(() => {
 	console.log('store data--->', store.getState());

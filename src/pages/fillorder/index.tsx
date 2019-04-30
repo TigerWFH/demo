@@ -11,6 +11,7 @@ import './index.less';
 
 interface IFillOrderProps {
     goodsInfo: any;
+    dispatch: any
 }
 
 interface IFillOrderState {
@@ -67,6 +68,7 @@ class FillOrder extends React.Component<IFillOrderProps, IFillOrderState>{
     }
     render() {
         console.log("render**************");
+        console.log("render-dispatch**************", this.props.dispatch);
         let { goodsInfo: { goodsList = [] } } = this.props;
         let amount = 0;
         let totalFee = 0;

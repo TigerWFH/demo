@@ -42,7 +42,7 @@ this.setState((prevState, prevProps) => {
         }, () => {
             console.log("changedState===>", this.state.monkey);
 });
-// 连续两次点击会报错，因为即使scu返回false，但是state值仍然被setstate改变了，第一次对数据的引用旧会出现问题
+// 连续两次点击会报错，因为即使scu返回false，但是state值仍然被setstate改变了，第一次对数据的引用就会出现问题
 render() {
     return <div>
         <button onClick={this.onChangeAge}>更改年龄</button>

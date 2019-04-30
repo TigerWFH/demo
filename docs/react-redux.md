@@ -15,3 +15,10 @@ Provider.propTypes = {
   children: PropTypes.any
 }
 ```
+## connect
+* 可以为组件提供displayName，挂在Component.displayName 或 Component.name
+* 
+```
+关于
+1、connect()--->2、connectHOC()--->3、wrapWithConnect--->
+```

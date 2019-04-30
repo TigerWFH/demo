@@ -34,6 +34,7 @@ export const fetchMedicineCodeFail = (payload) => {
 
 export const requestMedicineCode = (params) => {
 	return (dispatch, getState) => {
+		console.log('dispatch===>', dispatch)
 		dispatch(fetchMedicineCode());
 		medicineCode(params)
 			.then((response: any) => {

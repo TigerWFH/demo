@@ -23,6 +23,7 @@ function fetchGoodsInfoFail(payload) {
 
 export const requestGoodsInfo = (params) => {
 	return (dispatch, getState) => {
+		console.log('dispatch===>', dispatch)
 		dispatch(fetchGoodsInfo());
 		goodsInfo(params)
 			.then((data) => {
