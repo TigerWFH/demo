@@ -978,3 +978,7 @@ GitHub Gist Type: Secret
 ```
 
 # 关于redux
+
+# 关于P类问题，NP类问题，NPC类问题资料
+[参考资料1](http://www.matrix67.com/blog/archives/105)
+[参考资料2](https://blog.csdn.net/golden1314521/article/details/51470999)
