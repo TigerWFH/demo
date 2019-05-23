@@ -982,3 +982,11 @@ GitHub Gist Type: Secret
 # 关于P类问题，NP类问题，NPC类问题资料
 [参考资料1](http://www.matrix67.com/blog/archives/105)
 [参考资料2](https://blog.csdn.net/golden1314521/article/details/51470999)
+
+# 字体设计相关文章
+[基础字体设计术语](https://www.jianshu.com/p/7fcfae454cde)
+
+[字体设计](http://www.333cn.com/shejizixun/201835/43498_144775.html)
+
+[字体概述](https://www.douban.com/note/587706413/?type=like)
+
