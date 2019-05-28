@@ -990,3 +990,36 @@ GitHub Gist Type: Secret
 
 [字体概述](https://www.douban.com/note/587706413/?type=like)
 
+# flex兼容性
+分类|安卓2.1-4.3|安卓4.4以上|UC11.4|QQ1.2以上|IOS safari3.2-6.1|IOS safari7.1-8.4|IOS safari9.2以上
+---|:--:|:--:|:--:|:--:|:--:|:--:|---
+语法版本|09|标准|09|标准|09|标准|标准
+是否前缀|是|否|是|否|是|是|否
+## flex语法
+* 09年版语法：-webkit-box
+* 11年版过渡语法：-webkit-flex
+* 标准语法：flex
+## 09和标准语法对比，容器属性6个，项目属性6个
+属性|标准|09版|说明
+---|:--:|:--|---
+display|box|flex|块元素|无差异
+display|inline-box|inline-flex|内联元素|无差异
+容器|flex-direction|box-orient,box-direction|无差异
+容器|flex-wrap|box-lines|有差异
+容器|flex-flow|无|有差异
+容器|justify-content|box-pack|有差异
+容器|align-items|box-align|无差异
+容器|align-content|无|有差异
+项目|order|box-ordinal-group|无差异
+项目|flex|box-flex|有差异
+项目|flex-grow|无|有差异
+项目|flex-shrink|无|有差异
+项目|flex-basis|无|有差异
+项目|align-self|无|有差异
+
+## 坑
+* justify-content:space-between，旧版语法没有
+* flex-wrap: wrap，大部分浏览器不支持box-lines
+
+
+[参考资料](https://blog.csdn.net/ime33/article/details/78084429)
