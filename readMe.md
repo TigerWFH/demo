@@ -1023,3 +1023,27 @@ display|inline-flex|inline-box|内联元素|无差异
 
 
 [参考资料](https://blog.csdn.net/ime33/article/details/78084429)
+
+# 关于web技术
+* Application：
+	1. Manifest：web应用程序清单，目的是将web应用安装到设备的主屏幕，是pwa技术的一部分
+	2. ServiceWorkers：
+* Storage：（https://www.cnblogs.com/best/p/6084209.html）
+	3. LocalStorage：大小限制500万字符左右，本质是读写文件，不能跨域
+	4. SessionStorage：不能跨域
+	5. IndexedDB：
+	6. WebSQL：支持度不够好
+	7. Cookies：大小限制是4k，每次http请求都会带上cookie，cookie是否可以访问收到path和域名的影响，子域名可以访问父域名的cookie
+* Cache：
+	8. CacheStorage（存储静态资源）
+	9. ApplicationCache（根据manifest来进行缓存）
+* 其它：
+	10. PWA
+```
+<!-- Manifest json文件 -->
+
+```
+## web存储出现顺序
+```
+cookies--->web storage(localstorage和sessionstorage)--->
+```
