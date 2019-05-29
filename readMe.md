@@ -1002,8 +1002,8 @@ GitHub Gist Type: Secret
 ## 09和标准语法对比，容器属性6个，项目属性6个
 属性|标准|09版|说明
 ---|:--:|:--|---
-display|box|flex|块元素|无差异
-display|inline-box|inline-flex|内联元素|无差异
+display|flex|box|块元素|无差异
+display|inline-flex|inline-box|内联元素|无差异
 容器|flex-direction|box-orient,box-direction|无差异
 容器|flex-wrap|box-lines|有差异
 容器|flex-flow|无|有差异
