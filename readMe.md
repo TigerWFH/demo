@@ -1047,3 +1047,34 @@ display|inline-flex|inline-box|内联元素|无差异
 ```
 cookies--->web storage(localstorage和sessionstorage)--->
 ```
+# webpack
+* window['webpackJsonp'] = [](备注：runtime)
+* window.webpackJsonp.push = webpackJsonpCallback(data: Array)(备注：runtime)
+```
+webpackJsonpCallback函数作用就是加载模块，并触发回调函数
+data[0]: chunkIds: Array，chunkId列表
+data[1]: moreModules: Object，
+data[2]: executedModules:
+```
+* (window['webpackJsonp'] = window['webpackJsonp'] || []).push([[0], {}, [[10, 1, 2]]])（(备注：chunk)）
+
+## treeshaking和DCE
+* DCE（Dead Code Elimination）
+```
+DeadCode：
+不会被执行的代码
+代码执行的结果不会被用到
+代码只会影响只写不读的变量
+Tools：
+1、rollup
+2、uglify（目前不会跨文件DCE）
+
+```
+[参考资料](https://juejin.im/post/5a4dc842518825698e7279a9)
+
+# 版本区别
+* alpha：内测版，主要是给开发人员和测试人员测试用的，a第一个希腊字母，表示最早的版本
+* beta：公开测试版本，b是第二个希腊字母，晚于alpha版
+* rc：Release Cadidate（候选版本），和最终版本保持一致
+* stable：稳定版
+* react版本：v0.3.0--->v0.14.8--->v15.0.0--->lastest
