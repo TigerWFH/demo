@@ -1,0 +1,126 @@
+@startuml
+'2.0.0beta.8'
+HookMap : Map _map
+HookMap : String name
+HookMap : any _factory
+HookMap : array _interceptors
+HookMap : get(key)
+HookMap : for(key)
+HookMap : intercept(interceptor)
+HookMap : tap()
+HookMap : tapAsync()
+HookMap : tapPromise()
+
+MultiHook : any hooks
+MultiHook : any name
+MultiHook : tap(options, fn)
+MultiHook : tapAsync(options, fn)
+MultiHook : tapPromise(options, fn)
+MultiHook : isUsed()
+MultiHook : intercept(interceptor)
+MultiHook : withOptions(options)
+
+Hook : Array _args
+Hook : String name
+Hook : Array taps
+Hook : Array interceptors
+Hook : Function _call
+Hook : Function call
+Hook : Function _callAsync
+Hook : Function callAsync
+Hook : Function _promise
+Hook : Function promise
+Hook : any _x
+Hook : Function compile
+Hook : Function tap
+Hook : Function tapAsync
+Hook : Function tapPromise
+Hook : {abstract} compile()
+Hook : _createCall()
+Hook : _tap()
+Hook : tap()
+Hook : tapAsync()
+Hook : tapPromise()
+Hook : _runRegisterInterceptors()
+Hook : withOptions()
+Hook : isUsed()
+Hook : intercept()
+Hook : _resetCompilation()
+Hook : _insert()
+
+HookCodeFactory : any config
+HookCodeFactory : any options
+HookCodeFactory : any _args
+HookCodeFactory : create(options)
+HookCodeFactory : setup(instance, options)
+HookCodeFactory : init(options)
+HookCodeFactory : deinit()
+HookCodeFactory : header()
+HookCodeFactory : needContext()
+HookCodeFactory : callTap()
+HookCodeFactory : callTapsSeries()
+HookCodeFactory : callTapsLooping()
+HookCodeFactory : callTapsParallel()
+HookCodeFactory : args()
+HookCodeFactory : getTapFn()
+HookCodeFactory : getTap()
+HookCodeFactory : getInterceptor()
+
+'一、依赖关系：虚线表示，依赖方指向被依赖方'
+'1、局部变量'
+'2、参数'
+'3、发送消息（消息数据格式变化引起依赖方的变化）'
+'二、关联关系：实线表示，结构化关系，表示类对象之间的关'
+'1、表现为将一个类的对象作为另一个类的属性'
+'双向关联：Customer-----------Product'
+'单向关联：Customer---------->Address'
+'自关联：Customer---------->Customer'
+'三、聚合关系：Engine类可以脱离Car类存在，使用白色菱形和箭头表示，白色菱形指向聚合类Car，箭头指向被聚合类Engine'
+'1、Car<|------->Engine'
+'四、组合关系：Mouth类不能脱离Head类存在，使用黑色菱形和箭头表示，黑色菱形指向组合类Head，箭头指向被组合类Mouth'
+'1、Head<|------->Mouth'
+'五、实现关系：'
+'六、泛化关系：'
+SyncHook o-up-> Hook
+SyncHookCodeFactory -down-|> HookCodeFactory
+SyncHook --> SyncHookCodeFactory
+
+
+SyncBailHook o-up-> Hook
+SyncBailHookCodeFactory -down-|> HookCodeFactory
+SyncBailHook --> SyncBailHookCodeFactory
+
+SyncLoopHook o-up-> Hook
+SyncLoopHookCodeFactory -down-|> HookCodeFactory
+SyncLoopHook --> SyncLoopHookCodeFactory
+
+SyncWaterfallHook o-up-> Hook
+SyncWaterfallHookCodeFactory -down-|> HookCodeFactory
+SyncWaterfallHook --> SyncWaterfallHookCodeFactory
+
+AsyncParallelBailHook o-up-> Hook
+AsyncParallelBailHookCodeFactory -down-|> HookCodeFactory
+AsyncParallelBailHook --> AsyncParallelBailHookCodeFactory
+
+AsyncParallelHook o-up-> Hook
+AsyncParallelHookCodeFactory -down-|> HookCodeFactory
+AsyncParallelHook --> AsyncParallelHookCodeFactory
+
+AsyncSeriesBailHook o-up-> Hook
+AsyncSeriesBailHookCodeFactory -down-|> HookCodeFactory
+AsyncSeriesBailHook --> AsyncSeriesBailHookCodeFactory
+
+AsyncSeriesHook o-up-> Hook
+AsyncSeriesHookCodeFactory -down-|> HookCodeFactory
+AsyncSeriesHook --> AsyncSeriesHookCodeFactory
+
+AsyncSeriesLoopHook o-up-> Hook
+AsyncSeriesLoopHookCodeFactory -down-|> HookCodeFactory
+AsyncSeriesLoopHook --> AsyncSeriesLoopHookCodeFactory
+
+AsyncSeriesWaterfallHook o-up-> Hook
+AsyncSeriesWaterfallHookCodeFactory -down-|> HookCodeFactory
+AsyncSeriesWaterfallHook --> AsyncSeriesWaterfallHookCodeFactory
+
+
+@enduml

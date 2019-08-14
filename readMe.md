@@ -1105,3 +1105,20 @@ module.exports = function(source) {
 	this.callback(null, handledSource, map);
 }
 ```
+# webpack流程分析
+
+* Tapable
+```
+1、***Hook函数最终返回的是Hook的实例hook，hook.tapAsync，hook.tapPromise函数属性会直接抛异常，hook.compile属性函数创建了对应的factory函数，并执行了factory.create()函数，返回factory.create()的返回值
+```
+* 1、入口：webpack命令行会调用webpack库中webpack.js中的webpack函数
+* 2、校验配置文件options（经测试，options内容就是配置文件导出的JSON对象）
+* 3、根据options类型调用不同的compiler
+* 3-1、options是数组时，走MultiCompiler流程，再调用webpack入口函数
+* 3-2、options是非数组时，使用WebpackOptionsDefaulter处理options，并走Compiler流程
+```
+OptionsDefaulter(父类)------WebpackOptionsDefaulter(子类)
+Tapable(父类)------------------Compiler(子类)
+1、WebpackOptionsDefaulter：设置所有的默认配置项，使用process函数，将用户的配置项与默认配置项合并
+2、let compiler = new Compiler(options.context);options.context是指cwd
+```
