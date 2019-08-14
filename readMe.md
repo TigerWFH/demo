@@ -1,3 +1,4 @@
+
 # 项目说明
 * 常用试验场
 * 本项目所有的内容仅仅用于个人学习交流使用，未经授权，禁止任何形式使用
@@ -1079,3 +1080,28 @@ Tools：
 * rc：Release Cadidate（候选版本），和最终版本保持一致
 * stable：稳定版
 * react版本：v0.3.0--->v0.14.8--->v15.0.0--->lastest
+
+# 网关接口
+
+* post请求
+```
+https://api.dev.pajkdc.com/m.api
+
+FormData:
+_chl=iOS%7CPAJK&_mt=phoebe.getConfig&_sm=md5&key=wx.background&_sig=03cddc889d2728302ab1ffa46a3485b6
+```
+* get请求
+```
+http://api.test.pajkdc.com/m.api?_chl=iOS%7CPAJK&_mt=pegasus.getRecipe&_sm=md5&outBizType=PAJK&recipeId=15516952408822238150663230603&_sig=4cb3d2809eb973f362d003fd5e8e2bdd
+
+http://api.test.pajkdc.com/m.api?_chl=iOS%7CPAJK&_mt=pegasus.orderCreatePage&_sm=md5&biz=%7B%22outBizNo%22%3A%2215516952408822238150663230603%22%7D&fund=%7B%22healthGoldSelected%22%3A%22%22%2C%22healthLiveSelected%22%3A%22%22%2C%22paymentType%22%3A%22%22%2C%22invoice%22%3A%7B%22selected%22%3A%22%22%7D%7D&lg=%7B%22addressId%22%3A0%2C%22tel%22%3A%22%22%2C%22distributor%22%3A%224%22%7D&outBizType=PAJK&seller=%5B%7B%22storeId%22%3A200001800208%2C%22skus%22%3A%5B%7B%22skuId%22%3A911911888700424%2C%22amount%22%3A1%7D%5D%7D%5D&user=%7B%7D&_sig=264d7a6ab56db28b3e0bba6216ff39c2
+```
+
+# webpack loader签名
+```
+module.exports = function(source) {
+	<!-- 对source进行逻辑处理 -->
+
+	this.callback(null, handledSource, map);
+}
+```
