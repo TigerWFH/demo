@@ -1106,9 +1106,86 @@ module.exports = function(source) {
 }
 ```
 # webpack流程分析
+* options配置项
+```
+Entry:       entryOption
+Plugins:     afterPlugins
+Resolve:     afterResolvers
+             enviroment
+			 afterEnvironment
+			 beforeRun
+			 run
+			 watchRun
+			 normalModuleFactory
+			 contextModuleFactory
+			 beforeCompile
+			 compile
+			 thisCompilation
+			 compilation
+			 make
+			 afterCompile
+			 shoulEmit
+			 emit
+			 afterEmit
+			 assetEmitted
+			 done
+			 failed
+			 invalid
+			 watchClose
+			 infrastructureLog
+			 log
+```
+* [webpack中的事件](https://webpack.js.org/api/compiler-hooks/)
+事件名|触发时机|回调参数|Hook类型
+---|:--:|:--:|:--:|---
+entryOption|配置项entry被处理后触发|(context, entry) => {}|SyncBailHook
+afterPlugins|内部插件初始化之后触发|(compiler) => {}|SyncHook
+afterResolvers|resolver设置完成之后触发|(compiler) => {}|SyncHook
+...|...|...|...
+
 
 * Tapable
 ```
+旧版本：
+this._plugins = {
+	'event_name': ['event_handler']
+};
+
+Tapable.prototype.plugin = function plugin(name, fn) {
+	if(Array.isArray(name)) {
+		name.forEach(function(name) {
+			this.plugin(name, fn);
+		}, this);
+		return;
+	}
+	if(!this._plugins[name]) this._plugins[name] = [fn];
+	else this._plugins[name].push(fn);
+};
+
+Tapable.prototype.apply = function apply() {
+	for(var i = 0; i < arguments.length; i++) {
+		arguments[i].apply(this);
+	}
+};
+
+新版本：
+将所有的插件全部拆分成几个不同的类型，同步和异步。
+在同步和异步的前提下，根据event_handler执行规则又分成若干，
+同步：SyncHook, SyncBailHook, SyncLoopHook, SyncWaterfallHook
+异步：AsyncParallelHook, AsyncParallelBailHook, AsyncSeriesBailHook, AsyncSeriesHook, AsyncSeriesLoopHook, AsyncSeriesWaterfallHook
+
+每一种Hook自己维护自己的event_handler，格式如下
+this.taps = [
+	{
+		name: '',
+		fn: fn,
+		type: 'sync',
+		before: '',
+		stage: 'number',
+		...还有不知道的参数...
+	}
+];
+
 1、***Hook函数最终返回的是Hook的实例hook，hook.tapAsync，hook.tapPromise函数属性会直接抛异常，hook.compile属性函数创建了对应的factory函数，并执行了factory.create()函数，返回factory.create()的返回值
 ```
 * 1、入口：webpack命令行会调用webpack库中webpack.js中的webpack函数
