@@ -1,0 +1,29 @@
+@startuml 内部插件静态类图
+Dependency <-- ModuleDependency
+ModuleDependency <-- SingleEntryDependency
+Dependency : {any} module
+Dependency : {any} weak
+Dependency : {any} optional
+Dependency : {any} loc
+Dependency : getResourceIdentifier()
+Dependency : disconnect()
+Dependency : updateHash(hash)
+Dependency : {abstract} getResourceIdentifier()
+Dependency : {abstract} getReferrence()
+Dependency : {abstract} getExports()
+Dependency : {abstract} getWarnings()
+Dependency : {abstract} getErrors()
+Dependency : {static} compare()
+
+ModuleDependency : request
+ModuleDependency : userRequest
+ModuleDependency : getResourceIdentifier()
+
+SingleEntryDependency : type
+
+SingleEntryPlugin : context
+SingleEntryPlugin : entry
+SingleEntryPlugin : name
+SingleEntryPlugin : apply(compiler)
+
+@enduml
