@@ -1,92 +1,145 @@
 /**
- * 1、校验options参数
- * 2、创建compiler实例
- *      let compiler = new Compiler(options.context);
- *      2-1: 调用Compiler的constructor函数
- *      2-2: 调用super，创建兼容_pluginCompat属性（实质是SyncHook，SyncHook返回的是Hook实例），同时注册两个plugin:
- *          =========_pluginCompat:(name: "Tapable camelCase")========
- *          =========_pluginCompat:(name: "Tapable this.hooks")========
- *      2-3: 创建不同的事件对象（就是不同的Hooks，本质同_pliginCompat，最终还是Hook实例）
- *      2-4: 将配置参数赋给compiler.options = options
- * 2、创建NodeEnviromentPlugin实例
- *      2-1:  创建实例environment
- *      2-2:  调用environment.apply(compiler);
- *              compiler.infrastructureLogger = createConsoleLogger();
- *              compiler.inputFileSystem = new CachedInputFileSystem(new NodeJsInputFileSystem(), 60000);
- *              compiler.outputFileSystem = new NodeOutputFileSystem();
- *              compiler.watchFileSystem = new NodeWatchFileSystem(compiler.inputFileSystem);
- *              ======compiler.hooks.before.tap("NodeEnvronmentPlugin", ()=>{})
- * 3、处理options参数，即根据options.target的配置，注册不同的内部插件
- *      3-1: compiler.options = new WebpackOptionsApply().process(options, compiler);
- *           compiler.outputPath = options.output.path;
- *           "web": =======JsonpTemplatePlugin, FetchCompileWasmTemplatePlugin, FunctionModulePlugin, NodeSourcePlugin, LoaderTargetPlugin
- *           "webworker": =======WebWorkerTemplatePlugin, FetchCompileWasmTemplatePlugin, FunctionModulePlugin, NodeSourcePlugin, LoaderTargetPlugin
- *           "node || async-node": =======NodeTemplatePlugin, ReadFileCompileWasmTemplatePlugin, FunctionModulePlugin, NodeTargetPlugin, LoaderTargetPlugin
- *           "node-webkit": ======JsonpTemplatePlugin, FunctionModulePlugin, NodeTargetPlugin, ExternalsPlugin, LoaderTargetPlugin
- *           "electron-main": =======NodeTemplatePlugin, FunctionModulePlugin, NodeTargetPlugin, ExternalsPlugin, LoaderTargetPlugin
- *           "electron-renderer || electron-preload": ======JsonpTemplatePlugin, NodeTemplatePlugin, FetchCompileWasmTemplatePlugin, FunctionModulePlugin, NodeTargetPlugin, ExternalsPlugin, LoaderTargetPlugin
-             如果配置了options.output.ibrary，就注册======LibraryTemplatePlugin插件
-             如果配置了options.externals，就注册=======ExternalsPlugin插件
-             如果options.devtool，就注册======EvalSourceMapDevToolPlugin
-                或者======SourceMapDevToolPlugin
-                或者======EvalDevToolModulePlugin，JavascriptModulesPlugin，JsonModulesPlugin，WebAssemblyModulesPlugin，
-                注册======EntryOptionPlugin之后，直接调用
-                ******调用插件*****compiler.hooks.entryOption.call(options.context, options.entry);
-                ======CompatibilityPlugin
-                ======HarmonyModulesPlugin
-            如果配置了options.amd,
-                ======AMDPlugin, RequireJsStuffPlugin, CommonJsPlugin, LoaderPlugin,
-            如果配置了options.node,
-                ======NodeStuffPlugin
-            ======CommonJsStuffPlugin, APIPlugin, ConstPlugin, UseStrictPlugin, RequireIncludePlugin, RequireEnsurePlugin, RequireContextPlugin, ImportPlugin, SystemPlugin,
-            如果配置了options.mode,
-                ======WarnNoModeSetPlugin
-            ======EnsureChunkConditionsPlugin
-            如果配置了options.optimization.removeAvailableModules,
-                ======RemoveParentModulesPlugin
-            如果配置了options.optimization.removeEmptyChunks，
-                ======RemoveEmptyChunksPlugin
-            如果配置了options.optimization.mergeDuplicateChunks，
-                ======MergeDuplicateChunksPlugin
-            如果配置了options.optimization.flagIncludedChunks，
-                ======FlagIncludedChunksPlugin
-            如果配置了options.optimization.sideEffects
-                ======SideEffectsFlagPlugin
-            如果配置了options.optimization.providedExports，
-                ======FlagDependencyExportsPlugin
-            如果配置了options.optimization.usedExports，
-                ======FlagDependencyUsagePlugin
-            如果配置了options.optimization.concatenateModules，
-                ======ModuleConcatenationPlugin
-            如果配置了options.optimization.splitChunks，
-                ======SplitChunksPlugin
-            如果配置了options.optimization.runtimeChunk，
-                ======RuntimeChunkPlugin
-            如果配置了options.optimization.noEmitOnErrors
-                ======NoEmitOnErrorsPlugin
-            如果配置了options.optimization.checkWasmTypes
-                ======WasmFinalizeExportsPlugin
-            根据options.optimization.moduleIds的不同值，注册不同的插件
-                ======NamedModulesPlugin 或者 HashedModuleIdsPlugin 或者 OccurrenceModuleOrderPlugin 或者 OccurrenceModuleOrderPlugin
-            根据options.optimization.chunkIds的不同值，注册不同的插件
-                ======NaturalChunkOrderPlugin，NamedChunksPlugin 或者 OccurrenceChunkOrderPlugin 或者 OccurrenceChunkOrderPlugin
-            如果配置了options.optimization.nodeEnv
-                ======DefinePlugin
-            如果配置了options.optimization.minimize
-                ======注册配置项自定义的插件
-            如果配置了options.performance，
-                ======SizeLimitsPlugin
-            ======TemplatedPathPlugin
-            ======RecordIdsPlugin
-            ======WarnCaseSensitiveModulesPlugin
-            如果配置了options.cache，
-                ======CachePlugin
-            ******调用插件****compiler.hooks.afterPlugins.call(compiler);
-            ======compiler.resolverFactory.hooks.resolveOptions.for('normal').tap('WebpackOptionsApply', ()=>{});
-            ======compiler.resolverFactory.hooks.resolveOptions.for('context').tap('WebpackOptionsApply', ()=>{});
-            ======compiler.resolverFactory.hooks.resolveOptions.for('loader').tap('WebpackOptionsApply', ()=>{});
-            ******调用插件****compiler.hooks.afterResolvers.call(compiler);
-        process: return options
+ * 1、校验options参数，如果报错直接抛异常
+ * 2、使用WebpackOptionsDefaulter实例的process函数处理options参数
+ *      2-1: 过程待补充
+ * 3、创建compiler实例，let compiler = new Compiler(options.context)
+ *      3-1: 调用Compiler的constructor函数
+ *      3-2: 调用super即Tapable函数，创建兼容_pluginCompat = new SyncBailHook(["options"]);
+ *              调用Hook函数，创建_args,taps,interceptors,call,promise,callAsync,_x等属性
+ *          ===注册插件===this._pluginCompat.tap({name:"Tapable camelCase",stage: 100}, () => {})
+ *          ===注册插件===this._pluginCompat.tap({name:"Tapable this.hooks",stage: 200}, () => {})
+ *      3-3: 创建hooks对象属性，包含shouldEmit，done等事件属性，类型是不同的Hook
+ *          ===注册插件===this._pluginCompat.tap("Compiler", () => {})
+ *      3-4: 将配置参数赋给compiler.options = options
+ *      3-5: 其它属性
+ *      3-6: 特殊属性
+ *              this.resolverFactory = new ResolverFactory()待补充
+ *              this.requestShortener = new RequestShortener(context)待补充
+ * 4、compiler.options = options
+ * 5、创建NodeEnviromentPlugin实例
+ *      5-1:  创建实例nodeEnvironment，new NodeEnvironmentPlugin({}).apply(compiler)
+ *              处理Log
+ *              compiler.inputFileSystem = new CachedInputFileSystem({new NodeJsInputFileSystem(), 60000})
+ *              compiler.outputFileSystem = new NodeOutputFileSystem()
+ *              compiler.watchFileSystem = new NodeWatchFileSystem({compiler.inputFileSystem})
+ *              ==== 注册插件 ====compiler.hooks.beforeRun.tap("NodeEnvironmentPlugin",()=>{})
+ * 6、根据options.plugins配置，注册配置的插件
+ * 7、调用插件
+ *      **** 调用插件 ****compiler.hooks.environment.call();
+ *      **** 调用插件 ****compiler.hooks.afterEnvironment.call();
+ * 8、处理options
+ *      compiler.options = new WebpackOptionsApply().process(options, compiler);
+ *      compiler.outputPath = options.output.path;
+ *      compiler.recordsInputPath = options.recordsInputPath || options.records.recordsPath;
+ *      compiler.recordsOutputPath = options.recordsOutputPath || options.recordsPath;
+ *      compiler.name = options.name;
+ *      compiler.dependencies = options.dependencies;
+ *      8-1: 根据options.target注册不同的内部插件
+ *           "web": === 注册插件 ===JsonpTemplatePlugin, FetchCompileWasmTemplatePlugin, FunctionModulePlugin, NodeSourcePlugin, LoaderTargetPlugin
+ *           "webworker": === 注册插件 ===WebWorkerTemplatePlugin, FetchCompileWasmTemplatePlugin, FunctionModulePlugin, NodeSourcePlugin, LoaderTargetPlugin
+ *           "node || async-node": === 注册插件 ===NodeTemplatePlugin, ReadFileCompileWasmTemplatePlugin, FunctionModulePlugin, NodeTargetPlugin, LoaderTargetPlugin
+ *           "node-webkit": === 注册插件 ===JsonpTemplatePlugin, FunctionModulePlugin, NodeTargetPlugin, ExternalsPlugin, LoaderTargetPlugin
+ *           "electron-main": === 注册插件 ===NodeTemplatePlugin, FunctionModulePlugin, NodeTargetPlugin, ExternalsPlugin, LoaderTargetPlugin
+ *           "electron-renderer || electron-preload": === 注册插件 ===JsonpTemplatePlugin, NodeTemplatePlugin, FetchCompileWasmTemplatePlugin, FunctionModulePlugin, NodeTargetPlugin, ExternalsPlugin, LoaderTargetPlugin
+        8-2: 如果options.output.library || options.output.libraryTarget !== "var"
+             === 注册插件 ===LibraryTemplatePlugin,
+        8-3: 如果配置了options.externals
+             === 注册插件 ===ExternalsPlugin
+        8-4: 如果options.devtool && (options.devtool.includes("sourcemap") || options.devtool.includes("source-map"))
+             === 注册插件 ===EvalSourceMapDevToolPlugin(或者)SourceMapDevToolPlugin
+             否者，如果options.devtools && options.devtool.includes("eval"),
+             === 注册插件 ===EvalDevToolModulePlugin
+        8-5: === 注册插件 ===JavascriptModulesPlugin，JsonModulesPlugin，WebAssemblyModulesPlugin，EntryOptionsPlugin，
+        8-6: *** 调用插件 ===compiler.hooks.entryOption.call(options.context, options.entry)
+        8-7: === 注册插件 ===CompatibilityPlugin，HarmonyModulesPlugin
+        8-8: 如果options.amd !== false
+             === 注册插件 ===AMDPlugin，RequireJsStuffPlugin
+        8-9: === 注册插件 ===CommonJsPlugin，LoaderPlugin
+        8-10: 如果options.node !== false
+              === 注册插件 ===NodeStuffPlugin
+        8-11: === 注册插件 ===CommonJsStuffPlugin，APIPlugin，ConstPlugin，UseStrictPlugin，RequireIncludePlugin，RequireEnsurePlugin，RequireContextPlugin，ImportPlugin，SystemPlugin
+        8-12: 如果options.mode !== "string"
+              === 注册插件 ===WarnNoModeSetPlugin
+        8-13: === 注册插件 ===EnsureChunkConditionsPlugin
+        8-14: 如果options.optimization.removeAvailableModules
+              === 注册插件 ===RemoveParentModulesPlugin
+        8-15: 如果options.optimization.removeEmptyChunks
+              === 注册插件 ===RemoveEmptyChunksPlugin
+        8-16: 如果options.optimization.mergeDuplicateChunks
+              === 注册插件 ===MergeDuplicateChunksPlugin
+        8-17: 如果options.optimization.flagIncludedChunks
+              === 注册插件 ===FlagIncludedChunksPlugin
+        8-18: 如果options.optimization.sideEffects
+              === 注册插件 ===SideEffectsFlagPlugin
+        8-19: 如果options.optimization.providedExports
+              === 注册插件 ===FlagDependencyExportsPlugin
+        8-20: 如果options.optimization.usedExports
+              === 注册插件 ===FlagDependencyUsagePlugin
+        8-21: 如果options.optimization.concatenateModules
+              === 注册插件 ===ModuleConcatenationPlugin
+        8-22: 如果options.optimization.splitChunks
+              === 注册插件 ===SplitChunksPlugin
+        8-23: 如果options.optimization.runtimeChunk
+              === 注册插件 ===RuntimeChunkPlugin
+        8-24: 如果options.optimization.noEmitOnErrors
+              === 注册插件 ===WasmFinalizeExportsPlugin
+        8-25: 处理options.optimization.moduleIds，根据moduleIds注册不同的插件
+              "natural": 不做处理
+              "named": === 注册插件 === NamedModulesPLugin
+              "hashed": === 注册插件 === HashedModuleIdsPLugin
+              "size": === 注册插件 === OccurrenceModuleOrderPlugin
+              "total-size": === 注册插件 === OccurrenceModuleOrderPlugin
+        8-26: 处理options.optimization.chunkIds，根据chunkIds注册不同的插件
+              "natural": === 注册插件 ===NaturalChunkOrderPlugin
+              "named": === 注册插件 ===OccurrenceChunkOrderPlugin，NamedChunksPlugin
+              "size": === 注册插件 ===OccurrenceChunkOrderPlugin
+              "total-size": === 注册插件 ===OccurrenceChunkOrderPlugin
+        8-27: 如果options.optimization.nodeEnv
+              === 注册插件 ===DefinePlugin
+        8-28: 如果options.optimization.minimize
+              === 注册插件 ===配置插件
+        8-29: 如果options.performance
+              === 注册插件 ===SizeLimitsPlugin
+        8-30: === 注册插件 ===TemplatedPathPlugin，RecordIdsPlugin，WarnCaseSensitiveModulesPlugin
+        8-31: 如果options.cache
+              === 注册插件 ===CachePlugin
+        8-32: 调用插件
+              *** 调用插件 ***compiler.hooks.afterPlugins.call(compiler)
+        8-33: compiler.resolverFactory.hooks注册不同的内部插件
+        8-34: 调用插件
+              *** 调用插件 ***compiler.hooks.afterResolvers.call(compiler);
+    9、执行compiler.run(callback)
+        9-1: *** 调用插件 ***this.hooks.beforeRun.callAsync(this, cb1)
+        9-2: 执行回调cb1，*** 调用插件 ***this.hooks.run.callAsync(this, cb2);
+        9-3: 执行回调cb2，调用函数this.readRecords(cb3)
+                如果this.recordsInputPath不存在，执行cb3
+        9-4: 执行回调cb3，调用函数this.compile(onCompiled);
+                创建参数params = this.newCompilationParams();
+                    params.normalModuleFactory = this.createNormalFactory()
+                        normalModuleFActory = new NormalModuleFactory();
+                        *** 调用插件 ***this.hooks.normalModuleFactory.call(normalModuleFactory);
+                    params.contextModuleFactory = this.createContextFActory();
+                        contextModuleFactory = new ContextModuleFactory(this.resolverFactory)
+                        *** 调用插件 ***this.hooks.contextModuleFactory.call(contextModuleFactory);
+                *** 调用插件 ***this.hooks.beforeCompile.callAsync(params, cb4);
+                执行回调函数cb4，*** 调用插件 ***this.hooks.compile.call(params);
+                创建compilation = this.newCompilation(params);
+                    const compilation = this.createCompilation();
+                        return new Compilation(this);
+                            hook属性，各种初始化属性
+                        *** 调用插件 ***this.hooks.thisCompilation.call(compilation, params);
+                        *** 调用插件 ***this.hooks.compilation.call(compilation, params);
+                *** 调用插件 ***this.hooks.make.callAsync(compilation, cb5)
+                执行回调cb5，调用函数compilation.finish(cb6)
+                    *** 调用插件 ***this.hooks.finishModules.callAsync(modules, cb7)
+                    执行回调cb7，对modules进行处理
+                执行cb6，调用函数compilation.seal(cb8)
+                    *** 调用插件 ***compilation.hooks.seal.call();
+                    执行好多compilation的插件
+                执行cb8，*** 调用插件 ***this.hooks.afterCompile.callAsync(compilation， cb9）
+                执行cb9，即执行onCompiled，*** 调用插件 ***this.hooks.shouldEmit.call(compilation)
+                    如果结束，*** 调用插件 ***this.hooks.done.callAsync(stats，cb10）
+
  *  4、compiler.run
  *      4-1: ******调用插件****this.hooks.beforeRun.callAsync(this, cb1);
  *      4-2: 执行完事件beforeRun的监听函数，执行回调函数cb1，在cb1里会触发run事件
@@ -179,10 +232,19 @@
  *              ******调用插件******this(compilation).hooks.this.hooks.afterSeal.callAsync(callback);
  *              执行cb7，******调用插件******this.hooks.afterCompile.callAsync(compilation, cb11)
  *              执行cb11，调用onCompiled(err, compilation)
- *              条件调用
+ *              
+ *              if条件调用
  *              ******调用插件******this.hooks.shouldEmit.call(compilation)
  *              ******调用插件******this.hooks.done.callAsync(stats, cb12)
- * 
+ *              else
+ *              ******调用插件******this.hooks.emit.callAsync(compilation, cb12)
+ *                  调用compilation.getPath(this,outPath);
+ *                  调用emitFiles(err=>{}), 写资源，======调用插件======this.hooks.assetEmitted.callAsync(file, content, callback);
+ *                                           出错，======调用插件======this.hooks.afterEmit.callAsync(compilation, callback);
+ *              执行callback：
+ *                  ======调用插件======compilation.hooks.needAdditionalPass.call()
+ *                  ======调用插件======this.hooks.done.callAsync(stats, ()=>{}), 回调调用======调用插件=====this.hooks.additionalPass.callAsync(()=>{})， 回调调用======调用插件=====this.hooks.failed.call(err)
+ *              
  *              
  *              
  *              

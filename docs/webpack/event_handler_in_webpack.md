@@ -22,6 +22,7 @@
 20|afterCompile|AutomaticPrefetchPlugin|
 21|contextModuleFactory|ContextExclusionPlugin,ContextReplacementPlugin,IgnorePlugin| |
 22|additionalPass|HotModuleReplacementPlugin|
-23|afterEnvironment|WatchIgnorePlugin| |
+23|environment| | |
+24|afterEnvironment|WatchIgnorePlugin| |
 
 
