@@ -1205,3 +1205,6 @@ Tapable(父类)------------------Compiler(子类)
 google的inspect线上资源地址：
 172.217.160.116 chrome-devtools-frontend.appspot.com
 Apache-internals: /Users/wangfanghua618/Library/Application Support/Google/Chrome/Default (1)
+# 安卓相关
+* gradle和安卓gradle插件是两个东西，版本要对应
+* [gradle国内镜像资源](https://blog.csdn.net/lj402159806/article/details/78422953)
