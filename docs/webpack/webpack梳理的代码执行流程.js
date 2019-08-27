@@ -49,7 +49,7 @@
              === 注册插件 ===EvalSourceMapDevToolPlugin(或者)SourceMapDevToolPlugin
              否者，如果options.devtools && options.devtool.includes("eval"),
              === 注册插件 ===EvalDevToolModulePlugin
-        8-5: === 注册插件 ===JavascriptModulesPlugin，JsonModulesPlugin，WebAssemblyModulesPlugin，EntryOptionsPlugin，
+        8-5: === 注册插件 ===JavascriptModulesPlugin，JsonModulesPlugin，WebAssemblyModulesPlugin，EntryOptionsPlugin***********入口点***********
         8-6: *** 调用插件 ===compiler.hooks.entryOption.call(options.context, options.entry)
         8-7: === 注册插件 ===CompatibilityPlugin，HarmonyModulesPlugin
         8-8: 如果options.amd !== false
@@ -126,7 +126,37 @@
                 创建compilation = this.newCompilation(params);
                     const compilation = this.createCompilation();
                         return new Compilation(this);
-                            hook属性，各种初始化属性
+                            hook = {
+                                  buildModule: new SyncHook(["module"]),
+                                  rebuildModule: new SyncHook(["module"]),
+                                  failedModule: new SyncHook(["module", "error"]),
+                                  succeedModule: new SyncHook(["module"]),
+                                  addEntry: new SyncHook(["entry", "name"]),
+                                  failedEntry: new SyncHook(["entry", "name", "error"]),
+                                  succeedEntry: new SyncHook(["entry", "name", "module"]),
+                                  dependencyReference: new SyncWaterfallHook(["dependencyReference", "dependency", "module"]),
+                                  finishModules: new SyncHook(["modules"]),
+                                  finishRebuildingModule: new SyncHook(["module"]),
+                                  unseal: new SyncHook([]),
+                                  seal: new SyncHook([]),
+                                  beforeChunks: new SyncHook([]),
+                                  afterChunks: new SyncHook(["chunks"]),
+                                  optimizeDependenciesBasic: new SyncBailHook(["modules"]),
+                                  optimizeDependencies: new SyncBailHook(["modules"]),
+                                  optimizeDependenciesAdvanced: new SyncBailHook(["modules"]),
+                                  afterOptimizeDependencies: new SyncHook(["modules"]),
+                                  optimize: new SyncHook([]),
+                                  optimizeModulesBasic: new SyncBailHook(["modules"]),
+                                  optimizeModules: new SyncBailHook(["modules"]),
+                                  optimizeModulesAdvanced: new SyncBailHook(["modules"]),
+                                  afterOptimizeModules: new SyncHook(["modules"]),
+                                  ...
+                            };
+                            this.entries = [];
+                            this.modules = [];
+                            this.records = null;
+                            this.assets = {};
+
                         *** 调用插件 ***this.hooks.thisCompilation.call(compilation, params);
                         *** 调用插件 ***this.hooks.compilation.call(compilation, params);
                 *** 调用插件 ***this.hooks.make.callAsync(compilation, cb5)

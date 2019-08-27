@@ -1199,3 +1199,9 @@ Tapable(父类)------------------Compiler(子类)
 1、WebpackOptionsDefaulter：设置所有的默认配置项，使用process函数，将用户的配置项与默认配置项合并
 2、let compiler = new Compiler(options.context);options.context是指cwd
 ```
+
+
+# 谷歌资源
+google的inspect线上资源地址：
+172.217.160.116 chrome-devtools-frontend.appspot.com
+Apache-internals: /Users/wangfanghua618/Library/Application Support/Google/Chrome/Default (1)
