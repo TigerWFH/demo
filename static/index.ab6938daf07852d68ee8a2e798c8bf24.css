@@ -1,6 +1,46 @@
 input[type=file] {
   margin-bottom: 5px;
 }
+.text-type-1 {
+  font-family: 'Times New Roman';
+  font-size: 30px;
+}
+.text-type-2 {
+  font-family: 'Arial';
+  font-size: 30px;
+}
+.text-type-3 {
+  font-family: 'Comic Sans MS';
+  font-size: 30px;
+}
+.text-type-4 {
+  font-family: 'Bodoni Ornaments';
+  font-size: 30px;
+}
+.text-type-5 {
+  font-family: 'Menlo';
+  font-size: 30px;
+}
+.text-type-6 {
+  font-family: 'JSL Blackletter';
+  font-size: 30px;
+}
+.text-type-7 {
+  font-family: 'Egyptienne F';
+  font-size: 30px;
+}
+.text-type-11 {
+  font-family: 'PingFang SC';
+  font-size: 30px;
+}
+.text-type-12 {
+  font-family: 'Songti SC';
+  font-size: 30px;
+}
+.text-type-13 {
+  font-family: 'Heiti TC';
+  font-size: 30px;
+}
 .text-first {
   border: 1px solid red;
   margin-bottom: 5px;
@@ -446,24 +486,6 @@ fieldset {
 .fieldset-left {
   text-align: left;
 }
-.ddloading-root {
-  height: 100%;
-  border: 1px solid red;
-  overflow: scroll;
-}
-.ddloading-list-container {
-  padding-bottom: 44px;
-  border: '1px solid #00a3fe';
-}
-.dd-item {
-  height: 70px;
-  border: 1px solid red;
-}
-.dd-loading {
-  margin-top: -44px;
-  height: 44px;
-  background-color: #00a3fe;
-}
 .first {
   height: 100%;
 }
@@ -487,6 +509,24 @@ fieldset {
 .xx {
   border: 1px solid yellow;
   background: black;
+}
+img {
+  width: 500px;
+}
+.container {
+  position: relative;
+}
+.label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  word-break: break-all;
+  word-wrap: none;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 .rootContainerPayment {
   min-width: 700px;
@@ -1123,6 +1163,10 @@ fieldset {
   font-size: 16px;
   color: #fff;
   height: 50px;
+}
+.whiteSpace {
+  background-color: #00a3fe;
+  color: #fff;
 }
 .app {
   width: 100%;
