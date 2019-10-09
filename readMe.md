@@ -997,6 +997,27 @@ combinereducers做的是对reducer的校验，并没有使用dispatch发送actio
 ```
 执行replaceReducer时，会发送一个dispatch({type: Actions.REPLACE})，功能类似Actions.INIT
 ```
+* 结论
+```
+1、每一个reducer中的state给一个默认值{}，防止combineReducers校验失败
+function home(state = {}, action) {
+	switch(action.type) {
+		default:
+	return state;
+	}
+}
+2、定义初始状态，页面数据结构清晰，便于阅读。且INIT发出后，会初始化到state树上作为各个页面初始状态，有利于减少页面各种null和undefined的出现；减少js对象因为访问层级过深造成的异常
+const initialState = {
+	home: {
+
+	},
+	about: {
+
+	}
+}
+createStore(reducers, initialState, middlwares);
+
+```
 
 # 关于P类问题，NP类问题，NPC类问题资料
 [参考资料1](http://www.matrix67.com/blog/archives/105)
