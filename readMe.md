@@ -980,6 +980,23 @@ GitHub Gist Type: Secret
 ```
 
 # 关于redux
+### redux初始化发送的action有哪些？
+* combineReducers初始化发送的action
+```
+combinereducers做的是对reducer的校验，并没有使用dispatch发送action，数据没有更新到state上
+1、以state=undefined，action={type: INIT}执行每一个reducer，并检测每一个reducer的返回值是否为undefined
+    如果是undefined，抛异常；否者，进行第2步。（结论1：每一个reducer对INIT的action返回值不能是undefined）
+2、以state=undefined，action={type: PROBE_UNKNOWN_ACTION}执行每一个reducer，并检测每一个reducer的返回值
+    是否为undefined，如果是undefined，抛异常；（结论2：reducer对PROBE_UNKNOWN_ACTION的action返回值不能是undefined）
+```
+* createStore初始化发送的action
+```
+创建store时，会发送一个dispatch({type: Actions.INIT})，初始化state树
+```
+* replaceReducer初始化发送的action
+```
+执行replaceReducer时，会发送一个dispatch({type: Actions.REPLACE})，功能类似Actions.INIT
+```
 
 # 关于P类问题，NP类问题，NPC类问题资料
 [参考资料1](http://www.matrix67.com/blog/archives/105)
