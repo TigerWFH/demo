@@ -1,6 +1,5 @@
 
 # 项目说明
-* 常用试验场
 * 本项目所有的内容仅仅用于个人学习交流使用，未经授权，禁止任何形式使用
 # 开始
 创建目录结构(项目当前`正在使用`的目录结构)
@@ -163,245 +162,11 @@
 	特有组件则单独开发，并存放在compoennets目录下。
 	非业务组件------>业务组件------>页面------>应用
 
-# es运算符
-* ...：1、扩展运算符(spread operator) 2、剩余操作符(rest operator)，解构操作的一种
-# react
-* 关于setState
-```
-Demo在fillorder页面
-
-react对state的更新有两个分支，一个分支合并setState，只有合并过后才会走完生命周期并更新state；一个会一直走完生命周期并更新state。
-
-在生命周期或合成事件中，setState会被合并；在其他地方的setState会直接走完生命周期
-```
-# redux
-* Single source of truth
-* State is read-only
-* Changes are made with pure functions
-
-* top level api
-
-* createStore(reducer, [preloadedState], [enhancer])
-* combineReducers(reducers)
-* applyMiddleWare(...middlewares)
-* bindActionCreators(actionCreators, dispatch)
-* compose(...functions)
-
-* Store api
-* getState()
-* dispatch(action)
-* subscribe(listener)
-* replaceReducer(nextReducer)
-### redux初始化发送的action有哪些？
-* combineReducers初始化发送的action
-```
-combinereducers做的是对reducer的校验，并没有使用dispatch发送action，数据没有更新到state上
-1、以state=undefined，action={type: INIT}执行每一个reducer，并检测每一个reducer的返回值是否为undefined
-    如果是undefined，抛异常；否者，进行第2步。（结论1：每一个reducer对INIT的action返回值不能是undefined）
-2、以state=undefined，action={type: PROBE_UNKNOWN_ACTION}执行每一个reducer，并检测每一个reducer的返回值
-    是否为undefined，如果是undefined，抛异常；（结论2：reducer对PROBE_UNKNOWN_ACTION的action返回值不能是undefined）
-```
-* createStore初始化发送的action
-```
-创建store时，会发送一个dispatch({type: Actions.INIT})，初始化state树
-```
-* replaceReducer初始化发送的action
-```
-执行replaceReducer时，会发送一个dispatch({type: Actions.REPLACE})，功能类似Actions.INIT
-```
-* 结论
-```
-1、每一个reducer中的state给一个默认值{}，防止combineReducers校验失败
-function home(state = {}, action) {
-	switch(action.type) {
-		default:
-	return state;
-	}
-}
-2、定义初始状态，页面数据结构清晰，便于阅读。且INIT发出后，会初始化到state树上作为各个页面初始状态，有利于减少页面各种null和undefined的出现；减少js对象因为访问层级过深造成的异常
-const initialState = {
-	home: {
-
-	},
-	about: {
-
-	}
-}
-createStore(reducers, initialState, middlwares);
-
-```
-
-# react-redux
-
-# redux-thunk
-
-# react-router
 # javascript
 
 * promise
 [参考资料](http://www.ituring.com.cn/(F(fOE8uHtCjZW76HuECeWYIQvcHXjAbKihNiyYMF3PD3qjKS9ouDC0Dgsm_dVXrsLEv9aJHLXCnu1MD2hEIU3b0dRXET8yWlcOCiW2v8YtJEhW-SeRKkBDXKTsKnGUZr3I0))/article/66566)
 * fetch
-### es6新语法
-* template literals（模板文字）
-
-    模板文字就是可以嵌入表达式的字符串字符。
-    使用的符号是反勾号（back tick）。
-```
-`string text`;
-// 模板字符串实现字符串的自动换行写法
-`string text line 1;
- string text line 2`;
-// 表达嵌入式
- `string text ${expression} string text`;
-```
-* tagged template literals(标签模板文字)
-```
- // tag是一个可以返回任何值（包括函数）的函数，tag函数会自动识别模板字符中的表达式作为tag函数的其它参数,同时表达式在strings的位置由“”表示，即`${1}${2}a`，此时strings为：["","","a"]
-
- tag`string text ${expression} string text`;
- /**
- * @desc 返回一个字符串
- * @strings {array[strings]} 处理字符串数组
- * @personExp {any} 可选，其它数据
- * @ageExp {any} 可选，其它数据
- */
- const person = "Mike";
- const age = 28;
- function myTag(strings, personExp, ageExp){
-     let str0 = strings[0];
-     let str1 = strings[1];
-
-     let ageStr;
-     if (ageExp > 99){
-         ageStr = 'centenarian';
-     }
-     else{
-         ageStr = 'youngster';
-     }
-
-     return str0 + personExp + str1 + ageStr;
- }
- //此处将${person},${age}自动识别成personExp和ageExp参数，that，is a自动识别存储在strings参数中
- var output = myTag`that ${person} is a ${age}`;
- console.log(output);//that Mike is a youngster
- 
-```
-也可以返回函数：
-```
-function template(strings, ...keys){
-    return (
-        function(...values){
-            var dict = values[values.length - 1] || {};
-            var result = [strings[0]];
-            keys.forEach(function(key, i){
-                var value = Number.isInteger(key) ? values[key] : dict[key];
-                result.push(value, strings[i + 1]);
-            });
-
-            return result.join('');//自动忽略undefined的值
-        });
-}
-var t1Closure = template`${0}${1}${0}`;
-t1Closure('Y', 'A');//"YAY!"
-var t2Closure = template`${0} ${'foo'}!`;
-t2Closure('Hello', {foo: 'World'});//"Hello World!"
-```
-* Raw strings(原始字符串)
-strings参数（即tag的第一个参数）默认含有一个raw数组，可以访问原始字符串，即未处理转义字符的字符串。
-```
-function tag(strings, ...values){
-    console.log(strings.raw[0]);
-}
-tag`${string text line 1 \n string text line 2}`;
-// logs string text line 1 \n string text line 2
-```
-这和String.raw()的功能相同：
-```
-var str = String.raw`Hi\n${2+3}!`;
-//"Hi\n5"
-str.splite("").join(",");
-//"H,i,\,n,5,!"
-```
-* tagged template literals and escap sequences
-es6中的标签模板文字符合以下转移规则：
-1、以\u开始的Unicode转义序列，例如：\u00A9
-2、以\u开始的Unicode point escape，例如：\u{2F804}
-3、十六进制，例如：\xA9
-4、八进制转义，例如：\251
-```
-给定数据A有N个元素（索引从0开始），数组A的一个极点Q满足一下条件：
-    0<= Q <= N;
-    如果0<=P<=Q,则A[P]<=A[Q];
-    如果Q<R<N，则A[Q]<=A[R];
-
-例如：数组A由以下10个元素组成：
-A[0] = 4;A[1] = 2;A[2] = 2;A[3] = 3;A[4] = 1;
-A[5] = 4;A[6] = 7;A[7] = 8;A[8] = 6;A[9] = 9;
-如前所说，该函数应该返回5或者9.
-假设有如下条件：
-1、N取值范围是[0,100000];
-2、数组的每一个元素都是整数，切且取值范围是[-2147483648,2147483647]
-复杂度：
-1、期望最差时间复杂度是O(N)
-2、期望最差空间复杂度是O(N)，超出输入存储（不计算输入参数所需的存储空间）
-输入数组的元素是可以修改的（是不是意味着可以重用输入数组，节省存储空间）
-```
-* js的一些规范
-文件命名：大多web服务器（Apache，Unix）对大小写敏感，建议使用纯小写命名文件名。
-> accountname.js
-> index.js
-
-类命名使用`帕斯卡命名法（大驼峰big camelCase）`
-```
-class StudentInfo {
-	constructor(){}
-	//省略其他内容
-}
-```
-
-变量使用`小驼峰（small camelCase）`
-```
-let firstName = "Monkey";
-let accountName = "MrWang";
-```
-前缀规范（`匈牙利命名法`，能够表明变量的类型，对于JS这种动态类型语言感觉提示效果比较好，`事实上这种命名方式已经被淘汰`）
-> 每个局部变量都需要有一个类型前缀，按照类型可以分为：
->
-> s:表示字符串。例如：sName，sHtml
->
-> n:表示数字。例如：nPage，nAge
->
-> b:表示逻辑。例如：bChecked，bHaslogin
->
-> a:表示数组。例如：aList，aGroup
->
-> r:表示正则表达式。例如：rDomain，rEmail
->
-> f:表示函数。例如：fGetHtml,fInit
->
-> o:表示对象。例如：表示以上未涉及到的其他对象，例如oButton，oDate
->
-> g:表示全局变量，例如gUserName，gLoginTime
-
-空格和运算符
-> 通常运算符（=+-*/）前后需要添加空格
-```
-let sum = 1 + 2;
-let divide = 9 / 3 * 2 - 1;
-```
-代码缩进与换行
-
-缩进：根据团队要求可调，是4个空格或2个空格作为一个tab缩进。
-
-换行：在每个独立语句结束后使用换行；关键字前使用换行；运算符处换行时。运算符必须在新的行首。
-```
-let sum = 1 + 2;
-if (){
-}
-else{
-}
-```
-## JS一些行业用语
 * plain object:简单对象，既{}或new Object()
 * js supplant
 * Ajax技术：异步javascript xml
@@ -541,7 +306,174 @@ else{
 	console.log(curriedAdd(2)());
 	console.log(curriedAdd(2)(7)());
 	console.log(curriedAdd(2)(7)(5)());
-	```
+* es新语法特性
+```
+	1、...：扩展运算符(spread operator) ；剩余操作符(rest operator)，解构操作的一种
+	2、template literals（模板文字）：模板文字就是可以嵌入表达式的字符串字符，使用的符号是反勾号（back tick）。
+```
+* es1：tagged template literals(标签模板文字)
+```
+ // tag是一个可以返回任何值（包括函数）的函数，tag函数会自动识别模板字符中的表达式作为tag函数的其它参数,同时表达式在strings的位置由“”表示，即`${1}${2}a`，此时strings为：["","","a"]
+
+ tag`string text ${expression} string text`;
+ /**
+ * @desc 返回一个字符串
+ * @strings {array[strings]} 处理字符串数组
+ * @personExp {any} 可选，其它数据
+ * @ageExp {any} 可选，其它数据
+ */
+ const person = "Mike";
+ const age = 28;
+ function myTag(strings, personExp, ageExp){
+     let str0 = strings[0];
+     let str1 = strings[1];
+
+     let ageStr;
+     if (ageExp > 99){
+         ageStr = 'centenarian';
+     }
+     else{
+         ageStr = 'youngster';
+     }
+
+     return str0 + personExp + str1 + ageStr;
+ }
+ //此处将${person},${age}自动识别成personExp和ageExp参数，that，is a自动识别存储在strings参数中
+ var output = myTag`that ${person} is a ${age}`;
+ console.log(output);//that Mike is a youngster
+ 
+```
+也可以返回函数：
+```
+function template(strings, ...keys){
+    return (
+        function(...values){
+            var dict = values[values.length - 1] || {};
+            var result = [strings[0]];
+            keys.forEach(function(key, i){
+                var value = Number.isInteger(key) ? values[key] : dict[key];
+                result.push(value, strings[i + 1]);
+            });
+
+            return result.join('');//自动忽略undefined的值
+        });
+}
+var t1Closure = template`${0}${1}${0}`;
+t1Closure('Y', 'A');//"YAY!"
+var t2Closure = template`${0} ${'foo'}!`;
+t2Closure('Hello', {foo: 'World'});//"Hello World!"
+```
+* Raw strings(原始字符串)
+strings参数（即tag的第一个参数）默认含有一个raw数组，可以访问原始字符串，即未处理转义字符的字符串。
+```
+function tag(strings, ...values){
+    console.log(strings.raw[0]);
+}
+tag`${string text line 1 \n string text line 2}`;
+// logs string text line 1 \n string text line 2
+```
+这和String.raw()的功能相同：
+```
+var str = String.raw`Hi\n${2+3}!`;
+//"Hi\n5"
+str.splite("").join(",");
+//"H,i,\,n,5,!"
+```
+* tagged template literals and escap sequences
+es6中的标签模板文字符合以下转移规则：
+1、以\u开始的Unicode转义序列，例如：\u00A9
+2、以\u开始的Unicode point escape，例如：\u{2F804}
+3、十六进制，例如：\xA9
+4、八进制转义，例如：\251
+```
+给定数据A有N个元素（索引从0开始），数组A的一个极点Q满足一下条件：
+    0<= Q <= N;
+    如果0<=P<=Q,则A[P]<=A[Q];
+    如果Q<R<N，则A[Q]<=A[R];
+
+例如：数组A由以下10个元素组成：
+A[0] = 4;A[1] = 2;A[2] = 2;A[3] = 3;A[4] = 1;
+A[5] = 4;A[6] = 7;A[7] = 8;A[8] = 6;A[9] = 9;
+如前所说，该函数应该返回5或者9.
+假设有如下条件：
+1、N取值范围是[0,100000];
+2、数组的每一个元素都是整数，切且取值范围是[-2147483648,2147483647]
+复杂度：
+1、期望最差时间复杂度是O(N)
+2、期望最差空间复杂度是O(N)，超出输入存储（不计算输入参数所需的存储空间）
+输入数组的元素是可以修改的（是不是意味着可以重用输入数组，节省存储空间）
+```
+# react
+* 关于setState
+```
+Demo在fillorder页面
+react对state的更新有两个分支，一个分支合并setState，只有合并过后才会走完生命周期并更新state；一个会一直走完生命周期并更新state。
+
+在生命周期或合成事件中，setState会被合并；在其他地方的setState会直接走完生命周期
+```
+# redux
+* Single source of truth
+* State is read-only
+* Changes are made with pure functions
+
+* top level api
+
+* createStore(reducer, [preloadedState], [enhancer])
+* combineReducers(reducers)
+* applyMiddleWare(...middlewares)
+* bindActionCreators(actionCreators, dispatch)
+* compose(...functions)
+
+* Store api
+* getState()
+* dispatch(action)
+* subscribe(listener)
+* replaceReducer(nextReducer)
+### redux初始化发送的action有哪些？
+* combineReducers初始化发送的action
+```
+combinereducers做的是对reducer的校验，并没有使用dispatch发送action，数据没有更新到state上
+1、以state=undefined，action={type: INIT}执行每一个reducer，并检测每一个reducer的返回值是否为undefined
+    如果是undefined，抛异常；否者，进行第2步。（结论1：每一个reducer对INIT的action返回值不能是undefined）
+2、以state=undefined，action={type: PROBE_UNKNOWN_ACTION}执行每一个reducer，并检测每一个reducer的返回值
+    是否为undefined，如果是undefined，抛异常；（结论2：reducer对PROBE_UNKNOWN_ACTION的action返回值不能是undefined）
+```
+* createStore初始化发送的action
+```
+创建store时，会发送一个dispatch({type: Actions.INIT})，初始化state树
+```
+* replaceReducer初始化发送的action
+```
+执行replaceReducer时，会发送一个dispatch({type: Actions.REPLACE})，功能类似Actions.INIT
+```
+* 结论
+```
+1、每一个reducer中的state给一个默认值{}，防止combineReducers校验失败
+function home(state = {}, action) {
+	switch(action.type) {
+		default:
+	return state;
+	}
+}
+2、定义初始状态，页面数据结构清晰，便于阅读。且INIT发出后，会初始化到state树上作为各个页面初始状态，有利于减少页面各种null和undefined的出现；减少js对象因为访问层级过深造成的异常
+const initialState = {
+	home: {
+
+	},
+	about: {
+
+	}
+}
+createStore(reducers, initialState, middlwares);
+
+```
+# react-redux
+# redux-thunk
+# react-router
+# javascript
+
+## JS一些行业用语
+```
 # 代码的可读性要求
 
 1、代码能够清晰的表达意图
