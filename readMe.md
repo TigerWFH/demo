@@ -166,7 +166,14 @@
 # es运算符
 * ...：1、扩展运算符(spread operator) 2、剩余操作符(rest operator)，解构操作的一种
 # react
+* 关于setState
+```
+Demo在fillorder页面
 
+react对state的更新有两个分支，一个分支合并setState，只有合并过后才会走完生命周期并更新state；一个会一直走完生命周期并更新state。
+
+在生命周期或合成事件中，setState会被合并；在其他地方的setState会直接走完生命周期
+```
 # redux
 * Single source of truth
 * State is read-only
@@ -185,207 +192,161 @@
 * dispatch(action)
 * subscribe(listener)
 * replaceReducer(nextReducer)
+### redux初始化发送的action有哪些？
+* combineReducers初始化发送的action
+```
+combinereducers做的是对reducer的校验，并没有使用dispatch发送action，数据没有更新到state上
+1、以state=undefined，action={type: INIT}执行每一个reducer，并检测每一个reducer的返回值是否为undefined
+    如果是undefined，抛异常；否者，进行第2步。（结论1：每一个reducer对INIT的action返回值不能是undefined）
+2、以state=undefined，action={type: PROBE_UNKNOWN_ACTION}执行每一个reducer，并检测每一个reducer的返回值
+    是否为undefined，如果是undefined，抛异常；（结论2：reducer对PROBE_UNKNOWN_ACTION的action返回值不能是undefined）
+```
+* createStore初始化发送的action
+```
+创建store时，会发送一个dispatch({type: Actions.INIT})，初始化state树
+```
+* replaceReducer初始化发送的action
+```
+执行replaceReducer时，会发送一个dispatch({type: Actions.REPLACE})，功能类似Actions.INIT
+```
+* 结论
+```
+1、每一个reducer中的state给一个默认值{}，防止combineReducers校验失败
+function home(state = {}, action) {
+	switch(action.type) {
+		default:
+	return state;
+	}
+}
+2、定义初始状态，页面数据结构清晰，便于阅读。且INIT发出后，会初始化到state树上作为各个页面初始状态，有利于减少页面各种null和undefined的出现；减少js对象因为访问层级过深造成的异常
+const initialState = {
+	home: {
+
+	},
+	about: {
+
+	}
+}
+createStore(reducers, initialState, middlwares);
+
+```
 
 # react-redux
 
 # redux-thunk
 
 # react-router
+# javascript
 
-# promise
+* promise
 [参考资料](http://www.ituring.com.cn/(F(fOE8uHtCjZW76HuECeWYIQvcHXjAbKihNiyYMF3PD3qjKS9ouDC0Dgsm_dVXrsLEv9aJHLXCnu1MD2hEIU3b0dRXET8yWlcOCiW2v8YtJEhW-SeRKkBDXKTsKnGUZr3I0))/article/66566)
-# fetch
+* fetch
+### es6新语法
+* template literals（模板文字）
 
-# 关于ajax请求
-
-* 交互行为类的请求，防止重复请求，返回data
-
-* 获取信息类的请求，尽量重用数据，不返回data
-
-# 第一步
-首先安装工具，webpack和typescript
-
-npm install webpack typescript --save-dev --registry=https://registry.npm.taobao.org
-# 第二步
-安装react及相关库
-
-npm install react react-dom --save --registry=https://registry.npm.taobao.org
-
-# 代码的可读性要求
-
-1、代码能够清晰的表达意图
+    模板文字就是可以嵌入表达式的字符串字符。
+    使用的符号是反勾号（back tick）。
 ```
-// bad code,2代表什么意思呢？
-Coffe.makeCoffe(2);
+`string text`;
+// 模板字符串实现字符串的自动换行写法
+`string text line 1;
+ string text line 2`;
+// 表达嵌入式
+ `string text ${expression} string text`;
+```
+* tagged template literals(标签模板文字)
+```
+ // tag是一个可以返回任何值（包括函数）的函数，tag函数会自动识别模板字符中的表达式作为tag函数的其它参数,同时表达式在strings的位置由“”表示，即`${1}${2}a`，此时strings为：["","","a"]
 
-// good code
-enum COFFE_CUP {
-	small,
-	middle,
-	large
-};
-Coffe.makeCoffe(COFF_CUP.large);//语义化的参数，表明是大杯的coffe
+ tag`string text ${expression} string text`;
+ /**
+ * @desc 返回一个字符串
+ * @strings {array[strings]} 处理字符串数组
+ * @personExp {any} 可选，其它数据
+ * @ageExp {any} 可选，其它数据
+ */
+ const person = "Mike";
+ const age = 28;
+ function myTag(strings, personExp, ageExp){
+     let str0 = strings[0];
+     let str1 = strings[1];
+
+     let ageStr;
+     if (ageExp > 99){
+         ageStr = 'centenarian';
+     }
+     else{
+         ageStr = 'youngster';
+     }
+
+     return str0 + personExp + str1 + ageStr;
+ }
+ //此处将${person},${age}自动识别成personExp和ageExp参数，that，is a自动识别存储在strings参数中
+ var output = myTag`that ${person} is a ${age}`;
+ console.log(output);//that Mike is a youngster
+ 
 ```
-2、用代码沟通：注释应该用来说明代码的功能和约束条件；代码的逻辑则由代码本身来说明。源代码可以被读懂，不是因为注释，而是它本身的优雅清晰。
+也可以返回函数：
 ```
-/**
-* @desc 求和
-* @num1   {number} 输入参数1
-* @num2   {number} 输入参数2
-* @result {number} 返回和
-*/
-function add(num1, num2){
-	return num1 + num2;
+function template(strings, ...keys){
+    return (
+        function(...values){
+            var dict = values[values.length - 1] || {};
+            var result = [strings[0]];
+            keys.forEach(function(key, i){
+                var value = Number.isInteger(key) ? values[key] : dict[key];
+                result.push(value, strings[i + 1]);
+            });
+
+            return result.join('');//自动忽略undefined的值
+        });
 }
+var t1Closure = template`${0}${1}${0}`;
+t1Closure('Y', 'A');//"YAY!"
+var t2Closure = template`${0} ${'foo'}!`;
+t2Closure('Hello', {foo: 'World'});//"Hello World!"
 ```
+* Raw strings(原始字符串)
+strings参数（即tag的第一个参数）默认含有一个raw数组，可以访问原始字符串，即未处理转义字符的字符串。
+```
+function tag(strings, ...values){
+    console.log(strings.raw[0]);
+}
+tag`${string text line 1 \n string text line 2}`;
+// logs string text line 1 \n string text line 2
+```
+这和String.raw()的功能相同：
+```
+var str = String.raw`Hi\n${2+3}!`;
+//"Hi\n5"
+str.splite("").join(",");
+//"H,i,\,n,5,!"
+```
+* tagged template literals and escap sequences
+es6中的标签模板文字符合以下转移规则：
+1、以\u开始的Unicode转义序列，例如：\u00A9
+2、以\u开始的Unicode point escape，例如：\u{2F804}
+3、十六进制，例如：\xA9
+4、八进制转义，例如：\251
+```
+给定数据A有N个元素（索引从0开始），数组A的一个极点Q满足一下条件：
+    0<= Q <= N;
+    如果0<=P<=Q,则A[P]<=A[Q];
+    如果Q<R<N，则A[Q]<=A[R];
 
-`结论：` 
-	
-	用语义化的命名，准备表达意图；
-	用注释描述代码的意图和约束；
-	用代码自身的优雅清晰描述自身的逻辑。
-
-# 关于配置css模块化的问题
-但模块化css文件时，由于typescript的类型提示编译时会报错，目前暂时去掉模块化（联系下自己对css样式的组织吧），文件中使用import css = reuiqre()语法，ts编译会报错，但是能正常运行
-
-# css的命名规则
-[参考资料](http://www.cnblogs.com/xiaohuochai/p/6261697.html)
-* BEM(block element modifier):模块和子元素之间用两个下划线标识；元素和修饰符之间用两个中划线标识；命名过长如何处理呢？
-	```
-		.blockname__innerelement--active{
-			display: block;
-		}
-	```
-* NEC(网易的命名方法)：使用后代迭代器方法,首先将元素分5类--->布局(.g-)，模块(.m-)，元件(unit,.u-)，功能(.f-)，皮肤(.s-)，状态（.z-）
-	```
-		.m-list{
-			margin:0;
-			padding:0;
-			}
-		.m-list .item{
-			margin: 1px;
-		}
-		.m-list .cnt{
-			margin: 1px;
-		}
-	```
-* JD(京东):采用标识层级嵌套关系的长命名。当子孙模块超过4级，考虑祖先模块内具有识别辨别性的独立缩写作为新的子孙模块
-	```
-		<div class="modulenamne">
-			<div class="modulename_cover"></div>
-			<div class="modulename_info">
-				<div class="modulename_info_user">
-					<div class="modulename_info_user_img">
-						<img src="" alt>
-						<!--miui===modulename_info_user_img-->
-						<div class="miui_tit"></div>
-						<div class="miui_txt"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	```
-* 常见的命名：
-	```
-		about		---关于
-		account		---账户
-		arrow		---箭头图标
-		article		---文章
-		aside		---边栏
-		audio		---音频
-		avatar		---头像
-		bg，background	---背景
-		bar		---栏（工具类）
-		branding	---品牌化
-		crumb,breadcrumbs---面包屑
-		btn,button	---按钮
-		caption		---标题，说明
-		category	---分类
-		chart		---图表
-		clearfix	---清楚浮动
-		close		---关闭
-		col，column	---列
-		comment		---评论
-		community	---社区
-		container	---容器
-		content		---内容
-		copyright	---版权
-		current		---当前态（选中态）
-		default		---默认（缺醒）
-		description	---描述
-		details		---详情（细节）
-		disabled	---不可用
-		entry		---文章，博文
-		error		---错误
-		even		---偶数
-		fail		---失败
-		feature		---专题
-		fewer		---收起
-		field		---输入区域
-		figure		---图
-		filter		---筛选
-		first		---第一个
-		footer		---页脚
-		forum		---论坛
-		gallery		---画廊
-		group		---模块
-		header		---页头
-		help
-
-	```
-* 自用的命名规范:
-
-	基于BEM命名：Block是指component（module，个人倾向使用component这个词），element是指组成component（module）的element（不用嵌套），modifier是指component的外观或行为，同样的块不同的样式，显示不同的外观（b_e-m:input_text-error,input_text-warning,input_text-success）。
-
-	<strong><font style="color:green">与BEM区别的一点，允许element的嵌套，以显示层级关系</font></strong>
-
-	使用<font style="color:red">单下划线</font>标识层级关系，当超过4层（出现超过4个下划线），使用类jd的缩写
-
-	使用<font style="color:red">单中划线</font>标识状态关系，当超过4层（出现超过4个下划线），使用jd的缩写
-	```
-		<div class="monkey">
-			<div class="monkey_header">
-				<div class="monkey_header_nav monkey_header_nav-hover">
-					<div class="monkey_header_nav_item">
-						<div class="mhni_text mhni_text-active">
-						</div>
-						<div class="mhni_img">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="monkey_content"></div>
-			<div class="monkey_footer"></div>
-		</div>
-	```
-# React Optimizing Performance(优化性能)
-* use the production build(使用生产版本)
-
-	1、使用React Development Tools for Chrome检测react时生产版本（绿色背景）还是开发版本（红色背景），原因：生产版本没有提示信息，体积更小
-
-	2、使用Chrome performance tab分析组件的性能（Profiling Components with the Chrome Performance Tab）
-
-		在url后面拼接查询字符串：?react_perf
-	
-	3、avoid reconcolication
-
-		shouldComponentUpdate(nextProps, nextState)该函数会控制re-render的触发与否。
-
-		但会引起另一个问题，那就是变量的比较问题，js中引用类型比较的复杂性引起的。
-		example：
-		```
-		handleClick() {
-  			this.setState(prevState => ({
-    			words: prevState.words.concat(['marklar'])//不会引起mutate data
-  			}));
-		}
-
-
-		```
-
-		
-* 
-# js的一些规范
+例如：数组A由以下10个元素组成：
+A[0] = 4;A[1] = 2;A[2] = 2;A[3] = 3;A[4] = 1;
+A[5] = 4;A[6] = 7;A[7] = 8;A[8] = 6;A[9] = 9;
+如前所说，该函数应该返回5或者9.
+假设有如下条件：
+1、N取值范围是[0,100000];
+2、数组的每一个元素都是整数，切且取值范围是[-2147483648,2147483647]
+复杂度：
+1、期望最差时间复杂度是O(N)
+2、期望最差空间复杂度是O(N)，超出输入存储（不计算输入参数所需的存储空间）
+输入数组的元素是可以修改的（是不是意味着可以重用输入数组，节省存储空间）
+```
+* js的一些规范
 文件命名：大多web服务器（Apache，Unix）对大小写敏感，建议使用纯小写命名文件名。
 > accountname.js
 > index.js
@@ -440,7 +401,7 @@ if (){
 else{
 }
 ```
-# JS一些行业用语
+## JS一些行业用语
 * plain object:简单对象，既{}或new Object()
 * js supplant
 * Ajax技术：异步javascript xml
@@ -581,43 +542,195 @@ else{
 	console.log(curriedAdd(2)(7)());
 	console.log(curriedAdd(2)(7)(5)());
 	```
+# 代码的可读性要求
 
+1、代码能够清晰的表达意图
+```
+// bad code,2代表什么意思呢？
+Coffe.makeCoffe(2);
+
+// good code
+enum COFFE_CUP {
+	small,
+	middle,
+	large
+};
+Coffe.makeCoffe(COFF_CUP.large);//语义化的参数，表明是大杯的coffe
+```
+2、用代码沟通：注释应该用来说明代码的功能和约束条件；代码的逻辑则由代码本身来说明。源代码可以被读懂，不是因为注释，而是它本身的优雅清晰。
+```
+/**
+* @desc 求和
+* @num1   {number} 输入参数1
+* @num2   {number} 输入参数2
+* @result {number} 返回和
+*/
+function add(num1, num2){
+	return num1 + num2;
+}
+```
+
+`结论：` 
 	
+	用语义化的命名，准备表达意图；
+	用注释描述代码的意图和约束；
+	用代码自身的优雅清晰描述自身的逻辑。
 
+# 关于配置css模块化的问题
+但模块化css文件时，由于typescript的类型提示编译时会报错，目前暂时去掉模块化（联系下自己对css样式的组织吧），文件中使用import css = reuiqre()语法，ts编译会报错，但是能正常运行
+# css的命名规则
+[参考资料](http://www.cnblogs.com/xiaohuochai/p/6261697.html)
+* BEM(block element modifier):模块和子元素之间用两个下划线标识；元素和修饰符之间用两个中划线标识；命名过长如何处理呢？
+	```
+		.blockname__innerelement--active{
+			display: block;
+		}
+	```
+* NEC(网易的命名方法)：使用后代迭代器方法,首先将元素分5类--->布局(.g-)，模块(.m-)，元件(unit,.u-)，功能(.f-)，皮肤(.s-)，状态（.z-）
+	```
+		.m-list{
+			margin:0;
+			padding:0;
+			}
+		.m-list .item{
+			margin: 1px;
+		}
+		.m-list .cnt{
+			margin: 1px;
+		}
+	```
+* JD(京东):采用标识层级嵌套关系的长命名。当子孙模块超过4级，考虑祖先模块内具有识别辨别性的独立缩写作为新的子孙模块
+	```
+		<div class="modulenamne">
+			<div class="modulename_cover"></div>
+			<div class="modulename_info">
+				<div class="modulename_info_user">
+					<div class="modulename_info_user_img">
+						<img src="" alt>
+						<!--miui===modulename_info_user_img-->
+						<div class="miui_tit"></div>
+						<div class="miui_txt"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	```
+* 常见的命名：
+	```
+		about		---关于
+		account		---账户
+		arrow		---箭头图标
+		article		---文章
+		aside		---边栏
+		audio		---音频
+		avatar		---头像
+		bg，background	---背景
+		bar		---栏（工具类）
+		branding	---品牌化
+		crumb,breadcrumbs---面包屑
+		btn,button	---按钮
+		caption		---标题，说明
+		category	---分类
+		chart		---图表
+		clearfix	---清楚浮动
+		close		---关闭
+		col，column	---列
+		comment		---评论
+		community	---社区
+		container	---容器
+		content		---内容
+		copyright	---版权
+		current		---当前态（选中态）
+		default		---默认（缺醒）
+		description	---描述
+		details		---详情（细节）
+		disabled	---不可用
+		entry		---文章，博文
+		error		---错误
+		even		---偶数
+		fail		---失败
+		feature		---专题
+		fewer		---收起
+		field		---输入区域
+		figure		---图
+		filter		---筛选
+		first		---第一个
+		footer		---页脚
+		forum		---论坛
+		gallery		---画廊
+		group		---模块
+		header		---页头
+		help
+
+	```
+* 自用的命名规范:
+
+	基于BEM命名：Block是指component（module，个人倾向使用component这个词），element是指组成component（module）的element（不用嵌套），modifier是指component的外观或行为，同样的块不同的样式，显示不同的外观（b_e-m:input_text-error,input_text-warning,input_text-success）。
+
+	<strong><font style="color:green">与BEM区别的一点，允许element的嵌套，以显示层级关系</font></strong>
+
+	使用<font style="color:red">单下划线</font>标识层级关系，当超过4层（出现超过4个下划线），使用类jd的缩写
+
+	使用<font style="color:red">单中划线</font>标识状态关系，当超过4层（出现超过4个下划线），使用jd的缩写
+	```
+		<div class="monkey">
+			<div class="monkey_header">
+				<div class="monkey_header_nav monkey_header_nav-hover">
+					<div class="monkey_header_nav_item">
+						<div class="mhni_text mhni_text-active">
+						</div>
+						<div class="mhni_img">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="monkey_content"></div>
+			<div class="monkey_footer"></div>
+		</div>
+	```
+# React Optimizing Performance(优化性能)
+* use the production build(使用生产版本)
+
+	1、使用React Development Tools for Chrome检测react时生产版本（绿色背景）还是开发版本（红色背景），原因：生产版本没有提示信息，体积更小
+
+	2、使用Chrome performance tab分析组件的性能（Profiling Components with the Chrome Performance Tab）
+
+		在url后面拼接查询字符串：?react_perf
+	
+	3、avoid reconcolication
+
+		shouldComponentUpdate(nextProps, nextState)该函数会控制re-render的触发与否。
+
+		但会引起另一个问题，那就是变量的比较问题，js中引用类型比较的复杂性引起的。
+		example：
+		```
+		handleClick() {
+  			this.setState(prevState => ({
+    			words: prevState.words.concat(['marklar'])//不会引起mutate data
+  			}));
+		}
+
+
+		```
 # component and module
-
 [参考资料](http://blog.csdn.net/horkychen/article/details/45083467)
 * component:强调代码的重用（web component 或者说组件是达到可复用要求的模块,将本来分离的html,js,css又糅合到一坨了）
 * module:强调职责（内聚、分离）
 
 # 字符集和编码方案
-
 * 字符集：所有符号的集合
-
 * 字符编码集：为每一个`字符`分配一个`唯一的ID`（学名为`码位`、`码点`、`Code Point`）
-
 * 码元(code unit)：编码方案中最小字节，例如：utf8码元是8bit，utf16是16bit，utf32是32bit
-    
 * 编码方案：将`码位（Code Point）`转换成`字节序列`（储存或传输）的规则。
-
 	譬如：utf-8，utf-16，utf-32
-
 	广泛的来讲，unicode是一个标准，定义了字符集以及一系列的编码规则，即Unicode字符集和UTF-8、UTF-16、UTF-32等等编码方案……
-
 	ansi的askii（American Standard Code for Information Interchange）字符集是使用8位表示127个字符；
-	
 	出现了新的符号，就继续扩展，出现了askii扩展字符集，但8位最多能表示256个字符；
-
 	汉字更多，8位的已经无法标识，于是127之后的所有状态全部用16位来表示，扩展成GB2313，再后来扩展成GBK、GB8030。此时此刻，台湾地区出现了BIG5字符集……这些统称为DBCS（Double Byte Charecter Set），为了统一起来，让字符集通用，ISO组织制作了Unicode字符集。
-
 	demo:
-
 	raw binary: 0000000001000001
-
 	askii   0和A
-	
 	utf-16   A
-
 <table>
 <thead>
 <tr>
@@ -666,114 +779,6 @@ else{
 </tr>
 </tbody>
 </table>
-
-# es6新语法
-
-## template literals
-* template literals（模板文字）
-
-    模板文字就是可以嵌入表达式的字符串字符。
-    使用的符号是反勾号（back tick）。
-```
-`string text`;
-// 模板字符串实现字符串的自动换行写法
-`string text line 1;
- string text line 2`;
-// 表达嵌入式
- `string text ${expression} string text`;
-```
-* tagged template literals(标签模板文字)
-```
- // tag是一个可以返回任何值（包括函数）的函数，tag函数会自动识别模板字符中的表达式作为tag函数的其它参数,同时表达式在strings的位置由“”表示，即`${1}${2}a`，此时strings为：["","","a"]
-
- tag`string text ${expression} string text`;
- /**
- * @desc 返回一个字符串
- * @strings {array[strings]} 处理字符串数组
- * @personExp {any} 可选，其它数据
- * @ageExp {any} 可选，其它数据
- */
- const person = "Mike";
- const age = 28;
- function myTag(strings, personExp, ageExp){
-     let str0 = strings[0];
-     let str1 = strings[1];
-
-     let ageStr;
-     if (ageExp > 99){
-         ageStr = 'centenarian';
-     }
-     else{
-         ageStr = 'youngster';
-     }
-
-     return str0 + personExp + str1 + ageStr;
- }
- //此处将${person},${age}自动识别成personExp和ageExp参数，that，is a自动识别存储在strings参数中
- var output = myTag`that ${person} is a ${age}`;
- console.log(output);//that Mike is a youngster
- 
-```
-也可以返回函数：
-```
-function template(strings, ...keys){
-    return (
-        function(...values){
-            var dict = values[values.length - 1] || {};
-            var result = [strings[0]];
-            keys.forEach(function(key, i){
-                var value = Number.isInteger(key) ? values[key] : dict[key];
-                result.push(value, strings[i + 1]);
-            });
-
-            return result.join('');//自动忽略undefined的值
-        });
-}
-var t1Closure = template`${0}${1}${0}`;
-t1Closure('Y', 'A');//"YAY!"
-var t2Closure = template`${0} ${'foo'}!`;
-t2Closure('Hello', {foo: 'World'});//"Hello World!"
-```
-* Raw strings(原始字符串)
-strings参数（即tag的第一个参数）默认含有一个raw数组，可以访问原始字符串，即未处理转义字符的字符串。
-```
-function tag(strings, ...values){
-    console.log(strings.raw[0]);
-}
-tag`${string text line 1 \n string text line 2}`;
-// logs string text line 1 \n string text line 2
-```
-这和String.raw()的功能相同：
-```
-var str = String.raw`Hi\n${2+3}!`;
-//"Hi\n5"
-str.splite("").join(",");
-//"H,i,\,n,5,!"
-```
-* tagged template literals and escap sequences
-es6中的标签模板文字符合以下转移规则：
-1、以\u开始的Unicode转义序列，例如：\u00A9
-2、以\u开始的Unicode point escape，例如：\u{2F804}
-3、十六进制，例如：\xA9
-4、八进制转义，例如：\251
-```
-给定数据A有N个元素（索引从0开始），数组A的一个极点Q满足一下条件：
-    0<= Q <= N;
-    如果0<=P<=Q,则A[P]<=A[Q];
-    如果Q<R<N，则A[Q]<=A[R];
-
-例如：数组A由以下10个元素组成：
-A[0] = 4;A[1] = 2;A[2] = 2;A[3] = 3;A[4] = 1;
-A[5] = 4;A[6] = 7;A[7] = 8;A[8] = 6;A[9] = 9;
-如前所说，该函数应该返回5或者9.
-假设有如下条件：
-1、N取值范围是[0,100000];
-2、数组的每一个元素都是整数，切且取值范围是[-2147483648,2147483647]
-复杂度：
-1、期望最差时间复杂度是O(N)
-2、期望最差空间复杂度是O(N)，超出输入存储（不计算输入参数所需的存储空间）
-输入数组的元素是可以修改的（是不是意味着可以重用输入数组，节省存储空间）
-```
 # RPC（Remote Procedure Call），远程过程调用
 * 为什么需要RPC？
 
@@ -963,59 +968,12 @@ volumechange
 想法：1、state树直接提供UI中业务组件的props属性，拿来即用，不需要额外的逻辑处理
 	2、container还是要处理逻辑，比如夸平台，用户交互
 ```
-# 关于setState
-```
-Demo在fillorder页面
 
-react对state的更新有两个分支，一个分支合并setState，只有合并过后才会走完生命周期并更新state；一个会一直走完生命周期并更新state。
-
-在生命周期或合成事件中，setState会被合并；在其他地方的setState会直接走完生命周期
-```
 # 同步工具
 ```
 GitHub Token: 0dda64dce8b7fac3de9f9040cd2469808938ff4c
 GitHub Gist(同步密钥): f4402bd9c87c11daceb45b5efea58a25
 GitHub Gist Type: Secret
-
-```
-
-# 关于redux
-### redux初始化发送的action有哪些？
-* combineReducers初始化发送的action
-```
-combinereducers做的是对reducer的校验，并没有使用dispatch发送action，数据没有更新到state上
-1、以state=undefined，action={type: INIT}执行每一个reducer，并检测每一个reducer的返回值是否为undefined
-    如果是undefined，抛异常；否者，进行第2步。（结论1：每一个reducer对INIT的action返回值不能是undefined）
-2、以state=undefined，action={type: PROBE_UNKNOWN_ACTION}执行每一个reducer，并检测每一个reducer的返回值
-    是否为undefined，如果是undefined，抛异常；（结论2：reducer对PROBE_UNKNOWN_ACTION的action返回值不能是undefined）
-```
-* createStore初始化发送的action
-```
-创建store时，会发送一个dispatch({type: Actions.INIT})，初始化state树
-```
-* replaceReducer初始化发送的action
-```
-执行replaceReducer时，会发送一个dispatch({type: Actions.REPLACE})，功能类似Actions.INIT
-```
-* 结论
-```
-1、每一个reducer中的state给一个默认值{}，防止combineReducers校验失败
-function home(state = {}, action) {
-	switch(action.type) {
-		default:
-	return state;
-	}
-}
-2、定义初始状态，页面数据结构清晰，便于阅读。且INIT发出后，会初始化到state树上作为各个页面初始状态，有利于减少页面各种null和undefined的出现；减少js对象因为访问层级过深造成的异常
-const initialState = {
-	home: {
-
-	},
-	about: {
-
-	}
-}
-createStore(reducers, initialState, middlwares);
 
 ```
 
