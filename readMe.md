@@ -161,9 +161,30 @@
 	通用业务组件拉出去，作为单独的项目。
 	特有组件则单独开发，并存放在compoennets目录下。
 	非业务组件------>业务组件------>页面------>应用
-
+# typescript
+* 类型变量：使用<>定义或传值
+* 泛型，使用泛型时可以显式传递类型；也可以不传递，通过类型推论推导出类型
+```
+	1、泛型函数
+		function identify<T>(args: T[]): Array<T> {
+			return args;
+		}
+	2、泛型函数的类型
+		let myIdentify: <U>(args: U[]) => Array<U> = identify;
+		还可以，
+		let myIdentify: {<U>(args: U[]) => Array<U>} = identify;
+	3、泛型接口
+		interface GenericIndentityFn {
+			<T>(arg: T): T;
+		}
+		function identify<T>(arg: T): T {
+			return arg;
+		}
+		let myIdentify: GenericIndentityFn = identify;
+	4、泛型类
+```
+* 类型推论
 # javascript
-
 * promise
 [参考资料](http://www.ituring.com.cn/(F(fOE8uHtCjZW76HuECeWYIQvcHXjAbKihNiyYMF3PD3qjKS9ouDC0Dgsm_dVXrsLEv9aJHLXCnu1MD2hEIU3b0dRXET8yWlcOCiW2v8YtJEhW-SeRKkBDXKTsKnGUZr3I0))/article/66566)
 * fetch
