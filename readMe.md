@@ -183,7 +183,43 @@
 		let myIdentify: GenericIndentityFn = identify;
 	4、泛型类
 ```
+* ts中的对象类型
+```
+	1、固定类型：该属性一定存在
+		interface Person {
+			name: string;
+			age: number;
+		}
+	2、可选属性：该属性可以不存在
+		interface Person {
+			name: string;
+			age: number;
+			gender?: string;
+		}
+	3、任意属性：
+		interface Person {
+			name: string;
+			age: number;
+			gender?: string;
+			[key: string]: string;
+		}
+```
 * 类型推论
+* type：类型别名关键字
+* keyof（索引类型查询操作符）：索引类型（Index types）查询
+```
+keyof T的结果：T上已知的公共属性名的联合
+interface Person {
+	name: string;
+	age: number;
+}
+let personProps: keyof Person; // "name" | "age"
+```
+* T[k]：索引访问操作符
+* 映射类型：从旧类型中创建新类型的一种方式
+```
+
+```
 # javascript
 * promise
 [参考资料](http://www.ituring.com.cn/(F(fOE8uHtCjZW76HuECeWYIQvcHXjAbKihNiyYMF3PD3qjKS9ouDC0Dgsm_dVXrsLEv9aJHLXCnu1MD2hEIU3b0dRXET8yWlcOCiW2v8YtJEhW-SeRKkBDXKTsKnGUZr3I0))/article/66566)
