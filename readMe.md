@@ -1,169 +1,175 @@
-
 # 项目说明
-* 本项目所有的内容仅仅用于个人学习交流使用，未经授权，禁止任何形式使用
+
+- 本项目所有的内容仅仅用于个人学习交流使用，未经授权，禁止任何形式使用
+
 # 开始
+
 创建目录结构(项目当前`正在使用`的目录结构)
 
-	Demo
-	|
-	|--->src(存放源码)
-	|	|
-	|	|--->widgets（存放基础组建和布局组件）
-	|	|	|--->basic（存放基础组建）
-	|	|	|     |
-	|	|	|     |--->input（input基础组件）
-	|	|	|
-	|	|	|
-	|	|	|--->view(布局组件)
-	|	|
-	|	|
-	|	|--->pages(存放web模块)
-	|	|	|
-	|	|	|--->first(模块1或页面1)
-	|	|	|	|
-	|	|	|	|--->actions(存放redux的actions)
-	|	|	|	|
-	|	|	| 	|--->reducers(存放redux的reducers)
-	|	|	| 	|
-	|	|	|	|--->container(存放容器组件)
-	|	|	|	|
-	|	|	|	|--->components(存放展示组件，数据来源只有props)
-	|	|	|	|
-	|	|	|	|--->types(定义常量等)
-	|	|	|	|
-	|	|	|	|--->index.tsx(导出first容器组件)
-	|	|	|	|--->index.less(css样式)
-	|	|	|
-	|	|	|
-	|	|	|--->second(模块2或页面2)
-	|	|	|(...)
-	|	|
-	|	|
-	|	|--->res(存放图片等资源)
-	|	|
-	|	|
-	|	|
-	|	|--->utils(一些协助项目的通用工具，比如http,getToken等)
-	|
-	|
-	|
-	|--->tools(基本上是协助开发的工具，比如数据类型转换等，可以用node跑)
-	|
-	|
-	|--->dist(编译后部署代码)
-	|--->node_modules(安装的依赖包)
-	|--->(...其他一些配置文件)
+    Demo
+    |
+    |--->src(存放源码)
+    |	|
+    |	|--->widgets（存放基础组建和布局组件）
+    |	|	|--->basic（存放基础组建）
+    |	|	|     |
+    |	|	|     |--->input（input基础组件）
+    |	|	|
+    |	|	|
+    |	|	|--->view(布局组件)
+    |	|
+    |	|
+    |	|--->pages(存放web模块)
+    |	|	|
+    |	|	|--->first(模块1或页面1)
+    |	|	|	|
+    |	|	|	|--->actions(存放redux的actions)
+    |	|	|	|
+    |	|	| 	|--->reducers(存放redux的reducers)
+    |	|	| 	|
+    |	|	|	|--->container(存放容器组件)
+    |	|	|	|
+    |	|	|	|--->components(存放展示组件，数据来源只有props)
+    |	|	|	|
+    |	|	|	|--->types(定义常量等)
+    |	|	|	|
+    |	|	|	|--->index.tsx(导出first容器组件)
+    |	|	|	|--->index.less(css样式)
+    |	|	|
+    |	|	|
+    |	|	|--->second(模块2或页面2)
+    |	|	|(...)
+    |	|
+    |	|
+    |	|--->res(存放图片等资源)
+    |	|
+    |	|
+    |	|
+    |	|--->utils(一些协助项目的通用工具，比如http,getToken等)
+    |
+    |
+    |
+    |--->tools(基本上是协助开发的工具，比如数据类型转换等，可以用node跑)
+    |
+    |
+    |--->dist(编译后部署代码)
+    |--->node_modules(安装的依赖包)
+    |--->(...其他一些配置文件)
 
 进一步精细化的目录（`备选目录`）
 
-	Demo
-	|
-	|
-	|------>src/app(存放源代码)
-	|	|
-	|	|
-	|	|------>index.js(启动app前的配置项)
-	|	|
-	|	|
-	|	|------>store.js
-	|	|
-	|	|
-	|	|------>home.html
-	|	|
-	|	|
-	|	|------>rootReducer.js
-	|	|
-	|	|
-	|	|------>common(存放通用资源，至少是两个模块都会引用的资源才会放到这里，否者放在模块自己的目录下)
-	|	|	|
-	|	|	|
-	|	|	|------>globalActions()
-	|	|	|
-	|	|	|
-	|	|	|------>globalReducers()
-	|	|	|
-	|	|	|
-	|	|	|------>globalUtils()
-	|	|	|
-	|	|	|
-	|	|	|------>globalCss()
-	|	|	|
-	|	|	|
-	|	|	|------>res(存放资源)
-	|	|	|	|
-	|	|	|	|
-	|	|	|	|------>images
-	|	|	|	|
-	|	|	|	|
-	|	|	|	|------>fonts
-	|	|	|
-	|	|	|
-	|	|	|------>libs(存放非node_module方式引入的包)
-	|	|
-	|	|
-	|	|------>modules(存放各个模块)
-	|	|	|
-	|	|	|
-	|	|	|------>first(第一个模块)
-	|	|	|	|
-	|	|	|	|
-	|	|	|	|------>index.js(动态加载渲染路由，如果一次性加载路由，可取消该项）
-	|	|	|	|
-	|	|	|	|
-	|	|	|	|------>main.js(渲染html)
-	|	|	|	|
-	|	|	|	|
-	|	|	|	|------>actions.js
-	|	|	|	|
-	|	|	|	|
-	|	|	|	|------>reducers.js
-	|	|	|	|
-	|	|	|	|
-	|	|	|	|------>components(存放页面级的模块)
-	|	|	|	|	|
-	|	|	|	|	|
-	|	|	|	|	|------>header
-	|	|	|	|	|	|
-	|	|	|	|	|	|
-	|	|	|	|	|	|------>index.js
-	|	|	|	|	|	|
-	|	|	|	|	|	|------->index.css
-	|	|	|	|	|
-	|	|	|	|	|
-	|	|	|	|	|------>content(同header)
-	|	|	|	|	|
-	|	|	|	|	|
-	|	|	|	|	|------>footer(同header)
-	|	|	|	|
-	|	|	|
-	|	|	|
-	|	|	|------>second
-	|	|	|
-	|	|	|
-	|	|	|------>third
-	|
-	|
-	|
-	|------>configs(各种根目录下的配置文件)
-	|
-	|------>tools
-	|
-	|
-	|------>static/dist(构建目录)
-	|
-	|
-	|------>node_modules
+    Demo
+    |
+    |
+    |------>src/app(存放源代码)
+    |	|
+    |	|
+    |	|------>index.js(启动app前的配置项)
+    |	|
+    |	|
+    |	|------>store.js
+    |	|
+    |	|
+    |	|------>home.html
+    |	|
+    |	|
+    |	|------>rootReducer.js
+    |	|
+    |	|
+    |	|------>common(存放通用资源，至少是两个模块都会引用的资源才会放到这里，否者放在模块自己的目录下)
+    |	|	|
+    |	|	|
+    |	|	|------>globalActions()
+    |	|	|
+    |	|	|
+    |	|	|------>globalReducers()
+    |	|	|
+    |	|	|
+    |	|	|------>globalUtils()
+    |	|	|
+    |	|	|
+    |	|	|------>globalCss()
+    |	|	|
+    |	|	|
+    |	|	|------>res(存放资源)
+    |	|	|	|
+    |	|	|	|
+    |	|	|	|------>images
+    |	|	|	|
+    |	|	|	|
+    |	|	|	|------>fonts
+    |	|	|
+    |	|	|
+    |	|	|------>libs(存放非node_module方式引入的包)
+    |	|
+    |	|
+    |	|------>modules(存放各个模块)
+    |	|	|
+    |	|	|
+    |	|	|------>first(第一个模块)
+    |	|	|	|
+    |	|	|	|
+    |	|	|	|------>index.js(动态加载渲染路由，如果一次性加载路由，可取消该项）
+    |	|	|	|
+    |	|	|	|
+    |	|	|	|------>main.js(渲染html)
+    |	|	|	|
+    |	|	|	|
+    |	|	|	|------>actions.js
+    |	|	|	|
+    |	|	|	|
+    |	|	|	|------>reducers.js
+    |	|	|	|
+    |	|	|	|
+    |	|	|	|------>components(存放页面级的模块)
+    |	|	|	|	|
+    |	|	|	|	|
+    |	|	|	|	|------>header
+    |	|	|	|	|	|
+    |	|	|	|	|	|
+    |	|	|	|	|	|------>index.js
+    |	|	|	|	|	|
+    |	|	|	|	|	|------->index.css
+    |	|	|	|	|
+    |	|	|	|	|
+    |	|	|	|	|------>content(同header)
+    |	|	|	|	|
+    |	|	|	|	|
+    |	|	|	|	|------>footer(同header)
+    |	|	|	|
+    |	|	|
+    |	|	|
+    |	|	|------>second
+    |	|	|
+    |	|	|
+    |	|	|------>third
+    |
+    |
+    |
+    |------>configs(各种根目录下的配置文件)
+    |
+    |------>tools
+    |
+    |
+    |------>static/dist(构建目录)
+    |
+    |
+    |------>node_modules
+
 `结论：`
 
-	通用的东西全部到common目录下查找。
-	modules目录下是相互独立的模块。
-	非业务基础组件拉出去，作为单独的项目。
-	通用业务组件拉出去，作为单独的项目。
-	特有组件则单独开发，并存放在compoennets目录下。
-	非业务组件------>业务组件------>页面------>应用
+    通用的东西全部到common目录下查找。
+    modules目录下是相互独立的模块。
+    非业务基础组件拉出去，作为单独的项目。
+    通用业务组件拉出去，作为单独的项目。
+    特有组件则单独开发，并存放在compoennets目录下。
+    非业务组件------>业务组件------>页面------>应用
+
 # typescript
-* 类型变量：使用<>定义或传值
-* 泛型，使用泛型时可以显式传递类型；也可以不传递，通过类型推论推导出类型
+
+- 类型变量：使用<>定义或传值
+- 泛型，使用泛型时可以显式传递类型；也可以不传递，通过类型推论推导出类型
+
 ```
 	1、泛型函数
 		function identify<T>(args: T[]): Array<T> {
@@ -183,7 +189,9 @@
 		let myIdentify: GenericIndentityFn = identify;
 	4、泛型类
 ```
-* ts中的对象类型
+
+- ts 中的对象类型
+
 ```
 	1、固定类型：该属性一定存在
 		interface Person {
@@ -204,9 +212,11 @@
 			[key: string]: string;
 		}
 ```
-* 类型推论
-* type：类型别名关键字
-* keyof（索引类型查询操作符）：索引类型（Index types）查询
+
+- 类型推论
+- type：类型别名关键字
+- keyof（索引类型查询操作符）：索引类型（Index types）查询
+
 ```
 keyof T的结果：T上已知的公共属性名的联合
 interface Person {
@@ -215,160 +225,175 @@ interface Person {
 }
 let personProps: keyof Person; // "name" | "age"
 ```
-* T[k]：索引访问操作符
-* 映射类型：从旧类型中创建新类型的一种方式
+
+- T[k]：索引访问操作符
+- 映射类型：从旧类型中创建新类型的一种方式
+
 ```
 
 ```
+
 # javascript
-* promise
-[参考资料](http://www.ituring.com.cn/(F(fOE8uHtCjZW76HuECeWYIQvcHXjAbKihNiyYMF3PD3qjKS9ouDC0Dgsm_dVXrsLEv9aJHLXCnu1MD2hEIU3b0dRXET8yWlcOCiW2v8YtJEhW-SeRKkBDXKTsKnGUZr3I0))/article/66566)
-* fetch
-* plain object:简单对象，既{}或new Object()
-* js supplant
-* Ajax技术：异步javascript xml
 
-		1、从服务器获取数据且不用卸载页面（有益用户体验）
-		2、ajax通信与数据格式无关，可以使用xml、json等数据格式（有益网络传输）
-		3、js中的实现是：XMLHttpRequest
-		4、FormData类型，表单数据
-		5、CORS跨域问题：
-			Origin和Access-Controll-Allow-Origin
-			open函数传入绝对地址，可以解决跨域问题
-			Preflighted Request技术
-			图像Ping(无法处理响应，只能单向通信)
-			JSONP
-* form表单
+- promise
+  [参考资料](<http://www.ituring.com.cn/(F(fOE8uHtCjZW76HuECeWYIQvcHXjAbKihNiyYMF3PD3qjKS9ouDC0Dgsm_dVXrsLEv9aJHLXCnu1MD2hEIU3b0dRXET8yWlcOCiW2v8YtJEhW-SeRKkBDXKTsKnGUZr3I0))/article/66566>)
+- fetch
+- plain object:简单对象，既{}或 new Object()
+- js supplant
+- Ajax 技术：异步 javascript xml
 
-		enctype：
-		application/x-www-form-urlencoded   编码所有字符（默认）
-		multipart/form-data   不对字符编码，二进制
-		text/plain  空格转换为加号，但不对特殊字符编码
+      1、从服务器获取数据且不用卸载页面（有益用户体验）
+      2、ajax通信与数据格式无关，可以使用xml、json等数据格式（有益网络传输）
+      3、js中的实现是：XMLHttpRequest
+      4、FormData类型，表单数据
+      5、CORS跨域问题：
+      	Origin和Access-Controll-Allow-Origin
+      	open函数传入绝对地址，可以解决跨域问题
+      	Preflighted Request技术
+      	图像Ping(无法处理响应，只能单向通信)
+      	JSONP
 
-* js安全类型检测
+- form 表单
 
-		前置条件： Object.prototype.toString没有修改;
-			此方法只对原生对象有效，非原生对象全是Object
-		方案：   Object.prototype.toString.apply(Object);
-			返回结果类似: "[object Object]","[object Function]","[object JSON]"……
+      enctype：
+      application/x-www-form-urlencoded   编码所有字符（默认）
+      multipart/form-data   不对字符编码，二进制
+      text/plain  空格转换为加号，但不对特殊字符编码
 
-* 作用域安全的构造函数
+- js 安全类型检测
 
-	构造函数Person，当使用new时，this指针能够正确的指向新创建的对象实例；
-	但是，当忘记使用new时，this指针就会指向window对象，这可能会引起非预期结果。
-	比如下面的demo，name就会覆盖window对象的属性name，引起异常。
-	```
-	// 非安全的demo
-	function Person(name, age, job){
-		this.name = name;
-		this.age = age;
-		this.job = job;
-	}
+      前置条件： Object.prototype.toString没有修改;
+      	此方法只对原生对象有效，非原生对象全是Object
+      方案：   Object.prototype.toString.apply(Object);
+      	返回结果类似: "[object Object]","[object Function]","[object JSON]"……
 
-	let p1 = new Person("monkey", 12, "student");
-	let p2 = Person("wang", 13, "doctor");
-	alert(windw.name);//wang
-	alert(windw.age);//13
-	alert(windw.job);//doctor
+- 作用域安全的构造函数
+
+  构造函数 Person，当使用 new 时，this 指针能够正确的指向新创建的对象实例；
+  但是，当忘记使用 new 时，this 指针就会指向 window 对象，这可能会引起非预期结果。
+  比如下面的 demo，name 就会覆盖 window 对象的属性 name，引起异常。
+
+  ```
+  // 非安全的demo
+  function Person(name, age, job){
+  	this.name = name;
+  	this.age = age;
+  	this.job = job;
+  }
+
+  let p1 = new Person("monkey", 12, "student");
+  let p2 = Person("wang", 13, "doctor");
+  alert(windw.name);//wang
+  alert(windw.age);//13
+  alert(windw.job);//doctor
 
 
-	// 作用域安全的demo
-	function Person(name, age, job){
-		if (this instanceof Person){
-			this.name = name;
-			this.age = age;
-			this.job = job;
-		}
-		else {
-			return new Person(name, age, job);
-		}
-	}
-	```
-* 惰性载入函数
-* 函数绑定
-* 函数柯理化
+  // 作用域安全的demo
+  function Person(name, age, job){
+  	if (this instanceof Person){
+  		this.name = name;
+  		this.age = age;
+  		this.job = job;
+  	}
+  	else {
+  		return new Person(name, age, job);
+  	}
+  }
+  ```
 
-	作用：
+- 惰性载入函数
+- 函数绑定
+- 函数柯理化
 
-		用于创建已经设置好了 一个或多个参数的函数。
+  作用：
 
-	如题：
-	```
-		fn() ===> 0
+      用于创建已经设置好了 一个或多个参数的函数。
 
-		fn(2)() ===> 2
+  如题：
 
-		fn(2)(7)() ===> 9
+  ```
+  	fn() ===> 0
 
-		fn(2)(5)(7)() ===> 14
-	```
-	实现函数fn.
+  	fn(2)() ===> 2
 
-	思考：
-	```
-	方案一：全局变量控制
+  	fn(2)(7)() ===> 9
 
-	let sum = 0;
+  	fn(2)(5)(7)() ===> 14
+  ```
 
-	function fn() {
-		if (arguments.length) {
-			sum += arguments[0];
-			return fn;
-		}
+  实现函数 fn.
 
-		return sum;
-	}
+  思考：
 
-	console.log(fn());
-	sum = 0;
-	console.log(fn(2)());
-	sum = 0;
-	console.log(fn(2)(7)());
-	sum = 0;
-	console.log(fn(2)(7)(5)());
+  ```
+  方案一：全局变量控制
 
-	方案2：将全局变量收敛到局部作用域，比如函数作用域（似乎js也就只有函数作用域了），既柯里化
-	function curry(fn) {
-		let args = arguments;
-		let outerArgs = Array.prototype.slice.call(args, 1);
+  let sum = 0;
 
-		return function() {
-			let innerArgs = Array.prototype.slice.apply(arguments);
-			let finnalArgs = outerArgs.concat(innerArgs);
+  function fn() {
+  	if (arguments.length) {
+  		sum += arguments[0];
+  		return fn;
+  	}
 
-			if (arguments.length) {
-				return arguments.callee;
-			}
+  	return sum;
+  }
 
-			<!-- 还原outerArgs，类似方案1中的sum -->
-			outerArgs = Array.prototype.slice.call(args, 1);
+  console.log(fn());
+  sum = 0;
+  console.log(fn(2)());
+  sum = 0;
+  console.log(fn(2)(7)());
+  sum = 0;
+  console.log(fn(2)(7)(5)());
 
-			return fn.apply(null, finallyArgs);
-		}
-	}
+  方案2：将全局变量收敛到局部作用域，比如函数作用域（似乎js也就只有函数作用域了），既柯里化
+  function curry(fn) {
+  	let args = arguments;
+  	let outerArgs = Array.prototype.slice.call(args, 1);
 
-	function add() {
-		let length = arguments.length;
-		let sum = 0;
-		while(length > 0) {
-			sum += arguments[--length];
-		}
+  	return function() {
+  		let innerArgs = Array.prototype.slice.apply(arguments);
+  		let finnalArgs = outerArgs.concat(innerArgs);
 
-		return sum;
-	}
+  		if (arguments.length) {
+  			return arguments.callee;
+  		}
 
-	let curriedAdd = curry(add);
-	
-	console.log(curriedAdd());
-	console.log(curriedAdd(2)());
-	console.log(curriedAdd(2)(7)());
-	console.log(curriedAdd(2)(7)(5)());
-* es新语法特性
+  		<!-- 还原outerArgs，类似方案1中的sum -->
+  		outerArgs = Array.prototype.slice.call(args, 1);
+
+  		return fn.apply(null, finallyArgs);
+  	}
+  }
+
+  function add() {
+  	let length = arguments.length;
+  	let sum = 0;
+  	while(length > 0) {
+  		sum += arguments[--length];
+  	}
+
+  	return sum;
+  }
+
+  let curriedAdd = curry(add);
+
+  console.log(curriedAdd());
+  console.log(curriedAdd(2)());
+  console.log(curriedAdd(2)(7)());
+  console.log(curriedAdd(2)(7)(5)());
+  ```
+
+- es 新语法特性
+
 ```
 	1、...：扩展运算符(spread operator) ；剩余操作符(rest operator)，解构操作的一种
 	2、template literals（模板文字）：模板文字就是可以嵌入表达式的字符串字符，使用的符号是反勾号（back tick）。
 ```
-* es1：tagged template literals(标签模板文字)
+
+- es1：tagged template literals(标签模板文字)
+
 ```
  // tag是一个可以返回任何值（包括函数）的函数，tag函数会自动识别模板字符中的表达式作为tag函数的其它参数,同时表达式在strings的位置由“”表示，即`${1}${2}a`，此时strings为：["","","a"]
 
@@ -398,9 +423,11 @@ let personProps: keyof Person; // "name" | "age"
  //此处将${person},${age}自动识别成personExp和ageExp参数，that，is a自动识别存储在strings参数中
  var output = myTag`that ${person} is a ${age}`;
  console.log(output);//that Mike is a youngster
- 
+
 ```
+
 也可以返回函数：
+
 ```
 function template(strings, ...keys){
     return (
@@ -420,8 +447,10 @@ t1Closure('Y', 'A');//"YAY!"
 var t2Closure = template`${0} ${'foo'}!`;
 t2Closure('Hello', {foo: 'World'});//"Hello World!"
 ```
-* Raw strings(原始字符串)
-strings参数（即tag的第一个参数）默认含有一个raw数组，可以访问原始字符串，即未处理转义字符的字符串。
+
+- Raw strings(原始字符串)
+  strings 参数（即 tag 的第一个参数）默认含有一个 raw 数组，可以访问原始字符串， 即未处理转义字符的字符串。
+
 ```
 function tag(strings, ...values){
     console.log(strings.raw[0]);
@@ -429,19 +458,23 @@ function tag(strings, ...values){
 tag`${string text line 1 \n string text line 2}`;
 // logs string text line 1 \n string text line 2
 ```
-这和String.raw()的功能相同：
+
+这和 String.raw()的功能相同：
+
 ```
 var str = String.raw`Hi\n${2+3}!`;
 //"Hi\n5"
 str.splite("").join(",");
 //"H,i,\,n,5,!"
 ```
-* tagged template literals and escap sequences
-es6中的标签模板文字符合以下转移规则：
-1、以\u开始的Unicode转义序列，例如：\u00A9
-2、以\u开始的Unicode point escape，例如：\u{2F804}
-3、十六进制，例如：\xA9
-4、八进制转义，例如：\251
+
+- tagged template literals and escap sequences
+  es6 中的标签模板文字符合以下转移规则：
+  1、以\u 开始的 Unicode 转义序列，例如：\u00A9
+  2、以\u 开始的 Unicode point escape，例如：\u{2F804}
+  3、十六进制，例如：\xA9
+  4、八进制转义，例如：\251
+
 ```
 给定数据A有N个元素（索引从0开始），数组A的一个极点Q满足一下条件：
     0<= Q <= N;
@@ -460,34 +493,42 @@ A[5] = 4;A[6] = 7;A[7] = 8;A[8] = 6;A[9] = 9;
 2、期望最差空间复杂度是O(N)，超出输入存储（不计算输入参数所需的存储空间）
 输入数组的元素是可以修改的（是不是意味着可以重用输入数组，节省存储空间）
 ```
+
 # react
-* 关于setState
+
+- 关于 setState
+
 ```
 Demo在fillorder页面
 react对state的更新有两个分支，一个分支合并setState，只有合并过后才会走完生命周期并更新state；一个会一直走完生命周期并更新state。
 
 在生命周期或合成事件中，setState会被合并；在其他地方的setState会直接走完生命周期
 ```
+
 # redux
-* Single source of truth
-* State is read-only
-* Changes are made with pure functions
 
-* top level api
+- Single source of truth
+- State is read-only
+- Changes are made with pure functions
 
-* createStore(reducer, [preloadedState], [enhancer])
-* combineReducers(reducers)
-* applyMiddleWare(...middlewares)
-* bindActionCreators(actionCreators, dispatch)
-* compose(...functions)
+- top level api
 
-* Store api
-* getState()
-* dispatch(action)
-* subscribe(listener)
-* replaceReducer(nextReducer)
-### redux初始化发送的action有哪些？
-* combineReducers初始化发送的action
+- createStore(reducer, [preloadedState], [enhancer])
+- combineReducers(reducers)
+- applyMiddleWare(...middlewares)
+- bindActionCreators(actionCreators, dispatch)
+- compose(...functions)
+
+- Store api
+- getState()
+- dispatch(action)
+- subscribe(listener)
+- replaceReducer(nextReducer)
+
+### redux 初始化发送的 action 有哪些？
+
+- combineReducers 初始化发送的 action
+
 ```
 combinereducers做的是对reducer的校验，并没有使用dispatch发送action，数据没有更新到state上
 1、以state=undefined，action={type: INIT}执行每一个reducer，并检测每一个reducer的返回值是否为undefined
@@ -495,15 +536,21 @@ combinereducers做的是对reducer的校验，并没有使用dispatch发送actio
 2、以state=undefined，action={type: PROBE_UNKNOWN_ACTION}执行每一个reducer，并检测每一个reducer的返回值
     是否为undefined，如果是undefined，抛异常；（结论2：reducer对PROBE_UNKNOWN_ACTION的action返回值不能是undefined）
 ```
-* createStore初始化发送的action
+
+- createStore 初始化发送的 action
+
 ```
 创建store时，会发送一个dispatch({type: Actions.INIT})，初始化state树
 ```
-* replaceReducer初始化发送的action
+
+- replaceReducer 初始化发送的 action
+
 ```
 执行replaceReducer时，会发送一个dispatch({type: Actions.REPLACE})，功能类似Actions.INIT
 ```
-* 结论
+
+- 结论
+
 ```
 1、每一个reducer中的state给一个默认值{}，防止combineReducers校验失败
 function home(state = {}, action) {
@@ -524,43 +571,53 @@ const initialState = {
 createStore(reducers, initialState, middlwares);
 
 ```
+
 # react-redux
+
 # redux-thunk
+
 # react-router
+
 # javascript
 
-## JS一些行业用语
+## JS 一些行业用语
+
 ```
 # 代码的可读性要求
 
 1、代码能够清晰的表达意图
 ```
-// bad code,2代表什么意思呢？
+
+// bad code,2 代表什么  意思呢？
 Coffe.makeCoffe(2);
 
 // good code
 enum COFFE_CUP {
-	small,
-	middle,
-	large
+small,
+middle,
+large
 };
-Coffe.makeCoffe(COFF_CUP.large);//语义化的参数，表明是大杯的coffe
+Coffe.makeCoffe(COFF_CUP.large);//语义化的参数，表明是大杯的 coffe
+
 ```
 2、用代码沟通：注释应该用来说明代码的功能和约束条件；代码的逻辑则由代码本身来说明。源代码可以被读懂，不是因为注释，而是它本身的优雅清晰。
 ```
-/**
-* @desc 求和
-* @num1   {number} 输入参数1
-* @num2   {number} 输入参数2
-* @result {number} 返回和
-*/
-function add(num1, num2){
-	return num1 + num2;
-}
-```
 
-`结论：` 
-	
+/\*\*
+
+- @desc 求和
+- @num1 {number} 输入参数 1
+- @num2 {number} 输入参数 2
+- @result {number} 返回和
+  \*/
+  function add(num1, num2){
+  return num1 + num2;
+  }
+
+````
+
+`结论：`
+
 	用语义化的命名，准备表达意图；
 	用注释描述代码的意图和约束；
 	用代码自身的优雅清晰描述自身的逻辑。
@@ -685,7 +742,7 @@ function add(num1, num2){
 	2、使用Chrome performance tab分析组件的性能（Profiling Components with the Chrome Performance Tab）
 
 		在url后面拼接查询字符串：?react_perf
-	
+
 	3、avoid reconcolication
 
 		shouldComponentUpdate(nextProps, nextState)该函数会控制re-render的触发与否。
@@ -842,11 +899,14 @@ function add(num1, num2){
 
 # 对接准备
 * 引入初始化脚本
-```
+````
+
 <script src="//imgcache.qq.com/open/qcloud/video/vcplayer/TcPlayer.js" charset="utf-8"></script>
+
 ```
 * HTML里放置容器
 ```
+
 <div id="id_test_video" style="width:100%;height:auto;"></div>
 ```
 * 对接视频的播放
@@ -916,20 +976,21 @@ seeked
 resize
 volumechange
 
-# [js可视化图表库](https://www.cnblogs.com/lhb25/p/best-javascript-charting-libraries.html)
-* chart.js：HTML5的Canvas绘图，支持6种图标类型（折线图、条形图、雷达图、饼图、柱状图、极地区域区，独立的包不依赖第三方库）
-* ECharts：基于Canvas，底层基于ZRender
-* D3.js：基于SVG
-* Highcharts：兼容性好，个人用户免费，纯js无bs接口
-* Fusionchart：强交互性
-* Flot：基于jQuery
-* Chartist.js：使用svgxua渲染图
-* n3-charts：基于D3.js和angular
-* Ember Charts：基于D3和Ember
-* Demo
+# [js 可视化图表库](https://www.cnblogs.com/lhb25/p/best-javascript-charting-libraries.html)
 
+- chart.js：HTML5 的 Canvas 绘图，支持 6 种图标类型（折线图、条形图、雷达图、饼图、柱状图、极地区域区，独立的包不依赖第三方库）
+- ECharts：基于 Canvas，底层基于 ZRender
+- D3.js：基于 SVG
+- Highcharts：兼容性好，个人用户免费，纯 js 无 bs 接口
+- Fusionchart：强交互性
+- Flot：基于 jQuery
+- Chartist.js：使用 svgxua 渲染图
+- n3-charts：基于 D3.js 和 angular
+- Ember Charts：基于 D3 和 Ember
+- Demo
 
 # 关于数据模型抽象创建的想法
+
 ```
 1、将状态全部抽到state树上，将每个页面的数据都抽象成uiData、apiData两部分
 	actionTypes:
@@ -959,6 +1020,7 @@ volumechange
 ```
 
 # 同步工具
+
 ```
 GitHub Token: 0dda64dce8b7fac3de9f9040cd2469808938ff4c
 GitHub Gist(同步密钥): f4402bd9c87c11daceb45b5efea58a25
@@ -966,87 +1028,96 @@ GitHub Gist Type: Secret
 
 ```
 
-# 关于P类问题，NP类问题，NPC类问题资料
-[参考资料1](http://www.matrix67.com/blog/archives/105)
-[参考资料2](https://blog.csdn.net/golden1314521/article/details/51470999)
+# 关于 P 类问题，NP 类问题，NPC 类问题资料
+
+[参考资料 1](http://www.matrix67.com/blog/archives/105)
+[参考资料 2](https://blog.csdn.net/golden1314521/article/details/51470999)
 
 # 字体设计相关文章
+
 [基础字体设计术语](https://www.jianshu.com/p/7fcfae454cde)
 
 [字体设计](http://www.333cn.com/shejizixun/201835/43498_144775.html)
 
 [字体概述](https://www.douban.com/note/587706413/?type=like)
 
-# flex兼容性
-分类|安卓2.1-4.3|安卓4.4以上|UC11.4|QQ1.2以上|IOS safari3.2-6.1|IOS safari7.1-8.4|IOS safari9.2以上
----|:--:|:--:|:--:|:--:|:--:|:--:|---
-语法版本|09|标准|09|标准|09|标准|标准
-是否前缀|是|否|是|否|是|是|否
-## flex语法
-* 09年版语法：-webkit-box
-* 11年版过渡语法：-webkit-flex
-* 标准语法：flex
-## 09和标准语法对比，容器属性6个，项目属性6个
-属性|标准|09版|说明
----|:--:|:--|---
-display|flex|box|块元素|无差异
-display|inline-flex|inline-box|内联元素|无差异
-容器|flex-direction|box-orient,box-direction|无差异
-容器|flex-wrap|box-lines|有差异
-容器|flex-flow|无|有差异
-容器|justify-content|box-pack|有差异
-容器|align-items|box-align|无差异
-容器|align-content|无|有差异
-项目|order|box-ordinal-group|无差异
-项目|flex|box-flex|有差异
-项目|flex-grow|无|有差异
-项目|flex-shrink|无|有差异
-项目|flex-basis|无|有差异
-项目|align-self|无|有差异
+# flex 兼容性
+
+| 分类     | 安卓 2.1-4.3 | 安卓 4.4 以上 | UC11.4 | QQ1.2 以上 | IOS safari3.2-6.1 | IOS safari7.1-8.4 | IOS safari9.2 以上 |
+| -------- | :----------: | :-----------: | :----: | :--------: | :---------------: | :---------------: | ------------------ |
+| 语法版本 |      09      |     标准      |   09   |    标准    |        09         |       标准        | 标准               |
+| 是否前缀 |      是      |      否       |   是   |     否     |        是         |        是         | 否                 |
+
+## flex 语法
+
+- 09 年版语法：-webkit-box
+- 11 年版过渡语法：-webkit-flex
+- 标准语法：flex
+
+## 09 和标准语法对比，容器属性 6 个，项目属性 6 个
+
+| 属性    |      标准       | 09 版                    | 说明     |
+| ------- | :-------------: | :----------------------- | -------- | ------ |
+| display |      flex       | box                      | 块元素   | 无差异 |
+| display |   inline-flex   | inline-box               | 内联元素 | 无差异 |
+| 容器    | flex-direction  | box-orient,box-direction | 无差异   |
+| 容器    |    flex-wrap    | box-lines                | 有差异   |
+| 容器    |    flex-flow    | 无                       | 有差异   |
+| 容器    | justify-content | box-pack                 | 有差异   |
+| 容器    |   align-items   | box-align                | 无差异   |
+| 容器    |  align-content  | 无                       | 有差异   |
+| 项目    |      order      | box-ordinal-group        | 无差异   |
+| 项目    |      flex       | box-flex                 | 有差异   |
+| 项目    |    flex-grow    | 无                       | 有差异   |
+| 项目    |   flex-shrink   | 无                       | 有差异   |
+| 项目    |   flex-basis    | 无                       | 有差异   |
+| 项目    |   align-self    | 无                       | 有差异   |
 
 ## 坑
-* justify-content:space-between，旧版语法没有
-* flex-wrap: wrap，大部分浏览器不支持box-lines
 
+- justify-content:space-between，旧版语法没有
+- flex-wrap: wrap，大部分浏览器不支持 box-lines
 
 [参考资料](https://blog.csdn.net/ime33/article/details/78084429)
 
-# 关于web技术
-* Application：
-	1. Manifest：web应用程序清单，目的是将web应用安装到设备的主屏幕，是pwa技术的一部分
-	2. ServiceWorkers：
-* Storage：（https://www.cnblogs.com/best/p/6084209.html）
-	3. LocalStorage：大小限制500万字符左右，本质是读写文件，不能跨域
-	4. SessionStorage：不能跨域
-	5. IndexedDB：
-	6. WebSQL：支持度不够好
-	7. Cookies：大小限制是4k，每次http请求都会带上cookie，cookie是否可以访问收到path和域名的影响，子域名可以访问父域名的cookie
-* Cache：
-	8. CacheStorage（存储静态资源）
-	9. ApplicationCache（根据manifest来进行缓存）
-* 其它：
-	10. PWA
+# 关于 web 技术
+
+- Application：
+  1.  Manifest：web 应用程序清单，目的是将 web 应用安装到设备的主屏幕，是 pwa 技术的一部分
+  2.  ServiceWorkers：
+- Storage：（https://www.cnblogs.com/best/p/6084209.html） 3. LocalStorage：大小限制 500 万字符左右，本质是读写文件，不能跨域 4. SessionStorage：不能跨域 5. IndexedDB： 6. WebSQL：支持度不够好 7. Cookies：大小限制是 4k，每次 http 请求都会带上 cookie，cookie 是否可以访问收到 path 和域名的影响，子域名可以访问父域名的 cookie
+- Cache： 8. CacheStorage（存储静态资源） 9. ApplicationCache（根据 manifest 来进行缓存）
+- 其它： 10. PWA
+
 ```
 <!-- Manifest json文件 -->
 
 ```
-## web存储出现顺序
+
+## web 存储出现顺序
+
 ```
 cookies--->web storage(localstorage和sessionstorage)--->
 ```
+
 # webpack
-* window['webpackJsonp'] = [](备注：runtime)
-* window.webpackJsonp.push = webpackJsonpCallback(data: Array)(备注：runtime)
+
+- window['webpackJsonp'] = [](备注：runtime)
+- window.webpackJsonp.push = webpackJsonpCallback(data: Array)(备注：runtime)
+
 ```
 webpackJsonpCallback函数作用就是加载模块，并触发回调函数
 data[0]: chunkIds: Array，chunkId列表
 data[1]: moreModules: Object，
 data[2]: executedModules:
 ```
-* (window['webpackJsonp'] = window['webpackJsonp'] || []).push([[0], {}, [[10, 1, 2]]])（(备注：chunk)）
 
-## treeshaking和DCE
-* DCE（Dead Code Elimination）
+- (window['webpackJsonp'] = window['webpackJsonp'] || []).push([[0], {}, [[10, 1, 2]]])（(备注：chunk)）
+
+## treeshaking 和 DCE
+
+- DCE（Dead Code Elimination）
+
 ```
 DeadCode：
 不会被执行的代码
@@ -1057,32 +1128,38 @@ Tools：
 2、uglify（目前不会跨文件DCE）
 
 ```
+
 [参考资料](https://juejin.im/post/5a4dc842518825698e7279a9)
 
 # 版本区别
-* alpha：内测版，主要是给开发人员和测试人员测试用的，a第一个希腊字母，表示最早的版本
-* beta：公开测试版本，b是第二个希腊字母，晚于alpha版
-* rc：Release Cadidate（候选版本），和最终版本保持一致
-* stable：稳定版
-* react版本：v0.3.0--->v0.14.8--->v15.0.0--->lastest
+
+- alpha：内测版，主要是给开发人员和测试人员测试用的，a 第一个希腊字母，表示最早的版本
+- beta：公开测试版本，b 是第二个希腊字母，晚于 alpha 版
+- rc：Release Cadidate（候选版本），和最终版本保持一致
+- stable：稳定版
+- react 版本：v0.3.0--->v0.14.8--->v15.0.0--->lastest
 
 # 网关接口
 
-* post请求
+- post 请求
+
 ```
-https://api.dev.pajkdc.com/m.api
+https://api.dev.dc.com/m.api
 
 FormData:
-_chl=iOS%7CPAJK&_mt=phoebe.getConfig&_sm=md5&key=wx.background&_sig=03cddc889d2728302ab1ffa46a3485b6
-```
-* get请求
-```
-http://api.test.pajkdc.com/m.api?_chl=iOS%7CPAJK&_mt=pegasus.getRecipe&_sm=md5&outBizType=PAJK&recipeId=15516952408822238150663230603&_sig=4cb3d2809eb973f362d003fd5e8e2bdd
-
-http://api.test.pajkdc.com/m.api?_chl=iOS%7CPAJK&_mt=pegasus.orderCreatePage&_sm=md5&biz=%7B%22outBizNo%22%3A%2215516952408822238150663230603%22%7D&fund=%7B%22healthGoldSelected%22%3A%22%22%2C%22healthLiveSelected%22%3A%22%22%2C%22paymentType%22%3A%22%22%2C%22invoice%22%3A%7B%22selected%22%3A%22%22%7D%7D&lg=%7B%22addressId%22%3A0%2C%22tel%22%3A%22%22%2C%22distributor%22%3A%224%22%7D&outBizType=PAJK&seller=%5B%7B%22storeId%22%3A200001800208%2C%22skus%22%3A%5B%7B%22skuId%22%3A911911888700424%2C%22amount%22%3A1%7D%5D%7D%5D&user=%7B%7D&_sig=264d7a6ab56db28b3e0bba6216ff39c2
+_chl=iOS%7C&_mt=phoebe.getConfig&_sm=md5&key=wx.background&_sig=03cddc889d2728302ab1ffa46a3485b6
 ```
 
-# webpack loader签名
+- get 请求
+
+```
+http://api.test.dc.com/m.api?_chl=iOS%7C&_mt=pegasus.getRecipe&_sm=md5&outBizType=&recipeId=15516952408822238150663230603&_sig=4cb3d2809eb973f362d003fd5e8e2bdd
+
+http://api.test.dc.com/m.api?_chl=iOS%7C&_mt=pegasus.orderCreatePage&_sm=md5&biz=%7B%22outBizNo%22%3A%2215516952408822238150663230603%22%7D&fund=%7B%22healthGoldSelected%22%3A%22%22%2C%22healthLiveSelected%22%3A%22%22%2C%22paymentType%22%3A%22%22%2C%22invoice%22%3A%7B%22selected%22%3A%22%22%7D%7D&lg=%7B%22addressId%22%3A0%2C%22tel%22%3A%22%22%2C%22distributor%22%3A%224%22%7D&outBizType=&seller=%5B%7B%22storeId%22%3A200001800208%2C%22skus%22%3A%5B%7B%22skuId%22%3A911911888700424%2C%22amount%22%3A1%7D%5D%7D%5D&user=%7B%7D&_sig=264d7a6ab56db28b3e0bba6216ff39c2
+```
+
+# webpack loader 签名
+
 ```
 module.exports = function(source) {
 	<!-- 对source进行逻辑处理 -->
@@ -1090,8 +1167,11 @@ module.exports = function(source) {
 	this.callback(null, handledSource, map);
 }
 ```
-# webpack流程分析
-* options配置项
+
+# webpack 流程分析
+
+- options 配置项
+
 ```
 Entry:       entryOption
 Plugins:     afterPlugins
@@ -1120,16 +1200,17 @@ Resolve:     afterResolvers
 			 infrastructureLog
 			 log
 ```
-* [webpack中的事件](https://webpack.js.org/api/compiler-hooks/)
-事件名|触发时机|回调参数|Hook类型
----|:--:|:--:|:--:|---
-entryOption|配置项entry被处理后触发|(context, entry) => {}|SyncBailHook
-afterPlugins|内部插件初始化之后触发|(compiler) => {}|SyncHook
-afterResolvers|resolver设置完成之后触发|(compiler) => {}|SyncHook
-...|...|...|...
 
+- [webpack 中的事件](https://webpack.js.org/api/compiler-hooks/)
+  事件名|触发时机|回调参数|Hook 类型
+  ---|:--:|:--:|:--:|---
+  entryOption|配置项 entry 被处理后触发|(context, entry) => {}|SyncBailHook
+  afterPlugins|内部插件初始化之后触发|(compiler) => {}|SyncHook
+  afterResolvers|resolver 设置完成之后触发|(compiler) => {}|SyncHook
+  ...|...|...|...
 
-* Tapable
+- Tapable
+
 ```
 旧版本：
 this._plugins = {
@@ -1173,11 +1254,13 @@ this.taps = [
 
 1、***Hook函数最终返回的是Hook的实例hook，hook.tapAsync，hook.tapPromise函数属性会直接抛异常，hook.compile属性函数创建了对应的factory函数，并执行了factory.create()函数，返回factory.create()的返回值
 ```
-* 1、入口：webpack命令行会调用webpack库中webpack.js中的webpack函数
-* 2、校验配置文件options（经测试，options内容就是配置文件导出的JSON对象）
-* 3、根据options类型调用不同的compiler
-* 3-1、options是数组时，走MultiCompiler流程，再调用webpack入口函数
-* 3-2、options是非数组时，使用WebpackOptionsDefaulter处理options，并走Compiler流程
+
+- 1、入口：webpack 命令行会调用 webpack 库中 webpack.js 中的 webpack 函数
+- 2、校验配置文件 options（经测试，options 内容就是配置文件导出的 JSON 对象）
+- 3、根据 options 类型调用不同的 compiler
+- 3-1、options 是数组时，走 MultiCompiler 流程，再调用 webpack 入口函数
+- 3-2、options 是非数组时，使用 WebpackOptionsDefaulter 处理 options，并走 Compiler 流程
+
 ```
 OptionsDefaulter(父类)------WebpackOptionsDefaulter(子类)
 Tapable(父类)------------------Compiler(子类)
@@ -1185,11 +1268,13 @@ Tapable(父类)------------------Compiler(子类)
 2、let compiler = new Compiler(options.context);options.context是指cwd
 ```
 
-
 # 谷歌资源
-google的inspect线上资源地址：
+
+google 的 inspect 线上资源地址：
 172.217.160.116 chrome-devtools-frontend.appspot.com
 Apache-internals: /Users/wangfanghua618/Library/Application Support/Google/Chrome/Default (1)
+
 # 安卓相关
-* gradle和安卓gradle插件是两个东西，版本要对应
-* [gradle国内镜像资源](https://blog.csdn.net/lj402159806/article/details/78422953)
+
+- gradle 和安卓 gradle 插件是两个东西，版本要对应
+- [gradle 国内镜像资源](https://blog.csdn.net/lj402159806/article/details/78422953)

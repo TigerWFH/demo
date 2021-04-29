@@ -2,13 +2,13 @@
 /*
 *   各平台渠道以及对应的标识符，通过UA中字符串识别，
 *   还有一部分是通过URL上的app参数识别，例如ZEB、HCZ
-1、UA识别(优先级高于url参数app=PAJK)
+1、UA识别(优先级高于url参数app=p-a-j-k)
 **********************************************************************************************
 *   平台渠道        *   id   *   标识符                     *     备注                  
 **********************************************************************************************
-*   PAJK           *  001   *   pajkcordova               *    SHOUXIAN中会包含标识符
+*   p-a-j-k           *  001   *   p-a-j-kcordova               *    SHOUXIAN中会包含标识符
 **********************************************************************************************
-*   JSB            *  002   *   pajklitecordova           *
+*   JSB            *  002   *   p-a-j-klitecordova           *
 **********************************************************************************************
 *   SHOUXINA       *  003   *   shouxian                  *
 **********************************************************************************************
@@ -26,9 +26,9 @@
 **********************************************************************************************
 */
 /**
- * app是指平安金管家，主客，主客极速版，好车主等等，优先级:ua > url param > cookie > 'PAJK'
+ * app是指平安金管家，主客，主客极速版，好车主等等，优先级:ua > url param > cookie > 'p-a-j-k'
  * outBizType是指直播、头条、广告、电子处方、购健康(GJK)、生活助手(SHZS)等，当前代码都是从url上获取的
- *       优先级：url-outBizType > url-appChannel > cookie-outBizType > 'PAJK'
+ *       优先级：url-outBizType > url-appChannel > cookie-outBizType > 'p-a-j-k'
  * 
  */ 
 class UserAgent {
@@ -56,8 +56,8 @@ class UserAgent {
     }
 
     _setAppName() {
-        if (this.isPAJKApp()) {
-            this.appName = 'PAJK';
+        if (this.isp-a-j-kApp()) {
+            this.appName = 'p-a-j-k';
             return;
         }
         if (this.isJSBApp()) {
@@ -80,20 +80,20 @@ class UserAgent {
             return;
         }
 
-        this.appName = this._parseAppName() || 'PAJK';/*PAJK兜底渠道*/
+        this.appName = this._parseAppName() || 'p-a-j-k';/*p-a-j-k兜底渠道*/
     }
 
     _setAppVersion() {
         // 金管家app支持分享的最小内部版本号是3042，对应外部版本4.9，此处获取的是内部版本号 Wang Fanghua
-        // 金管家写入到userAgent的字符串特征,对应文档:http://doc.pajk-ent.com/pages/viewpage.action?pageId=40956385
-        if (this.isPAJKApp()) {
+        // 金管家写入到userAgent的字符串特征,对应文档:http://doc.p-a-j-k-ent.com/pages/viewpage.action?pageId=40956385
+        if (this.isp-a-j-kApp()) {
             return;
         }
         if (this.isJSBApp()) {
             return;
         }
         if (this.isSXApp()) {
-            let identifier = 'pajkslaAppVersion';
+            let identifier = 'p-a-j-kslaAppVersion';
             if (this.userAgent.search(identifier) !== -1) {
                 let appVersion = +this.userAgent.substr(-4, 4);
                 if (!isNaN(appVersion)) {
@@ -140,12 +140,12 @@ class UserAgent {
         return this.userAgent.toLocaleLowerCase().indexOf(identifier.toLocaleLowerCase()) !== -1;
     }
 
-    isPAJKApp() {
-        return this.isContainIdentifier('pajkcordova') && !this.isContainIdentifier('shouxian');
+    isp-a-j-kApp() {
+        return this.isContainIdentifier('p-a-j-kcordova') && !this.isContainIdentifier('shouxian');
     }
 
     isJSBApp() {
-        return this.isContainIdentifier('pajklitecordova');
+        return this.isContainIdentifier('p-a-j-klitecordova');
     }
 
     isSXApp() {
@@ -165,8 +165,8 @@ class UserAgent {
     }
 
     //是否可以使用平安健康的cordova或者schema
-    canUsePAJKBridge() {
-        return (this.isPAJKApp() || this.isJSBApp())
+    canUsep-a-j-kBridge() {
+        return (this.isp-a-j-kApp() || this.isJSBApp())
     }
 
     //极速版用户身份
